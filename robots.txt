@@ -1,4 +1,4 @@
 User-agent: *
 Disallow: 
 
-Sitemap: http://blog.yanjiuyanjiu.com/sitemap.xml 
+Sitemap: http://www.yanjiuyanjiu.com/sitemap.xml 
