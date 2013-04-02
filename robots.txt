@@ -1,4 +1,4 @@
 User-agent: *
 Disallow: 
 
-Sitemap: http://soulmachine.github.com/sitemap.xml 
+Sitemap: http://blog.yanjiuyanjiu.com/sitemap.xml 
