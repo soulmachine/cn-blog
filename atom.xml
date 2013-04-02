@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[研究研究]]></title>
+  <link href="http://blog.yanjiuyanjiu.com/atom.xml" rel="self"/>
+  <link href="http://blog.yanjiuyanjiu.com/"/>
+  <updated>2013-04-02T11:58:34+08:00</updated>
+  <id>http://blog.yanjiuyanjiu.com/</id>
+  <author>
+    <name><![CDATA[soulmachine]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+</feed>
