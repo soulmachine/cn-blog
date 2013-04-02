@@ -1,15 +1,25 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
-        <loc>http://blog.yanjiuyanjiu.com/blog/archives/</loc>
-        <lastmod>2013-04-02T11:32:16+08:00</lastmod>
+        <loc>
+            http://www.yanjiuyanjiu.com/blog/2013/04/02/using-github-and-octoperss-to-create-a-free-blog/
+        </loc>
+        <lastmod>2013-04-02T21:38:54+08:00</lastmod>
     </url>
     <url>
-        <loc>http://blog.yanjiuyanjiu.com/</loc>
-        <lastmod>2013-04-02T11:32:16+08:00</lastmod>
+        <loc>http://www.yanjiuyanjiu.com/blog/2013/04/02/my-octopress-configuration/</loc>
+        <lastmod>2013-04-02T21:35:44+08:00</lastmod>
     </url>
     <url>
-        <loc>http://blog.yanjiuyanjiu.com/robots.txt</loc>
+        <loc>http://www.yanjiuyanjiu.com/blog/archives/</loc>
+        <lastmod>2013-04-02T21:38:54+08:00</lastmod>
+    </url>
+    <url>
+        <loc>http://www.yanjiuyanjiu.com/</loc>
+        <lastmod>2013-04-02T21:38:54+08:00</lastmod>
+    </url>
+    <url>
+        <loc>http://www.yanjiuyanjiu.com/robots.txt</loc>
         <lastmod>2013-04-02T11:32:16+08:00</lastmod>
     </url>
 </urlset>

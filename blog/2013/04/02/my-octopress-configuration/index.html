@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>研究研究</title>
+  <title>我的Octopress配置 - 研究研究</title>
   <meta name="author" content="soulmachine">
 
   
@@ -19,7 +19,7 @@ rake preview rake preview 会自动监视文件的变化，重新生成静态页
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://www.yanjiuyanjiu.com">
+  <link rel="canonical" href="http://www.yanjiuyanjiu.com/blog/2013/04/02/my-octopress-configuration">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="研究研究" type="application/atom+xml">
@@ -76,15 +76,12 @@ rake preview rake preview 会自动监视文件的变化，重新生成静态页
 </nav>
   <div id="main">
     <div id="content">
-      <div class="blog-index">
+      <div>
+<article class="hentry" role="article">
   
-  
-  
-    <article>
-      
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2013/04/02/my-octopress-configuration/">我的Octopress配置</a></h1>
+      <h1 class="entry-title">我的Octopress配置</h1>
     
     
       <p class="meta">
@@ -107,7 +104,7 @@ rake preview rake preview 会自动监视文件的变化，重新生成静态页
   </header>
 
 
-  <div class="entry-content"><h2>实时预览</h2>
+<div class="entry-content"><h2>实时预览</h2>
 
 <p>使用如下命令可以实现实时预览：</p>
 
@@ -158,27 +155,63 @@ rake preview rake preview 会自动监视文件的变化，重新生成静态页
 
 
 
+<!--more-->
+
+
+<h3>定制主题</h3>
+
+<h3>添加about me 边栏</h3>
+
+<p>编辑 source_includes\custom\asides\about.html，内容如下：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;section&gt;
+</span><span class='line'>  &lt;h1&gt;About Me&lt;/h1&gt;
+</span><span class='line'>  &lt;p&gt;一句话自我介绍.&lt;/p&gt;
+</span><span class='line'>  &lt;p&gt;Sina Weibo: &lt;a <span class="nv">href</span><span class="o">=</span><span class="s2">&quot;http://weibo.com/soulmachine&quot;</span>&gt;@soulmachine&lt;/a&gt;&lt;br/&gt;
+</span><span class='line'>     Twitter: &lt;a <span class="nv">href</span><span class="o">=</span><span class="s2">&quot;https://twitter.com/#!/soulmachine&quot;</span>&gt;@soulmachine&lt;/a&gt;&lt;br/&gt;
+</span><span class='line'>     Other: &lt;a <span class="nv">href</span><span class="o">=</span><span class="s2">&quot;https://github.com/soulmachine&quot;</span>&gt;Github&lt;/a&gt;, &lt;a <span class="nv">href</span><span class="o">=</span><span class="s2">&quot;https://plus.google.com/103519507226474510310&quot;</span>&gt;Google+&lt;/a&gt;, &lt;a <span class="nv">href</span><span class="o">=</span><span class="s2">&quot;http://www.linkedin.com/in/soulmachine&quot;</span>&gt;LinkedIn&lt;/a&gt;, &lt;a <span class="nv">href</span><span class="o">=</span><span class="s2">&quot;http://www.quora.com/Jason-Day-2&quot;</span>&gt;Quora&lt;/a&gt;&lt;/p&gt;
+</span><span class='line'>  &lt;/p&gt;
+</span><span class='line'>&lt;/section&gt;
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>在 _config.yml 的 default_asides 里添加 custom/asides/about.html。</p>
+
+<h3>其他</h3>
+
+<p>启用 twitter 分享， facebook like 和Google +1，设置如下：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>google_plus_one: <span class="nb">true</span>
+</span><span class='line'>twitter_tweet_button: <span class="nb">true</span>
+</span><span class='line'>facebook_like: <span class="nb">true</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>启用Disqus，填入 short name即可。</p>
+
+<p>填入 Google Analytics Tracking ID，例如 UA-7583537-4。</p>
 </div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2013/04/02/my-octopress-configuration/">Read on &rarr;</a>
-    </footer>
-  
 
 
-    </article>
-  
-  
-    <article>
+  <footer>
+    <p class="meta">
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/04/02/using-github-and-octoperss-to-create-a-free-blog/">使用github + Octopress 搭建免费博客</a></h1>
-    
-    
-      <p class="meta">
-        
+  
+
+<span class="byline author vcard">Posted by <span class="fn">soulmachine</span></span>
+
+      
 
 
 
@@ -190,52 +223,42 @@ rake preview rake preview 会自动监视文件的变化，重新生成静态页
   
 
 
-<time datetime="2013-04-02T15:14:00+08:00" pubdate data-updated="true">Apr 2<span>nd</span>, 2013</time>
-        
-      </p>
+<time datetime="2013-04-02T15:35:00+08:00" pubdate data-updated="true">Apr 2<span>nd</span>, 2013</time>
+      
+
+
+    </p>
     
-  </header>
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://www.yanjiuyanjiu.com/blog/2013/04/02/my-octopress-configuration/" data-via="soulmachine" data-counturl="http://www.yanjiuyanjiu.com/blog/2013/04/02/my-octopress-configuration/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
 
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/04/02/using-github-and-octoperss-to-create-a-free-blog/" title="Previous Post: 使用github + Octopress 搭建免费博客">&laquo; 使用github + Octopress 搭建免费博客</a>
+      
+      
+    </p>
+  </footer>
+</article>
 
-  <div class="entry-content"><h3>前提条件</h3>
-
-<p>注册一个github账号。</p>
-
-<p>任何资料，都不如<a href="http://octopress.org/docs/">Octopress</a> 和<a href="https://help.github.com/categories/20/articles">Github Pages</a>的官方文档，建议首先阅读官方文档。</p>
-
-<h3>GitHub Pages快速体验</h3>
-
-<p>在GitHub网站上，点击右上角的+号图标，创建一个新的Repo，Repository 的名字必须为 username.github.com。然后点击Settings进入该Repo的设置页面。看到&#8221;Automatic Page Generator&#8221;，说明这个Repo已经启用了GitHub Page。点击按钮进入设置。</p>
-
-<p>在&#8221;Create a GitHub User Page&#8221;填写一些基本信息，点击右下角的&#8221;Continue to Layout&#8221;。布局就用默认的，点击绿色的&#8221;Publish&#8221;按钮。</p>
-
-<p>大功告成，输入&#8221;username.github.com&#8221;，看到一个页面没？这就是你刚刚创建的一个页面。</p>
-
-<p>GitHub Pages分为两种类型，一种是&#8221;User and Org Pages&#8221;，一种是&#8221;Project Pages&#8221;。前者是用户的主页，一个用户仅有一个。后者是每个项目的主页。见github page官方的文档 <a href="https://help.github.com/articles/user-organization-and-project-pages">Creating Pages with the automatic generator</a>。</p>
-
-<p>本文创建的是第一种类型。</p>
-
-<p>这篇博客 <a href="http://www.ruanyifeng.com/blog/2012/08/blogging_with_jekyll.html">搭建一个免费的，无限流量的Blog&#8212;-github Pages和Jekyll入门 - 阮一峰的网络日志</a>  很通俗易懂，不过它创建的是第二种类型，在一个Repo上新建了一个branch，并命名为gh-pages。</p>
-
-<p>下面正式开始折腾。</p>
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
 
 </div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2013/04/02/using-github-and-octoperss-to-create-a-free-blog/">Read on &rarr;</a>
-    </footer>
-  
 
-
-    </article>
-  
-  <div class="pagination">
-    
-    <a href="/blog/archives">Blog Archives</a>
-    
-  </div>
-</div>
 <aside class="sidebar">
   
     <section>
@@ -268,6 +291,7 @@ rake preview rake preview 会自动监视文件的变化，重新生成静态页
   
 </aside>
 
+
     </div>
   </div>
   <footer role="contentinfo"><p>
@@ -282,7 +306,10 @@ rake preview rake preview 会自动监视文件的变化，重新生成静态页
       var disqus_shortname = 'yanjiuyanjiu';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://www.yanjiuyanjiu.com/blog/2013/04/02/my-octopress-configuration/';
+        var disqus_url = 'http://www.yanjiuyanjiu.com/blog/2013/04/02/my-octopress-configuration/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
