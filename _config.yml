@@ -1,13 +1,14 @@
 # ----------------------- #
 #      Main Configs       #
 # ----------------------- #
-
-url: http://soulmachine.github.com
-title: My Octopress Blog
-subtitle: A blogging framework for hackers.
-author: Your Name
+baseurl: /
+url: http://blog.yanjiuyanjiu.com
+title: 研究研究
+subtitle: 专注于机器学习
+author: soulmachine
+author_email: soulmachine@gmail.com
 simple_search: http://google.com/search
-description:
+description: 一个关于机器学习的技术博客
 
 # Default date format is "ordinal" (resulting in "July 22nd 2007")
 # You can customize the format as defined in
