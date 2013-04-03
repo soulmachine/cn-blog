@@ -47,6 +47,13 @@ MathJax.Hub.Config({
 
 本节参考了[Writing Math Equations on Octopress](http://www.idryman.org/blog/2012/03/10/writing-math-equations-on-octopress/)，不过省去了安装kramdown的步骤，因为引入了MathJax的JS后，就可以直接写公式了，可以看看[edchen博客的_config.yml](https://github.com/echen/echen.github.com/blob/source/_config.yml)，依然用的rdiscount，再看看它的网页源码，引用了MathJax的JS。
 
+**右击公式全屏空白**：这时候右击公式，全屏空白。解决这个问题很简单，参考[在Octopress中使用Latex公式](http://jasonllinux.github.com/blog/2012/11/06/write-latex-in-octopress/)，只需在 `sass/base/_theme.scss`添加"#main"即可：
+```
+body {
+  > div#main {
+    background: $sidebar-bg $noise-bg;
+```
+
 ## 首页只显示部分正文(Excerpts)
 Octopress中，可以使用 `<!--more-->`，这样首页只显示一部分正文，并在每篇文章底下加一个Read on超链接。
 
