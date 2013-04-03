@@ -4,7 +4,7 @@
   <title><![CDATA[研究研究]]></title>
   <link href="http://www.yanjiuyanjiu.com/atom.xml" rel="self"/>
   <link href="http://www.yanjiuyanjiu.com/"/>
-  <updated>2013-04-03T15:57:41+08:00</updated>
+  <updated>2013-04-03T16:11:38+08:00</updated>
   <id>http://www.yanjiuyanjiu.com/</id>
   <author>
     <name><![CDATA[soulmachine]]></name>
@@ -81,6 +81,17 @@
 <p>上面的代码也可以在head.html里添加，不过这样会使得页面的加载速度变慢。</p>
 
 <p>本节参考了<a href="http://www.idryman.org/blog/2012/03/10/writing-math-equations-on-octopress/">Writing Math Equations on Octopress</a>，不过省去了安装kramdown的步骤，因为引入了MathJax的JS后，就可以直接写公式了，可以看看<a href="https://github.com/echen/echen.github.com/blob/source/_config.yml">edchen博客的_config.yml</a>，依然用的rdiscount，再看看它的网页源码，引用了MathJax的JS。</p>
+
+<p><strong>右击公式全屏空白</strong>：这时候右击公式，全屏空白。解决这个问题很简单，参考<a href="http://jasonllinux.github.com/blog/2012/11/06/write-latex-in-octopress/">在Octopress中使用Latex公式</a>，只需在 <code>sass/base/_theme.scss</code>添加&#8221;#main&#8221;即可：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>body <span class="o">{</span>
+</span><span class='line'>  &gt; div#main <span class="o">{</span>
+</span><span class='line'>    background: <span class="nv">$sidebar</span>-bg <span class="nv">$noise</span>-bg;
+</span></code></pre></td></tr></table></div></figure>
+
 
 <h2>首页只显示部分正文(Excerpts)</h2>
 
