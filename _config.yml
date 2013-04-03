@@ -28,25 +28,26 @@ email:
 
 # If publishing to a subdirectory as in http://site.com/project set 'root: /project'
 root: /
-permalink: /blog/:year/:month/:day/:title/
+permalink: pretty # equivalent to /:categories/:year/:month/:day/:title.html
 source: source
 destination: public
 plugins: plugins
 code_dir: downloads/code
 category_dir: blog/categories
+category_title_prefix: "Category: "
 markdown: rdiscount
 pygments: false # default python pygments have been replaced by pygments.rb
 
 paginate: 10          # Posts per page on the blog index
 pagination_dir: blog  # Directory base for pagination URLs eg. /blog/page/2/
 recent_posts: 5       # Posts in the sidebar Recent Posts section
-excerpt_link: "Read on &rarr;"  # "Continue reading" link text at the bottom of excerpted articles
+excerpt_link: "继续阅读 &rarr;"  # "Continue reading" link text at the bottom of excerpted articles
 
 titlecase: true       # Converts page and post titles to titlecase
 
 # list each of the sidebar modules you want to include, in the order you want them to appear.
 # To add custom asides, create files in /source/_includes/custom/asides/ and add them to the list like 'custom/asides/custom_aside_name.html'
-default_asides: [custom/asides/about.html, asides/recent_posts.html, asides/github.html, asides/delicious.html, asides/pinboard.html, asides/googleplus.html]
+default_asides: [custom/asides/about.html, asides/recent_posts.html, asides/github.html, asides/delicious.html, asides/pinboard.html, asides/googleplus.html,custom/asides/weibo.html,custom/asides/category_list.html,custom/asides/recent_comments.html]
 
 # Each layout uses the default asides, but they can have their own asides instead. Simply uncomment the lines below
 # and add an array with the asides you want to use.
@@ -66,10 +67,10 @@ github_skip_forks: true
 
 # Twitter
 twitter_user: soulmachine
-twitter_tweet_button: true
+twitter_tweet_button: false
 
 # Google +1
-google_plus_one: true
+google_plus_one: false
 google_plus_one_size: medium
 
 # Google Plus Profile
@@ -86,11 +87,32 @@ delicious_user:
 delicious_count: 3
 
 # Disqus Comments
-disqus_short_name: yanjiuyanjiu
+disqus_short_name:
 disqus_show_comment_count: false
+
+# duoshuo comments
+duoshuo_comments: true
+duoshuo_short_name: yanjiuyanjiu
+duoshuo_asides_num: 5      # 侧边栏评论显示条目数
+duoshuo_asides_avatars: 1   # 侧边栏评论是否显示头像
+duoshuo_asides_time: 1      # 侧边栏评论是否显示时间
+duoshuo_asides_title: 1     # 侧边栏评论是否显示标题
+duoshuo_asides_admin: 0     # 侧边栏评论是否显示作者评论
+duoshuo_asides_length: 32   # 侧边栏评论截取的长度
 
 # Google Analytics
 google_analytics_tracking_id: UA-7583537-4
 
 # Facebook Like
-facebook_like: true
+facebook_like: false
+
+# Weibo
+weibo_share: true   # Whether show the sharing button
+# Please refer to http://weibo.com/tool/weiboshow to get your uid and verifier. 
+weibo_uid: # 1663402687
+weibo_verifier: b218d70f
+weibo_title: 1    # 是否显示“新浪微博”四个字作为标题
+weibo_fansline: 0   # 粉丝显示多少行
+weibo_show: false    # 是否显示最近微博内容
+weibo_pic: true     # 是否显示微博中的图片
+weibo_skin: 1      # 使用哪种配色风格，数字为从1开始的微博秀风格序号

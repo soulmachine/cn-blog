@@ -4,7 +4,7 @@ title: "使用github + Octopress 搭建免费博客"
 date: 2013-04-02 15:14
 comments: true
 share: true
-categories: 
+categories: tools
 ---
 ### 前提条件
 注册一个github账号。
@@ -117,10 +117,12 @@ rake install
 ``` bash  
 rake setup_github_pages
 ```  
-生成JeKyll所需要的静态文件
+编译生成JeKyll所需要的静态文件
 ``` bash  
 rake generate
 ```  
+这个命令主要是根据source目录的内容，编译生成JeKyll所需要的静态文件，存放到public目录下。source 目录对应着git上的source分支。
+
 预览
 ``` bash  
 rake preview
@@ -130,6 +132,7 @@ rake preview
 ``` bash  
 rake deploy
 ```  
+该命令首先清空\_deploy目录，然后将public目录整个拷贝过来，然后commit到github。\_deploy 目录对应着master分支。
 
 **终止预览**  
 启用`rake preview`后，直接按`ctrl+c`无法正常终止该进程，老提示`终止批处理操作吗（Y/N）？`，这时候可以另开一个Git Bash窗口，使用`ps aux | grep ruby`命令找出`pid(第一个数值)`，然后执行`kill <pid>`来停止该进程(参考[octopress on heroku (二)](http://linuxabc.heroku.com/blog/octopress-on-heroku-2))。  
@@ -158,6 +161,8 @@ echo "export LANG LC_ALL" > ~/.bash\_profile
 
 用www, blog之类的二级域名，还有个好处是方便升级，比如新版本用www1指向，等测试完成后，改成www指向，无缝切换。
 
+在使用Octopress的时候，每次`rake generate`, `rake deploy`后，master分支下面的CNAME文件消失了。正确的做法是，在 source 目录下新建CNAME文件，`rake generate` 会自动拷贝到\public目录下，`rake deploy`再拷贝public目录内容到\_deploy目录，并提交到master分支。
+
 
 
 ### 参考资料
@@ -166,3 +171,4 @@ echo "export LANG LC_ALL" > ~/.bash\_profile
 1. [windows下安装DevKit](http://rubyer.me/blog/134/)
 1. [在新Windows系统中重新部署Octopress](http://blog.sprabbit.com/blog/2012/12/21/recover-octopress/)
 1. [Windows 8安装Octopress记录](http://hivan.me/octopress-install-to-windows8/)
+1. [关于在64位 Windows 7 中部署中文化的Octopress](http://blog.sprabbit.com/blog/2012/03/23/octopress/)
