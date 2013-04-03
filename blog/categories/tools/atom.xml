@@ -4,7 +4,7 @@
   <title><![CDATA[Category: tools | 研究研究]]></title>
   <link href="http://www.yanjiuyanjiu.com/blog/categories/tools/atom.xml" rel="self"/>
   <link href="http://www.yanjiuyanjiu.com/"/>
-  <updated>2013-04-03T13:16:07+08:00</updated>
+  <updated>2013-04-03T13:44:57+08:00</updated>
   <id>http://www.yanjiuyanjiu.com/</id>
   <author>
     <name><![CDATA[soulmachine]]></name>
@@ -305,11 +305,13 @@ rake install
 <code>bash  
 rake setup_github_pages
 </code><br/>
-生成JeKyll所需要的静态文件
+编译生成JeKyll所需要的静态文件
 <code>bash  
 rake generate
 </code><br/>
-预览
+这个命令主要是根据source目录的内容，编译生成JeKyll所需要的静态文件，存放到public目录下。source 目录对应着git上的source分支。</p>
+
+<p>预览
 <code>bash  
 rake preview
 </code></p>
@@ -317,7 +319,16 @@ rake preview
 <p>部署到github
 <code>bash  
 rake deploy
-</code></p>
+</code><br/>
+该命令首先清空_deploy目录，然后将public目录整个拷贝过来，然后commit到github。_deploy 目录对应着master分支。</p>
+
+<p>备份source到github
+<code>
+git add .
+git commit -m 'your message'
+git push origin source
+</code>
+source 目录下保存了所有的markdown源文件，是博客的原始数据，以及一些模板文件。因此很有必要备份。用上述命令提交到github，这样就用git管理起来了，再也不用担心数据丢失了。</p>
 
 <p><strong>终止预览</strong><br/>
 启用<code>rake preview</code>后，直接按<code>ctrl+c</code>无法正常终止该进程，老提示<code>终止批处理操作吗（Y/N）？</code>，这时候可以另开一个Git Bash窗口，使用<code>ps aux | grep ruby</code>命令找出<code>pid(第一个数值)</code>，然后执行<code>kill &lt;pid&gt;</code>来停止该进程(参考<a href="http://linuxabc.heroku.com/blog/octopress-on-heroku-2">octopress on heroku (二)</a>)。<br/>
@@ -348,7 +359,7 @@ echo "export LANG LC_ALL" &gt; ~/.bash\_profile
 
 <p>用www, blog之类的二级域名，还有个好处是方便升级，比如新版本用www1指向，等测试完成后，改成www指向，无缝切换。</p>
 
-<p>在使用Octopress的时候，每次<code>rake generate</code>, <code>rake deploy</code>后，master分支下面的CNAME文件消失了。正确的做法是，在 source 目录下新建CNAME文件，<code>rake generate</code> 会自动拷贝到\public目录下，<code>rake deploy</code>再从public目录到_deploy目录，并提交到master分支。</p>
+<p>在使用Octopress的时候，每次<code>rake generate</code>, <code>rake deploy</code>后，master分支下面的CNAME文件消失了。正确的做法是，把CNAME文件放到在 source 目录下，其余的都删掉，<code>rake generate</code> 会自动拷贝到public目录下，<code>rake deploy</code>再拷贝public目录内容到_deploy目录，并提交到master分支。</p>
 
 <h3>参考资料</h3>
 
