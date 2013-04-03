@@ -27,8 +27,8 @@
   <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
   <script src="/javascripts/octopress.js" type="text/javascript"></script>
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
-<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
-<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<!-- <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css"> -->
+<!-- <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css"> -->
 
   
   <script type="text/javascript">
@@ -338,11 +338,23 @@ Windows预设是Big5编码,所以要想’rake generate’的时候不报编码�
 
 <blockquote><p>www.yanjiuyanjiu.com</p></blockquote>
 
-<p>然后去DNSPod，添加一条CNAME，指向 username.github.com。</p>
+<p>然后去DNSPod，添加一条CNAME，指向 username.github.com。例如我的为：</p>
 
-<p>很多人喜欢去掉www，用xxx.com的形式来访问，不过大家去试一下，在浏览器输入qq.com, douban.com, baidu.com，发现都会自动跳转到www，也就是说这些大网站，目前也是用www.xxx.com的域名为主，因此建议大家也这样做。</p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>www  CNAME   默认  soulmachine.github.com.     -   600
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>很多人喜欢去掉www，用xxx.com的形式来访问，不过大家去试一下，在浏览器输入qq.com, douban.com, baidu.com，发现都会自动跳转到www，也就是说这些大网站，目前也是用www.example.com的域名为主，因此建议大家也这样做。</p>
 
 <p>用www, blog之类的二级域名，还有个好处是方便升级，比如新版本用www1指向，等测试完成后，改成www指向，无缝切换。</p>
+
+<p>如何让example.com 自动变成www.example.com呢？需要用 301重定向，在DNSPod上非常简单，添加一条显性URL即可，例如我的是：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>@    显性URL   默认  http://www.yanjiuyanjiu.com -   600
+</span></code></pre></td></tr></table></div></figure>
+
 
 <p>在使用Octopress的时候，每次<code>rake generate</code>, <code>rake deploy</code>后，master分支下面的CNAME文件消失了。正确的做法是，把CNAME文件放到在 source 目录下，其余的都删掉，<code>rake generate</code> 会自动拷贝到public目录下，<code>rake deploy</code>再拷贝public目录内容到_deploy目录，并提交到master分支。</p>
 
@@ -450,13 +462,13 @@ var duoshuoQuery = {short_name:"yanjiuyanjiu"};
     <section>
   <h1>About Me</h1>
   <p>在清华大学读研，目前正在研究机器学习，每周在清华举办读书会，欢迎大家前来交流切磋.</p>
-  <p>Sina Weibo: <a href="http://weibo.com/soulmachine">@soulmachine</a><br/>
+  <p>新浪微博: <a href="http://weibo.com/soulmachine">@soulmachine</a><br/>
      Twitter: <a href="https://twitter.com/#!/soulmachine">@soulmachine</a><br/>
      Other: <a href="https://github.com/soulmachine">Github</a>, <a href="https://plus.google.com/103519507226474510310">Google+</a>, <a href="http://www.linkedin.com/in/soulmachine">LinkedIn</a>, <a href="http://www.quora.com/Jason-Day-2">Quora</a></p>
   </p>
 </section>
 <section>
-  <h1>Recent Posts</h1>
+  <h1>最新文章</h1>
   <ul id="recent_posts">
     
       <li class="post">
@@ -469,16 +481,33 @@ var duoshuoQuery = {short_name:"yanjiuyanjiu"};
     
   </ul>
 </section>
-
-
-
-
 <section>
-  <h1>Categories</h1>
+  <h1>分类目录</h1>
     <ul id="category-list"><li><a href='/blog/categories/tools/'>tools (2)</a></li></ul>
 </section>
 <section>
-<h1>Recent Comments</h1>
+  <h1>友情链接</h1>
+  <ul>
+    <li>
+      <a href="http://yewen.us/" title="大学同学，ACM高手，曾在百度，现在人人网">笨狗随手留下</a>
+    </li>
+    <li>
+      <a href="http://blog.csdn.net/lgnlgn" title="好朋友，曾在赶集网，现在老家的猫扑">梁兄的技术博客</a>
+    </li>
+    <li>
+      <a href="http://www.doesbetter.com/" title="一起组织机器学习读书会的好朋友">王孝舒的博客</a>
+    </li>
+    <li>
+      <a href="http://www.wytk2008.net/" title="做机器学习的一位同学">无垠天空</a>
+    </li>
+  </ul>
+</section>
+
+
+
+
+<section>
+<h1>最新评论</h1>
 <ul class="ds-recent-comments" data-num-items="5" data-show-avatars="1" data-show-time="1" data-show-title="1" data-show-admin="0" data-excerpt-length="32"></ul>
 
 </section>
@@ -489,7 +518,22 @@ var duoshuoQuery = {short_name:"yanjiuyanjiu"};
 
     </div>
   </div>
-  <footer role="contentinfo"><p>
+  <footer role="contentinfo"><!-- mathjax config similar to math.stackexchange -->
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  jax: ["input/TeX", "output/HTML-CSS"],
+  tex2jax: {
+    inlineMath: [ ['$', '$'] ],
+    displayMath: [ ['$$', '$$']],
+    processEscapes: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+  },
+  messageStyle: "none",
+  "HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"] }
+});
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML" type="text/javascript"></script>
+<p>
   Copyright &copy; 2013 - soulmachine -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>

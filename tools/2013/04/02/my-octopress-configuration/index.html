@@ -28,8 +28,8 @@ rake preview rake preview 会自动监视文件的变化，重新生成静态页
   <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
   <script src="/javascripts/octopress.js" type="text/javascript"></script>
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
-<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
-<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<!-- <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css"> -->
+<!-- <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css"> -->
 
   
   <script type="text/javascript">
@@ -131,6 +131,47 @@ rake preview rake preview 会自动监视文件的变化，重新生成静态页
 
 <h3>MathJax</h3>
 
+<p>在<code>source/_includes/custom/footer.html</code>的第一行加入如下代码：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;!-- mathjax config similar to math.stackexchange --&gt;
+</span><span class='line'>&lt;script <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;text/x-mathjax-config&quot;</span>&gt;
+</span><span class='line'>MathJax.Hub.Config<span class="o">({</span>
+</span><span class='line'>  jax: <span class="o">[</span><span class="s2">&quot;input/TeX&quot;</span>, <span class="s2">&quot;output/HTML-CSS&quot;</span><span class="o">]</span>,
+</span><span class='line'>  tex2jax: <span class="o">{</span>
+</span><span class='line'>    inlineMath: <span class="o">[</span> <span class="o">[</span><span class="s1">&#39;$&#39;</span>, <span class="s1">&#39;$&#39;</span><span class="o">]</span> <span class="o">]</span>,
+</span><span class='line'>    displayMath: <span class="o">[</span> <span class="o">[</span><span class="s1">&#39;$$&#39;</span>, <span class="s1">&#39;$$&#39;</span><span class="o">]]</span>,
+</span><span class='line'>    processEscapes: <span class="nb">true</span>,
+</span><span class='line'>    skipTags: <span class="o">[</span><span class="s1">&#39;script&#39;</span>, <span class="s1">&#39;noscript&#39;</span>, <span class="s1">&#39;style&#39;</span>, <span class="s1">&#39;textarea&#39;</span>, <span class="s1">&#39;pre&#39;</span>, <span class="s1">&#39;code&#39;</span><span class="o">]</span>
+</span><span class='line'>  <span class="o">}</span>,
+</span><span class='line'>  messageStyle: <span class="s2">&quot;none&quot;</span>,
+</span><span class='line'>  <span class="s2">&quot;HTML-CSS&quot;</span>: <span class="o">{</span> preferredFont: <span class="s2">&quot;TeX&quot;</span>, availableFonts: <span class="o">[</span><span class="s2">&quot;STIX&quot;</span>,<span class="s2">&quot;TeX&quot;</span><span class="o">]</span> <span class="o">}</span>
+</span><span class='line'><span class="o">})</span>;
+</span><span class='line'>&lt;/script&gt;
+</span><span class='line'>&lt;script <span class="nv">src</span><span class="o">=</span><span class="s2">&quot;http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML&quot;</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;text/javascript&quot;</span>&gt;&lt;/script&gt;
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这样就引入了MathJax的JS包，可以直接在markdown文件里直接写公式了，例如 $\dfrac {\pi}{2}$。</p>
+
+<p>上面的代码也可以在head.html里添加，不过这样会使得页面的加载速度变慢。</p>
+
+<p>本节参考了<a href="http://www.idryman.org/blog/2012/03/10/writing-math-equations-on-octopress/">Writing Math Equations on Octopress</a>，不过省去了安装kramdown的步骤，因为引入了MathJax的JS后，就可以直接写公式了，可以看看<a href="https://github.com/echen/echen.github.com/blob/source/_config.yml">edchen博客的_config.yml</a>，依然用的rdiscount，再看看它的网页源码，引用了MathJax的JS。</p>
+
 <h2>首页只显示部分正文(Excerpts)</h2>
 
 <p>Octopress中，可以使用 <code>&lt;!--more--&gt;</code>，这样首页只显示一部分正文，并在每篇文章底下加一个Read on超链接。</p>
@@ -179,7 +220,7 @@ rake preview rake preview 会自动监视文件的变化，重新生成静态页
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;section&gt;
 </span><span class='line'>  &lt;h1&gt;About Me&lt;/h1&gt;
 </span><span class='line'>  &lt;p&gt;一句话自我介绍.&lt;/p&gt;
-</span><span class='line'>  &lt;p&gt;Sina Weibo: &lt;a <span class="nv">href</span><span class="o">=</span><span class="s2">&quot;http://weibo.com/soulmachine&quot;</span>&gt;@soulmachine&lt;/a&gt;&lt;br/&gt;
+</span><span class='line'>  &lt;p&gt;新浪微博: &lt;a <span class="nv">href</span><span class="o">=</span><span class="s2">&quot;http://weibo.com/soulmachine&quot;</span>&gt;@soulmachine&lt;/a&gt;&lt;br/&gt;
 </span><span class='line'>     Twitter: &lt;a <span class="nv">href</span><span class="o">=</span><span class="s2">&quot;https://twitter.com/#!/soulmachine&quot;</span>&gt;@soulmachine&lt;/a&gt;&lt;br/&gt;
 </span><span class='line'>     Other: &lt;a <span class="nv">href</span><span class="o">=</span><span class="s2">&quot;https://github.com/soulmachine&quot;</span>&gt;Github&lt;/a&gt;, &lt;a <span class="nv">href</span><span class="o">=</span><span class="s2">&quot;https://plus.google.com/103519507226474510310&quot;</span>&gt;Google+&lt;/a&gt;, &lt;a <span class="nv">href</span><span class="o">=</span><span class="s2">&quot;http://www.linkedin.com/in/soulmachine&quot;</span>&gt;LinkedIn&lt;/a&gt;, &lt;a <span class="nv">href</span><span class="o">=</span><span class="s2">&quot;http://www.quora.com/Jason-Day-2&quot;</span>&gt;Quora&lt;/a&gt;&lt;/p&gt;
 </span><span class='line'>  &lt;/p&gt;
@@ -287,17 +328,85 @@ rake preview rake preview 会自动监视文件的变化，重新生成静态页
 
 <p>使用第三方插件 <a href="https://github.com/tokkonopapa/octopress-tagcloud">octopress-tagcloud</a>。</p>
 
+<h2>友情链接</h2>
+
+<p>在<code>source\_includes\custom\asides</code> 目录下添加一个blogroll.html文件，模仿about.html，添加一些友情链接，例如：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;section&gt;
+</span><span class='line'>  &lt;h1&gt;友情链接&lt;/h1&gt;
+</span><span class='line'>  &lt;ul&gt;
+</span><span class='line'>    &lt;li&gt;
+</span><span class='line'>      &lt;a <span class="nv">href</span><span class="o">=</span><span class="s2">&quot;http://coolshell.cn/&quot;</span>&gt;酷壳CoolShell&lt;/a&gt;
+</span><span class='line'>    &lt;/li&gt;
+</span><span class='line'>    &lt;li&gt;
+</span><span class='line'>      &lt;a <span class="nv">href</span><span class="o">=</span><span class="s2">&quot;http://mindhacks.cn/&quot;</span>&gt;刘未鹏MIND HACKS&lt;/a&gt;
+</span><span class='line'>    &lt;/li&gt;
+</span><span class='line'>    &lt;li&gt;
+</span><span class='line'>      &lt;a <span class="nv">href</span><span class="o">=</span><span class="s2">&quot;http://blog.codingnow.com/&quot;</span>&gt;云风&lt;/a&gt;
+</span><span class='line'>    &lt;/li&gt;
+</span><span class='line'>    &lt;li&gt;
+</span><span class='line'>      &lt;a <span class="nv">href</span><span class="o">=</span><span class="s2">&quot;http://www.cnblogs.com/Solstice/&quot;</span>&gt;陈硕&lt;/a&gt;
+</span><span class='line'>    &lt;/li&gt;
+</span><span class='line'>  &lt;/ul&gt;
+</span><span class='line'>&lt;/section&gt;
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>然后在 _config.yml 文件中，在 default_asides 的数组中添加 <code>custom/asides/blogroll.html</code>。</p>
+
 <h2>中文目录</h2>
 
 <p>TODO</p>
 
-<h2>头导航菜单</h2>
+<h2>修改字体</h2>
 
-<p>头部导航菜单的修改可以打开并编辑<code>source/_includes/custom/navigation.html</code></p>
+<p>Octopresss默认使用的是 google webfonts，见<code>source/_includes/custom/head.html</code>里的两行代码。Google Webfonts是个好东西，但遗憾的是它没有中文字体。所以你用<strong>粗体</strong>，发现并没有变粗，就是这个原因。</p>
+
+<p>首先，将head.html中的两行代码注释掉，省去了加载字体，加快网页加载速度。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;!--Fonts from Google<span class="s2">&quot;s Web font directory at http://google.com/webfonts --&gt;</span>
+</span><span class='line'><span class="s2">&lt;!-- &lt;link href=&quot;</span>http://fonts.googleapis.com/css?family<span class="o">=</span>PT+Serif:regular,italic,bold,bolditalic<span class="s2">&quot; rel=&quot;</span>stylesheet<span class="s2">&quot; type=&quot;</span>text/css<span class="s2">&quot;&gt; --&gt;</span>
+</span><span class='line'><span class="s2">&lt;!-- &lt;link href=&quot;</span>http://fonts.googleapis.com/css?family<span class="o">=</span>PT+Sans:regular,italic,bold,bolditalic<span class="s2">&quot; rel=&quot;</span>stylesheet<span class="s2">&quot; type=&quot;</span>text/css<span class="err">&quot;</span>&gt; --&gt;
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>参考 这篇博客 <a href="http://lifesinger.wordpress.com/2011/04/06/best-web-default-fonts/">最佳 Web 中文默认字体</a>，在<code>sass/custom/_fonts.scss</code>中添加如下三行代码：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$heading</span>-font-family: arial, sans-serif;
+</span><span class='line'><span class="nv">$header</span>-title-font-family: arial, sans-serif;
+</span><span class='line'><span class="nv">$header</span>-subtitle-font-family: arial, sans-serif;
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>刷新网页，可以看见中文的粗体变黑了。</p>
 
 <h2>一些汉化工作</h2>
 
-<p>在 _config.yml中，把 <code>Read on</code> 改为 &#8220;继续阅读&#8221;。</p>
+<p>在 _config.yml中，把 <code>Read on</code> 改为 &#8220;继续阅读&#8221;。
+在 <code>source/_includes/custom/asides</code>目录下，将&#8221;Recent Comments&#8221;改为“最新评论”，&#8221;Categories&#8221;改为“分类目录”，将<code>source/_includes/asides/recent_posts.html</code>中&#8221;Recent Posts&#8221;改为“最新文章”。</p>
 
 <h2>添加统计代码</h2>
 
@@ -305,8 +414,16 @@ rake preview rake preview 会自动监视文件的变化，重新生成静态页
 
 <h2>第三方主题和插件</h2>
 
-<p>主题：<a href="https://github.com/imathis/octopress/wiki/3rd-Party-Octopress-Themes">3rd Party Octopress Themes</a>
+<p>主题：<a href="https://github.com/imathis/octopress/wiki/3rd-Party-Octopress-Themes">3rd Party Octopress Themes</a><br/>
 插件：<a href="https://github.com/imathis/octopress/wiki/3rd-party-plugins">3rd party plugins</a></p>
+
+<h2>参考资料</h2>
+
+<ol>
+<li><a href="http://shanewfx.github.com/blog/2012/08/13/improve-blog-theme/">Octopress主题改造</a></li>
+<li></li>
+</ol>
+
 </div>
 
 
@@ -400,13 +517,13 @@ var duoshuoQuery = {short_name:"yanjiuyanjiu"};
     <section>
   <h1>About Me</h1>
   <p>在清华大学读研，目前正在研究机器学习，每周在清华举办读书会，欢迎大家前来交流切磋.</p>
-  <p>Sina Weibo: <a href="http://weibo.com/soulmachine">@soulmachine</a><br/>
+  <p>新浪微博: <a href="http://weibo.com/soulmachine">@soulmachine</a><br/>
      Twitter: <a href="https://twitter.com/#!/soulmachine">@soulmachine</a><br/>
      Other: <a href="https://github.com/soulmachine">Github</a>, <a href="https://plus.google.com/103519507226474510310">Google+</a>, <a href="http://www.linkedin.com/in/soulmachine">LinkedIn</a>, <a href="http://www.quora.com/Jason-Day-2">Quora</a></p>
   </p>
 </section>
 <section>
-  <h1>Recent Posts</h1>
+  <h1>最新文章</h1>
   <ul id="recent_posts">
     
       <li class="post">
@@ -419,16 +536,33 @@ var duoshuoQuery = {short_name:"yanjiuyanjiu"};
     
   </ul>
 </section>
-
-
-
-
 <section>
-  <h1>Categories</h1>
+  <h1>分类目录</h1>
     <ul id="category-list"><li><a href='/blog/categories/tools/'>tools (2)</a></li></ul>
 </section>
 <section>
-<h1>Recent Comments</h1>
+  <h1>友情链接</h1>
+  <ul>
+    <li>
+      <a href="http://yewen.us/" title="大学同学，ACM高手，曾在百度，现在人人网">笨狗随手留下</a>
+    </li>
+    <li>
+      <a href="http://blog.csdn.net/lgnlgn" title="好朋友，曾在赶集网，现在老家的猫扑">梁兄的技术博客</a>
+    </li>
+    <li>
+      <a href="http://www.doesbetter.com/" title="一起组织机器学习读书会的好朋友">王孝舒的博客</a>
+    </li>
+    <li>
+      <a href="http://www.wytk2008.net/" title="做机器学习的一位同学">无垠天空</a>
+    </li>
+  </ul>
+</section>
+
+
+
+
+<section>
+<h1>最新评论</h1>
 <ul class="ds-recent-comments" data-num-items="5" data-show-avatars="1" data-show-time="1" data-show-title="1" data-show-admin="0" data-excerpt-length="32"></ul>
 
 </section>
@@ -439,7 +573,22 @@ var duoshuoQuery = {short_name:"yanjiuyanjiu"};
 
     </div>
   </div>
-  <footer role="contentinfo"><p>
+  <footer role="contentinfo"><!-- mathjax config similar to math.stackexchange -->
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  jax: ["input/TeX", "output/HTML-CSS"],
+  tex2jax: {
+    inlineMath: [ ['$', '$'] ],
+    displayMath: [ ['$$', '$$']],
+    processEscapes: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+  },
+  messageStyle: "none",
+  "HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"] }
+});
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML" type="text/javascript"></script>
+<p>
   Copyright &copy; 2013 - soulmachine -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
