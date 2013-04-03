@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "使用github + Octopress 搭建免费博客"
-date: 2013-04-02 15:14
+date: 2013-04-01 15:14
 comments: true
 share: true
 categories: tools
@@ -18,6 +18,8 @@ categories: tools
 
 大功告成，输入"username.github.com"，看到一个页面没？这就是你刚刚创建的一个页面。
 
+<!--more-->
+
 GitHub Pages分为两种类型，一种是"User and Org Pages"，一种是"Project Pages"。前者是用户的主页，一个用户仅有一个。后者是每个项目的主页。见github page官方的文档 [Creating Pages with the automatic generator](https://help.github.com/articles/user-organization-and-project-pages)。
 
 本文创建的是第一种类型。
@@ -25,8 +27,6 @@ GitHub Pages分为两种类型，一种是"User and Org Pages"，一种是"Proje
 这篇博客 [搭建一个免费的，无限流量的Blog----github Pages和Jekyll入门 - 阮一峰的网络日志](http://www.ruanyifeng.com/blog/2012/08/blogging_with_jekyll.html)  很通俗易懂，不过它创建的是第二种类型，在一个Repo上新建了一个branch，并命名为gh-pages。
 
 下面正式开始折腾。
-
-<!--more-->
 
 ### 安装 msysgit并配置
 

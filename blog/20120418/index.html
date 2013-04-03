@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Category: tools - 研究研究</title>
+  <title>制作 VMware ESXI 5 U盘安装盘 - 研究研究</title>
   <meta name="author" content="soulmachine">
 
   
-  <meta name="description" content="Category: tools">
+  <meta name="description" content="有两种方法，使用 unetbootin ，或使用 LinuxLive USB Creator刻录可启动U盘。 使用 unetbootin 这个方法最自动化，点击两下按钮即可，但是有时候会失败(我用EXSi 5.0 的ISO失败，但是用 EXSi 5.0U1可以成功)，U盘启动不了。 单击 光盘镜像 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://www.yanjiuyanjiu.comblog/categories/tools">
+  <link rel="canonical" href="http://www.yanjiuyanjiu.com/blog/20120418">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="研究研究" type="application/atom+xml">
@@ -78,158 +78,176 @@
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Category: Tools</h1>
+    
+      <h1 class="entry-title">制作 VMware ESXI 5 U盘安装盘</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-04-18T20:17:00+08:00" pubdate data-updated="true">Apr 18<span>th</span>, 2012</time>
+        
+		
+         | <a href="#duoshuo_thread">Comments</a>
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives" class="category">
 
 
+<div class="entry-content"><p>有两种方法，使用 unetbootin ，或使用 LinuxLive USB Creator刻录可启动U盘。</p>
 
-  
-  <h2>2013</h2>
+<h2>使用 unetbootin</h2>
 
-<article>
-  
-<h1><a href="/blog/20130402/">我的Octopress配置</a></h1>
-<time datetime="2013-04-02T15:35:00+08:00" pubdate><span class='month'>Apr</span> <span class='day'>02</span> <span class='year'>2013</span></time>
+<p>这个方法最自动化，点击两下按钮即可，但是有时候会失败(我用EXSi 5.0 的ISO失败，但是用 EXSi 5.0U1可以成功)，U盘启动不了。</p>
 
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/tools/'>tools</a></span>
-</footer>
-
-
-</article>
+<ol>
+<li>单击 光盘镜像，选择ISO文件VMware-VMvisor-Installer-5.0.0.update01-623860.x86_64.iso。</li>
+<li>选择U盘，点击“确定”开始刻录。刻录后用U盘启动机器开始安装即可。如下图所示。
+<img src="http://yanjiuyanjiu-wordpress.stor.sinaapp.com/uploads/2012/04/unetbootin1.jpg"></li>
+</ol>
 
 
+<h2>使用 LinuxLive USB Creator</h2>
 
-<article>
-  
-<h1><a href="/blog/20130401/">使用github + Octopress 搭建免费博客</a></h1>
-<time datetime="2013-04-01T15:14:00+08:00" pubdate><span class='month'>Apr</span> <span class='day'>01</span> <span class='year'>2013</span></time>
+<ol>
+<li>格式化U盘，文件系统为FAT32，并设置为主分区，命令如下：
 
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/tools/'>tools</a></span>
-</footer>
-
-
-</article>
-
-
-
-  
-  <h2>2012</h2>
-
-<article>
-  
-<h1><a href="/blog/20120811/">用VisualVM连接 tomcat 服务器时，如何配置tomcat启动JMX</a></h1>
-<time datetime="2012-08-11T21:37:00+08:00" pubdate><span class='month'>Aug</span> <span class='day'>11</span> <span class='year'>2012</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/tools/'>tools</a></span>
-</footer>
+<pre><code> # 使用管理员权限运行cmd 
+ diskpart 
+ list disk 
+ select disk USB number （例如 select dist 1） 
+ clean 
+ create partition primary 
+ active 
+ format fs=fat32 quick 
+ assign 
+ exit
+</code></pre></li>
+</ol>
 
 
-</article>
+<!-- more -->
 
 
+<ol>
+<li>下载，安装 LinuxLive USB Creator(<a href="http://www.linuxliveusb.com/">http://www.linuxliveusb.com/</a>)</li>
+<li><p>按照上图中的步骤 1,2,4，选择ISO文件<code>VMware-VMvisor-Installer-5.0.0.update01-623860.x86_64.iso</code>，然后点击 5 ，开始创建U盘安装盘。等待U盘刻录结束。</p>
 
-<article>
-  
-<h1><a href="/blog/20120423/">CentOS 服务器安装操作全记录</a></h1>
-<time datetime="2012-04-23T20:43:00+08:00" pubdate><span class='month'>Apr</span> <span class='day'>23</span> <span class='year'>2012</span></time>
+<p> <img src="http://yanjiuyanjiu-wordpress.stor.sinaapp.com/uploads/2012/04/liliusb_thumb1.png"></p>
 
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/tools/'>tools</a></span>
-</footer>
+<p> 大功告成，是不是很简单？！</p></li>
+<li><p>编辑U盘根目录下的BOOT.CFG文件。注意，不要添加 &#8220;ks=usb&#8221;，因为下面会用交互模式来安装。</p></li>
+<li>大功告成</li>
+<li>注意，本文主要参考了末尾的参考资料。但是不需要原文的第4步和第5步。因为用普通的 “interactive installation”安装就很方便了。第4步和第5步用于一键自动化安装，适用于大量安装的情况，这里不详细讨论。
+见文章末尾的评论，
 
-
-</article>
-
-
-
-<article>
-  
-<h1><a href="/blog/20120418/">制作 VMware ESXI 5 U盘安装盘</a></h1>
-<time datetime="2012-04-18T20:17:00+08:00" pubdate><span class='month'>Apr</span> <span class='day'>18</span> <span class='year'>2012</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/tools/'>tools</a></span>
-</footer>
+<blockquote><p>@Cesar: if you do not edit the boot.cfg with the “ks=usb” option and select a interactive installation it will work。</p></blockquote></li>
+</ol>
 
 
-</article>
-
-
-
-  
-  <h2>2011</h2>
-
-<article>
-  
-<h1><a href="/blog/20110417/">推荐给TeX新手的电子书和书籍</a></h1>
-<time datetime="2011-04-17T17:03:00+08:00" pubdate><span class='month'>Apr</span> <span class='day'>17</span> <span class='year'>2011</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/tools/'>tools</a></span>
-</footer>
-
-
-</article>
-
-
-
-  
-  <h2>2010</h2>
-
-<article>
-  
-<h1><a href="/blog/20100401/">Java使用imageio 读写图像</a></h1>
-<time datetime="2010-04-01T16:53:00+08:00" pubdate><span class='month'>Apr</span> <span class='day'>01</span> <span class='year'>2010</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/tools/'>tools</a></span>
-</footer>
-
-
-</article>
-
-
-
-<article>
-  
-<h1><a href="/blog/20100331/">Java质量检测评估工具</a></h1>
-<time datetime="2010-03-31T16:45:00+08:00" pubdate><span class='month'>Mar</span> <span class='day'>31</span> <span class='year'>2010</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/tools/'>tools</a></span>
-</footer>
-
-
-</article>
-
-
-
-<article>
-  
-<h1><a href="/blog/20100328/">使用pdfbox 抽取PDF文件中的文本</a></h1>
-<time datetime="2010-03-28T16:41:00+08:00" pubdate><span class='month'>Mar</span> <span class='day'>28</span> <span class='year'>2010</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/tools/'>tools</a></span>
-</footer>
-
-
-</article>
-
+<p><strong>参考资料</strong><br/>
+<a href="http://www.ivobeerens.nl/2011/09/17/create-a-bootable-vmware-esxi-5-usb-stick-in-windows-and-perform-a-scripted-installation/">Create a bootable VMware ESXi 5 USB stick in Windows and perform a scripted installation</a></p>
 </div>
 
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">soulmachine</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-04-18T20:17:00+08:00" pubdate data-updated="true">Apr 18<span>th</span>, 2012</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/tools/'>tools</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style_24x24">
+	<a class="jiathis_button_qzone"></a>
+	<a class="jiathis_button_tsina"></a>
+	<a class="jiathis_button_tqq"></a>
+	<a class="jiathis_button_renren"></a>
+	<a class="jiathis_button_kaixin001"></a>
+	<a href="http://www.jiathis.com/share?uid=901902" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+var jiathis_config = {data_track_clickback:'true'};
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=901902" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+  
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/20120103/" title="Previous Post: Hadoop 集群安装详细步骤">&laquo; Hadoop 集群安装详细步骤</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/20120423/" title="Next Post: CentOS 服务器安装操作全记录">CentOS 服务器安装操作全记录 &raquo;</a>
+      
+    </p>
+  </footer>
 </article>
 
+
+  <section>
+    <h1>Comments</h1>
+    <div id="duoshuo_thread" aria-live="polite"><!-- Duoshuo Comment BEGIN -->
+	<div class="ds-thread"></div>
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"yanjiuyanjiu"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = 'http://static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		|| document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- Duoshuo Comment END --></div>
+  </section>
 
 </div>
 

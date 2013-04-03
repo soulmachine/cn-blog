@@ -29,8 +29,8 @@ Twitter: @soulmachine
   <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
   <script src="/javascripts/octopress.js" type="text/javascript"></script>
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
-<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
-<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<!-- <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css"> -->
+<!-- <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css"> -->
 
   
   <script type="text/javascript">
@@ -73,6 +73,7 @@ Twitter: @soulmachine
   <li><a href="/">Home</a></li>
   <li><a href="/blog/archives">Archives</a></li>
   <li><a href="/about/">About</a></li>
+  <li><a href="/notes/">读书笔记</a></li>
 </ul>
 
 </nav>
@@ -187,23 +188,56 @@ var duoshuoQuery = {short_name:"yanjiuyanjiu"};
     <section>
   <h1>About Me</h1>
   <p>在清华大学读研，目前正在研究机器学习，每周在清华举办读书会，欢迎大家前来交流切磋.</p>
-  <p>Sina Weibo: <a href="http://weibo.com/soulmachine">@soulmachine</a><br/>
+  <p>新浪微博: <a href="http://weibo.com/soulmachine">@soulmachine</a><br/>
      Twitter: <a href="https://twitter.com/#!/soulmachine">@soulmachine</a><br/>
      Other: <a href="https://github.com/soulmachine">Github</a>, <a href="https://plus.google.com/103519507226474510310">Google+</a>, <a href="http://www.linkedin.com/in/soulmachine">LinkedIn</a>, <a href="http://www.quora.com/Jason-Day-2">Quora</a></p>
   </p>
 </section>
 <section>
-  <h1>Recent Posts</h1>
+  <h1>最新文章</h1>
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/tools/2013/04/02/my-octopress-configuration/">我的Octopress配置</a>
+        <a href="/blog/20130402/">我的Octopress配置</a>
       </li>
     
       <li class="post">
-        <a href="/tools/2013/04/02/using-github-and-octoperss-to-create-a-free-blog/">使用github + Octopress 搭建免费博客</a>
+        <a href="/blog/20130401/">使用github + Octopress 搭建免费博客</a>
       </li>
     
+      <li class="post">
+        <a href="/blog/20130327/">机器学习的一些通俗易懂的tutorial</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/20130322/">一些主流的编程竞赛网站</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/20130226/">数值计算库与科学计算库</a>
+      </li>
+    
+  </ul>
+</section>
+<section>
+  <h1>分类目录</h1>
+    <ul id="category-list"><li><a href='/blog/categories/algorithm/'>algorithm (1)</a></li><li><a href='/blog/categories/cloud/'>cloud (1)</a></li><li><a href='/blog/categories/language/'>language (2)</a></li><li><a href='/blog/categories/machine-learning/'>machine-learning (4)</a></li><li><a href='/blog/categories/tools/'>tools (9)</a></li></ul>
+</section>
+<section>
+  <h1>友情链接</h1>
+  <ul>
+    <li>
+      <a href="http://yewen.us/" title="大学同学，ACM高手，曾在百度，现在人人网">笨狗随手留下</a>
+    </li>
+    <li>
+      <a href="http://blog.csdn.net/lgnlgn" title="好朋友，曾在赶集网，现在老家的猫扑">梁兄的技术博客</a>
+    </li>
+    <li>
+      <a href="http://www.doesbetter.com/" title="一起组织机器学习读书会的好朋友">王孝舒的博客</a>
+    </li>
+    <li>
+      <a href="http://www.wytk2008.net/" title="做机器学习的一位同学">无垠天空</a>
+    </li>
   </ul>
 </section>
 
@@ -211,11 +245,7 @@ var duoshuoQuery = {short_name:"yanjiuyanjiu"};
 
 
 <section>
-  <h1>Categories</h1>
-    <ul id="category-list"><li><a href='/blog/categories/tools/'>tools (2)</a></li></ul>
-</section>
-<section>
-<h1>Recent Comments</h1>
+<h1>最新评论</h1>
 <ul class="ds-recent-comments" data-num-items="5" data-show-avatars="1" data-show-time="1" data-show-title="1" data-show-admin="0" data-excerpt-length="32"></ul>
 
 </section>
@@ -226,7 +256,22 @@ var duoshuoQuery = {short_name:"yanjiuyanjiu"};
 
     </div>
   </div>
-  <footer role="contentinfo"><p>
+  <footer role="contentinfo"><!-- mathjax config similar to math.stackexchange -->
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  jax: ["input/TeX", "output/HTML-CSS"],
+  tex2jax: {
+    inlineMath: [ ['$', '$'] ],
+    displayMath: [ ['$$', '$$']],
+    processEscapes: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+  },
+  messageStyle: "none",
+  "HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"] }
+});
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML" type="text/javascript"></script>
+<p>
   Copyright &copy; 2013 - soulmachine -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>

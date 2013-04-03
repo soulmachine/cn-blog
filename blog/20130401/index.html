@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://www.yanjiuyanjiu.com/tools/2013/04/02/using-github-and-octoperss-to-create-a-free-blog">
+  <link rel="canonical" href="http://www.yanjiuyanjiu.com/blog/20130401">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="研究研究" type="application/atom+xml">
@@ -27,8 +27,8 @@
   <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
   <script src="/javascripts/octopress.js" type="text/javascript"></script>
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
-<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
-<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<!-- <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css"> -->
+<!-- <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css"> -->
 
   
   <script type="text/javascript">
@@ -71,6 +71,7 @@
   <li><a href="/">Home</a></li>
   <li><a href="/blog/archives">Archives</a></li>
   <li><a href="/about/">About</a></li>
+  <li><a href="/notes/">读书笔记</a></li>
 </ul>
 
 </nav>
@@ -97,7 +98,7 @@
   
 
 
-<time datetime="2013-04-02T15:14:00+08:00" pubdate data-updated="true">Apr 2<span>nd</span>, 2013</time>
+<time datetime="2013-04-01T15:14:00+08:00" pubdate data-updated="true">Apr 1<span>st</span>, 2013</time>
         
 		
          | <a href="#duoshuo_thread">Comments</a>
@@ -121,6 +122,9 @@
 
 <p>大功告成，输入&#8221;username.github.com&#8221;，看到一个页面没？这就是你刚刚创建的一个页面。</p>
 
+<!--more-->
+
+
 <p>GitHub Pages分为两种类型，一种是&#8221;User and Org Pages&#8221;，一种是&#8221;Project Pages&#8221;。前者是用户的主页，一个用户仅有一个。后者是每个项目的主页。见github page官方的文档 <a href="https://help.github.com/articles/user-organization-and-project-pages">Creating Pages with the automatic generator</a>。</p>
 
 <p>本文创建的是第一种类型。</p>
@@ -128,9 +132,6 @@
 <p>这篇博客 <a href="http://www.ruanyifeng.com/blog/2012/08/blogging_with_jekyll.html">搭建一个免费的，无限流量的Blog&#8212;-github Pages和Jekyll入门 - 阮一峰的网络日志</a>  很通俗易懂，不过它创建的是第二种类型，在一个Repo上新建了一个branch，并命名为gh-pages。</p>
 
 <p>下面正式开始折腾。</p>
-
-<!--more-->
-
 
 <h3>安装 msysgit并配置</h3>
 
@@ -268,7 +269,7 @@ Octopress 2.0 需要 Ruby 1.9.3，安装其他版本的Ruby可能会行不通。
 
 
 <p>
-生成JeKyll所需要的静态文件</p>
+编译生成JeKyll所需要的静态文件</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>rake generate
@@ -276,7 +277,9 @@ Octopress 2.0 需要 Ruby 1.9.3，安装其他版本的Ruby可能会行不通。
 
 
 <p>
-预览</p>
+这个命令主要是根据source目录的内容，编译生成JeKyll所需要的静态文件，存放到public目录下。source 目录对应着git上的source分支。</p>
+
+<p>预览</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>rake preview
@@ -290,7 +293,21 @@ Octopress 2.0 需要 Ruby 1.9.3，安装其他版本的Ruby可能会行不通。
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p></p>
+<p>
+该命令首先清空_deploy目录，然后将public目录整个拷贝过来，然后commit到github。_deploy 目录对应着master分支。</p>
+
+<p>备份source到github</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git add .
+</span><span class='line'>git commit -m <span class="s1">&#39;your message&#39;</span>
+</span><span class='line'>git push origin <span class="nb">source</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>source 目录下保存了所有的markdown源文件，是博客的原始数据，以及一些模板文件。因此很有必要备份。用上述命令提交到github，这样就用git管理起来了，再也不用担心数据丢失了。</p>
 
 <p><strong>终止预览</strong><br/>
 启用<code>rake preview</code>后，直接按<code>ctrl+c</code>无法正常终止该进程，老提示<code>终止批处理操作吗（Y/N）？</code>，这时候可以另开一个Git Bash窗口，使用<code>ps aux | grep ruby</code>命令找出<code>pid(第一个数值)</code>，然后执行<code>kill &lt;pid&gt;</code>来停止该进程(参考<a href="http://linuxabc.heroku.com/blog/octopress-on-heroku-2">octopress on heroku (二)</a>)。<br/>
@@ -322,13 +339,25 @@ Windows预设是Big5编码,所以要想’rake generate’的时候不报编码�
 
 <blockquote><p>www.yanjiuyanjiu.com</p></blockquote>
 
-<p>然后去DNSPod，添加一条CNAME，指向 username.github.com。</p>
+<p>然后去DNSPod，添加一条CNAME，指向 username.github.com。例如我的为：</p>
 
-<p>很多人喜欢去掉www，用xxx.com的形式来访问，不过大家去试一下，在浏览器输入qq.com, douban.com, baidu.com，发现都会自动跳转到www，也就是说这些大网站，目前也是用www.xxx.com的域名为主，因此建议大家也这样做。</p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>www  CNAME   默认  soulmachine.github.com.     -   600
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>很多人喜欢去掉www，用xxx.com的形式来访问，不过大家去试一下，在浏览器输入qq.com, douban.com, baidu.com，发现都会自动跳转到www，也就是说这些大网站，目前也是用www.example.com的域名为主，因此建议大家也这样做。</p>
 
 <p>用www, blog之类的二级域名，还有个好处是方便升级，比如新版本用www1指向，等测试完成后，改成www指向，无缝切换。</p>
 
-<p>在使用Octopress的时候，每次<code>rake generate</code>, <code>rake deploy</code>后，master分支下面的CNAME文件消失了。正确的做法是，在 source 目录下新建CNAME文件，<code>rake generate</code> 会自动拷贝到\public目录下，<code>rake deploy</code>再从public目录到_deploy目录，并提交到master分支。</p>
+<p>如何让example.com 自动变成www.example.com呢？需要用 301重定向，在DNSPod上非常简单，添加一条显性URL即可，例如我的是：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>@    显性URL   默认  http://www.yanjiuyanjiu.com -   600
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>在使用Octopress的时候，每次<code>rake generate</code>, <code>rake deploy</code>后，master分支下面的CNAME文件消失了。正确的做法是，把CNAME文件放到在 source 目录下，其余的都删掉，<code>rake generate</code> 会自动拷贝到public目录下，<code>rake deploy</code>再拷贝public目录内容到_deploy目录，并提交到master分支。</p>
 
 <h3>参考资料</h3>
 
@@ -363,7 +392,7 @@ Windows预设是Big5编码,所以要想’rake generate’的时候不报编码�
   
 
 
-<time datetime="2013-04-02T15:14:00+08:00" pubdate data-updated="true">Apr 2<span>nd</span>, 2013</time>
+<time datetime="2013-04-01T15:14:00+08:00" pubdate data-updated="true">Apr 1<span>st</span>, 2013</time>
       
 
 <span class="categories">
@@ -401,8 +430,10 @@ var jiathis_config = {data_track_clickback:'true'};
     
     <p class="meta">
       
+        <a class="basic-alignment left" href="/blog/20130327/" title="Previous Post: 机器学习的一些通俗易懂的tutorial">&laquo; 机器学习的一些通俗易懂的tutorial</a>
       
-        <a class="basic-alignment right" href="/tools/2013/04/02/my-octopress-configuration/" title="Next Post: 我的Octopress配置">我的Octopress配置 &raquo;</a>
+      
+        <a class="basic-alignment right" href="/blog/20130402/" title="Next Post: 我的Octopress配置">我的Octopress配置 &raquo;</a>
       
     </p>
   </footer>
@@ -434,23 +465,56 @@ var duoshuoQuery = {short_name:"yanjiuyanjiu"};
     <section>
   <h1>About Me</h1>
   <p>在清华大学读研，目前正在研究机器学习，每周在清华举办读书会，欢迎大家前来交流切磋.</p>
-  <p>Sina Weibo: <a href="http://weibo.com/soulmachine">@soulmachine</a><br/>
+  <p>新浪微博: <a href="http://weibo.com/soulmachine">@soulmachine</a><br/>
      Twitter: <a href="https://twitter.com/#!/soulmachine">@soulmachine</a><br/>
      Other: <a href="https://github.com/soulmachine">Github</a>, <a href="https://plus.google.com/103519507226474510310">Google+</a>, <a href="http://www.linkedin.com/in/soulmachine">LinkedIn</a>, <a href="http://www.quora.com/Jason-Day-2">Quora</a></p>
   </p>
 </section>
 <section>
-  <h1>Recent Posts</h1>
+  <h1>最新文章</h1>
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/tools/2013/04/02/my-octopress-configuration/">我的Octopress配置</a>
+        <a href="/blog/20130402/">我的Octopress配置</a>
       </li>
     
       <li class="post">
-        <a href="/tools/2013/04/02/using-github-and-octoperss-to-create-a-free-blog/">使用github + Octopress 搭建免费博客</a>
+        <a href="/blog/20130401/">使用github + Octopress 搭建免费博客</a>
       </li>
     
+      <li class="post">
+        <a href="/blog/20130327/">机器学习的一些通俗易懂的tutorial</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/20130322/">一些主流的编程竞赛网站</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/20130226/">数值计算库与科学计算库</a>
+      </li>
+    
+  </ul>
+</section>
+<section>
+  <h1>分类目录</h1>
+    <ul id="category-list"><li><a href='/blog/categories/algorithm/'>algorithm (1)</a></li><li><a href='/blog/categories/cloud/'>cloud (1)</a></li><li><a href='/blog/categories/language/'>language (2)</a></li><li><a href='/blog/categories/machine-learning/'>machine-learning (4)</a></li><li><a href='/blog/categories/tools/'>tools (9)</a></li></ul>
+</section>
+<section>
+  <h1>友情链接</h1>
+  <ul>
+    <li>
+      <a href="http://yewen.us/" title="大学同学，ACM高手，曾在百度，现在人人网">笨狗随手留下</a>
+    </li>
+    <li>
+      <a href="http://blog.csdn.net/lgnlgn" title="好朋友，曾在赶集网，现在老家的猫扑">梁兄的技术博客</a>
+    </li>
+    <li>
+      <a href="http://www.doesbetter.com/" title="一起组织机器学习读书会的好朋友">王孝舒的博客</a>
+    </li>
+    <li>
+      <a href="http://www.wytk2008.net/" title="做机器学习的一位同学">无垠天空</a>
+    </li>
   </ul>
 </section>
 
@@ -458,11 +522,7 @@ var duoshuoQuery = {short_name:"yanjiuyanjiu"};
 
 
 <section>
-  <h1>Categories</h1>
-    <ul id="category-list"><li><a href='/blog/categories/tools/'>tools (2)</a></li></ul>
-</section>
-<section>
-<h1>Recent Comments</h1>
+<h1>最新评论</h1>
 <ul class="ds-recent-comments" data-num-items="5" data-show-avatars="1" data-show-time="1" data-show-title="1" data-show-admin="0" data-excerpt-length="32"></ul>
 
 </section>
@@ -473,7 +533,22 @@ var duoshuoQuery = {short_name:"yanjiuyanjiu"};
 
     </div>
   </div>
-  <footer role="contentinfo"><p>
+  <footer role="contentinfo"><!-- mathjax config similar to math.stackexchange -->
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  jax: ["input/TeX", "output/HTML-CSS"],
+  tex2jax: {
+    inlineMath: [ ['$', '$'] ],
+    displayMath: [ ['$$', '$$']],
+    processEscapes: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+  },
+  messageStyle: "none",
+  "HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"] }
+});
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML" type="text/javascript"></script>
+<p>
   Copyright &copy; 2013 - soulmachine -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
