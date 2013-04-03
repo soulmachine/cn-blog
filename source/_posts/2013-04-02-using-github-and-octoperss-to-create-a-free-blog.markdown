@@ -134,6 +134,14 @@ rake deploy
 ```  
 该命令首先清空\_deploy目录，然后将public目录整个拷贝过来，然后commit到github。\_deploy 目录对应着master分支。
 
+备份source到github
+```
+git add .
+git commit -m 'your message'
+git push origin source
+```
+source 目录下保存了所有的markdown源文件，是博客的原始数据，以及一些模板文件。因此很有必要备份。用上述命令提交到github，这样就用git管理起来了，再也不用担心数据丢失了。
+
 **终止预览**  
 启用`rake preview`后，直接按`ctrl+c`无法正常终止该进程，老提示`终止批处理操作吗（Y/N）？`，这时候可以另开一个Git Bash窗口，使用`ps aux | grep ruby`命令找出`pid(第一个数值)`，然后执行`kill <pid>`来停止该进程(参考[octopress on heroku (二)](http://linuxabc.heroku.com/blog/octopress-on-heroku-2))。  
 **UTF-8 编码**  
@@ -155,13 +163,21 @@ echo "export LANG LC_ALL" > ~/.bash\_profile
 非常简单，在master分支的根目录，添加一个文本文件，名字为CNAME，里面的内容就是要绑定的域名，例如本博客CNAME文件的内容是：
 > www.yanjiuyanjiu.com
 
-然后去DNSPod，添加一条CNAME，指向 username.github.com。
+然后去DNSPod，添加一条CNAME，指向 username.github.com。例如我的为：
+```
+www	CNAME	默认	soulmachine.github.com.		-	600
+```
 
-很多人喜欢去掉www，用xxx.com的形式来访问，不过大家去试一下，在浏览器输入qq.com, douban.com, baidu.com，发现都会自动跳转到www，也就是说这些大网站，目前也是用www.xxx.com的域名为主，因此建议大家也这样做。
+很多人喜欢去掉www，用xxx.com的形式来访问，不过大家去试一下，在浏览器输入qq.com, douban.com, baidu.com，发现都会自动跳转到www，也就是说这些大网站，目前也是用www.example.com的域名为主，因此建议大家也这样做。
 
 用www, blog之类的二级域名，还有个好处是方便升级，比如新版本用www1指向，等测试完成后，改成www指向，无缝切换。
 
-在使用Octopress的时候，每次`rake generate`, `rake deploy`后，master分支下面的CNAME文件消失了。正确的做法是，在 source 目录下新建CNAME文件，`rake generate` 会自动拷贝到\public目录下，`rake deploy`再拷贝public目录内容到\_deploy目录，并提交到master分支。
+如何让example.com 自动变成www.example.com呢？需要用 301重定向，在DNSPod上非常简单，添加一条显性URL即可，例如我的是：
+```
+@	显性URL	默认	http://www.yanjiuyanjiu.com	-	600
+```
+
+在使用Octopress的时候，每次`rake generate`, `rake deploy`后，master分支下面的CNAME文件消失了。正确的做法是，把CNAME文件放到在 source 目录下，其余的都删掉，`rake generate` 会自动拷贝到public目录下，`rake deploy`再拷贝public目录内容到\_deploy目录，并提交到master分支。
 
 
 

@@ -23,6 +23,29 @@ Octopress支持多种方式嵌入代码，可以直接嵌入代码，也可以�
 我喜欢用**三个反引号**直接嵌入代码，比 `codeblock`要简洁。
 
 ### MathJax
+在`source/_includes/custom/footer.html`的第一行加入如下代码：
+```
+<!-- mathjax config similar to math.stackexchange -->
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  jax: ["input/TeX", "output/HTML-CSS"],
+  tex2jax: {
+    inlineMath: [ ['$', '$'] ],
+    displayMath: [ ['$$', '$$']],
+    processEscapes: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+  },
+  messageStyle: "none",
+  "HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"] }
+});
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML" type="text/javascript"></script>
+```
+这样就引入了MathJax的JS包，可以直接在markdown文件里直接写公式了，例如 $\dfrac {\pi}{2}$。
+
+上面的代码也可以在head.html里添加，不过这样会使得页面的加载速度变慢。
+
+本节参考了[Writing Math Equations on Octopress](http://www.idryman.org/blog/2012/03/10/writing-math-equations-on-octopress/)，不过省去了安装kramdown的步骤，因为引入了MathJax的JS后，就可以直接写公式了，可以看看[edchen博客的_config.yml](https://github.com/echen/echen.github.com/blob/source/_config.yml)，依然用的rdiscount，再看看它的网页源码，引用了MathJax的JS。
 
 ## 首页只显示部分正文(Excerpts)
 Octopress中，可以使用 `<!--more-->`，这样首页只显示一部分正文，并在每篇文章底下加一个Read on超链接。
@@ -51,7 +74,7 @@ Octopress中，可以使用 `<!--more-->`，这样首页只显示一部分正文
 <section>
   <h1>About Me</h1>
   <p>一句话自我介绍.</p>
-  <p>Sina Weibo: <a href="http://weibo.com/soulmachine">@soulmachine</a><br/>
+  <p>新浪微博: <a href="http://weibo.com/soulmachine">@soulmachine</a><br/>
      Twitter: <a href="https://twitter.com/#!/soulmachine">@soulmachine</a><br/>
      Other: <a href="https://github.com/soulmachine">Github</a>, <a href="https://plus.google.com/103519507226474510310">Google+</a>, <a href="http://www.linkedin.com/in/soulmachine">LinkedIn</a>, <a href="http://www.quora.com/Jason-Day-2">Quora</a></p>
   </p>
@@ -121,18 +144,61 @@ permalink: pretty
 ## 侧边栏显示分类目录
 使用第三方插件 [octopress-tagcloud](https://github.com/tokkonopapa/octopress-tagcloud)。
 
+##友情链接
+在`source\_includes\custom\asides` 目录下添加一个blogroll.html文件，模仿about.html，添加一些友情链接，例如：
+```
+<section>
+  <h1>友情链接</h1>
+  <ul>
+    <li>
+      <a href="http://coolshell.cn/">酷壳CoolShell</a>
+    </li>
+    <li>
+      <a href="http://mindhacks.cn/">刘未鹏MIND HACKS</a>
+    </li>
+    <li>
+      <a href="http://blog.codingnow.com/">云风</a>
+    </li>
+    <li>
+      <a href="http://www.cnblogs.com/Solstice/">陈硕</a>
+    </li>
+  </ul>
+</section>
+```
+然后在 \_config.yml 文件中，在 default_asides 的数组中添加 `custom/asides/blogroll.html`。
+
 ##中文目录
 TODO
 
-##头导航菜单
-头部导航菜单的修改可以打开并编辑`source/_includes/custom/navigation.html`
+##修改字体
+Octopresss默认使用的是 google webfonts，见`source/_includes/custom/head.html`里的两行代码。Google Webfonts是个好东西，但遗憾的是它没有中文字体。所以你用**粗体**，发现并没有变粗，就是这个原因。
+
+首先，将head.html中的两行代码注释掉，省去了加载字体，加快网页加载速度。
+```
+<!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<!-- <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css"> -->
+<!-- <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css"> -->
+
+```
+参考 这篇博客 [最佳 Web 中文默认字体](http://lifesinger.wordpress.com/2011/04/06/best-web-default-fonts/)，在`sass/custom/_fonts.scss`中添加如下三行代码：
+```
+$heading-font-family: arial, sans-serif;
+$header-title-font-family: arial, sans-serif;
+$header-subtitle-font-family: arial, sans-serif;
+```
+刷新网页，可以看见中文的粗体变黑了。
 
 ##一些汉化工作
 在 _config.yml中，把 `Read on` 改为 "继续阅读"。
+在 `source/_includes/custom/asides`目录下，将"Recent Comments"改为“最新评论”，"Categories"改为“分类目录”，将`source/_includes/asides/recent_posts.html`中"Recent Posts"改为“最新文章”。
 
 ## 添加统计代码
 填入 Google Analytics Tracking ID，例如 `UA-7583537-4`。
 
 ##第三方主题和插件
-主题：[3rd Party Octopress Themes](https://github.com/imathis/octopress/wiki/3rd-Party-Octopress-Themes)
+主题：[3rd Party Octopress Themes](https://github.com/imathis/octopress/wiki/3rd-Party-Octopress-Themes)  
 插件：[3rd party plugins](https://github.com/imathis/octopress/wiki/3rd-party-plugins)
+
+##参考资料
+1. [Octopress主题改造](http://shanewfx.github.com/blog/2012/08/13/improve-blog-theme/)
+1. 
