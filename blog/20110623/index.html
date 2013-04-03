@@ -5,11 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Category: tools - 研究研究</title>
+  <title>用javac命令行编译多个java文件 - 研究研究</title>
   <meta name="author" content="soulmachine">
 
   
-  <meta name="description" content="Category: tools">
+  <meta name="description" content="CLASSPATH一定要具体到jar路径，例如 1
+export CLASSPATH=/usr/lib/jvm/java-6-sun/lib/commons-codec.jar:/usr/lib/jvm/java-6-sun/lib/commons-httpclient-3.1.jar:/usr &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +19,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://www.yanjiuyanjiu.comblog/categories/tools">
+  <link rel="canonical" href="http://www.yanjiuyanjiu.com/blog/20110623">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="研究研究" type="application/atom+xml">
@@ -78,158 +79,154 @@
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Category: Tools</h1>
+    
+      <h1 class="entry-title">用javac命令行编译多个java文件</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-06-23T17:22:00+08:00" pubdate data-updated="true">Jun 23<span>rd</span>, 2011</time>
+        
+		
+         | <a href="#duoshuo_thread">Comments</a>
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives" class="category">
 
 
-
-  
-  <h2>2013</h2>
-
-<article>
-  
-<h1><a href="/blog/20130402/">我的Octopress配置</a></h1>
-<time datetime="2013-04-02T15:35:00+08:00" pubdate><span class='month'>Apr</span> <span class='day'>02</span> <span class='year'>2013</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/tools/'>tools</a></span>
-</footer>
+<div class="entry-content"><ol>
+<li>CLASSPATH一定要具体到jar路径，例如</li>
+</ol>
 
 
-</article>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">export </span><span class="nv">CLASSPATH</span><span class="o">=</span>/usr/lib/jvm/java-6-sun/lib/commons-codec.jar:/usr/lib/jvm/java-6-sun/lib/commons-httpclient-3.1.jar:/usr/lib/jvm/java-6-sun/lib/commons-logging-1.1.jar:/usr/lib/jvm/java-6-sun/lib/dt.jar:/usr/lib/jvm/java-6-sun/lib/htmlconverter.jar:/usr/lib/jvm/java-6-sun/lib/jconsole.jar:/usr/lib/jvm/java-6-sun/lib/junit-4.1.jar:/usr/lib/jvm/java-6-sun/lib/mysql-connector-java-5.1.16-bin.jar:/usr/lib/jvm/java-6-sun/lib/sa-jdi.jar:/usr/lib/jvm/java-6-sun/lib/tools.jar
+</span></code></pre></td></tr></table></div></figure>
 
 
-
-<article>
-  
-<h1><a href="/blog/20130401/">使用github + Octopress 搭建免费博客</a></h1>
-<time datetime="2013-04-01T15:14:00+08:00" pubdate><span class='month'>Apr</span> <span class='day'>01</span> <span class='year'>2013</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/tools/'>tools</a></span>
-</footer>
+<ol>
+<li><p>每个java文件给出路径，最常见的是用通配符*，不支持目录递归。</p></li>
+<li><p>最好加上 -d，这样会在这个目录下生成class文件，而不会和java文件混在一起</p></li>
+</ol>
 
 
-</article>
+<p>看我的一个具体的例子</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>javac -d /home/dfq/crawler/bin crawler/*.java weibo4j/*.java weibo4j/org/json/*.java weibo4j/*.java weibo4j/util/*.java weibo4j/http/*.java
+</span></code></pre></td></tr></table></div></figure>
 
 
+<p>运行时用如下命令：</p>
 
-  
-  <h2>2012</h2>
-
-<article>
-  
-<h1><a href="/blog/20120811/">用VisualVM连接 tomcat 服务器时，如何配置tomcat启动JMX</a></h1>
-<time datetime="2012-08-11T21:37:00+08:00" pubdate><span class='month'>Aug</span> <span class='day'>11</span> <span class='year'>2012</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/tools/'>tools</a></span>
-</footer>
-
-
-</article>
-
-
-
-<article>
-  
-<h1><a href="/blog/20120423/">CentOS 服务器安装操作全记录</a></h1>
-<time datetime="2012-04-23T20:43:00+08:00" pubdate><span class='month'>Apr</span> <span class='day'>23</span> <span class='year'>2012</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/tools/'>tools</a></span>
-</footer>
-
-
-</article>
-
-
-
-<article>
-  
-<h1><a href="/blog/20120418/">制作 VMware ESXI 5 U盘安装盘</a></h1>
-<time datetime="2012-04-18T20:17:00+08:00" pubdate><span class='month'>Apr</span> <span class='day'>18</span> <span class='year'>2012</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/tools/'>tools</a></span>
-</footer>
-
-
-</article>
-
-
-
-  
-  <h2>2011</h2>
-
-<article>
-  
-<h1><a href="/blog/20110417/">推荐给TeX新手的电子书和书籍</a></h1>
-<time datetime="2011-04-17T17:03:00+08:00" pubdate><span class='month'>Apr</span> <span class='day'>17</span> <span class='year'>2011</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/tools/'>tools</a></span>
-</footer>
-
-
-</article>
-
-
-
-  
-  <h2>2010</h2>
-
-<article>
-  
-<h1><a href="/blog/20100401/">Java使用imageio 读写图像</a></h1>
-<time datetime="2010-04-01T16:53:00+08:00" pubdate><span class='month'>Apr</span> <span class='day'>01</span> <span class='year'>2010</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/tools/'>tools</a></span>
-</footer>
-
-
-</article>
-
-
-
-<article>
-  
-<h1><a href="/blog/20100331/">Java质量检测评估工具</a></h1>
-<time datetime="2010-03-31T16:45:00+08:00" pubdate><span class='month'>Mar</span> <span class='day'>31</span> <span class='year'>2010</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/tools/'>tools</a></span>
-</footer>
-
-
-</article>
-
-
-
-<article>
-  
-<h1><a href="/blog/20100328/">使用pdfbox 抽取PDF文件中的文本</a></h1>
-<time datetime="2010-03-28T16:41:00+08:00" pubdate><span class='month'>Mar</span> <span class='day'>28</span> <span class='year'>2010</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/tools/'>tools</a></span>
-</footer>
-
-
-</article>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">cd</span> /home/dfq/crawler/bin
+</span><span class='line'>java -cp .:<span class="nv">$CLASSPATH</span> crawler.ManagerThread
+</span></code></pre></td></tr></table></div></figure>
 
 </div>
 
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">soulmachine</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-06-23T17:22:00+08:00" pubdate data-updated="true">Jun 23<span>rd</span>, 2011</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/language/'>language</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style_24x24">
+	<a class="jiathis_button_qzone"></a>
+	<a class="jiathis_button_tsina"></a>
+	<a class="jiathis_button_tqq"></a>
+	<a class="jiathis_button_renren"></a>
+	<a class="jiathis_button_kaixin001"></a>
+	<a href="http://www.jiathis.com/share?uid=901902" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+var jiathis_config = {data_track_clickback:'true'};
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=901902" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+  
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/20110417/" title="Previous Post: 推荐给TeX新手的电子书和书籍">&laquo; 推荐给TeX新手的电子书和书籍</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/20120103/" title="Next Post: Hadoop 集群安装详细步骤">Hadoop 集群安装详细步骤 &raquo;</a>
+      
+    </p>
+  </footer>
 </article>
 
+
+  <section>
+    <h1>Comments</h1>
+    <div id="duoshuo_thread" aria-live="polite"><!-- Duoshuo Comment BEGIN -->
+	<div class="ds-thread"></div>
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"yanjiuyanjiu"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = 'http://static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		|| document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- Duoshuo Comment END --></div>
+  </section>
 
 </div>
 

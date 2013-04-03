@@ -4,7 +4,7 @@
   <title><![CDATA[研究研究]]></title>
   <link href="http://www.yanjiuyanjiu.com/atom.xml" rel="self"/>
   <link href="http://www.yanjiuyanjiu.com/"/>
-  <updated>2013-04-03T16:11:38+08:00</updated>
+  <updated>2013-04-03T23:50:48+08:00</updated>
   <id>http://www.yanjiuyanjiu.com/</id>
   <author>
     <name><![CDATA[soulmachine]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[我的Octopress配置]]></title>
-    <link href="http://www.yanjiuyanjiu.com/tools/2013/04/02/my-octopress-configuration/"/>
+    <link href="http://www.yanjiuyanjiu.com/blog/20130402/"/>
     <updated>2013-04-02T15:35:00+08:00</updated>
-    <id>http://www.yanjiuyanjiu.com/tools/2013/04/02/my-octopress-configuration</id>
+    <id>http://www.yanjiuyanjiu.com/blog/my-octopress-configuration</id>
     <content type="html"><![CDATA[<h2>实时预览</h2>
 
 <p>使用如下命令可以实现实时预览：</p>
@@ -80,6 +80,9 @@
 
 <p>上面的代码也可以在head.html里添加，不过这样会使得页面的加载速度变慢。</p>
 
+<!--more-->
+
+
 <p>本节参考了<a href="http://www.idryman.org/blog/2012/03/10/writing-math-equations-on-octopress/">Writing Math Equations on Octopress</a>，不过省去了安装kramdown的步骤，因为引入了MathJax的JS后，就可以直接写公式了，可以看看<a href="https://github.com/echen/echen.github.com/blob/source/_config.yml">edchen博客的_config.yml</a>，依然用的rdiscount，再看看它的网页源码，引用了MathJax的JS。</p>
 
 <p><strong>右击公式全屏空白</strong>：这时候右击公式，全屏空白。解决这个问题很简单，参考<a href="http://jasonllinux.github.com/blog/2012/11/06/write-latex-in-octopress/">在Octopress中使用Latex公式</a>，只需在 <code>sass/base/_theme.scss</code>添加&#8221;#main&#8221;即可：</p>
@@ -119,11 +122,6 @@
 </span><span class='line'><span class="o">{</span>% img right http://placekitten.com/300/500 150 250 Place Kitten <span class="c">#3 %}</span>
 </span><span class='line'><span class="o">{</span>% img right http://placekitten.com/300/500 150 250 <span class="s1">&#39;Place Kitten #4&#39;</span> <span class="s1">&#39;An image of a very cute kitten&#39;</span> %<span class="o">}</span>
 </span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<!--more-->
 
 
 <h2>添加about me 边栏</h2>
@@ -201,7 +199,7 @@
 </span><span class='line'>    <span class="nv">width</span><span class="o">=</span><span class="s2">&quot;72&quot;</span>
 </span><span class='line'>    <span class="nv">height</span><span class="o">=</span><span class="s2">&quot;16&quot;</span>
 </span><span class='line'>    <span class="nv">src</span><span class="o">=</span>
-</span><span class='line'>      <span class="s2">&quot;http://hits.sinajs.cn/A1/weiboshare.html?url=http://www.yanjiuyanjiu.com/tools/2013/04/02/my-octopress-configuration/&amp;amp;type=3&amp;amp;count=1&amp;amp;language=zh_cn&quot;</span>&gt;
+</span><span class='line'>      <span class="s2">&quot;http://hits.sinajs.cn/A1/weiboshare.html?url=http://www.yanjiuyanjiu.com/blog/20130402/&amp;amp;type=3&amp;amp;count=1&amp;amp;language=zh_cn&quot;</span>&gt;
 </span><span class='line'>  &lt;/iframe&gt;
 </span><span class='line'>  <span class="o">{</span>% endif %<span class="o">}</span>
 </span></code></pre></td></tr></table></div></figure>
@@ -239,9 +237,11 @@
 <p>在 _config.yml 里，找到 permalink，设置如下：</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>permalink: pretty
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>permalink: /blog/:year:month:day/
 </span></code></pre></td></tr></table></div></figure>
 
+
+<p>效果就是<code>www.example.com/blog/20130403/</code>。模仿的是豆瓣的URL格式。</p>
 
 <p>参考官方文档<a href="https://github.com/mojombo/jekyll/wiki/Permalinks">jekyll Permalinks</a>。</p>
 
@@ -350,9 +350,9 @@
   
   <entry>
     <title type="html"><![CDATA[使用github + Octopress 搭建免费博客]]></title>
-    <link href="http://www.yanjiuyanjiu.com/tools/2013/04/02/using-github-and-octoperss-to-create-a-free-blog/"/>
-    <updated>2013-04-02T15:14:00+08:00</updated>
-    <id>http://www.yanjiuyanjiu.com/tools/2013/04/02/using-github-and-octoperss-to-create-a-free-blog</id>
+    <link href="http://www.yanjiuyanjiu.com/blog/20130401/"/>
+    <updated>2013-04-01T15:14:00+08:00</updated>
+    <id>http://www.yanjiuyanjiu.com/blog/using-github-and-octoperss-to-create-a-free-blog</id>
     <content type="html"><![CDATA[<h3>前提条件</h3>
 
 <p>注册一个github账号。</p>
@@ -367,6 +367,9 @@
 
 <p>大功告成，输入&#8221;username.github.com&#8221;，看到一个页面没？这就是你刚刚创建的一个页面。</p>
 
+<!--more-->
+
+
 <p>GitHub Pages分为两种类型，一种是&#8221;User and Org Pages&#8221;，一种是&#8221;Project Pages&#8221;。前者是用户的主页，一个用户仅有一个。后者是每个项目的主页。见github page官方的文档 <a href="https://help.github.com/articles/user-organization-and-project-pages">Creating Pages with the automatic generator</a>。</p>
 
 <p>本文创建的是第一种类型。</p>
@@ -374,9 +377,6 @@
 <p>这篇博客 <a href="http://www.ruanyifeng.com/blog/2012/08/blogging_with_jekyll.html">搭建一个免费的，无限流量的Blog&#8212;-github Pages和Jekyll入门 - 阮一峰的网络日志</a>  很通俗易懂，不过它创建的是第二种类型，在一个Repo上新建了一个branch，并命名为gh-pages。</p>
 
 <p>下面正式开始折腾。</p>
-
-<!--more-->
-
 
 <h3>安装 msysgit并配置</h3>
 
@@ -613,6 +613,3182 @@ Windows预设是Big5编码,所以要想’rake generate’的时候不报编码�
 <li><a href="http://blog.sprabbit.com/blog/2012/12/21/recover-octopress/">在新Windows系统中重新部署Octopress</a></li>
 <li><a href="http://hivan.me/octopress-install-to-windows8/">Windows 8安装Octopress记录</a></li>
 <li><a href="http://blog.sprabbit.com/blog/2012/03/23/octopress/">关于在64位 Windows 7 中部署中文化的Octopress</a></li>
+</ol>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[机器学习的一些通俗易懂的tutorial]]></title>
+    <link href="http://www.yanjiuyanjiu.com/blog/20130327/"/>
+    <updated>2013-03-27T21:50:00+08:00</updated>
+    <id>http://www.yanjiuyanjiu.com/blog/some-classical-machine-learning-tutorials</id>
+    <content type="html"><![CDATA[<h2>距离和相似度度量</h2>
+
+<p><a href="http://webdataanalysis.net/reference-and-source/distance-and-similarity/">距离和相似度度量 » webdataanalysis.net</a></p>
+
+<p><a href="http://www.zhihu.com/question/19640394">欧氏距离和余弦相似度的区别是什么？ – 知乎</a></p>
+
+<h2>KNN(K Nearest Neighbor)</h2>
+
+<p><a href="http://coolshell.cn/articles/8052.html">K Nearest Neighbor 算法 _ 酷壳 – CoolShell</a></p>
+
+<p><a href="http://en.wikipedia.org/wiki/KNN">K-nearest neighbors algorithm – Wikipedia</a></p>
+
+<h2>K-Means</h2>
+
+<p><a href="http://coolshell.cn/articles/7779.html">K-Means 算法 _ 酷壳 – CoolShell</a></p>
+
+<p><a href="http://en.wikipedia.org/wiki/K-means">k-means clustering – Wikipedia</a></p>
+
+<p><a href="http://kylen314.blog.com/2012/09/10/k-means/">K-Means++ _ 愈宅屋</a></p>
+
+<p><a href="http://www.cnblogs.com/leoo2sk/archive/2010/09/20/k-means.html">算法杂货铺——k均值聚类(K-means) – T2噬菌体 – 博客园</a></p>
+
+<p><a href="http://blog.pluskid.org/?p=17">漫谈 Clustering (1)_ k-means « Free Mind</a></p>
+
+<p><a href="http://www.codeproject.com/Articles/439890/Text-Documents-Clustering-using-K-Means-Algorithm">Text Documents Clustering using K-Means Algorithm – CodeProject</a></p>
+
+<!-- more -->
+
+
+<h2>PCA(Principal Components Analysis)</h2>
+
+<p><a href="http://www.ce.yildiz.edu.tr/personal/songul/file/1097/principal_components.pdf">2002. Lindsay I Smith. A tutorial on Principal Components Analysis</a></p>
+
+<h2>EM(Expectation Maximization)</h2>
+
+<p><a href="http://www.seanborman.com/publications/EM_algorithm.pdf">2009. Sean Borman. The Expectation Maximization Algorithm A short tutorial</a></p>
+
+<h2>SVM(Support Vector Machines)</h2>
+
+<p><a href="http://cs229.stanford.edu/notes/cs229-notes3.pdf">Andrew Ng. CS229 Lecture notes Support Vector Machines</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[一些主流的编程竞赛网站]]></title>
+    <link href="http://www.yanjiuyanjiu.com/blog/20130322/"/>
+    <updated>2013-03-22T21:57:00+08:00</updated>
+    <id>http://www.yanjiuyanjiu.com/blog/some-popular-programming-contest-websites</id>
+    <content type="html"><![CDATA[<p>今天把各个主流的编程网站仔细对比了一下，下面从各个角度对比一下这些编程竞赛网站。</p>
+
+<h2>分类和排名</h2>
+
+<table cellspacing="0" cellpadding="0" border="1">
+<tbody>
+<tr>
+<td valign="top" width="180"><a name="OLE_LINK1"></a><strong>网站地址</strong></td>
+<td valign="top" width="47"><strong>类别</strong></td>
+<td valign="top" width="33"><strong>PR</strong></td>
+<td valign="top" width="62"><strong>ATR</strong></td>
+<td valign="top" width="48"><strong>QF</strong></td>
+<td valign="top" width="147"><strong>主办方</strong></td>
+<td valign="top" width="74"><strong>备注</strong></td>
+</tr>
+<tr>
+<td valign="top" width="180">TopCoder <a href="http://www.topcoder.com/" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://www.topcoder.com']);">http://www.topcoder.com/</a></td>
+<td valign="top" width="47">综合</td>
+<td valign="top" width="33">6</td>
+<td valign="top" width="62">33,586</td>
+<td valign="top" width="48">4167</td>
+<td valign="top" width="147">TopCoder公司</td>
+<td valign="top" width="74">&nbsp;</td>
+</tr>
+<tr>
+<td valign="top" width="180">CodeChef <a href="http://www.codechef.com/" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://www.codechef.com']);">http://www.codechef.com/</a></td>
+<td valign="top" width="47">综合</td>
+<td valign="top" width="33">6</td>
+<td valign="top" width="62">41,217</td>
+<td valign="top" width="48">5758</td>
+<td valign="top" width="147">Directi公司</td>
+<td valign="top" width="74">&nbsp;</td>
+</tr>
+<tr>
+<td valign="top" width="180">CodeForces <a href="http://codeforces.com/" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://codeforces.com']);">http://codeforces.com/</a></td>
+<td valign="top" width="47">综合</td>
+<td valign="top" width="33">5</td>
+<td valign="top" width="62">73,012</td>
+<td valign="top" width="48">599</td>
+<td valign="top" width="147">CodeForces公司</td>
+<td valign="top" width="74">&nbsp;</td>
+</tr>
+<tr>
+<td valign="top" width="180">SPOJ <a href="http://www.spoj.com/" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://www.spoj.com']);">http://www.spoj.com/</a></td>
+<td valign="top" width="47">ACM</td>
+<td valign="top" width="33">3</td>
+<td valign="top" width="62">75,653</td>
+<td valign="top" width="48">1520</td>
+<td valign="top" width="147">Sphere Research Labs</td>
+<td valign="top" width="74">&nbsp;</td>
+</tr>
+<tr>
+<td valign="top" width="180">POJ <a href="http://poj.org/" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://poj.org']);">http://poj.org/</a></td>
+<td valign="top" width="47">ACM</td>
+<td valign="top" width="33">7</td>
+<td valign="top" width="62">364,925</td>
+<td valign="top" width="48">N/A</td>
+<td valign="top" width="147">北京大学</td>
+<td valign="top" width="74">&nbsp;</td>
+</tr>
+<tr>
+<td valign="top" width="180">ZOJ <a href="http://acm.zju.edu.cn" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://acm.zju.edu.cn']);">http://acm.zju.edu.cn</a></td>
+<td valign="top" width="47">ACM</td>
+<td valign="top" width="33">6</td>
+<td valign="top" width="62">N/A</td>
+<td valign="top" width="48">N/A</td>
+<td valign="top" width="147">浙江大学</td>
+<td valign="top" width="74">&nbsp;</td>
+</tr>
+<tr>
+<td valign="top" width="180">UVA OJ <a href="http://uva.onlinejudge.org" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://uva.onlinejudge.org']);">http://uva.onlinejudge.org</a></td>
+<td valign="top" width="47">ACM</td>
+<td valign="top" width="33">6</td>
+<td valign="top" width="62">166,991</td>
+<td valign="top" width="48">N/A</td>
+<td valign="top" width="147">University of Virginia</td>
+<td valign="top" width="74">&nbsp;</td>
+</tr>
+<tr>
+<td valign="top" width="180">SGU OJ
+<p><a href="http://acm.sgu.ru/" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://acm.sgu.ru']);">http://acm.sgu.ru/</a></p>
+</td>
+<td valign="top" width="47">ACM</td>
+<td valign="top" width="33">5</td>
+<td valign="top" width="62">194,881</td>
+<td valign="top" width="48">N/A</td>
+<td valign="top" width="147">Saratov State University</td>
+<td valign="top" width="74">&nbsp;</td>
+</tr>
+<tr>
+<td valign="top" width="180">HackerRank <a href="https://www.hackerrank.com/" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://www.hackerrank.com']);">https://www.hackerrank.com/</a></td>
+<td valign="top" width="47">综合</td>
+<td valign="top" width="33">5</td>
+<td valign="top" width="62">126,192</td>
+<td valign="top" width="48">56</td>
+<td valign="top" width="147">InterviewStreet公司</td>
+<td valign="top" width="74">&nbsp;</td>
+</tr>
+<tr>
+<td valign="top" width="180">Project Euler <a href="http://projecteuler.net/" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://projecteuler.net']);">http://projecteuler.net/</a></td>
+<td valign="top" width="47">数学</td>
+<td valign="top" width="33">6</td>
+<td valign="top" width="62">53,854</td>
+<td valign="top" width="48">428</td>
+<td valign="top" width="147">Project Euler公司</td>
+<td valign="top" width="74">&nbsp;</td>
+</tr>
+</tbody>
+</table>
+
+
+<p>说明：PR是Google PageRank的缩写；ATR是Alexa Trafic Rank的缩写，即Alexa排名；QF是Quora Followers的缩写，具体含义是在Quora上关于某Topic的follower数量，例如<a href="http://www.quora.com/CodeChef">CodeChef的topic</a> 有5758个followers。</p>
+
+<!-- more -->
+
+
+<h2>支持的语言</h2>
+
+<table cellspacing="0" cellpadding="0" border="1">
+<tbody>
+<tr>
+<td valign="top" width="72"><strong>网站</strong>
+<p><strong>语言</strong></p>
+</td>
+<td valign="top" width="79"><strong>TopCoder</strong></td>
+<td valign="top" width="47"><strong>CodeChef</strong></td>
+<td valign="top" width="57"><strong>CodeForces</strong></td>
+<td valign="top" width="47"><strong>SPOJ</strong></td>
+<td valign="top" width="38"><strong>POJ</strong></td>
+<td valign="top" width="47"><strong>ZOJ</strong></td>
+<td valign="top" width="47"><strong>UVA OJ</strong></td>
+<td valign="top" width="47"><strong>SGU OJ</strong></td>
+<td valign="top" width="57"><strong>HackerRank</strong></td>
+<td valign="top" width="57"><strong>Project Euler</strong></td>
+</tr>
+<tr>
+<td valign="top" width="72">Java</td>
+<td valign="top" width="79"><a name="OLE_LINK5"></a><a name="OLE_LINK3"></a>√</td>
+<td valign="top" width="47">√<strong></strong></td>
+<td valign="top" width="57">√</td>
+<td valign="top" width="47">√</td>
+<td valign="top" width="38">√</td>
+<td valign="top" width="47">√</td>
+<td valign="top" width="47">&nbsp;</td>
+<td valign="top" width="47">√</td>
+<td valign="top" width="57">√</td>
+<td valign="top" width="57">不</td>
+</tr>
+<tr>
+<td valign="top" width="72">C</td>
+<td valign="top" width="79">√</td>
+<td valign="top" width="47">√</td>
+<td valign="top" width="57">√</td>
+<td valign="top" width="47">√</td>
+<td valign="top" width="38">√</td>
+<td valign="top" width="47">√</td>
+<td valign="top" width="47">&nbsp;</td>
+<td valign="top" width="47">√</td>
+<td valign="top" width="57">√</td>
+<td valign="top" width="57">限</td>
+</tr>
+<tr>
+<td valign="top" width="72">C++</td>
+<td valign="top" width="79">√</td>
+<td valign="top" width="47"><a name="OLE_LINK19"></a><a name="OLE_LINK18"></a>√</td>
+<td valign="top" width="57">√</td>
+<td valign="top" width="47">√</td>
+<td valign="top" width="38">√</td>
+<td valign="top" width="47">√</td>
+<td valign="top" width="47">&nbsp;</td>
+<td valign="top" width="47">√</td>
+<td valign="top" width="57">√</td>
+<td valign="top" width="57">语</td>
+</tr>
+<tr>
+<td valign="top" width="72">Pascal</td>
+<td valign="top" width="79">×</td>
+<td valign="top" width="47">√</td>
+<td valign="top" width="57">√</td>
+<td valign="top" width="47">√</td>
+<td valign="top" width="38">√</td>
+<td valign="top" width="47">√</td>
+<td valign="top" width="47">&nbsp;</td>
+<td valign="top" width="47">√</td>
+<td valign="top" width="57">√</td>
+<td valign="top" width="57">言</td>
+</tr>
+<tr>
+<td valign="top" width="72">Fortran</td>
+<td valign="top" width="79">×</td>
+<td valign="top" width="47"><a name="OLE_LINK9"></a><a name="OLE_LINK8"></a>√</td>
+<td valign="top" width="57">×</td>
+<td valign="top" width="47"><a name="OLE_LINK21"></a><a name="OLE_LINK20"></a>√</td>
+<td valign="top" width="38">√</td>
+<td valign="top" width="47">×</td>
+<td valign="top" width="47">&nbsp;</td>
+<td valign="top" width="47">×</td>
+<td valign="top" width="57"><a name="OLE_LINK7"></a><a name="OLE_LINK6"></a>×</td>
+<td valign="top" width="57">，</td>
+</tr>
+<tr>
+<td valign="top" width="72">Obj-C</td>
+<td valign="top" width="79">×</td>
+<td valign="top" width="47">×</td>
+<td valign="top" width="57">×</td>
+<td valign="top" width="47">×</td>
+<td valign="top" width="38">×</td>
+<td valign="top" width="47">×</td>
+<td valign="top" width="47">&nbsp;</td>
+<td valign="top" width="47">×</td>
+<td valign="top" width="57">×</td>
+<td valign="top" width="57">只</td>
+</tr>
+<tr>
+<td valign="top" width="72">C#</td>
+<td valign="top" width="79">√</td>
+<td valign="top" width="47">√</td>
+<td valign="top" width="57">√</td>
+<td valign="top" width="47">√</td>
+<td valign="top" width="38">×</td>
+<td valign="top" width="47">×</td>
+<td valign="top" width="47">&nbsp;</td>
+<td valign="top" width="47">√</td>
+<td valign="top" width="57">√</td>
+<td valign="top" width="57">需</td>
+</tr>
+<tr>
+<td valign="top" width="72">Python 2</td>
+<td valign="top" width="79">×</td>
+<td valign="top" width="47">√</td>
+<td valign="top" width="57">√</td>
+<td valign="top" width="47">√</td>
+<td valign="top" width="38">×</td>
+<td valign="top" width="47">√</td>
+<td valign="top" width="47">&nbsp;</td>
+<td valign="top" width="47">×</td>
+<td valign="top" width="57">√</td>
+<td valign="top" width="57">提</td>
+</tr>
+<tr>
+<td valign="top" width="72">Python 3</td>
+<td valign="top" width="79">×</td>
+<td valign="top" width="47">√</td>
+<td valign="top" width="57">×</td>
+<td valign="top" width="47">√</td>
+<td valign="top" width="38">×</td>
+<td valign="top" width="47">×</td>
+<td valign="top" width="47">&nbsp;</td>
+<td valign="top" width="47">×</td>
+<td valign="top" width="57">√</td>
+<td valign="top" width="57">交</td>
+</tr>
+<tr>
+<td valign="top" width="72">Ruby</td>
+<td valign="top" width="79">×</td>
+<td valign="top" width="47">√</td>
+<td valign="top" width="57">√</td>
+<td valign="top" width="47">√</td>
+<td valign="top" width="38">×</td>
+<td valign="top" width="47">×</td>
+<td valign="top" width="47">&nbsp;</td>
+<td valign="top" width="47">×</td>
+<td valign="top" width="57">√</td>
+<td valign="top" width="57">答</td>
+</tr>
+<tr>
+<td valign="top" width="72">JavaScript</td>
+<td valign="top" width="79">×</td>
+<td valign="top" width="47">√</td>
+<td valign="top" width="57">×</td>
+<td valign="top" width="47">√</td>
+<td valign="top" width="38">×</td>
+<td valign="top" width="47">×</td>
+<td valign="top" width="47">&nbsp;</td>
+<td valign="top" width="47">×</td>
+<td valign="top" width="57">√</td>
+<td valign="top" width="57">案</td>
+</tr>
+<tr>
+<td valign="top" width="72">PHP</td>
+<td valign="top" width="79">×</td>
+<td valign="top" width="47"><a name="OLE_LINK11"></a><a name="OLE_LINK10"></a>√</td>
+<td valign="top" width="57">√</td>
+<td valign="top" width="47">√</td>
+<td valign="top" width="38">×</td>
+<td valign="top" width="47">√</td>
+<td valign="top" width="47">&nbsp;</td>
+<td valign="top" width="47">×</td>
+<td valign="top" width="57">√</td>
+<td valign="top" width="57">&nbsp;</td>
+</tr>
+<tr>
+<td valign="top" width="72">VB</td>
+<td valign="top" width="79">√</td>
+<td valign="top" width="47"><a name="OLE_LINK28"></a><a name="OLE_LINK12"></a>×</td>
+<td valign="top" width="57">×</td>
+<td valign="top" width="47">×</td>
+<td valign="top" width="38">×</td>
+<td valign="top" width="47">×</td>
+<td valign="top" width="47">&nbsp;</td>
+<td valign="top" width="47">×</td>
+<td valign="top" width="57">×</td>
+<td valign="top" width="57">&nbsp;</td>
+</tr>
+<tr>
+<td valign="top" width="72">Perl</td>
+<td valign="top" width="79">×</td>
+<td valign="top" width="47">√</td>
+<td valign="top" width="57">√</td>
+<td valign="top" width="47"><a name="OLE_LINK22"></a>√</td>
+<td valign="top" width="38">×</td>
+<td valign="top" width="47">√</td>
+<td valign="top" width="47">&nbsp;</td>
+<td valign="top" width="47">×</td>
+<td valign="top" width="57">√</td>
+<td valign="top" width="57">&nbsp;</td>
+</tr>
+<tr>
+<td valign="top" width="72">Go</td>
+<td valign="top" width="79">×</td>
+<td valign="top" width="47">√</td>
+<td valign="top" width="57">×</td>
+<td valign="top" width="47">√</td>
+<td valign="top" width="38">×</td>
+<td valign="top" width="47">×</td>
+<td valign="top" width="47">&nbsp;</td>
+<td valign="top" width="47">×</td>
+<td valign="top" width="57">√</td>
+<td valign="top" width="57">&nbsp;</td>
+</tr>
+<tr>
+<td valign="top" width="72">Scala</td>
+<td valign="top" width="79">×</td>
+<td valign="top" width="47">√</td>
+<td valign="top" width="57">√</td>
+<td valign="top" width="47">√</td>
+<td valign="top" width="38">×</td>
+<td valign="top" width="47">×</td>
+<td valign="top" width="47">&nbsp;</td>
+<td valign="top" width="47">×</td>
+<td valign="top" width="57">√</td>
+<td valign="top" width="57">&nbsp;</td>
+</tr>
+<tr>
+<td valign="top" width="72">Groovy</td>
+<td valign="top" width="79">×</td>
+<td valign="top" width="47">×</td>
+<td valign="top" width="57">×</td>
+<td valign="top" width="47">×</td>
+<td valign="top" width="38">×</td>
+<td valign="top" width="47">×</td>
+<td valign="top" width="47">&nbsp;</td>
+<td valign="top" width="47">×</td>
+<td valign="top" width="57">√</td>
+<td valign="top" width="57">&nbsp;</td>
+</tr>
+<tr>
+<td valign="top" width="72">Erlang</td>
+<td valign="top" width="79">×</td>
+<td valign="top" width="47">√</td>
+<td valign="top" width="57"><a name="OLE_LINK15"></a>×</td>
+<td valign="top" width="47">√</td>
+<td valign="top" width="38">×</td>
+<td valign="top" width="47">×</td>
+<td valign="top" width="47">&nbsp;</td>
+<td valign="top" width="47">×</td>
+<td valign="top" width="57">√</td>
+<td valign="top" width="57">&nbsp;</td>
+</tr>
+<tr>
+<td valign="top" width="72">Lua</td>
+<td valign="top" width="79">×</td>
+<td valign="top" width="47">√</td>
+<td valign="top" width="57">×</td>
+<td valign="top" width="47">√</td>
+<td valign="top" width="38">×</td>
+<td valign="top" width="47">×</td>
+<td valign="top" width="47">&nbsp;</td>
+<td valign="top" width="47">×</td>
+<td valign="top" width="57">√</td>
+<td valign="top" width="57">&nbsp;</td>
+</tr>
+<tr>
+<td valign="top" width="72">D</td>
+<td valign="top" width="79">×</td>
+<td valign="top" width="47">√</td>
+<td valign="top" width="57">√</td>
+<td valign="top" width="47">√</td>
+<td valign="top" width="38">×</td>
+<td valign="top" width="47">×</td>
+<td valign="top" width="47">&nbsp;</td>
+<td valign="top" width="47">×</td>
+<td valign="top" width="57">√</td>
+<td valign="top" width="57">&nbsp;</td>
+</tr>
+<tr>
+<td valign="top" width="72">Fortran</td>
+<td valign="top" width="79">×</td>
+<td valign="top" width="47">√</td>
+<td valign="top" width="57">×</td>
+<td valign="top" width="47">√</td>
+<td valign="top" width="38">×</td>
+<td valign="top" width="47">×</td>
+<td valign="top" width="47">&nbsp;</td>
+<td valign="top" width="47">×</td>
+<td valign="top" width="57"><a name="OLE_LINK4"></a>×</td>
+<td valign="top" width="57">&nbsp;</td>
+</tr>
+<tr>
+<td valign="top" width="72">CommonLisp</td>
+<td valign="top" width="79">×</td>
+<td valign="top" width="47">√</td>
+<td valign="top" width="57">×</td>
+<td valign="top" width="47">√</td>
+<td valign="top" width="38">×</td>
+<td valign="top" width="47"><a name="OLE_LINK26"></a><a name="OLE_LINK25"></a>×</td>
+<td valign="top" width="47">&nbsp;</td>
+<td valign="top" width="47">×</td>
+<td valign="top" width="57">√</td>
+<td valign="top" width="57">&nbsp;</td>
+</tr>
+<tr>
+<td valign="top" width="72">Clojure</td>
+<td valign="top" width="79">×</td>
+<td valign="top" width="47"><a name="OLE_LINK14"></a><a name="OLE_LINK13"></a>√</td>
+<td valign="top" width="57">×</td>
+<td valign="top" width="47">√</td>
+<td valign="top" width="38">×</td>
+<td valign="top" width="47">×</td>
+<td valign="top" width="47">&nbsp;</td>
+<td valign="top" width="47">×</td>
+<td valign="top" width="57">√</td>
+<td valign="top" width="57">&nbsp;</td>
+</tr>
+<tr>
+<td valign="top" width="72">Scheme</td>
+<td valign="top" width="79">×</td>
+<td valign="top" width="47">√</td>
+<td valign="top" width="57">×</td>
+<td valign="top" width="47">√</td>
+<td valign="top" width="38">×</td>
+<td valign="top" width="47">√</td>
+<td valign="top" width="47">&nbsp;</td>
+<td valign="top" width="47">×</td>
+<td valign="top" width="57">×</td>
+<td valign="top" width="57">&nbsp;</td>
+</tr>
+<tr>
+<td valign="top" width="72">Haskell</td>
+<td valign="top" width="79">×</td>
+<td valign="top" width="47">√</td>
+<td valign="top" width="57">√</td>
+<td valign="top" width="47">√</td>
+<td valign="top" width="38"><a name="OLE_LINK24"></a><a name="OLE_LINK23"></a>×</td>
+<td valign="top" width="47">×</td>
+<td valign="top" width="47">&nbsp;</td>
+<td valign="top" width="47">×</td>
+<td valign="top" width="57">√</td>
+<td valign="top" width="57">&nbsp;</td>
+</tr>
+<tr>
+<td valign="top" width="72">OCaml</td>
+<td valign="top" width="79">×</td>
+<td valign="top" width="47">√</td>
+<td valign="top" width="57">√</td>
+<td valign="top" width="47">√</td>
+<td valign="top" width="38">×</td>
+<td valign="top" width="47">×</td>
+<td valign="top" width="47">&nbsp;</td>
+<td valign="top" width="47">×</td>
+<td valign="top" width="57">√</td>
+<td valign="top" width="57">&nbsp;</td>
+</tr>
+<tr>
+<td valign="top" width="72">其他</td>
+<td valign="top" width="79">×</td>
+<td valign="top" width="47"><a name="OLE_LINK17"></a><a name="OLE_LINK16"></a>√</td>
+<td valign="top" width="57">×</td>
+<td valign="top" width="47">√</td>
+<td valign="top" width="38">×</td>
+<td valign="top" width="47">×</td>
+<td valign="top" width="47">&nbsp;</td>
+<td valign="top" width="47">×</td>
+<td valign="top" width="57">×</td>
+<td valign="top" width="57">&nbsp;</td>
+</tr>
+</tbody>
+</table>
+
+
+<h2>大牛在哪里玩</h2>
+
+<p><a href="http://www.codechef.com/long/ranklist/AX/?page=0">CodeChef的Long Consest 排名榜</a><br/>
+<a href="http://codeforces.com/ratings">CodeForces的排名榜</a></p>
+
+<p>看看一些神牛在哪些编程网站上玩。</p>
+
+<table cellspacing="0" cellpadding="0" border="1">
+<tbody>
+<tr>
+<td valign="top" width="98">
+<p><strong>大牛名字</strong></p>
+</td>
+<td valign="top" width="393">
+<p><strong>在哪些网站活动</strong></p>
+</td>
+<td valign="top" width="100">
+<p><strong>结论</strong></p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="98">
+<p>清华 楼天城 ACRush</p>
+<p>现在Google工作</p>
+</td>
+<td valign="top" width="393">
+<p><a href="http://community.topcoder.com/tc?module=MemberProfile&amp;cr=19849563" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://community.topcoder.com']);">http://community.topcoder.com/tc?module=MemberProfile&amp;cr=19849563</a> 最后活动日期14/03/13</p>
+<p><a href="http://www.codechef.com/users/ACRush21" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://www.codechef.com']);">http://www.codechef.com/users/ACRush21</a> long contest排名第一</p>
+<p><a href="http://codeforces.com/profile/ACRush" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://codeforces.com']);">http://codeforces.com/profile/ACRush</a> 排名18 </p>
+</td>
+<td valign="top" width="100">
+<p>楼教主在TopCoder, CodeChef, CodeForces玩</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="98">
+<p>俄罗斯 petr</p>
+<p>现在Google工作</p>
+</td>
+<td valign="top" width="393">
+<p><a href="http://community.topcoder.com/tc?module=MemberProfile&amp;tab=alg&amp;cr=10574855" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://community.topcoder.com']);">http://community.topcoder.com/tc?module=MemberProfile&amp;tab=alg&amp;cr=10574855</a></p>
+<p><a href="http://www.codechef.com/users/petr" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://www.codechef.com']);">http://www.codechef.com/users/petr</a> N/A</p>
+<p><a href="http://codeforces.com/profile/Petr" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://codeforces.com']);">http://codeforces.com/profile/Petr</a> 排名第三</p>
+</td>
+<td valign="top" width="100">
+<p>Petr主要在TopCoder, CodeForces玩</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="98">
+<p>波兰 tomek</p>
+<p>现在Google工作</p>
+</td>
+<td valign="top" width="393">
+<p><a href="http://community.topcoder.com/tc?module=MemberProfile&amp;cr=144400" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://community.topcoder.com']);">http://community.topcoder.com/tc?module=MemberProfile&amp;cr=144400</a></p>
+<p><a href="http://www.codechef.com/users/tomek" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://www.codechef.com']);">http://www.codechef.com/users/tomek</a> long contest排名第六</p>
+<p><a href="http://codeforces.com/profile/tomek" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://codeforces.com']);">http://codeforces.com/profile/tomek</a> N/A</p>
+</td>
+<td valign="top" width="100">
+<p>Tomek主要在TopCoder, codechef玩</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="98">
+<p>俄罗斯 Egor</p>
+</td>
+<td valign="top" width="393">
+<p><a href="http://community.topcoder.com/tc?module=MemberProfile&amp;cr=14970299" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://community.topcoder.com']);">http://community.topcoder.com/tc?module=MemberProfile&amp;cr=14970299</a></p>
+<p><a href="http://www.codechef.com/users/Egor" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://www.codechef.com']);">http://www.codechef.com/users/Egor</a> N/A</p>
+<p><a href="http://codeforces.com/profile/Egor" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://codeforces.com']);">http://codeforces.com/profile/Egor</a> 排名第七</p>
+</td>
+<td valign="top" width="100">
+<p>Egor主要在TopCoder, CodeForces玩</p>
+</td>
+</tr>
+<tr>
+<td valign="top" width="98">
+<p>俄罗斯 Tourist</p>
+<p>高三学生</p>
+</td>
+<td valign="top" width="393">
+<p><a href="http://www.codechef.com/teams/view/tourist" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://www.codechef.com']);">http://www.codechef.com/teams/view/tourist</a> N/A</p>
+<p><a href="http://www.codeforces.com/profile/tourist" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://www.codeforces.com']);">http://www.codeforces.com/profile/tourist</a> 排名第一</p>
+</td>
+<td valign="top" width="100">
+<p>少年天才，主要在CodeForces玩</p>
+</td>
+</tr>
+</tbody>
+</table>
+
+
+<p>由于CodeForcess是俄罗斯的网站，所以俄罗斯选手几乎全部在CodeForces上玩，例如Petr, Egor, Tourist都是俄罗斯人，都在CodeForces上。
+也可以发现，神牛大部分来自俄罗斯，大家或许也会联想到，俄罗斯出数学家和计算机黑客，的确如此。像楼教主，Petr属于老牌的霸主，近两年出现一个天才少年tourist，才高三，竟然在CodeForces上力压Petr，真是逆天的存在。Quora上有个问题How does it feel to beat Petr Mitrichev, Egor, ACRush in SRM? 最佳答案 It feels a lot like being Tourist. 既幽默又霸气。</p>
+
+<h2>大牛们使用什么语言？</h2>
+
+<p>来看一下高手提交的代码列表：<br/>
+<a href="http://codeforces.com/submissions/ACRush">http://codeforces.com/submissions/ACRush</a><br/>
+<a href="http://codeforces.com/submissions/Petr">http://codeforces.com/submissions/Petr</a><br/>
+<a href="http://codeforces.com/submissions/Egor">http://codeforces.com/submissions/Egor</a><br/>
+<a href="http://www.codeforces.com/submissions/tourist">http://www.codeforces.com/submissions/tourist</a></p>
+
+<p>可以看出ACRush和Tourist使用C++，Petr和Egor使用Java。从我的亲身经验，周围参加ACM的同学大部分用C++。不过，注意一点，大部分人认为Java慢，这在五六年前是对的，但是到了在现在，JVM经过各大IT巨头的重金打造，性能已经跟C++一样持平了，至少不再有数量级上的差距。因此Java也是一个很好地选择。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[数值计算库与科学计算库]]></title>
+    <link href="http://www.yanjiuyanjiu.com/blog/20130226/"/>
+    <updated>2013-02-26T23:15:00+08:00</updated>
+    <id>http://www.yanjiuyanjiu.com/blog/numerical-or-scientific-computation-library</id>
+    <content type="html"><![CDATA[<h2>BLAS 接口</h2>
+
+<p><a href="http://www.netlib.org/blas/">BLAS</a>, <a href="http://www.netlib.org/lapack/">LAPACK</a>, <a href="http://math-atlas.sourceforge.net/">ATLAS</a> 这些数值计算库的名字很类似，他们之间有什么关系呢？BLAS是一组线性代数运算接口，目前是事实上的标准，很多数值计算/科学计算都实现了这套接口。</p>
+
+<p>BLAS定义了那些函数呢？可以查看<a href="http://www.netlib.org/blas/">官方文档</a>。</p>
+
+<p>LAPACK是BLAS的第一个实现，是最老牌的数值计算库，用FORTRAN 77语言写的。LAPACK实现了BLAS接口，并扩充了一些功能。很多数值计算库/科学计算库底层调用了LAPACK。</p>
+
+<p>很多硬件厂商都实现BLAS接口，例如<a href="http://software.intel.com/en-us/intel-mkl">Intel MKL</a>(Math Kernel Library), <a href="http://developer.amd.com/tools/cpu-development/amd-core-math-library-acml/">AMCL</a>(AMD Math Core Library)等。很多开源库也支持，例如ATLAS。</p>
+
+<p>还有非常多的库实现了BLAS接口，见<a href="http://en.wikipedia.org/wiki/Basic_Linear_Algebra_Subprograms">Wikipedia BLAS</a> 的Implementations小节。</p>
+
+<p>下面介绍一些各种语言常用的数值计算/科学计算库。</p>
+
+<!-- more -->
+
+
+<h2>C/C++</h2>
+
+<p>首先是Intel 的MKL 和 AMD 的AMCL，性能一流，不过是商业软件，价格昂贵。</p>
+
+<p><a href="http://www.gnu.org/software/gsl/">GSL - GNU Scientific Library</a>，GNU实现的库，质量很高，不过是用纯C写的，用起来比较繁琐。</p>
+
+<p><a href="http://arma.sourceforge.net/">Armadillo</a>，最新版 2013-02-20 Version 3.6.3</p>
+
+<p><a href="http://itpp.sourceforge.net/">IT++</a>，最后版本是4.2,2010-09-21。</p>
+
+<h2>Java</h2>
+
+<p>这个页面<a href="http://math.nist.gov/javanumerics/">JavaNumerics page</a>专门收集了关于Java数值计算的库。</p>
+
+<p><a href="https://code.google.com/p/java-matrix-benchmark/">java-matrix-benchmark</a>这个开源项目，比较了各类Java线性代数库的性能。</p>
+
+<p>下面介绍一些影响力较大的java数值计算/科学计算库。</p>
+
+<p><a href="http://commons.apache.org/proper/commons-math/">Commons Math</a>, 最新版本是3.1.1,2013年1月9号发布。这个库提供一些基本的数学运算，没有high-level的东西，例如矩阵，向量等，用起来会比较繁琐。</p>
+
+<p><a href="http://math.nist.gov/javanumerics/jama/">JAMA</a>, 最新版是Version 1.0.3 (November 9, 2012)。</p>
+
+<p><a href="http://acs.lbl.gov/software/colt/">Colt</a>，已经不更新了，最后版本是1.2.0，2004年9月发布的。</p>
+
+<p>Apache Mahout使用了Colt作为high performance collections，见官方<a href="https://cwiki.apache.org/MAHOUT/mahout-collections.html">这个页面</a>，说“The implementation of Mahout Collections is derived from Cern Colt”，以及quora 这个帖子<a href="http://www.quora.com/Distributed-Algorithms/What-are-the-best-resources-for-distributed-numerical-analysis-matrix-algorithms">What are the best resources for distributed numerical analysis/matrix algorithms</a>。</p>
+
+<h2>Python</h2>
+
+<p>目前最有影响力的莫过于<a href="http://www.numpy.org/">NumPy</a>和<a href="http://www.scipy.org/">SciPy</a>。Amazon.com上可以搜到专门讲它们的书。</p>
+
+<p>SciPy依赖NumPy，主要是在数值计算方面调用了NumPy。</p>
+
+<h2>Ruby</h2>
+
+<p><a href="http://sciruby.com/">SciRuby</a>, 是SciPy和NumPy的克隆，目前还在开发中。</p>
+
+<h2>R</h2>
+
+<p>R刚开始时是统计学家开发的语言，专门用于数理统计，现在功能不断增强，内置了很多数值计算和科学计算的功能。R在数据分析领域比较火。</p>
+
+<h2>Scala</h2>
+
+<p>目前用google搜索 “scala numerical computing”，能找得到的就是<a href="http://code.google.com/p/scalalab/">ScalaLab</a>了。</p>
+
+<h2>Matlab</h2>
+
+<p>最后，别忘了Matlab是支持多语言调用的。</p>
+
+<p>可以用Matlab生成DLL，给C/C++语言调用。其实，凡是能调用DLL的语言，都可以使用这个DLL，例如Python, Ruby等。</p>
+
+<p>可以用<a href="http://www.mathworks.cn/products/javabuilder/">Matlab JavaBuilder</a>将m文件转换为jar文件，然后在java代码中就可以调用了。</p>
+
+<h2>如何选择</h2>
+
+<p>本文的重点在于选择一个高性能，同时又比较易用的库，即被让我们调用，用来写程序的库，不是一个集成环境或REPL环境。因此R和Matlab不在讨论范围内。R和Matlab用来做原型或前期Data Exploration比较适合。</p>
+
+<p>选择一个工具（语言，框架，库等），要看其是否成熟。我个人的一些判断指标，主要有</p>
+
+<ol>
+<li>有没有大厂商的支持（作为vendor之类的）；</li>
+<li>amazon.com上能否搜到书。</li>
+</ol>
+
+
+<p>从厂商的支持来看，几个主要的大厂商如 Intel，AMD和Apple都开发了自己的数学库。Python则有很成熟的NumPy，在Amazon上能搜到书，例如“SciPy and NumPy”， “NumPy Cookbook”。 因此，目前来看，C++和Python是比较成熟的方案。</p>
+
+<h2>参考资料</h2>
+
+<p><a href="http://en.wikipedia.org/wiki/Basic_Linear_Algebra_Subprograms">Wikipedia BLAS</a><br/>
+<a href="http://en.wikipedia.org/wiki/LAPACK">Wikipedia LAPACK</a><br/>
+<a href="http://blog.henix.info/blog/blas-lapack-do-matrix-operation.html">用 BLAS/LAPACK 编写矩阵运算程序</a><br/>
+<a href="https://wikis.utexas.edu/display/~cdupree/BLAS,+LAPACK,+ATLAS">BLAS, LAPACK, ATLAS</a><br/>
+<a href="http://hi.baidu.com/luckykele2012/item/6a3b25423018c40d6dc2f090">BLAS 和 LAPACK ，以及其他常用数值计算库</a><br/>
+<a href="http://fdatamining.blogspot.com/2011/10/any-numerical-computing-environment-on.html">Any numerical computing environment on Java platform</a><br/>
+<a href="http://www.myoutsourcedbrain.com/2009/04/c-libraries-for-numerical-processing.html">C++ Libraries for Scientific Computing</a><br/>
+<a href="http://stackoverflow.com/questions/3121139/scientific-library-options-for-c-or-c">Scientific Library Options for C or C++</a><br/>
+<a href="http://programmers.stackexchange.com/questions/138643/why-is-python-used-for-high-performance-scientific-computing-but-ruby-isnt">Why is Python used for high-performance/scientific computing (but Ruby isn&#8217;t)?</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[KNN与K-Means的区别]]></title>
+    <link href="http://www.yanjiuyanjiu.com/blog/20130225/"/>
+    <updated>2013-02-25T23:41:00+08:00</updated>
+    <id>http://www.yanjiuyanjiu.com/blog/differences-between-knn-and-kmeans</id>
+    <content type="html"><![CDATA[<h2>KNN(K-Nearest Neighbor)介绍</h2>
+
+<p>Wikipedia上的<a href="http://en.wikipedia.org/wiki/K-nearest_neighbor_algorithm">KNN词条</a>中有一个比较经典的图如下：</p>
+
+<p><img src="http://yanjiuyanjiu-wordpress.stor.sinaapp.com/uploads/2013/02/022513_0955_KNNKMeans1.png"></p>
+
+<p>KNN的算法过程是是这样的：</p>
+
+<p>从上图中我们可以看到，图中的数据集是良好的数据，即都打好了label，一类是蓝色的正方形，一类是红色的三角形，那个绿色的圆形是我们待分类的数据。</p>
+
+<p>如果K=3，那么离绿色点最近的有2个红色三角形和1个蓝色的正方形，这3个点投票，于是绿色的这个待分类点属于红色的三角形。</p>
+
+<p>如果K=5，那么离绿色点最近的有2个红色三角形和3个蓝色的正方形，这5个点投票，于是绿色的这个待分类点属于蓝色的正方形。（参考 <a href="http://coolshell.cn/articles/8052.html">酷壳的 K Nearest Neighbor 算法</a>）</p>
+
+<p>我们可以看到，KNN本质是基于一种数据统计的方法！其实很多机器学习算法也是基于数据统计的。</p>
+
+<!-- more -->
+
+
+<p>KNN是一种memory-based learning，也叫instance-based learning，属于lazy learning。即它没有明显的前期训练过程，而是程序开始运行时，把数据集加载到内存后，不需要进行训练，就可以开始分类了。</p>
+
+<p>具体是每次来一个未知的样本点，就在附近找K个最近的点进行投票。</p>
+
+<p>再举一个例子，Locally weighted regression (LWR)也是一种 memory-based 方法，如下图所示的数据集。</p>
+
+<p><img src="http://yanjiuyanjiu-wordpress.stor.sinaapp.com/uploads/2013/02/022513_0955_KNNKMeans2.gif"></p>
+
+<p>用任何一条直线来模拟这个数据集都是不行的，因为这个数据集看起来不像是一条直线。但是每个局部范围内的数据点，可以认为在一条直线上。每次来了一个位置样本x，我们在X轴上以该数据样本为中心，左右各找几个点，把这几个样本点进行线性回归，算出一条局部的直线，然后把位置样本x代入这条直线，就算出了对应的y，完成了一次线性回归。</p>
+
+<p>也就是每次来一个数据点，都要训练一条局部直线，也即训练一次，就用一次。</p>
+
+<p>LWR和KNN是不是很像？都是为位置数据量身定制，在局部进行训练。</p>
+
+<h2>K-Means介绍</h2>
+
+<p><img src="http://yanjiuyanjiu-wordpress.stor.sinaapp.com/uploads/2013/02/022513_0955_KNNKMeans3.jpg"></p>
+
+<p>如图所示，数据样本用圆点表示，每个簇的中心点用叉叉表示。(a)刚开始时是原始数据，杂乱无章，没有label，看起来都一样，都是绿色的。(b)假设数据集可以分为两类，令K=2，随机在坐标上选两个点，作为两个类的中心点。(c-f)演示了聚类的两种迭代。先划分，把每个数据样本划分到最近的中心点那一簇；划分完后，更新每个簇的中心，即把该簇的所有数据点的坐标加起来去平均值。这样不断进行”划分—更新—划分—更新”，直到每个簇的中心不在移动为止。(图文来自Andrew ng的机器学习公开课)。</p>
+
+<p>推荐关于K-Means的两篇博文，<a href="http://coolshell.cn/articles/7779.html">K-Means 算法 _ 酷壳</a>，<a href="http://blog.pluskid.org/?p=17">漫谈 Clustering (1)_ k-means pluskid</a>。</p>
+
+<h2>KNN和K-Means的区别</h2>
+
+<table style="border-collapse: collapse;" border="0">
+<colgroup>
+<col style="width: 277px;">
+<col style="width: 277px;"></colgroup>
+<tbody valign="top">
+<tr>
+<td style="padding-left: 7px; padding-right: 7px; border: solid 0.5pt;">
+<p style="text-align: center;"><span style="font-size: 10pt;"><strong>KNN</strong></span></p>
+</td>
+<td style="padding-left: 7px; padding-right: 7px; border-top: solid 0.5pt; border-left: none; border-bottom: solid 0.5pt; border-right: solid 0.5pt;">
+<p style="text-align: center;"><span style="font-size: 10pt;"><strong>K-Means</strong></span></p>
+</td>
+</tr>
+<tr style="height: 85px;">
+<td style="padding-left: 7px; padding-right: 7px; border-top: none; border-left: solid 0.5pt; border-bottom: solid 0.5pt; border-right: solid 0.5pt;"><span style="font-size: 10pt;">1.KNN是分类算法<br>
+</span><p></p>
+<p><span style="font-size: 10pt;">2.监督学习<br>
+</span></p>
+<p style="text-align: justify;"><span style="font-size: 10pt;">3.喂给它的数据集是带label的数据，已经是完全正确的数据</span></p>
+</td>
+<td style="padding-left: 7px; padding-right: 7px; border-top: none; border-left: none; border-bottom: solid 0.5pt; border-right: solid 0.5pt;"><span style="font-size: 10pt;">1.K-Means是聚类算法<br>
+</span><p></p>
+<p><span style="font-size: 10pt;">2.非监督学习<br>
+</span></p>
+<p style="text-align: justify;"><span style="font-size: 10pt;">3.喂给它的数据集是无label的数据，是杂乱无章的，经过聚类后才变得有点顺序，先无序，后有序</span></p>
+</td>
+</tr>
+<tr>
+<td style="padding-left: 7px; padding-right: 7px; border-top: none; border-left: solid 0.5pt; border-bottom: solid 0.5pt; border-right: solid 0.5pt;"><span style="font-size: 10pt;">没有明显的前期训练过程，属于memory-based learning</span></td>
+<td style="padding-left: 7px; padding-right: 7px; border-top: none; border-left: none; border-bottom: solid 0.5pt; border-right: solid 0.5pt;"><span style="font-size: 10pt;">有明显的前期训练过程</span></td>
+</tr>
+<tr>
+<td style="padding-left: 7px; padding-right: 7px; border-top: none; border-left: solid 0.5pt; border-bottom: solid 0.5pt; border-right: solid 0.5pt;"><span style="font-size: 10pt;">K的含义：来了一个样本x，要给它分类，即求出它的y，就从数据集中，在x附近找离它最近的K个数据点，这K个数据点，类别c占的个数最多，就把x的label设为c</span></td>
+<td style="padding-left: 7px; padding-right: 7px; border-top: none; border-left: none; border-bottom: solid 0.5pt; border-right: solid 0.5pt;"><span style="font-size: 10pt;">K的含义：K是人工固定好的数字，假设数据集合可以分为K个簇，由于是依靠人工定好，需要一点先验知识</span></td>
+</tr>
+<tr>
+<td style="padding-left: 7px; padding-right: 7px; border-top: none; border-left: solid 0.5pt; border-bottom: solid 0.5pt; border-right: solid 0.5pt;"></td>
+<td style="padding-left: 7px; padding-right: 7px; border-top: none; border-left: none; border-bottom: solid 0.5pt; border-right: solid 0.5pt;"></td>
+</tr>
+<tr>
+<td style="padding-left: 7px; padding-right: 7px; border-top: none; border-left: solid 0.5pt; border-bottom: solid 0.5pt; border-right: solid 0.5pt;" colspan="2"><span style="font-size: 10pt;">相似点：都包含这样的过程，给定一个点，在数据集中找离它最近的点。即二者都用到了NN(Nears Neighbor)算法，一般用KD树来实现NN。</span></td>
+</tr>
+</tbody>
+</table>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[用VisualVM连接 tomcat 服务器时，如何配置tomcat启动JMX]]></title>
+    <link href="http://www.yanjiuyanjiu.com/blog/20120811/"/>
+    <updated>2012-08-11T21:37:00+08:00</updated>
+    <id>http://www.yanjiuyanjiu.com/blog/configure-tomcat-jmx-to-allow-visualvm-connect-tomcat</id>
+    <content type="html"><![CDATA[<p>用VisualVM连接 tomcat 服务器时，需要让tomcat启动JMX，在catalina.sh 中添加一行代码即可：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">JAVA_OPTS</span><span class="o">=</span>”<span class="nv">$JAVA_OPTS</span> -Djava.rmi.server.hostname<span class="o">=</span>192.168.0.123 -Dcom.sun.management.jmxremote<span class="o">=</span><span class="nb">true</span> -Dcom.sun.management.jmxremote.port<span class="o">=</span>8086 -Dcom.sun.management.jmxremote.ssl<span class="o">=</span><span class="nb">false</span> -Dcom.sun.management.jmxremote.authenticate<span class="o">=</span><span class="nb">false</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>注意，用hostname -i 查看是否为127.0.01，这步非常重要,否则会连接失败，如果是，必须要配置-Djava.rmi.server.hostname。</p>
+
+<p>参考： <br/>
+<a href="http://blog.tty.nl/2010/09/03/using-visualvm-to-fix-live-tomcat-and-jvm-problems/">Using VisualVM to fix live Tomcat and JVM problems</a><br/>
+<a href="http://blog.csdn.net/linghunhong/article/details/6438572">JVM内存监控:visualVM jconsole jstatd jmap</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[CentOS 服务器安装操作全记录]]></title>
+    <link href="http://www.yanjiuyanjiu.com/blog/20120423/"/>
+    <updated>2012-04-23T20:43:00+08:00</updated>
+    <id>http://www.yanjiuyanjiu.com/blog/install-and-configure-a-centos-server-from-scratch</id>
+    <content type="html"><![CDATA[<p>这是我安装CentOS服务器的过程，记录下来，与大家一起分享。</p>
+
+<h2>安装操作系统</h2>
+
+<p>CentOS 6.2 ，CentOS-6.2-i386-bin-DVD1.iso（32位） ，CentOS-6.2-x86_64-bin-DVD1.iso（64位）</p>
+
+<p>安装 CentOS时，选择 &#8220;Basic Server&#8221;<br/>
+root密码：root123<br/>
+CentOS 自带了ssh</p>
+
+<p>安装完操作系统后，添加一个用户 dev</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="o">[</span>root@localhost ~<span class="o">]</span><span class="nv">$ </span>useradd dev
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>然后密码设为 dev123</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="o">[</span>root@localhost ~<span class="o">]</span><span class="nv">$ </span>passwd dev
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>给予 sudo 权限</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="o">[</span>root@localhost ~<span class="o">]</span><span class="nv">$ </span>chmod u+w /etc/sudoers
+</span><span class='line'><span class="o">[</span>root@localhost ~<span class="o">]</span><span class="nv">$ </span>vim /etc/sudoers
+</span><span class='line'><span class="c"># 在root ALL=(ALL) ALL 下 添加dev ALL=(ALL) ALL</span>
+</span><span class='line'><span class="o">[</span>root@localhost ~<span class="o">]</span><span class="nv">$ </span>chmod u-w /etc/sudoers
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>设置上网</h2>
+
+<p>安装完操作系统后，还不能上网，配置DHCP方式上网：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>vim /etc/sysconfig/network-scripts/ifcfg-eth0
+</span><span class='line'><span class="nv">DEVICE</span><span class="o">=</span><span class="s2">&quot;eth0&quot;</span>
+</span><span class='line'><span class="nv">HWADDR</span><span class="o">=</span><span class="s2">&quot;00:0C:29:BD:E1:19&quot;</span>
+</span><span class='line'><span class="nv">NM_CONTROLLED</span><span class="o">=</span><span class="s2">&quot;yes&quot;</span>
+</span><span class='line'><span class="nv">ONBOOT</span><span class="o">=</span><span class="s2">&quot;yes&quot;</span>
+</span><span class='line'><span class="nv">BOOTPROTO</span><span class="o">=</span>dhcp
+</span><span class='line'><span class="nv">USECTL</span><span class="o">=</span>no
+</span><span class='line'><span class="nv">TYPE</span><span class="o">=</span>Ethernet
+</span><span class='line'><span class="nv">PEERDNS</span><span class="o">=</span>yes
+</span><span class='line'><span class="c">#保存退出</span>
+</span><span class='line'>sudo service network restart
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<!-- more -->
+
+
+<p>或者，配置静态IP</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">DEVICE</span><span class="o">=</span><span class="s2">&quot;eth0&quot;</span>
+</span><span class='line'><span class="nv">HWADDR</span><span class="o">=</span><span class="s2">&quot;00:0C:29:10:F4:4C&quot;</span>
+</span><span class='line'><span class="nv">ONBOOT</span><span class="o">=</span><span class="s2">&quot;yes&quot;</span>
+</span><span class='line'><span class="nv">BOOTPROTO</span><span class="o">=</span>static
+</span><span class='line'><span class="nv">TYPE</span><span class="o">=</span>Ethernet
+</span><span class='line'><span class="nv">IPADDR</span><span class="o">=</span>192.168.0.162
+</span><span class='line'><span class="nv">NETMASK</span><span class="o">=</span>255.255.255.0
+</span><span class='line'><span class="nv">BROADCAST</span><span class="o">=</span>192.168.0.255
+</span><span class='line'><span class="nv">NETWORK</span><span class="o">=</span>192.168.0.0
+</span><span class='line'><span class="c">#保存退出  </span>
+</span><span class='line'><span class="c">#修改/etc/sysconfig/network</span>
+</span><span class='line'>sudo vim /etc/sysconfig/network
+</span><span class='line'><span class="nv">NETWORKING</span><span class="o">=</span>yes
+</span><span class='line'><span class="nv">HOSTNAME</span><span class="o">=</span>localhost.localdomain
+</span><span class='line'><span class="nv">GATEWAY</span><span class="o">=</span>192.168.0.1
+</span><span class='line'><span class="c">#保存退出，重启网络</span>
+</span><span class='line'>sudo service network restart
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>如果失败，比如IP已被占用，换一个IP试试</p>
+
+<p>修改DNS，即时生效</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo vim /etc/resolv.conf
+</span><span class='line'>nameserver 192.168.0.1
+</span><span class='line'><span class="c"># google提供的域名服务器</span>
+</span><span class='line'>nameserver 8.8.8.8
+</span><span class='line'>search localhost
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>安装常用软件</h2>
+
+<p>有两种方式，方法一，去官网下载已经编译好的二进制文件，或源代码，编译安装
+方法二，用yum 命令安装，安装官方yum源里已经编译好的程序包。<br/>
+第一种方式要敲很多命令，比yum麻烦，但是可以预先下载好文件，省略了下载的时间，整体速度比yum安装方式快很多，而且可以安装最新版。推荐第一种方式</p>
+
+<p>第二种方式操作简单，敲打的命令少，但是往往yum源的更新速度跟不上各个软件的官网速度，用Yum安装的版本经常比较旧。</p>
+
+<p>yum的命令形式一般是如下：<code>yum [options] [command] [package ...]</code>，其中的[options]是可选的，选项包括-h（帮助），-y（当安装过程提示选择全部为&#8221;yes&#8221;），-q（不显示安装的过程）等等。[command]为所要进行的操作，[package &#8230;]是操作的对象。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c">#yum search package-name # 在线搜索包 </span>
+</span><span class='line'><span class="c">#yum list installed # 列出所有已经安装的包</span>
+</span><span class='line'><span class="c">#</span>
+</span><span class='line'><span class="c">#sudo yum install package-name # 安装程序包 </span>
+</span><span class='line'><span class="c">#sudo yum groupinsall group-name 安装程序组</span>
+</span><span class='line'><span class="c">#</span>
+</span><span class='line'><span class="c">#sudo yum remove package-name 删除程序包</span>
+</span><span class='line'><span class="c">#sudo yum groupremove group-name 删除程序组</span>
+</span><span class='line'><span class="c">#</span>
+</span><span class='line'><span class="c">#yum update #全部更新</span>
+</span><span class='line'><span class="c">#yum update package-name #更新程序包</span>
+</span><span class='line'><span class="c">#sudo yum groupupdate groupn-name 升级程序组</span>
+</span><span class='line'><span class="c">#sudo yum upgrade # 更新源列表</span>
+</span><span class='line'><span class="c">#yum upgrade package-name #升级程序包</span>
+</span><span class='line'><span class="c">#sudo yum clean all # 清除缓存</span>
+</span><span class='line'><span class="c">#更新</span>
+</span><span class='line'>sudo yum update
+</span><span class='line'><span class="c">#清理缓存</span>
+</span><span class='line'>sudo yum clean all <span class="o">&amp;&amp;</span> yum clean metadata <span class="o">&amp;&amp;</span> yum clean dbcache
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>安装编译工具</h2>
+
+<h3>方法一</h3>
+
+<p>去 http://gcc.gnu.org/ 下载源码</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># TODO</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>方法二</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo yum groupinstall <span class="s2">&quot;Development Tools&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>该命令类似于 Ubuntu 下的<code>apt-get install build-essential</code>，会自动安装一下软件包：autoconf automake bison byacc cscope ctags diffstat doxygen flex gcc gcc-c++ gcc-gfortran git indent intltool libtool patchutils rcs redhat-rpm-config rpm-build subversion swig systemtap，同时安装了以下依赖包：apr, apr-util, 等等。</p>
+
+<h2>安装JDK</h2>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c">#删除旧的JDK</span>
+</span><span class='line'>yum list installed | grep jdk
+</span><span class='line'><span class="c">#复制显示出来的JDK，卸载</span>
+</span><span class='line'>sudo yum remove java-1.6.0-openjdk.x86_64
+</span><span class='line'><span class="c">#安装新的jdk</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>方法一</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c">#从官网下载最新版的，当前是jdk6u32</span>
+</span><span class='line'><span class="c">#开始安装</span>
+</span><span class='line'>chmod u+x chmod u+x jdk-6u32-linux-x64-rpm.bin
+</span><span class='line'>sudo ./jdk-6u32-linux-x64-rpm.bin
+</span><span class='line'><span class="c">#设置环境变量，.bash_profile是当前用户，/etc/profile是所有用户的</span>
+</span><span class='line'>sudo vim /etc/profile
+</span><span class='line'><span class="c">#在末尾添加</span>
+</span><span class='line'><span class="nb">export </span><span class="nv">JAVA_HOME</span><span class="o">=</span>/usr/java/default
+</span><span class='line'><span class="nb">export </span><span class="nv">JRE_HOME</span><span class="o">=</span><span class="nv">$JAVA_HOME</span>/jre
+</span><span class='line'><span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:<span class="nv">$JAVA_HOME</span>/bin
+</span><span class='line'><span class="nb">export </span><span class="nv">CLASSPATH</span><span class="o">=</span>.:<span class="nv">$JAVA_HOME</span>/lib/dt.jar:<span class="nv">$JAVA_HOME</span>/lib/tools.jar
+</span><span class='line'><span class="c"># 保存退出，输入以下命令使之立即生效：</span>
+</span><span class='line'><span class="nb">source</span> /etc/profile
+</span><span class='line'><span class="c"># 测试</span>
+</span><span class='line'>java -version
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>方法二</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>yum search jdk
+</span><span class='line'><span class="c"># java-1.6.0-openjdk只包含了JRE，如果在这台机器上开发java程序，则需要安装JDK，</span>
+</span><span class='line'><span class="c"># 要选择 java-1.6.0-openjdk-devel，在服务器上我们只需要运行java程序，因此选择前者</span>
+</span><span class='line'>sudo yum install java-1.6.0-openjdk-devel
+</span><span class='line'><span class="c"># 使用 alternatives 工具设置默认JDK，参考：Installing a Java Development Kit on Red Hat Enterprise Linux</span>
+</span><span class='line'>/usr/sbin/alternatives --config java
+</span><span class='line'>/usr/sbin/alternatives --config javac
+</span><span class='line'><span class="c"># 设置环境变量</span>
+</span><span class='line'><span class="c"># 查询JDK路径</span>
+</span><span class='line'>whereis java
+</span><span class='line'>ll /usr/bin/java
+</span><span class='line'>ll /etc/alternatives/java <span class="c">#这是可以看到JDK路径了</span>
+</span><span class='line'>sudo vim /etc/profile
+</span><span class='line'><span class="c"># 在末尾添加</span>
+</span><span class='line'><span class="nb">export </span><span class="nv">JAVA_HOME</span><span class="o">=</span>/usr/lib/jvm/jre-1.6.0-openjdk.x86_64
+</span><span class='line'><span class="nb">export </span><span class="nv">JRE_HOME</span><span class="o">=</span><span class="nv">$JAVA_HOME</span>/jre
+</span><span class='line'><span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:<span class="nv">$JAVA_HOME</span>/bin
+</span><span class='line'><span class="nb">export </span><span class="nv">CLASSPATH</span><span class="o">=</span>.:<span class="nv">$JAVA_HOME</span>/lib/dt.jar:<span class="nv">$JAVA_HOME</span>/lib/tools.jar
+</span><span class='line'><span class="c">#保存退出，输入以下命令使之立即生效：</span>
+</span><span class='line'><span class="c"># source /etc/profile</span>
+</span><span class='line'><span class="c"># 测试</span>
+</span><span class='line'>java -version
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>安装 apache</h2>
+
+<h3>方法一</h3>
+
+<p>源码在官网 http://httpd.apache.org/ 下载。<br/>
+先下载apt, apr-util, pcre三个库，httpd 在编译时需要用到这三个库<br/>
+apr, apr-util官网 http://apr.apache.org , pcre官网为 <a href="http://pcre.org">http://pcre.org </a></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># 编译，安装 apr</span>
+</span><span class='line'>tar -jxf apr-1.4.6.tar.bz2
+</span><span class='line'><span class="nb">cd </span>apr-1.4.6
+</span><span class='line'>./configure
+</span><span class='line'>make
+</span><span class='line'>sudo make install    <span class="c"># 默认会安装到 /usr/local/apr/</span>
+</span><span class='line'><span class="nb">cd</span> ~
+</span><span class='line'><span class="c">#编译，安装 apr-util</span>
+</span><span class='line'>tar -jxf apr-util-1.4.1.tar.bz2
+</span><span class='line'><span class="nb">cd </span>apr-util-1.4.1
+</span><span class='line'>./configure --with-apr<span class="o">=</span>/usr/local/apr/
+</span><span class='line'>make
+</span><span class='line'>sudo make install    <span class="c"># 默认会安装到 /usr/local/apr/</span>
+</span><span class='line'><span class="nb">cd</span> ~
+</span><span class='line'><span class="c">#编译，安装 pcre</span>
+</span><span class='line'>tar -jxf pcre-8.30.tar.bz2
+</span><span class='line'><span class="nb">cd  </span>pcre-8.30
+</span><span class='line'>./configure --with-apr<span class="o">=</span>/usr/local/apr/
+</span><span class='line'>make
+</span><span class='line'><span class="c"># By default, `make install&#39; installs the package&#39;s commands under</span>
+</span><span class='line'><span class="c">#`/usr/local/bin&#39;, include files under `/usr/local/include&#39;, etc. </span>
+</span><span class='line'>sudo make install
+</span><span class='line'><span class="nb">cd</span> ~
+</span><span class='line'><span class="c">#编译，安装 apache</span>
+</span><span class='line'>tar -jxf httpd-2.2.22.tar.bz2
+</span><span class='line'><span class="nb">cd </span>httpd-2.2.22
+</span><span class='line'>./configure
+</span><span class='line'>make
+</span><span class='line'>sudo make install    <span class="c"># 默认会安装到/usr/local/apache2/</span>
+</span><span class='line'><span class="nb">cd</span> ~
+</span><span class='line'><span class="c">#添加防火墙规则，让防火墙允许 apache的端口 80通过</span>
+</span><span class='line'>sudo vim /etc/sysconfig/iptables
+</span><span class='line'><span class="c">#添加如下一行（实际上是拷贝了原来的一行，仅仅改变了端口号），位置必须#要放在 含有 &quot;REJECT --reject-with&quot; 的行的前面</span>
+</span><span class='line'>-A INPUT -m state --state NEW -m tcp -p tcp --dport 80 -j ACCEPT
+</span><span class='line'>sudo service iptables restart
+</span><span class='line'><span class="c">#测试</span>
+</span><span class='line'>sudo /usr/local/apache2/bin/apachectl start
+</span><span class='line'><span class="c">#在浏览器输入 http://ip地址 ，如果看到“It works”，说明安装成功</span>
+</span><span class='line'>/usr/local/apache2/bin/apachectl stop
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="c">#设置为开机启动</span>
+</span><span class='line'><span class="c">#将httpd注册为服务，通过chkconfig实现开机启动</span>
+</span><span class='line'><span class="c">#以apachectl 为模板</span>
+</span><span class='line'>sudo cp /usr/local/apache2/bin/apachectl /etc/init.d/httpd
+</span><span class='line'>sudo vim /etc/init.d/httpd
+</span><span class='line'><span class="c"># 在第一行 #!/bin/sh，添加如下一行，使其支持chkconfig命令</span>
+</span><span class='line'><span class="c"># chkconfig: 2345 85 15</span>
+</span><span class='line'><span class="c"># 保存，退出VIM编辑器</span>
+</span><span class='line'>sudo chmod u+x /etc/init.d/httpd
+</span><span class='line'>sudo chkconfig --add httpd
+</span><span class='line'>sudo chkconfig httpd on
+</span><span class='line'><span class="c">#检查一下，是否添加成功</span>
+</span><span class='line'>chkconfig --list httpd
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>方法二</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo yum install httpd
+</span><span class='line'><span class="c">#可选？sudo yum install httpd-devel</span>
+</span><span class='line'><span class="c">#测试</span>
+</span><span class='line'><span class="c">#启动 apache http server</span>
+</span><span class='line'>sudo service httpd start
+</span><span class='line'><span class="c">#添加规则，让防火墙允许 apache的端口 80</span>
+</span><span class='line'>sudo vim /etc/sysconfig/iptables
+</span><span class='line'><span class="c">#添加如下一行，位置必须要放在 含有 &quot;REJECT --reject-with&quot; 的行的前面</span>
+</span><span class='line'>-A INPUT -m state --state NEW -m tcp -p tcp --dport 80 -j ACCEPT
+</span><span class='line'>sudo service iptables restart
+</span><span class='line'><span class="c">#可以在浏览器输入 http://ip地址 测试了</span>
+</span><span class='line'><span class="c">#设置为开机启动</span>
+</span><span class='line'>sudo chkconfig httpd on
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>安装 mysql</h2>
+
+<h3>方法一</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c">#去官网下载 Oracle &amp; Red Hat 6的安装包，64位为MySQL-5.5.23-1.el6.x86_64.tar，</span>
+</span><span class='line'><span class="c">#32位为 MySQL-5.5.23-1.el6.i686.tar</span>
+</span><span class='line'>tar -xf MySQL-5.5.23-1.el6.x86_64.tar
+</span><span class='line'><span class="c">#加 --force 是因为可能会与mysqllib库冲突</span>
+</span><span class='line'>sudo rpm -ivh --force  MySQL-server-5.5.23-1.el6.x86_64.rpm
+</span><span class='line'>sudo rpm -ivh MySQL-client-5.5.23-1.el6.x86_64.rpm
+</span><span class='line'><span class="c"># 启动 mysql 服务器</span>
+</span><span class='line'>sudo service mysql start
+</span><span class='line'><span class="c">#设置为开机启动</span>
+</span><span class='line'>sudo chkconfig mysql on
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>方法二</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo yum install mysql-server
+</span><span class='line'>sudo chgrp -R mysql /var/lib/mysql
+</span><span class='line'>sudo chmod -R 770 /var/lib/mysql
+</span><span class='line'><span class="c"># 启动 mysql 服务器</span>
+</span><span class='line'>sudo service mysqld start
+</span><span class='line'><span class="c">#设置为开机启动</span>
+</span><span class='line'>sudo chkconfig mysqld on
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>公共的操作</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># root 初始密码为空，修改root密码</span>
+</span><span class='line'>mysql -u root
+</span><span class='line'>mysql&gt; use mysql;
+</span><span class='line'>mysql&gt; update user <span class="nb">set </span><span class="nv">password</span><span class="o">=</span>password<span class="o">(</span><span class="s1">&#39;root123&#39;</span><span class="o">)</span> where <span class="nv">user</span><span class="o">=</span><span class="s1">&#39;root&#39;</span> AND <span class="nv">host</span><span class="o">=</span><span class="s1">&#39;localhost&#39;</span>;
+</span><span class='line'>mysql&gt; flush privileges;
+</span><span class='line'><span class="c"># 打开MySQL中root账户的远程登录，参考：如何打开MySQL中root账户的远程登录mysql&gt; GRANT ALL PRIVILEGES ON *.* TO root@&quot;%&quot; IDENTIFIED BY &quot;root&quot;;</span>
+</span><span class='line'>mysql&gt; update user <span class="nb">set </span><span class="nv">password</span><span class="o">=</span>password<span class="o">(</span><span class="s1">&#39;root123&#39;</span><span class="o">)</span> where <span class="nv">user</span><span class="o">=</span><span class="s1">&#39;root&#39;</span> AND <span class="nv">host</span><span class="o">=</span><span class="s1">&#39;%&#39;</span>;
+</span><span class='line'>mysql&gt; flush privileges;
+</span><span class='line'>mysql&gt; quit;
+</span><span class='line'><span class="c">#添加防火墙规则，让防火墙允许 mysql 的端口 3306通过</span>
+</span><span class='line'>sudo vim /etc/sysconfig/iptables
+</span><span class='line'><span class="c">#添加如下一行（实际上是拷贝了原来的一行，仅仅改变了端口号），位置必须#要放在 含有 &quot;REJECT --reject-with&quot; 的行的前面</span>
+</span><span class='line'>-A INPUT -m state --state NEW -m tcp -p tcp --dport 3306 -j ACCEPT
+</span><span class='line'>sudo service iptables restart
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>安装 php5</h2>
+
+<h3>方法一</h3>
+
+<p>TODO</p>
+
+<h3>方法二</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo yum install php php-pear
+</span><span class='line'><span class="c">#重启 apache，以确保apache 加载PHP模块</span>
+</span><span class='line'>sudo service httpd restart
+</span><span class='line'><span class="c"># 在 /var/www/html/下新建一个index.php文件，用于测试</span>
+</span><span class='line'><span class="nb">cd</span> /var/www/html
+</span><span class='line'>sudo vim index.php
+</span><span class='line'><span class="c"># 添加如下一行</span>
+</span><span class='line'>&lt;?php phpinfo<span class="o">()</span>; ?&gt;
+</span><span class='line'><span class="c"># 在浏览器输入 http://xxx.xxx.xxx.xxx/index.php ，测试PHP是否成功安装</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># 如果需要在PHP中支持mysql，则需要安装 php-mysql 模块</span>
+</span><span class='line'>sudo yum install php-mysql
+</span><span class='line'><span class="c"># 如果需要在PHP中支持memcached，则需要安装 php-pecl-memcache 模块</span>
+</span><span class='line'>sudo yum install php-pecl-memcache
+</span><span class='line'><span class="c">#安装一些常用的PHP扩展模块</span>
+</span><span class='line'>sudo yum install php-devel php-gd php-mbstring php-xml
+</span><span class='line'>
+</span><span class='line'><span class="c">#可以安装一个wordpress进行测试，注意要修改文件夹权限</span>
+</span><span class='line'>sudo chown -R apache.apache /var/www/html
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>安装 memcached</h2>
+
+<h3>方法一</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># memcached依赖libevent，首先要安装 libevent</span>
+</span><span class='line'><span class="c"># 去 http://libevent.org/ 下载libevent源码，然后编译，安装</span>
+</span><span class='line'>tar -zxf libevent-2.0.18-stable.tar.gz
+</span><span class='line'><span class="nb">cd </span>libevent-2.0.18-stable
+</span><span class='line'>./configure
+</span><span class='line'>make
+</span><span class='line'>sudo make install
+</span><span class='line'><span class="c"># 对于64位操作系统(32位不需要)，还需要配置：</span>
+</span><span class='line'>sudo ln -s /usr/local/lib/libevent-2.0.so.5 /usr/lib64//libevent-2.0.so.5
+</span><span class='line'><span class="c"># 去 http://www.memcached.org/ 下载 memcached，然后编译，安装</span>
+</span><span class='line'>tar -zxf memcached-1.4.13.tar.gz
+</span><span class='line'><span class="nb">cd </span>memcached-1.4.13
+</span><span class='line'>./configure
+</span><span class='line'>make
+</span><span class='line'>sudo make install
+</span><span class='line'><span class="c"># 启动, -p，端口,-m，内存, -u</span>
+</span><span class='line'>memcached -p 11211 -m 512m -u root -d
+</span><span class='line'><span class="c"># 开机启动</span>
+</span><span class='line'><span class="c"># centos设置开机启动有两种方式，一是把启动程序的命令添加到/etc/rc.d/rc.local文件中，二是把写好的启动脚本添加到目录/etc/rc.d/init.d/，然后使用命令chkconfig设置开机启动。第二种方式可以用 service xxx start|stop来启动或停止，所以推荐第二种。</span>
+</span><span class='line'><span class="c">#将 memcached启动命令注册为一个服务</span>
+</span><span class='line'><span class="nb">cd</span> /etc/init.d/
+</span><span class='line'>sudo vim memcached
+</span><span class='line'><span class="c">#代码如下，参考：Linux中将memcached注册成服务并可以随机器启动时启动服务</span>
+</span><span class='line'><span class="c">#chkconfig: 345 60 60</span>
+</span><span class='line'><span class="c">#!/bin/bash</span>
+</span><span class='line'>
+</span><span class='line'>start<span class="o">()</span>
+</span><span class='line'><span class="o">{</span>
+</span><span class='line'>        <span class="nb">echo</span> -n <span class="s2">$&quot;Starting memcached: &quot;</span>
+</span><span class='line'>        /usr/local/bin/memcached -p 11211 -m 512m -u root -d
+</span><span class='line'>        <span class="nb">echo</span> <span class="s2">&quot;[OK]&quot;</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'>stop<span class="o">()</span>
+</span><span class='line'><span class="o">{</span>
+</span><span class='line'>        <span class="nb">echo</span> -n <span class="s2">$&quot;Shutting down memcached: &quot;</span>
+</span><span class='line'>        <span class="nv">memcached_pid_list</span><span class="o">=</span><span class="sb">`</span>pidof memcached<span class="sb">`</span>
+</span><span class='line'>        <span class="nb">kill</span> -9 <span class="nv">$memcached_pid_list</span>
+</span><span class='line'>        <span class="nb">echo</span> <span class="s2">&quot;[OK]&quot;</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'><span class="k">case</span> <span class="s2">&quot;$1&quot;</span> in
+</span><span class='line'>  start<span class="o">)</span>
+</span><span class='line'>        start
+</span><span class='line'>        ;;
+</span><span class='line'>  stop<span class="o">)</span>
+</span><span class='line'>        stop
+</span><span class='line'>        ;;
+</span><span class='line'>  restart<span class="o">)</span>
+</span><span class='line'>        stop
+</span><span class='line'>        sleep 3
+</span><span class='line'>        start
+</span><span class='line'>        ;;
+</span><span class='line'>    *<span class="o">)</span>
+</span><span class='line'>             <span class="nb">echo</span> <span class="s2">$&quot;Usage: $0 {start|stop|restart}&quot;</span>
+</span><span class='line'>        <span class="nb">exit </span>1
+</span><span class='line'><span class="k">esac</span>
+</span><span class='line'><span class="nb">exit </span>0
+</span><span class='line'><span class="c">#保存退出</span>
+</span><span class='line'>sudo chmod u+x memcached
+</span><span class='line'>sudo chkconfig --add memcached
+</span><span class='line'>sudo chkconfig  memcached on
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>方法二</h3>
+
+<p>TODO</p>
+
+<h2>安装 tomcat6</h2>
+
+<h3>方法一</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># 去 http://tomcat.apache.org 下载 apache-tomcat-6.0.35.tar.gz</span>
+</span><span class='line'>tar -zxf apache-tomcat-6.0.35.tar.gz
+</span><span class='line'>sudo mv apache-tomcat-6.0.35 /usr/local/
+</span><span class='line'><span class="nb">cd</span> /usr/local/apache-tomcat-6.0.35/bin
+</span><span class='line'><span class="c">#【可选】添加环境变量</span>
+</span><span class='line'>sudo vim /etc/profile
+</span><span class='line'><span class="nb">export </span><span class="nv">CATALINA_HOME</span><span class="o">=</span>/usr/local/apache-tomcat-6.0.35
+</span><span class='line'><span class="c">#启动 tomcat </span>
+</span><span class='line'>sudo ./startup.sh
+</span><span class='line'><span class="c"># 在浏览器输入 http://xxx.xxx.xxx.xxx:8080/ ，如果能看见tomcat页面，则表示安装成功了</span>
+</span><span class='line'><span class="c">#设置开机启动</span>
+</span><span class='line'><span class="c">#将 tomcat启动命令注册为一个服务</span>
+</span><span class='line'><span class="nb">cd</span> /etc/init.d/
+</span><span class='line'>sudo vim tomcatd
+</span><span class='line'><span class="c">#代码如下</span>
+</span><span class='line'><span class="c">#chkconfig: 345 60 60</span>
+</span><span class='line'><span class="c">#!/bin/bash</span>
+</span><span class='line'><span class="nv">CATALINA_HOME</span><span class="o">=</span>/usr/local/apache-tomcat-6.0.35
+</span><span class='line'>
+</span><span class='line'>start<span class="o">()</span>
+</span><span class='line'><span class="o">{</span>
+</span><span class='line'>        <span class="nb">echo</span> -n <span class="s2">$&quot;Starting Tomcat: &quot;</span>
+</span><span class='line'>        <span class="nv">$CATALINA_HOME</span>/bin/startup.sh
+</span><span class='line'>        <span class="nb">echo</span> <span class="s2">&quot;[OK]&quot;</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'>stop<span class="o">()</span>
+</span><span class='line'><span class="o">{</span>
+</span><span class='line'>        <span class="nb">echo</span> -n <span class="s2">$&quot;Shutting down Tomcat: &quot;</span>
+</span><span class='line'>        <span class="nv">$CATALINA_HOME</span>/bin/shutdown.sh
+</span><span class='line'>        <span class="nb">echo</span> <span class="s2">&quot;[OK]&quot;</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'><span class="k">case</span> <span class="s2">&quot;$1&quot;</span> in
+</span><span class='line'>  start<span class="o">)</span>
+</span><span class='line'>        start
+</span><span class='line'>        ;;
+</span><span class='line'>  stop<span class="o">)</span>
+</span><span class='line'>        stop
+</span><span class='line'>        ;;
+</span><span class='line'>  restart<span class="o">)</span>
+</span><span class='line'>        stop
+</span><span class='line'>        sleep 3
+</span><span class='line'>        start
+</span><span class='line'>        ;;
+</span><span class='line'>    *<span class="o">)</span>
+</span><span class='line'>             <span class="nb">echo</span> <span class="s2">$&quot;Usage: $0 {start|stop|restart}&quot;</span>
+</span><span class='line'>        <span class="nb">exit </span>1
+</span><span class='line'><span class="k">esac</span>
+</span><span class='line'><span class="nb">exit </span>0
+</span><span class='line'><span class="c">#保存退出</span>
+</span><span class='line'>sudo chmod u+x tomcatd
+</span><span class='line'>sudo chkconfig --add tomcatd
+</span><span class='line'>sudo chkconfig tomcatd on
+</span><span class='line'>
+</span><span class='line'><span class="c">#添加防火墙规则，让防火墙允许 tomcat 的端口 8080 通过</span>
+</span><span class='line'>sudo vim /etc/sysconfig/iptables
+</span><span class='line'><span class="c">#添加如下一行（实际上是拷贝了原来的一行，仅仅改变了端口号），位置必须#要放在 含有 &quot;REJECT --reject-with&quot; 的行的前面</span>
+</span><span class='line'>-A INPUT -m state --state NEW -m tcp -p tcp --dport 8080 -j ACCEPT
+</span><span class='line'>sudo service iptables restart
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>方法二</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c">#搜索一下 tomcat包的名字</span>
+</span><span class='line'>yum search tomcat
+</span><span class='line'>sudo yum search tomcat6.noarch
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>安装Python</h2>
+
+<h3>方法一：去<a href="http://www.python.org">官网</a>下载源码，编译，安装</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c">#开始解压，编译，安装</span>
+</span><span class='line'>tar -jxf Python-3.2.3.tar.bz2
+</span><span class='line'><span class="nb">cd </span>Python-3.2.3
+</span><span class='line'><span class="c"># 查看一下说明, vim README</span>
+</span><span class='line'>./configure
+</span><span class='line'>make
+</span><span class='line'><span class="c">#为了加快安装速度，这步可以省略</span>
+</span><span class='line'>make <span class="nb">test</span>
+</span><span class='line'><span class="c">#卸载旧的python，注意，不能用 yum remove python，这会卸载几百个包，最终损坏系统</span>
+</span><span class='line'>sudo rpm -evf --nodeps python
+</span><span class='line'>sudo make install
+</span><span class='line'><span class="c">#默认安装在 /usr/local/bin/python3</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>方法二</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo yum install python
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>安装ruby</h2>
+
+<h3>方法一</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># http://www.ruby-lang.org/en/downloads/ ，选择 &quot;Stable Snapshot&quot;</span>
+</span><span class='line'>tar -zxf ruby-1.9-stable.tar.gz
+</span><span class='line'><span class="nb">cd  cd </span>ruby-1.9.3-p194/
+</span><span class='line'>./configure
+</span><span class='line'>make
+</span><span class='line'>sudo make install
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>方法二</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo yum install ruby
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>安装go</h2>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c">#去官网 http://code.google.com/p/go/downloads 下载，go1.0.1.linux-i386.tar.gz (32位)，go1.0.1.linux-amd64.tar.gz（64位）</span>
+</span><span class='line'>tar -zxf go1.0.1.linux-amd64.tar.gz
+</span><span class='line'>sudo mv go/ /usr/local/
+</span><span class='line'><span class="c">#设置环境变量</span>
+</span><span class='line'>sudo vim /etc/profile
+</span><span class='line'><span class="nb">export </span><span class="nv">GOROOT</span><span class="o">=</span>/usr/local/go
+</span><span class='line'><span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:<span class="nv">$GOROOT</span>/bin
+</span><span class='line'><span class="nb">source</span> /etc/profile
+</span><span class='line'><span class="c">#测试一下</span>
+</span><span class='line'>go version
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>安装lua</h2>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># 去官网下载源码，编译，安装。由于官网仅提供源码，故推荐源码编译安装方式。</span>
+</span><span class='line'><span class="c"># 去官网 http://www.lua.org/ 下载源码，lua-5.2.0.tar.gz</span>
+</span><span class='line'>tar -zxf lua-5.2.0.tar.gz
+</span><span class='line'><span class="nb">cd </span>lua-5.2.0
+</span><span class='line'><span class="c"># lua 依赖 readline.h 头文件</span>
+</span><span class='line'>sudo yum install  readline-devel
+</span><span class='line'>make linux
+</span><span class='line'>sudo make install
+</span><span class='line'><span class="c">#安装 google protobuf</span>
+</span><span class='line'><span class="c">#去官网 http://code.google.com/p/protobuf/下载</span>
+</span><span class='line'>tar -jxf protobuf-2.4.1.tar.bz2
+</span><span class='line'><span class="nb">cd </span>protobuf-2.4.1
+</span><span class='line'>./configure
+</span><span class='line'>make
+</span><span class='line'>sudo make install
+</span><span class='line'><span class="c">#测试</span>
+</span><span class='line'>protoc
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>清理安装包</h2>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">cd</span> ~
+</span><span class='line'>rm * -rf
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>参考资料</h2>
+
+<p><a href="http://library.linode.com/lamp-guides/centos-6">LAMP Server on CentOS 6</a></p>
+
+<p><a href="http://articles.slicehost.com/2008/2/6/centos-installing-apache-and-php5">CentOS - Installing Apache and PHP5</a></p>
+
+<p><a href="http://fedorasolved.org/server-solutions/lamp-stack">Setting up a LAMP stack</a></p>
+
+<p><a href="http://myohmy.blog.51cto.com/140917/327310">CentOS5.5使用yum来安装LAMP</a></p>
+
+<p><a href="http://it.megocollector.com/?p=1719">Install Java JDK on CentOS without prompts using an automated script!</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[制作 VMware ESXI 5 U盘安装盘]]></title>
+    <link href="http://www.yanjiuyanjiu.com/blog/20120418/"/>
+    <updated>2012-04-18T20:17:00+08:00</updated>
+    <id>http://www.yanjiuyanjiu.com/blog/create-a-bootable-vmware-esxi-5-usb-stick</id>
+    <content type="html"><![CDATA[<p>有两种方法，使用 unetbootin ，或使用 LinuxLive USB Creator刻录可启动U盘。</p>
+
+<h2>使用 unetbootin</h2>
+
+<p>这个方法最自动化，点击两下按钮即可，但是有时候会失败(我用EXSi 5.0 的ISO失败，但是用 EXSi 5.0U1可以成功)，U盘启动不了。</p>
+
+<ol>
+<li>单击 光盘镜像，选择ISO文件VMware-VMvisor-Installer-5.0.0.update01-623860.x86_64.iso。</li>
+<li>选择U盘，点击“确定”开始刻录。刻录后用U盘启动机器开始安装即可。如下图所示。
+<img src="http://yanjiuyanjiu-wordpress.stor.sinaapp.com/uploads/2012/04/unetbootin1.jpg"></li>
+</ol>
+
+
+<h2>使用 LinuxLive USB Creator</h2>
+
+<ol>
+<li>格式化U盘，文件系统为FAT32，并设置为主分区，命令如下：
+
+<pre><code> # 使用管理员权限运行cmd 
+ diskpart 
+ list disk 
+ select disk USB number （例如 select dist 1） 
+ clean 
+ create partition primary 
+ active 
+ format fs=fat32 quick 
+ assign 
+ exit
+</code></pre></li>
+</ol>
+
+
+<!-- more -->
+
+
+<ol>
+<li>下载，安装 LinuxLive USB Creator(<a href="http://www.linuxliveusb.com/">http://www.linuxliveusb.com/</a>)</li>
+<li><p>按照上图中的步骤 1,2,4，选择ISO文件<code>VMware-VMvisor-Installer-5.0.0.update01-623860.x86_64.iso</code>，然后点击 5 ，开始创建U盘安装盘。等待U盘刻录结束。</p>
+
+<p> <img src="http://yanjiuyanjiu-wordpress.stor.sinaapp.com/uploads/2012/04/liliusb_thumb1.png"></p>
+
+<p> 大功告成，是不是很简单？！</p></li>
+<li><p>编辑U盘根目录下的BOOT.CFG文件。注意，不要添加 &#8220;ks=usb&#8221;，因为下面会用交互模式来安装。</p></li>
+<li>大功告成</li>
+<li>注意，本文主要参考了末尾的参考资料。但是不需要原文的第4步和第5步。因为用普通的 “interactive installation”安装就很方便了。第4步和第5步用于一键自动化安装，适用于大量安装的情况，这里不详细讨论。
+见文章末尾的评论，
+
+<blockquote><p>@Cesar: if you do not edit the boot.cfg with the “ks=usb” option and select a interactive installation it will work。</p></blockquote></li>
+</ol>
+
+
+<p><strong>参考资料</strong><br/>
+<a href="http://www.ivobeerens.nl/2011/09/17/create-a-bootable-vmware-esxi-5-usb-stick-in-windows-and-perform-a-scripted-installation/">Create a bootable VMware ESXi 5 USB stick in Windows and perform a scripted installation</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Hadoop 集群安装详细步骤]]></title>
+    <link href="http://www.yanjiuyanjiu.com/blog/20120103/"/>
+    <updated>2012-01-03T18:54:00+08:00</updated>
+    <id>http://www.yanjiuyanjiu.com/blog/an-detailed-instruction-for-hadoop-cluster-installation</id>
+    <content type="html"><![CDATA[<p>本文所使用的版本是 hadoop 1.0.0，即 <a href="http://www.iteye.com/news/23874">2011年12月27日发布的1.0正式版</a>。</p>
+
+<p>详细安装步骤如下，有大步骤，每个步骤里面有小步骤，绝大部分是必选，只有2步是可选的，粗体表示要特别注意的地方。</p>
+
+<h2>1. 用vmware workstation 新建三台虚拟机</h2>
+
+<p>首先用vmware workstation 新建一台ubuntu server，装好操作系统，安装各种必须的软件，包括安装好hadoop。安装好后然后用浅拷贝<code>Create a linked clone</code> 克隆出两台作为slave，这样有了三台ubuntu机器。启动三台机器，假设IP分别为<code>192.168.1.131, 192.168.1.132, 192.168.1.133</code>, 131做为master,132为 slave01, 133为slave02。</p>
+
+<h2>2. 修改机器名</h2>
+
+<p>这一步的作用是让命令行提示看起来好看点，由默认的 dev@bogon变为 dev@master，这步可选，optional，可以跳过。</p>
+
+<ul>
+<li>192.168.1.131上执行</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>dev@bogon:~<span class="nv">$ </span>sudo vi /etc/hostname
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>输入<code>master</code>，重启，会发现命令提示符变为了 <code>dev@master:~$</code></p>
+
+<ul>
+<li>192.168.1.132上执行</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>dev@bogon:~<span class="nv">$ </span>sudo vi /etc/hostname
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>输入<code>slave01</code>，重启，会发现命令提示符变为了 <code>dev@slave01:~$</code></p>
+
+<ul>
+<li>192.168.1.133上执行</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>dev@bogon:~<span class="nv">$ </span>sudo vi /etc/hostname
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>输入<code>slave02</code>，重启，会发现命令提示符变为了 <code>dev@slave02:~$</code></p>
+
+<!-- more -->
+
+
+<h2>3. 修改master的hosts文件，并拷贝到每台slave上</h2>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>dev@master:~<span class="nv">$ </span>sudo vi /etc/hosts
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>添加三行内容</p>
+
+<blockquote><p>192.168.1.131 master<br/>
+192.168.1.133 slave01<br/>
+192.168.1.134 slave02</p></blockquote>
+
+<p><strong>注意一定要注释掉</strong></p>
+
+<blockquote><p># 127.0.1.1      bogon.localdomain       bogon</p></blockquote>
+
+<p>最后hosts文件内容如下：</p>
+
+<blockquote><p>127.0.0.1       localhost
+# 127.0.1.1      bogon.localdomain       bogon
+192.168.1.131 master
+192.168.1.133 slave01
+192.168.1.134 slave02
+# The following lines are desirable for IPv6 capable hosts
+::1     ip6-localhost ip6-loopback
+fe00::0 ip6-localnet
+ff00::0 ip6-mcastprefix
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters</p></blockquote>
+
+<ul>
+<li>将hosts文件拷贝到另外两台台机器上，覆盖原来的hosts文件</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>dev@master:~<span class="nv">$ </span>scp /etc/hosts dev@192.168.1.132:~
+</span><span class='line'>
+</span><span class='line'>dev@master:~<span class="nv">$ </span>scp /etc/hosts dev@192.168.1.133:~
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>在192.168.1.132上执行</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>dev@slave01:~<span class="nv">$ </span>sudo mv hosts /etc/hosts
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>在192.168.1.133上执行</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>dev@slave02:~<span class="nv">$ </span>sudo mv hosts /etc/hosts
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>4. 配置 master 无密码登陆到所有机器（<strong>包括本机</strong>）</h2>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>dev@master:~<span class="nv">$ </span>ssh-keygen -t rsa
+</span><span class='line'>
+</span><span class='line'>dev@master:~<span class="nv">$ </span>cat .ssh/id_rsa.pub &gt;&gt; .ssh/authorized_keys
+</span><span class='line'>
+</span><span class='line'>dev@master:~<span class="nv">$ </span>scp .ssh/id_rsa.pub dev@192.168.1.132:~/
+</span><span class='line'>
+</span><span class='line'>dev@master:~<span class="nv">$ </span>scp .ssh/id_rsa.pub dev@192.168.1.133:~/
+</span><span class='line'>
+</span><span class='line'>dev@slave01:~<span class="nv">$ </span>cat id_rsa.pub &gt;&gt; .ssh/authorized_keys
+</span><span class='line'>
+</span><span class='line'>dev@slave02:~<span class="nv">$ </span>cat id_rsa.pub &gt;&gt; .ssh/authorized_keys
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>测试一下，</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>dev@master:~<span class="nv">$ </span>ssh slav01
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>如果登陆不上，试试先关闭slave01的防火墙，</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>dev@slave01:~<span class="nv">$ </span>sudo ufw disable
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>5. 复制hadoop安装包到所有机器</h2>
+
+<p>从hadoop.apache.org下载 hadoop-1.0.0-bin.tar.gz，上传到master中，解压，然后复制到其他机器，解压。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>dev@master:~<span class="nv">$ </span>tar -zxvf hadoop-1.0.0-bin.tar.gz
+</span><span class='line'>
+</span><span class='line'>dev@master:~<span class="nv">$ </span>scp hadoop-1.0.0-bin.tar.gz dev@192.168.1.133:~
+</span><span class='line'>
+</span><span class='line'>dev@master:~<span class="nv">$ </span>scp hadoop-1.0.0-bin.tar.gz dev@192.168.1.134:~
+</span><span class='line'>
+</span><span class='line'>dev@slave01:~<span class="nv">$ </span>tar -zxvf hadoop-1.0.0-bin.tar.gz
+</span><span class='line'>
+</span><span class='line'>dev@slave02:~<span class="nv">$ </span>tar -zxvf hadoop-1.0.0-bin.tar.gz
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>6. 编辑配置文件</h2>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>dev@master:~<span class="nv">$ </span><span class="nb">cd </span>hadoop-1.0.0/etc/hadoop
+</span><span class='line'>
+</span><span class='line'>dev@master:~/hadoop-1.0.0/etc/hadoop<span class="nv">$ </span> vi hadoop-env.sh
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>仅需要设置JAVA_HOME，</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">export </span><span class="nv">JAVA_HOME</span><span class="o">=</span>/usr/lib/jvm/java-7-openjdk-i386
+</span><span class='line'>
+</span><span class='line'>dev@master:~/hadoop-1.0.0/etc/hadoop<span class="nv">$ </span> vi core-site.xml
+</span></code></pre></td></tr></table></div></figure>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;configuration&gt;</span>
+</span><span class='line'><span class="nt">&lt;property&gt;</span>
+</span><span class='line'><span class="nt">&lt;name&gt;</span>fs.default.name<span class="nt">&lt;/name&gt;</span>
+</span><span class='line'><span class="nt">&lt;value&gt;</span>hdfs://master:9000<span class="nt">&lt;/value&gt;</span>
+</span><span class='line'><span class="nt">&lt;/property&gt;</span>
+</span><span class='line'><span class="nt">&lt;property&gt;</span>
+</span><span class='line'><span class="nt">&lt;name&gt;</span>hadoop.tmp.dir<span class="nt">&lt;/name&gt;</span>
+</span><span class='line'><span class="nt">&lt;value&gt;</span>/home/dev/hadoop_tmp/<span class="nt">&lt;/value&gt;</span>
+</span><span class='line'><span class="nt">&lt;/property&gt;</span>
+</span><span class='line'><span class="nt">&lt;/configuration&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>dev@master:~/hadoop-1.0.0/etc/hadoop<span class="nv">$ </span> vi mapred-site.xml
+</span></code></pre></td></tr></table></div></figure>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;configuration&gt;</span>
+</span><span class='line'><span class="nt">&lt;property&gt;</span>
+</span><span class='line'><span class="nt">&lt;name&gt;</span>mapred.job.tracker<span class="nt">&lt;/name&gt;</span>
+</span><span class='line'><span class="nt">&lt;value&gt;</span>master:9001<span class="nt">&lt;/value&gt;</span>
+</span><span class='line'><span class="nt">&lt;/property&gt;</span>
+</span><span class='line'><span class="nt">&lt;/configuration&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>dev@master:~/hadoop-1.0.0/etc/hadoop<span class="nv">$ </span> vi hdfs-site.xml
+</span></code></pre></td></tr></table></div></figure>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;configuration&gt;</span>
+</span><span class='line'><span class="nt">&lt;property&gt;</span>
+</span><span class='line'><span class="nt">&lt;name&gt;</span>dfs.replication<span class="nt">&lt;/name&gt;</span>
+</span><span class='line'><span class="nt">&lt;value&gt;</span>3<span class="nt">&lt;/value&gt;</span>
+</span><span class='line'><span class="nt">&lt;/property&gt;</span>
+</span><span class='line'><span class="nt">&lt;/configuration&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>dev@master:~/hadoop-1.0.0/etc/hadoop<span class="nv">$ </span> vi masters
+</span><span class='line'>
+</span><span class='line'>192.168.1.133
+</span><span class='line'>
+</span><span class='line'>dev@master:~/hadoop-1.0.0/etc/hadoop<span class="nv">$ </span> vi slaves
+</span><span class='line'>
+</span><span class='line'>192.168.1.133
+</span><span class='line'>
+</span><span class='line'>192.168.1.134
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>7. 将配置文件拷贝到各台slave</h2>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>dev@master:~/hadoop-1.0.0/etc/hadoop<span class="nv">$ </span>scp hadoop-env.sh core-site.xml hdfs-site.xml mapred-site.xml masters slaves dev@192.168.1.133:~/hadoop-1.0.0/etc/hadoop
+</span><span class='line'>
+</span><span class='line'>dev@master:~/hadoop-1.0.0/etc/hadoop<span class="nv">$ </span>scp hadoop-env.sh core-site.xml hdfs-site.xml mapred-site.xml masters slaves dev@192.168.1.134:~/hadoop-1.0.0/etc/hadoop
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>（master和slaves这2个配置文件可以不拷贝到slave机器上，只在master上保存即可。待验证）</p>
+
+<h2>8. 设置环境变量</h2>
+
+<ul>
+<li>设置master的环境变量</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>dev@master:~<span class="nv">$ </span>vi .bashrc
+</span><span class='line'>
+</span><span class='line'><span class="nb">export </span><span class="nv">JAVA_HOME</span><span class="o">=</span>/usr/lib/jvm/java-7-openjdk-i386
+</span><span class='line'><span class="nb">export </span><span class="nv">CLASSPATH</span><span class="o">=</span><span class="nv">$JAVA_HOME</span>/lib/dt.jar:<span class="nv">$JAVA_HOME</span>/lib/tools.jar
+</span><span class='line'><span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:<span class="nv">$JAVA_HOME</span>/bin
+</span><span class='line'><span class="nb">export </span><span class="nv">HADOOP_HOME</span><span class="o">=</span>~/hadoop-1.0.0
+</span><span class='line'><span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:<span class="nv">$HADOOP_HOME</span>/bin:<span class="nv">$HADOOP_HOME</span>/sbin
+</span><span class='line'><span class="nb">export </span><span class="nv">CLASSPATH</span><span class="o">=</span><span class="nv">$CLASSPATH</span>:<span class="nv">$HADOOP_HOME</span>/share/hadoop/hadoop-core-1.0.0.jar
+</span><span class='line'>
+</span><span class='line'><span class="nb">export </span><span class="nv">HADOOP_HOME</span><span class="o">=</span>~/hadoop-1.0.0
+</span><span class='line'>
+</span><span class='line'><span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:<span class="nv">$HADOOP_HOME</span>/bin
+</span><span class='line'>
+</span><span class='line'>dev@master:~<span class="nv">$ </span><span class="nb">source</span> .bashrc
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>将master上的.bashrc拷贝到其他机器，并source刷新。</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>dev@master:~<span class="nv">$ </span>scp .bashrc dev@192.168.1.133:~
+</span><span class='line'>
+</span><span class='line'>dev@master:~<span class="nv">$ </span>scp .bashrc dev@192.168.1.134:~
+</span><span class='line'>
+</span><span class='line'>dev@slave01:~<span class="nv">$ </span><span class="nb">source</span> .bashrc
+</span><span class='line'>
+</span><span class='line'>dev@slave02:~<span class="nv">$ </span><span class="nb">source</span> .bashrc
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>9. 运行 hadoop</h2>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>dev@master:~<span class="nv">$ </span>hadoop  namenode -format  （只需一次，下次启动不再需要格式化，只需 start-all.sh）
+</span><span class='line'>
+</span><span class='line'>dev@master:~<span class="nv">$ </span>start-all.sh
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>10. 检查是否运行成功</h2>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>dev@master:~<span class="nv">$ </span>jps
+</span><span class='line'>
+</span><span class='line'>2615 NameNode
+</span><span class='line'>2767 JobTracker
+</span><span class='line'>2874 Jps
+</span><span class='line'>
+</span><span class='line'>dev@slave01:~<span class="nv">$ </span>jps
+</span><span class='line'>
+</span><span class='line'>3415 DataNode
+</span><span class='line'>3582 TaskTracker
+</span><span class='line'>3499 SecondaryNameNode
+</span><span class='line'>3619 Jps
+</span><span class='line'>
+</span><span class='line'>dev@slave02:~<span class="nv">$ </span>jps
+</span><span class='line'>
+</span><span class='line'>3741 Jps
+</span><span class='line'>3618 DataNode
+</span><span class='line'>3702 TaskTracker
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>11. 停止 hadoop集群</h2>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>dev@master:~<span class="nv">$ </span>stop-all.sh
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>让 slave 节点也 可以启动 整个hadoop集群</p>
+
+<h2>注意</h2>
+
+<ol>
+<li><p>stat-all.sh 启动后，刚刚开始，namenode的日志里有些异常，是正常的，过一两分钟就好了，如果两分钟后，还有异常不断在打印，就有问题了。datanode的日志，从一开始，正常情况下，就没有异常，如果报了异常，说明有异常，要去排除。</p></li>
+<li><p>masters文件，这个文件很容易被误解，它实际上存放的是secondarynamenode，而不是namenode。</p>
+
+<blockquote><p>An HDFS instance is started on a cluster by logging in to the NameNode machine and running$HADOOP_HOME/bin/start-dfs.sh (orstart-all.sh ). This script. starts a local instance of the NameNode process, logs into every machine listed in theconf/slaves file and starts an instance of the DataNode process, and logs into every machine listed in theconf/masters file and starts an instance of the SecondaryNameNode process. Themasters file does not govern which nodes become NameNodes or JobTrackers; those are started on the machine(s) wherebin/start-dfs.sh andbin/start-mapred.sh are executed. A more accurate filename might be “secondaries,” but that’s not currently the case.</p></blockquote>
+
+<p> 参考以下三篇文章：
+ <a href="http://www.cloudera.com/blog/2009/02/multi-host-secondarynamenode-configuration/">Multi-host SecondaryNameNode Configuration</a><br/>
+ <a href="http://blog.csdn.net/dajuezhao/article/details/5987580">SecondaryNamenode应用摘记</a>
+ <a href="http://blog.csdn.net/AE86_FC/article/details/5284181">hadoop下运行多个SecondaryNameNode的配置</a></p></li>
+<li><p>一定要注释掉 hosts里面的 <code>#127.0.1.1      bogon.localdomain       bogon</code>，参考 <a href="http://blog.sina.com.cn/s/blog_631ffec50100w700.html">Hadoop集群机器命名机制</a>，<a href="http://blog.csdn.net/singno116/article/details/6298995">hadoop集群环境安装中的hosts 配置问题</a>。</p></li>
+<li><p>当测试ssh是否能连通时，如果连接不上，先记得要关闭防火墙，<code>sudo ufw disable</code>，参考<a href="http://blog.csdn.net/make19830723/article/details/6230074">hadoop集群安装步骤</a>。</p></li>
+</ol>
+
+
+<h2>未解决的疑惑</h2>
+
+<ol>
+<li>有的很多文章，比如这篇，<a href="http://blog.csdn.net/cuishi0/article/details/6824884">Hadoop集群安装</a>，在core-site.xml, mapred-site.xml，直接写上ip:port，这样就不用修改hosts文件了。可是我这样配置，老是不成功。为此我还<a href="http://stackoverflow.com/questions/8702637/hadoop-conf-fs-default-name-cant-be-setted-ipport-format-directly">在stackoverflow上发了帖子</a>。<a href="http://51mst.iteye.com/blog/1152439">这篇文章</a>又说只能用host:port的形式。因此ip:port的格式是否能成功还待验证。如果有高手用ip:port配置成功过，请在下面留言或给我发email，一起交流:)</li>
+</ol>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[用javac命令行编译多个java文件]]></title>
+    <link href="http://www.yanjiuyanjiu.com/blog/20110623/"/>
+    <updated>2011-06-23T17:22:00+08:00</updated>
+    <id>http://www.yanjiuyanjiu.com/blog/using-javac-to-compile-multi-java-files</id>
+    <content type="html"><![CDATA[<ol>
+<li>CLASSPATH一定要具体到jar路径，例如</li>
+</ol>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">export </span><span class="nv">CLASSPATH</span><span class="o">=</span>/usr/lib/jvm/java-6-sun/lib/commons-codec.jar:/usr/lib/jvm/java-6-sun/lib/commons-httpclient-3.1.jar:/usr/lib/jvm/java-6-sun/lib/commons-logging-1.1.jar:/usr/lib/jvm/java-6-sun/lib/dt.jar:/usr/lib/jvm/java-6-sun/lib/htmlconverter.jar:/usr/lib/jvm/java-6-sun/lib/jconsole.jar:/usr/lib/jvm/java-6-sun/lib/junit-4.1.jar:/usr/lib/jvm/java-6-sun/lib/mysql-connector-java-5.1.16-bin.jar:/usr/lib/jvm/java-6-sun/lib/sa-jdi.jar:/usr/lib/jvm/java-6-sun/lib/tools.jar
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ol>
+<li><p>每个java文件给出路径，最常见的是用通配符*，不支持目录递归。</p></li>
+<li><p>最好加上 -d，这样会在这个目录下生成class文件，而不会和java文件混在一起</p></li>
+</ol>
+
+
+<p>看我的一个具体的例子</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>javac -d /home/dfq/crawler/bin crawler/*.java weibo4j/*.java weibo4j/org/json/*.java weibo4j/*.java weibo4j/util/*.java weibo4j/http/*.java
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>运行时用如下命令：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">cd</span> /home/dfq/crawler/bin
+</span><span class='line'>java -cp .:<span class="nv">$CLASSPATH</span> crawler.ManagerThread
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[推荐给TeX新手的电子书和书籍]]></title>
+    <link href="http://www.yanjiuyanjiu.com/blog/20110417/"/>
+    <updated>2011-04-17T17:03:00+08:00</updated>
+    <id>http://www.yanjiuyanjiu.com/blog/tex-resources-for-newbies</id>
+    <content type="html"><![CDATA[<h2>CTEX自带的文档</h2>
+
+<ol>
+<li>安装好CTEX后，c:CTEXCTeXctexdoc下的两个文档，ctex-faq.pdf和lshort-cn.pdf（即93 分钟学会 LaTeX2e）</li>
+<li><p><a href="ftp://ftp.ctex.org/pub/tex/documents/bible/">ftp://ftp.ctex.org/pub/tex/documents/bible/</a> 下的 LaTeX_manual.zip
+对于初学者，上面3个文档足够了，在c:CTEXCTeXctexdoc目录下的其他几个文档也非常好。</p>
+
+<p>  如果想进一步学习，推荐下面一本书。</p></li>
+<li><a href="http://www.amazon.cn/mn/detailApp/ref=sr_1_1?_encoding=UTF8&amp;s=books&amp;qid=1271499096&amp;asin=B00114JYBU&amp;sr=8-1">《LaTeX入门与提高》</a>，陈志杰，2008，高等教育出版社，卓越上有卖的。<a href="http://ishare.iask.sina.com.cn/f/7485622.html">这里有个PDF扫描版</a>。</li>
+</ol>
+
+
+<!-- more -->
+
+
+<h2>网上的免费电子书：</h2>
+
+<ul>
+<li><a href="http://gigapedia.com/items/104415/a-guide-to-latex--document-preparation-for-beginners-and-advanced-users--3rd-edition-">A Guide to LaTeX</a></li>
+<li>the latex companion，和第2个文档 LaTeX_manual 在同一个ftp目录下,还有<a href="http://gigapedia.com/items/3842/the-latex-companion--tools-and-techniques-for-computer-typesetting-">另一个下载地址</a>。</li>
+<li><a href="http://ftp.ctex.org/pub/tex/documents/texguru/homepage/guide.html">LaTeX2e使用手册</a></li>
+<li><a href="ftp://ftp.ctex.org/pub/tex/documents/bible/LaTeX_graphics.zip">LaTeX2e插图指南</a></li>
+</ul>
+
+
+<h2>参考资料</h2>
+
+<ul>
+<li><a href="http://bbs.ctex.org/redirect.php?tid=31930&amp;goto=lastpost">陈志杰老师的《latex入门与提高》这本书怎么样啊？</a></li>
+<li><a href="http://bbs.ctex.org/viewthread.php?&amp;tid=1023">中国LaTeX 新用户，LaTeX中文必读教程</a></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[基于朴素贝叶斯的文本分类算法]]></title>
+    <link href="http://www.yanjiuyanjiu.com/blog/20100528/"/>
+    <updated>2010-05-28T17:15:00+08:00</updated>
+    <id>http://www.yanjiuyanjiu.com/blog/text-classification-algorithm-based-on-naive-bayes</id>
+    <content type="html"><![CDATA[<p>作者: 灵魂机器<br/>
+新浪博客：<a href="www.weibo.com/soulmachine">www.weibo.com/soulmachine</a><br/>
+作者博客：<a href="www.yanjiuyanjiu.com">www.yanjiuyanjiu.com</a></p>
+
+<p><strong>摘要</strong>：常用的文本分类方法有支持向量机、K-近邻算法和朴素贝叶斯。其中朴素贝叶斯具有容易实现，运行速度快的特点，被广泛使用。本文详细介绍了朴素贝叶斯的基本原理，讨论了两种常见模型：多项式模型（MM）和伯努利模型（BM），实现了可运行的代码，并进行了一些数据测试。</p>
+
+<p><strong>关键字</strong>：朴素贝叶斯；文本分类</p>
+
+<p><strong>Text Classification Algorithm Based on Naive Bayes</strong>
+<strong>Author</strong>: soulmachine
+<strong>Email</strong>：soulmachine@gmail.com
+<strong>Blog</strong>：<a href="www.yanjiuyanjiu.com">www.yanjiuyanjiu.com</a></p>
+
+<p><strong>Abstract</strong>:Usually there are three methods for text classification: SVM、KNN and Naïve Bayes. Naïve Bayes is easy to implement and fast, so it is widely used. This article introduced the theory of Naïve Bayes and discussed two popular models: multinomial model(MM) and Bernoulli model(BM) in details, implemented runnable code and performed some data tests.</p>
+
+<p><strong>Keywords</strong>: naïve bayes; text classification</p>
+
+<h2>1. 贝叶斯原理</h2>
+
+<h3>1.1 贝叶斯公式</h3>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Java使用imageio 读写图像]]></title>
+    <link href="http://www.yanjiuyanjiu.com/blog/20100401/"/>
+    <updated>2010-04-01T16:53:00+08:00</updated>
+    <id>http://www.yanjiuyanjiu.com/blog/read-and-write-images-using-java-imageio</id>
+    <content type="html"><![CDATA[<p>Java中进行图像I/O（即读图片和写图片，不涉及到复杂图像处理）有三个方法：</p>
+
+<ol>
+<li>Java Image I/O API，支持常见图片，从Java 2 version 1.4.0开始就内置了。
+主页：<a href="http://java.sun.com/javase/6/docs/technotes/guides/imageio/index.html">http://java.sun.com/javase/6/docs/technotes/guides/imageio/index.html</a></li>
+<li>JAI 中的 Image I/O Tools，支持更多图片类型，例如JPEG-LS, JPEG2000, 和 TIFF。
+主页：<a href="https://jai-imageio.dev.java.net/">https://jai-imageio.dev.java.net/</a>。JAI 是一个关于图像处理的框架，很庞大，
+其中仅仅jai-imageio是关于图像I/O的，其他的可以不看。</li>
+<li>JAI的com.sun.media.jai.codec 也有一定的图像解码能力</li>
+</ol>
+
+
+<p>当然，还有众多的java开源工具包可以读写图像，例如JIMI, JMagic等，但JDK目前本身能
+够读写图片，就用JDK的，开发和部署方便，不需要额外下载jar包。</p>
+
+<p>由于JAI是Java新加入的，很多组件不是正式规范，JDK不自带，因此开发和部署需要额外
+安装，安装文件在官网<a href="https://jai.dev.java.net/">https://jai.dev.java.net/</a>下载得到。</p>
+
+<p>如果你仅仅想读取常见格式的图片，不需要用JAI这么高级这么庞大的东西，
+用Java Image I/O API即可。</p>
+
+<p>下面重点介绍 Java Image I/O API。</p>
+
+<p>Java Image I/O API 主要在 javax.imageio 下面。JDK已经内置了常见图片格式的插件，
+但它提供了插件体系结构，第三方也可以开发插件支持其他图片格式。</p>
+
+<!--more-->
+
+
+<p>下面这段代码可以展示，JDK内置支持的图片格式。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kn">import</span> <span class="nn">javax.imageio.*</span><span class="o">;</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">java.util.Arrays</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">HelloWorld</span> <span class="o">{</span>
+</span><span class='line'><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span> <span class="n">args</span><span class="o">[])</span> <span class="o">{</span>
+</span><span class='line'><span class="n">String</span> <span class="n">readFormats</span><span class="o">[]</span> <span class="o">=</span> <span class="n">ImageIO</span><span class="o">.</span><span class="na">getReaderFormatNames</span><span class="o">();</span>
+</span><span class='line'><span class="n">String</span> <span class="n">writeFormats</span><span class="o">[]</span> <span class="o">=</span> <span class="n">ImageIO</span><span class="o">.</span><span class="na">getWriterFormatNames</span><span class="o">();</span>
+</span><span class='line'><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="err">“</span><span class="nl">Readers:</span>  <span class="err">”</span> <span class="o">+</span> <span class="n">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="n">readFormats</span><span class="o">));</span>
+</span><span class='line'><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="err">“</span><span class="nl">Writers:</span>  <span class="err">”</span> <span class="o">+</span> <span class="n">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="n">writeFormats</span><span class="o">));</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>主页上有一个文档，Java Image I/O API Guide，很通俗易懂，可以让你快速上手。以下
+内容主要来自这个文档的第3章。</p>
+
+<h1>第3章 编写图像I/O程序</h1>
+
+<h2>3.1 读写图片</h2>
+
+<p>javax.imageio.ImageIO类提供了一组静态方法进行最简单的图像I/O操作。
+读取一个标准格式(GIF, PNG, or JPEG)的图片很简单：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">File</span> <span class="n">f</span> <span class="o">=</span> <span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="err">“</span><span class="nl">c:</span><span class="n">imagesmyimage</span><span class="o">.</span><span class="na">gif</span><span class="err">”</span><span class="o">);</span>
+</span><span class='line'><span class="n">BufferedImage</span> <span class="n">bi</span> <span class="o">=</span> <span class="n">ImageIO</span><span class="o">.</span><span class="na">read</span><span class="o">(</span><span class="n">f</span><span class="o">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Java Image I/O API 会自动探测图片的格式并调用对应的插件进行解码，当安装了一个新
+插件，新的格式会被自动理解，程序代码不需要改变。</p>
+
+<p>写图片同样简单：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">BufferedImage</span> <span class="n">bi</span><span class="o">;</span>
+</span><span class='line'><span class="n">File</span> <span class="n">f</span> <span class="o">=</span> <span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="err">“</span><span class="nl">c:</span><span class="n">imagesmyimage</span><span class="o">.</span><span class="na">png</span><span class="err">”</span><span class="o">);</span>
+</span><span class='line'><span class="n">ImageIO</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="n">im</span><span class="o">,</span> <span class="err">“</span><span class="n">png</span><span class="err">”</span><span class="o">,</span> <span class="n">f</span><span class="o">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>3.2 更进一步</h2>
+
+<p>上一节谈到的方法对于简单程序已经足够了。不过，Java Image I/O API 提供了为编写复
+杂程序的能力。为了利用API的高级特性，应用程序应当直接使用类ImageReader 和
+ImageWriter。</p>
+
+<h2>3.3 ImageReader 类</h2>
+
+<p>与其用ImageIO类来进行所有的解码操作，不如用ImageIO类去得到一个ImageReader对象，
+再用这个对象去进行读操作：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">Iterator</span> <span class="n">readers</span> <span class="o">=</span> <span class="n">ImageIO</span><span class="o">.</span><span class="na">getImageReadersByFormatName</span><span class="o">(</span><span class="err">“</span><span class="n">gif</span><span class="err">”</span><span class="o">);</span>
+</span><span class='line'><span class="n">ImageReader</span> <span class="n">reader</span> <span class="o">=</span> <span class="o">(</span><span class="n">ImageReader</span><span class="o">)</span><span class="n">readers</span><span class="o">.</span><span class="na">next</span><span class="o">();</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>ImageReader对象也可以基于文件内容、文件后缀或MIME类型获得。这个用于查找和初始
+化ImageReader对象的机制用到了javax.imageio.spi.ImageReaderSpi类，它可以在不用初
+始化插件的情况下获得插件的信息。”service provider interfaces” (SPIs)将会在下一
+章详细讨论。一旦获得了一个ImageReader对象，必须给它是指一个输入源。大部分
+ImageReader对象可以从ImageInputStream类输入源读取数据，ImageInputStream是Image
+I/O API定义的专用输入源。</p>
+
+<p>获得一个ImageInputStream 是简单的。给定一个File或InputStream，一个
+ImageInputStream对象可以通过调用如下函数产生：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">Object</span> <span class="n">source</span><span class="o">;</span> <span class="c1">// File or InputStream</span>
+</span><span class='line'><span class="n">ImageInputStream</span> <span class="n">iis</span> <span class="o">=</span> <span class="n">ImageIO</span><span class="o">.</span><span class="na">createImageInputStream</span><span class="o">(</span><span class="n">source</span><span class="o">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>一旦有了输入源，可以把它与一个ImageReader对象关联起来：
+reader.setInput(iis, true);</p>
+
+<p>如果输入源文件包含多张图片，而程序不保证按顺序读取时，第二个参数应该设置为
+false。对于那些只允许存储一张图片的文件格式，永远传递true是合理的。</p>
+
+<p>当ImageReader对象有了输入源后，我们就可以获取图片信息而不用把整张图片数据都读入
+内存。例如，调用reader.getImageWidth(0)可以让我们获得文件中第一张图片的宽度。一
+个好的插件会试图解码文件的必要部分，去获得图片的宽度，而不用读取任何一个像素。</p>
+
+<p>为读取图片，可以调用reader.read(imageIndex), imageIndex是文件（当包含多张图片时）
+中图片的索引。这与上一节调用ImageIO.read()产生的结果相同。</p>
+
+<h3>3.3.1 ImageReadParam</h3>
+
+<p>如果需要更多的控制，可以向read()方法传递一个ImageReadParam类型的参数。一个
+ImageReadParam对象可以让程序更好的利用内存。它不仅允许指定一个感兴趣的区域，还
+可以指定一个抽样因子，用于向下采样。</p>
+
+<p>例如，为了只解码图片的左上角的1/4，程序可以先获取一个合适的ImageReadParam对象：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">ImageReadParam</span> <span class="n">param</span> <span class="o">=</span> <span class="n">reader</span><span class="o">.</span><span class="na">getDefaultReadParam</span><span class="o">();</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>接下来，指定图片区域：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kn">import</span> <span class="nn">java.awt.Rectangle</span><span class="o">;</span>
+</span><span class='line'><span class="kt">int</span> <span class="n">imageIndex</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+</span><span class='line'><span class="kt">int</span> <span class="n">half_width</span> <span class="o">=</span> <span class="n">reader</span><span class="o">.</span><span class="na">getImageWidth</span><span class="o">(</span><span class="n">imageIndex</span><span class="o">)/</span><span class="mi">2</span><span class="o">;</span>
+</span><span class='line'><span class="kt">int</span> <span class="n">half_height</span> <span class="o">=</span> <span class="n">reader</span><span class="o">.</span><span class="na">getImageHeight</span><span class="o">(</span><span class="n">imageIndex</span><span class="o">)/</span><span class="mi">2</span><span class="o">;</span>
+</span><span class='line'><span class="n">Rectangle</span> <span class="n">rect</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Rectangle</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="n">half_width</span><span class="o">,</span> <span class="n">half_height</span><span class="o">);</span>
+</span><span class='line'><span class="n">param</span><span class="o">.</span><span class="na">setSourceRegion</span><span class="o">(</span><span class="n">rect</span><span class="o">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>最后，读取图片：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">BufferedImage</span> <span class="n">bi</span> <span class="o">=</span> <span class="n">reader</span><span class="o">.</span><span class="na">read</span><span class="o">(</span><span class="n">imageIndex</span><span class="o">,</span> <span class="n">param</span><span class="o">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>结果是一张新图片，宽和高都只有原图片的一半。</p>
+
+<p>另一个例子，为了读取每三个像素中的一个，产生一个原图片1/9大小的图片，可以用
+ImageReadParam指定抽样因子：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">param</span> <span class="o">=</span> <span class="n">reader</span><span class="o">.</span><span class="na">getDefaultImageParam</span><span class="o">();</span>
+</span><span class='line'><span class="n">param</span><span class="o">.</span><span class="na">setSourceSubsampling</span><span class="o">(</span><span class="mi">3</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="mi">0</span><span class="o">);</span>
+</span><span class='line'><span class="n">BufferedImage</span> <span class="n">bi3</span> <span class="o">=</span> <span class="n">reader</span><span class="o">.</span><span class="na">read</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="n">param</span><span class="o">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>3.3.2 IIOParamController</h3>
+
+<p>插件有时会提供一个IIOParamController类，这是可选的。略。</p>
+
+<h3>3.3.3 读多图片文件</h3>
+
+<p>ImageReader 中所有与图片打交道的方法都有一个imageIndex 参数，这个参数用于读取多
+图片文件中的一张。</p>
+
+<p>ImageReader.getNumImages()返回多图片文件中的图片个数。这个方法有一个boolean参数，
+allowSearch。有的图片格式，典型的GIF，没有提供任何获取文件中的图片个数方法，除
+非读取整个进行解析。这样代价很高，因此设置allowSearch为false可以让方法直接返回
+-1，而不是实际的图片个数。如果此参数是true，则该方法总会返回文件中实际的图片个
+数。</p>
+
+<p>即使在不知道文件中图片个数的情况下，仍可以调用read(imageIndex); 如果索引值过大，
+该方法会抛出IndexOutOfBoundsException异常。因此，程序可以递增索引去获取图片，
+直到异常。</p>
+
+<h3>3.3.4 读缩略图</h3>
+
+<p>有的图片格式允许一个（或多个）小的预览图，与主图片一起存储在文件中。这些
+“缩略图”对于快速识别图片很有用，不用解码整个图片。</p>
+
+<p>程序可以调用如下代码，探测一张图片有多少张缩略图：
+reader.getNumThumbnails(imageIndex);</p>
+
+<p>如果存在缩略图，可以调用如下代码获取：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kt">int</span> <span class="n">thumbailIndex</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+</span><span class='line'><span class="n">BufferedImage</span> <span class="n">bi</span><span class="o">;</span>
+</span><span class='line'><span class="n">bi</span> <span class="o">=</span> <span class="n">reader</span><span class="o">.</span><span class="na">readThumbnail</span><span class="o">(</span><span class="n">imageIndex</span><span class="o">,</span> <span class="n">thumbnailIndex</span><span class="o">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>3.4 ImageWriter 类</h2>
+
+<p>就像我们可以用ImageIO 的一个方法获取某种图片格式的ImageReader对象一样，我们也可
+以获取ImageWriter对象：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">Iterator</span> <span class="n">writers</span> <span class="o">=</span> <span class="n">ImageIO</span><span class="o">.</span><span class="na">getImageWritersByFormatName</span><span class="o">(</span><span class="err">“</span><span class="n">png</span><span class="err">”</span><span class="o">);</span>
+</span><span class='line'><span class="n">ImageWriter</span> <span class="n">writer</span> <span class="o">=</span> <span class="o">(</span><span class="n">ImageWriter</span><span class="o">)</span><span class="n">writers</span><span class="o">.</span><span class="na">next</span><span class="o">();</span>
+</span><span class='line'>
+</span><span class='line'><span class="err">一旦获取了一个</span><span class="n">ImageWriter</span><span class="err">对象，必须给它设置一个输出源</span><span class="n">ImageOutputStream</span><span class="err">。</span>
+</span><span class='line'><span class="n">File</span> <span class="n">f</span> <span class="o">=</span> <span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="err">“</span><span class="nl">c:</span><span class="n">imagesmyimage</span><span class="o">.</span><span class="na">png</span><span class="err">”</span><span class="o">);</span>
+</span><span class='line'><span class="n">ImageOutputStream</span> <span class="n">ios</span> <span class="o">=</span> <span class="n">ImageIO</span><span class="o">.</span><span class="na">createImageOutputStream</span><span class="o">(</span><span class="n">f</span><span class="o">);</span>
+</span><span class='line'><span class="n">writer</span><span class="o">.</span><span class="na">setOutput</span><span class="o">(</span><span class="n">ios</span><span class="o">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>最后，可以把图片写入到输出源：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">BufferedImage</span> <span class="n">bi</span><span class="o">;</span>
+</span><span class='line'><span class="n">writer</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="n">bi</span><span class="o">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>3.4.1 写多图片文件</h3>
+
+<p>IIOImage类用于存储图片，缩略图或元信息的引用。下一节将讨论Metadata，目前，我们
+简单地给Metadata相关参数传递null。
+ImageWriter 类有一个方法write()，用于从IIOImage创建一个新文件，还有一个方法
+writeInsert()，用于向一个已存在文件添加一个IIOImage对象。通过调用这两者，可以创
+建一个多图片文件：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">BufferedImage</span> <span class="n">first_bi</span><span class="o">,</span> <span class="n">second_bi</span><span class="o">;</span>
+</span><span class='line'><span class="n">IIOImage</span> <span class="n">first_IIOImage</span> <span class="o">=</span> <span class="k">new</span> <span class="n">IIOImage</span><span class="o">(</span><span class="n">first_bi</span><span class="o">,</span> <span class="kc">null</span><span class="o">,</span> <span class="kc">null</span><span class="o">);</span>
+</span><span class='line'><span class="n">IIOImage</span> <span class="n">second_IIOImage</span> <span class="o">=</span> <span class="k">new</span> <span class="n">IIOImage</span><span class="o">(</span><span class="n">second_bi</span><span class="o">,</span> <span class="kc">null</span><span class="o">,</span> <span class="kc">null</span><span class="o">);</span>
+</span><span class='line'><span class="n">writer</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="kc">null</span><span class="o">,</span> <span class="n">first_IIOImage</span><span class="o">,</span> <span class="kc">null</span><span class="o">);</span>
+</span><span class='line'><span class="k">if</span> <span class="o">(</span><span class="n">writer</span><span class="o">.</span><span class="na">canInsertImage</span><span class="o">(</span><span class="mi">1</span><span class="o">))</span> <span class="o">{</span>
+</span><span class='line'><span class="n">writer</span><span class="o">.</span><span class="na">writeInsert</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="n">second_IIOImage</span><span class="o">,</span> <span class="kc">null</span><span class="o">);</span>
+</span><span class='line'><span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+</span><span class='line'><span class="n">System</span><span class="o">.</span><span class="na">err</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="err">“</span><span class="n">Writer</span> <span class="n">can</span><span class="err">’</span><span class="n">t</span> <span class="n">append</span> <span class="n">a</span> <span class="n">second</span> <span class="n">image</span><span class="o">!</span><span class="err">”</span><span class="o">);</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>3.5  处理 Metadata</h2>
+
+<p>所有与像素无关的信息，都属于在Metadata。javax.imageio.metadata 包含了用于访问
+Metadata的类和接口。</p>
+
+<p>Image I/O API 将stream metadata 和image metadata区别对待。stream metadata与一个
+文件中存储了多张图片有关，image metadata只与单个图片有关。如果一个文件只包含一张
+图片，那么就只存在image metadata。</p>
+
+<p>可以通过调用ImageReader.getStreamMetadata 和 getImageMetadata(int imageIndex)来
+获取metadata。这些方法会返回一个实现了IIOMetadata接口的对象，该对象会被向上转化
+为ImageReader类型，</p>
+
+<h2>3.6 编码转换</h2>
+
+<p>略</p>
+
+<h2>3.7 事件监听</h2>
+
+<p>略</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Java质量检测评估工具]]></title>
+    <link href="http://www.yanjiuyanjiu.com/blog/20100331/"/>
+    <updated>2010-03-31T16:45:00+08:00</updated>
+    <id>http://www.yanjiuyanjiu.com/blog/java-qa-tools</id>
+    <content type="html"><![CDATA[<p>Java代码质量检测评估工具
+“五大” 代码分析领域：</p>
+
+<ul>
+<li>编码风格</li>
+<li>冗余代码</li>
+<li>代码覆盖率</li>
+<li>依赖项分析</li>
+<li>复杂度监控</li>
+</ul>
+
+
+<p>一下列举了一些目前比较流行的工具。网址后面列出了其PR值，可以反映此工具的流行度。</p>
+
+<p>1、编码风格
+CheckStyle
+Home page: <a href="http://checkstyle.sourceforge.net/">http://checkstyle.sourceforge.net/</a> (6)<br/>
+对应的eclipse插件有多个，其中eclipsecs最常用<br/>
+Home page: <a href="http://eclipse-cs.sourceforge.net/">http://eclipse-cs.sourceforge.net/</a> (6)<br/>
+eclipse插件URL：<a href="http://eclipse-cs.sf.net/update/">http://eclipse-cs.sf.net/update/</a></p>
+
+<p>2、冗余代码
+Simian <a href="http://www.redhillconsulting.com.au/products/simian/">http://www.redhillconsulting.com.au/products/simian/</a> (5)<br/>
+PMD 的 CPD <a href="http://pmd.sourceforge.net/cpd.html">http://pmd.sourceforge.net/cpd.html</a> (5)</p>
+
+<!--more-->
+
+
+<p>3、代码覆盖率
+EMMA  <a href="http://emma.sourceforge.net/">http://emma.sourceforge.net/</a> (6)<br/>
+Cobertura  <a href="http://cobertura.sourceforge.net/">http://cobertura.sourceforge.net/</a> (6)<br/>
+EclEmma <a href="http://update.eclemma.org/">http://update.eclemma.org/</a> (5)<br/>
+Coverlipse <a href="http://coverlipse.sourceforge.net/">http://coverlipse.sourceforge.net/</a> (3)</p>
+
+<p>4、依赖项分析
+JDepend <a href="http://clarkware.com/software/JDepend.html">http://clarkware.com/software/JDepend.html</a> (6)</p>
+
+<p>5、复杂度监控
+Metrics <a href="http://metrics.sourceforge.net/">http://metrics.sourceforge.net/</a> (4)</p>
+
+<p>具有以上两项或两项以上的综合工具（也称为静态分析工具）：
+1、PMD
+Home page: <a href="http://pmd.sourceforge.net/">http://pmd.sourceforge.net/</a> (6)<br/>
+eclipse插件URL：http://pmd.sourceforge.net/eclipse<a href="http://pmd.sourceforge.net/">http://pmd.sourceforge.net/</a></p>
+
+<p>2、FindBugs <a href="http://findbugs.sourceforge.net/">http://findbugs.sourceforge.net/</a> (6)<br/>
+eclipse插件URL：<a href="http://findbugs.cs.umd.edu/eclipse">http://findbugs.cs.umd.edu/eclipse</a></p>
+
+<p>FindBugs 检查程序生成的class文件，即分析字节码
+PMD 检查源码，分析源代码</p>
+
+<p>3、Jtest <a href="http://www.parasoft.com/jtest">http://www.parasoft.com/jtest</a></p>
+
+<p>4、Jlint <a href="http://artho.com/jlint/">http://artho.com/jlint/</a> (5)</p>
+
+<p>5、Lint4j <a href="http://www.jutils.com/">http://www.jutils.com/</a> (4)</p>
+
+<p>我个人平时最常用的是Checkstyle，其次是PMD，大家可以参考一下。</p>
+
+<h2>参考资料</h2>
+
+<p><a href="http://blog.csdn.net/cb_121/archive/2009/05/22/4208792.aspx">http://blog.csdn.net/cb_121/archive/2009/05/22/4208792.aspx</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[使用pdfbox 抽取PDF文件中的文本]]></title>
+    <link href="http://www.yanjiuyanjiu.com/blog/20100328/"/>
+    <updated>2010-03-28T16:41:00+08:00</updated>
+    <id>http://www.yanjiuyanjiu.com/blog/extract-text-from-pdf-using-pdfbox</id>
+    <content type="html"><![CDATA[<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">yanjiuyanjiu</span><span class="o">.</span><span class="na">search</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="kn">import</span> <span class="nn">java.io.File</span><span class="o">;</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="kn">import</span> <span class="nn">org.apache.pdfbox.pdmodel.PDDocument</span><span class="o">;</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">org.apache.pdfbox.util.PDFTextStripper</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="cm">/**</span>
+</span><span class='line'><span class="cm"> * 抽去PDF文件中的文本.</span>
+</span><span class='line'><span class="cm"> * @author soulmachine</span>
+</span><span class='line'><span class="cm"> *</span>
+</span><span class='line'><span class="cm"> */</span>
+</span><span class='line'><span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="nc">PDFboxTest</span> <span class="o">{</span>
+</span><span class='line'> <span class="cm">/** 禁止创建对象. */</span>
+</span><span class='line'> <span class="kd">private</span> <span class="nf">PDFboxTest</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'> <span class="o">}</span>
+</span><span class='line'> <span class="cm">/**</span>
+</span><span class='line'><span class="cm"> * 抽取PDF中的文本.</span>
+</span><span class='line'><span class="cm"> * @param f PDF文件</span>
+</span><span class='line'><span class="cm"> * @return PDF对应的文本字符串</span>
+</span><span class='line'><span class="cm"> */</span>
+</span><span class='line'> <span class="kd">public</span> <span class="kd">static</span> <span class="n">String</span> <span class="nf">getText</span><span class="o">(</span><span class="kd">final</span> <span class="n">File</span> <span class="n">f</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'> <span class="n">String</span> <span class="n">text</span> <span class="o">=</span> <span class="s">&quot;&quot;</span><span class="o">;</span>
+</span><span class='line'> <span class="k">try</span> <span class="o">{</span>
+</span><span class='line'> <span class="n">PDDocument</span> <span class="n">pdfdocument</span> <span class="o">=</span> <span class="n">PDDocument</span><span class="o">.</span><span class="na">load</span><span class="o">(</span><span class="n">f</span><span class="o">);</span>
+</span><span class='line'> <span class="n">PDFTextStripper</span> <span class="n">stripper</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PDFTextStripper</span><span class="o">();</span>
+</span><span class='line'> <span class="n">stripper</span><span class="o">.</span><span class="na">setStartPage</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span> <span class="c1">// 只抽取第1页和第2页</span>
+</span><span class='line'> <span class="n">stripper</span><span class="o">.</span><span class="na">setEndPage</span><span class="o">(</span><span class="mi">2</span><span class="o">);</span>
+</span><span class='line'> <span class="n">text</span> <span class="o">=</span> <span class="n">stripper</span><span class="o">.</span><span class="na">getText</span><span class="o">(</span><span class="n">pdfdocument</span><span class="o">);</span>
+</span><span class='line'> <span class="n">pdfdocument</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+</span><span class='line'>
+</span><span class='line'> <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'> <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+</span><span class='line'> <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'> <span class="k">return</span> <span class="n">text</span><span class="o">;</span>
+</span><span class='line'> <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'> <span class="cm">/** 测试.</span>
+</span><span class='line'><span class="cm"> *</span>
+</span><span class='line'><span class="cm"> * @param args PDF文件路径</span>
+</span><span class='line'><span class="cm"> */</span>
+</span><span class='line'> <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="kd">final</span> <span class="n">String</span><span class="o">[]</span>  <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'> <span class="n">File</span> <span class="n">file</span> <span class="o">=</span> <span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="n">args</span><span class="o">[</span><span class="mi">0</span><span class="o">]);</span>
+</span><span class='line'> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">PDFboxTest</span><span class="o">.</span><span class="na">getText</span><span class="o">(</span><span class="n">file</span><span class="o">));</span>
+</span><span class='line'> <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[java命令行下运行class文件]]></title>
+    <link href="http://www.yanjiuyanjiu.com/blog/20100215/"/>
+    <updated>2010-02-15T16:27:00+08:00</updated>
+    <id>http://www.yanjiuyanjiu.com/blog/run-class-file-in-java-command-line</id>
+    <content type="html"><![CDATA[<p>今天碰到了一个很变态的问题，写了一个很简单的HelloWord.java，内容如下：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">yanjiuyanjiu</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">HelloWorld</span> <span class="o">{</span>
+</span><span class='line'><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span> <span class="n">args</span><span class="o">[])</span> <span class="o">{</span>
+</span><span class='line'><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="err">“</span><span class="n">Hello</span> <span class="n">World</span><span class="o">!</span><span class="err">”</span><span class="o">);</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>在eclipse中运行是可以的，但是在命令行下运行总是失败。我的工程位置为 d:workspaceHelloWorld。</p>
+
+<p>尝试了很多次，如下：</p>
+
+<!--more-->
+
+
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+<span class='line-number'>70</span>
+<span class='line-number'>71</span>
+<span class='line-number'>72</span>
+<span class='line-number'>73</span>
+<span class='line-number'>74</span>
+<span class='line-number'>75</span>
+<span class='line-number'>76</span>
+<span class='line-number'>77</span>
+<span class='line-number'>78</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>d:workspaceHelloWorldbincomyanjiuyanjiu&gt;java HelloWorld
+</span><span class='line'>
+</span><span class='line'>Exception in thread “main” java.lang.NoClassDefFoundError: HelloWorld <span class="o">(</span>wrong name: com/yanjiuyanjiu/HelloWorld<span class="o">)</span>
+</span><span class='line'>at java.lang.ClassLoader.defineClass1<span class="o">(</span>Native Method<span class="o">)</span>
+</span><span class='line'>at java.lang.ClassLoader.defineClassCond<span class="o">(</span>Unknown Source<span class="o">)</span>
+</span><span class='line'>at java.lang.ClassLoader.defineClass<span class="o">(</span>Unknown Source<span class="o">)</span>
+</span><span class='line'>at java.security.SecureClassLoader.defineClass<span class="o">(</span>Unknown Source<span class="o">)</span>
+</span><span class='line'>at java.net.URLClassLoader.defineClass<span class="o">(</span>Unknown Source<span class="o">)</span>
+</span><span class='line'>at java.net.URLClassLoader.access<span class="nv">$000</span><span class="o">(</span>Unknown Source<span class="o">)</span>
+</span><span class='line'>at java.net.URLClassLoader<span class="nv">$1</span>.run<span class="o">(</span>Unknown Source<span class="o">)</span>
+</span><span class='line'>at java.security.AccessController.doPrivileged<span class="o">(</span>Native Method<span class="o">)</span>
+</span><span class='line'>at java.net.URLClassLoader.findClass<span class="o">(</span>Unknown Source<span class="o">)</span>
+</span><span class='line'>at java.lang.ClassLoader.loadClass<span class="o">(</span>Unknown Source<span class="o">)</span>
+</span><span class='line'>at sun.misc.Launcher<span class="nv">$AppClassLoader</span>.loadClass<span class="o">(</span>Unknown Source<span class="o">)</span>
+</span><span class='line'>at java.lang.ClassLoader.loadClass<span class="o">(</span>Unknown Source<span class="o">)</span>
+</span><span class='line'>Could not find the main class: HelloWorld.  Program will exit.
+</span><span class='line'>Exception in thread “main”
+</span><span class='line'>
+</span><span class='line'>d:workspaceHelloWorldbincomyanjiuyanjiu&gt;java -classpath .; HelloWorld
+</span><span class='line'>Exception in thread “main” java.lang.NoClassDefFoundError: HelloWorld <span class="o">(</span>wrong name: com/yanjiuyanjiu/HelloWorld<span class="o">)</span>
+</span><span class='line'>at java.lang.ClassLoader.defineClass1<span class="o">(</span>Native Method<span class="o">)</span>
+</span><span class='line'>at java.lang.ClassLoader.defineClassCond<span class="o">(</span>Unknown Source<span class="o">)</span>
+</span><span class='line'>at java.lang.ClassLoader.defineClass<span class="o">(</span>Unknown Source<span class="o">)</span>
+</span><span class='line'>at java.security.SecureClassLoader.defineClass<span class="o">(</span>Unknown Source<span class="o">)</span>
+</span><span class='line'>at java.net.URLClassLoader.defineClass<span class="o">(</span>Unknown Source<span class="o">)</span>
+</span><span class='line'>at java.net.URLClassLoader.access<span class="nv">$000</span><span class="o">(</span>Unknown Source<span class="o">)</span>
+</span><span class='line'>at java.net.URLClassLoader<span class="nv">$1</span>.run<span class="o">(</span>Unknown Source<span class="o">)</span>
+</span><span class='line'>at java.security.AccessController.doPrivileged<span class="o">(</span>Native Method<span class="o">)</span>
+</span><span class='line'>at java.net.URLClassLoader.findClass<span class="o">(</span>Unknown Source<span class="o">)</span>
+</span><span class='line'>at java.lang.ClassLoader.loadClass<span class="o">(</span>Unknown Source<span class="o">)</span>
+</span><span class='line'>at sun.misc.Launcher<span class="nv">$AppClassLoader</span>.loadClass<span class="o">(</span>Unknown Source<span class="o">)</span>
+</span><span class='line'>at java.lang.ClassLoader.loadClass<span class="o">(</span>Unknown Source<span class="o">)</span>
+</span><span class='line'>Could not find the main class: HelloWorld.  Program will exit.
+</span><span class='line'>Exception in thread “main”
+</span><span class='line'>
+</span><span class='line'>d:workspaceHelloWorldbincomyanjiuyanjiu&gt;cd..
+</span><span class='line'>
+</span><span class='line'>d:workspaceHelloWorldbincom&gt;cd..
+</span><span class='line'>
+</span><span class='line'>d:workspaceHelloWorldbin&gt;java -classpath .; com/yanjiuyanjiu/HelloWorld    只有这个成功
+</span><span class='line'>
+</span><span class='line'>Hello World!
+</span><span class='line'>
+</span><span class='line'>d:workspaceHelloWorldbin&gt;java -classpath .; comyanjiuyanjiuHelloWorld    换了个斜杠就不行了
+</span><span class='line'>
+</span><span class='line'>Exception in thread “main” java.lang.NoClassDefFoundError: comyanjiuyanjiuHelloWorld <span class="o">(</span>wrong name: com/yanjiuyanjiu/HelloWorld<span class="o">)</span>
+</span><span class='line'>at java.lang.ClassLoader.defineClass1<span class="o">(</span>Native Method<span class="o">)</span>
+</span><span class='line'>at java.lang.ClassLoader.defineClassCond<span class="o">(</span>Unknown Source<span class="o">)</span>
+</span><span class='line'>at java.lang.ClassLoader.defineClass<span class="o">(</span>Unknown Source<span class="o">)</span>
+</span><span class='line'>at java.security.SecureClassLoader.defineClass<span class="o">(</span>Unknown Source<span class="o">)</span>
+</span><span class='line'>at java.net.URLClassLoader.defineClass<span class="o">(</span>Unknown Source<span class="o">)</span>
+</span><span class='line'>at java.net.URLClassLoader.access<span class="nv">$000</span><span class="o">(</span>Unknown Source<span class="o">)</span>
+</span><span class='line'>at java.net.URLClassLoader<span class="nv">$1</span>.run<span class="o">(</span>Unknown Source<span class="o">)</span>
+</span><span class='line'>at java.security.AccessController.doPrivileged<span class="o">(</span>Native Method<span class="o">)</span>
+</span><span class='line'>at java.net.URLClassLoader.findClass<span class="o">(</span>Unknown Source<span class="o">)</span>
+</span><span class='line'>at java.lang.ClassLoader.loadClass<span class="o">(</span>Unknown Source<span class="o">)</span>
+</span><span class='line'>at sun.misc.Launcher<span class="nv">$AppClassLoader</span>.loadClass<span class="o">(</span>Unknown Source<span class="o">)</span>
+</span><span class='line'>at java.lang.ClassLoader.loadClass<span class="o">(</span>Unknown Source<span class="o">)</span>
+</span><span class='line'>Could not find the main class: comyanjiuyanjiuHelloWorld.  Program will exit.
+</span><span class='line'>Exception in thread “main”
+</span><span class='line'>
+</span><span class='line'>d:workspaceHelloWorldbin&gt;java -classpath ./com/yanjiuyanjiu/; HelloWorld
+</span><span class='line'>
+</span><span class='line'>Exception in thread “main”java.lang.NoClassDefFoundError: HelloWorld <span class="o">(</span>wrong name: com/yanjiuyanjiu/HelloWorld<span class="o">)</span>
+</span><span class='line'>at java.lang.ClassLoader.defineClass1<span class="o">(</span>Native Method<span class="o">)</span>
+</span><span class='line'>at java.lang.ClassLoader.defineClassCond<span class="o">(</span>Unknown Source<span class="o">)</span>
+</span><span class='line'>at java.lang.ClassLoader.defineClass<span class="o">(</span>Unknown Source<span class="o">)</span>
+</span><span class='line'>at java.security.SecureClassLoader.defineClass<span class="o">(</span>Unknown Source<span class="o">)</span>
+</span><span class='line'>at java.net.URLClassLoader.defineClass<span class="o">(</span>Unknown Source<span class="o">)</span>
+</span><span class='line'>at java.net.URLClassLoader.access<span class="nv">$000</span><span class="o">(</span>Unknown Source<span class="o">)</span>
+</span><span class='line'>at java.net.URLClassLoader<span class="nv">$1</span>.run<span class="o">(</span>Unknown Source<span class="o">)</span>
+</span><span class='line'>at java.security.AccessController.doPrivileged<span class="o">(</span>Native Method<span class="o">)</span>
+</span><span class='line'>at java.net.URLClassLoader.findClass<span class="o">(</span>Unknown Source<span class="o">)</span>
+</span><span class='line'>at java.lang.ClassLoader.loadClass<span class="o">(</span>Unknown Source<span class="o">)</span>
+</span><span class='line'>at sun.misc.Launcher<span class="nv">$AppClassLoader</span>.loadClass<span class="o">(</span>Unknown Source<span class="o">)</span>
+</span><span class='line'>at java.lang.ClassLoader.loadClass<span class="o">(</span>Unknown Source<span class="o">)</span>
+</span><span class='line'>Could not find the main class: HelloWorld.  Program will exit.
+</span><span class='line'>Exception in thread “main”
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>在网上搜索了大半天，大部分说是环境 变量，classpath或JDK 版本的问题，还有执行时文件名 class后缀不要。我一一试过，都没有解决。最后无意中换了一下命令符的位置，成功了。总结如下：</p>
+
+<ol>
+<li>环境变量，CLASSPATH当然要设置好，执行时不要带class后缀；</li>
+<li>路径中的斜杠用“/”而不是“”；</li>
+<li>命令符的当前目录要在包的起点。比如这里应该在 d:workspaceHelloWorldbin>，如果在 d:workspaceHelloWorldbincomyanjiuyanjiu>，反而不行，有点“近水楼台不得月”的意思，不知 道为什么，还请高手解释一下。</li>
 </ol>
 
 ]]></content>
