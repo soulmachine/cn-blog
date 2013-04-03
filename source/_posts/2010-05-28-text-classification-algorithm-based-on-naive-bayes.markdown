@@ -25,3 +25,8 @@ categories: "machine-learning"
 
 ##1. 贝叶斯原理
 ###1.1 贝叶斯公式
+设A、B是两个事件，且P(A)>0，称$P(Y|X)=\dfrac {P(XY)}{P(X)}$为事件A发生的条件下事件B发生的**条件概率**。
+
+**乘法公式**  $P(XYZ)=P(Z|XY)P(Y|X)P(X)$  
+**全概率公式** $P(X)=P(X|Y_1)+ P(X|Y_2)+…+ P(X|Y_n)$  
+**贝叶斯公式** $P(Y_i|X)=\dfrac{P(XY_i)}{P(X)}=\dfrac{P(X|Y_i)P(Y_i)}{P(X)}=\dfrac{P(X|Y_i)P(Y_i)}{\sum\limits _{j=1} ^{n} P(X|Y_j)}$

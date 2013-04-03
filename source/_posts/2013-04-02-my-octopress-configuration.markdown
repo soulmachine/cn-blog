@@ -22,7 +22,7 @@ Octopress支持多种方式嵌入代码，可以直接嵌入代码，也可以�
 
 我喜欢用**三个反引号**直接嵌入代码，比 `codeblock`要简洁。
 
-### MathJax
+###启用MathJax
 在`source/_includes/custom/footer.html`的第一行加入如下代码：
 ```
 <!-- mathjax config similar to math.stackexchange -->
@@ -55,6 +55,7 @@ body {
   > div#main {
     background: $sidebar-bg $noise-bg;
 ```
+看blog.echen.me的[改动](https://github.com/echen/echen.github.com/commit/e0f9b550e564c39239e2dbe10ce8d20e2b1102e8#sass/base/_layout.scss)，两处都改为了 div#main，暂时不知道为什么，不过我也两处都改。
 
 ## 首页只显示部分正文(Excerpts)
 Octopress中，可以使用 `<!--more-->`，这样首页只显示一部分正文，并在每篇文章底下加一个Read on超链接。
@@ -200,6 +201,9 @@ $header-subtitle-font-family: arial, sans-serif;
 ##一些汉化工作
 在 _config.yml中，把 `Read on` 改为 "继续阅读"。
 在 `source/_includes/custom/asides`目录下，将"Recent Comments"改为“最新评论”，"Categories"改为“分类目录”，将`source/_includes/asides/recent_posts.html`中"Recent Posts"改为“最新文章”。
+
+##修改顶部Header
+类似这样 http://xueran.github.com/blog/2012/12/26/blog-theme2/
 
 ## 添加统计代码
 填入 Google Analytics Tracking ID，例如 `UA-7583537-4`。
