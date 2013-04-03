@@ -4,7 +4,7 @@
   <title><![CDATA[研究研究]]></title>
   <link href="http://www.yanjiuyanjiu.com/atom.xml" rel="self"/>
   <link href="http://www.yanjiuyanjiu.com/"/>
-  <updated>2013-04-02T21:40:02+08:00</updated>
+  <updated>2013-04-03T13:16:07+08:00</updated>
   <id>http://www.yanjiuyanjiu.com/</id>
   <author>
     <name><![CDATA[soulmachine]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[我的Octopress配置]]></title>
-    <link href="http://www.yanjiuyanjiu.com/blog/2013/04/02/my-octopress-configuration/"/>
+    <link href="http://www.yanjiuyanjiu.com/tools/2013/04/02/my-octopress-configuration/"/>
     <updated>2013-04-02T15:35:00+08:00</updated>
-    <id>http://www.yanjiuyanjiu.com/blog/2013/04/02/my-octopress-configuration</id>
+    <id>http://www.yanjiuyanjiu.com/tools/2013/04/02/my-octopress-configuration</id>
     <content type="html"><![CDATA[<h2>实时预览</h2>
 
 <p>使用如下命令可以实现实时预览：</p>
@@ -27,7 +27,7 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p><code>rake preview</code> 会自动监视文件的变化，重新生成静态页面。因此修改markdown文件后，只需要在浏览器里刷新一下页面，就立刻可以看到效果。</p>
+<p><code>rake preview</code> 会自动监视文件的变化，重新生成静态页面。因此修改markdown文件后，只需要在浏览器里刷新一下页面，就立刻可以看到效果。不过如果修改了_config.yml的话，则需要Ctrl+C终止，用<code>rake generate</code>重新生成，才能看到效果。</p>
 
 <h2>嵌入代码块</h2>
 
@@ -38,6 +38,8 @@
 <p>Octopress支持多种方式嵌入代码，可以直接嵌入代码，也可以引用github上的gist 。</p>
 
 <p>我喜欢用<strong>三个反引号</strong>直接嵌入代码，比 <code>codeblock</code>要简洁。</p>
+
+<h3>MathJax</h3>
 
 <h2>首页只显示部分正文(Excerpts)</h2>
 
@@ -72,9 +74,7 @@
 <!--more-->
 
 
-<h3>定制主题</h3>
-
-<h3>添加about me 边栏</h3>
+<h2>添加about me 边栏</h2>
 
 <p>编辑 source_includes\custom\asides\about.html，内容如下：</p>
 
@@ -99,7 +99,20 @@
 
 <p>在 _config.yml 的 default_asides 里添加 custom/asides/about.html。</p>
 
-<h3>其他</h3>
+<h2>添加about页面</h2>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>rake new_page<span class="o">[</span>about<span class="o">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>会生成 source/about/index.markdown 文件。</p>
+
+<p>编辑该文件的内容。</p>
+
+<p>然后在头部导航菜单中添加页面的超链接。具体做法是编辑 /source/_includes/custom/navigation.html 文件。</p>
+
+<h2>社会化分享</h2>
 
 <p>启用 twitter 分享， facebook like 和Google +1，设置如下：</p>
 
@@ -112,17 +125,106 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>启用Disqus，填入 short name即可。</p>
+<p><strong>添加新浪微博分享</strong><br/>
+参考这篇博客 <a href="http://programus.github.com/blog/2012/03/04/share-weibo-button/">为Octopress追加[分享到微博]按钮</a>。</p>
 
-<p>填入 Google Analytics Tracking ID，例如 UA-7583537-4。</p>
+<p>在<code>source/_includes/post/sharing.html</code>中，加入代码：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="o">{</span>% <span class="k">if </span>site.weibo_share %<span class="o">}</span>
+</span><span class='line'>  &lt;iframe
+</span><span class='line'>    <span class="nv">allowTransparency</span><span class="o">=</span><span class="s2">&quot;true&quot;</span>
+</span><span class='line'>  <span class="nv">frameborder</span><span class="o">=</span><span class="s2">&quot;0&quot;</span>
+</span><span class='line'>  <span class="nv">scrolling</span><span class="o">=</span><span class="s2">&quot;no&quot;</span>
+</span><span class='line'>    <span class="nv">width</span><span class="o">=</span><span class="s2">&quot;72&quot;</span>
+</span><span class='line'>    <span class="nv">height</span><span class="o">=</span><span class="s2">&quot;16&quot;</span>
+</span><span class='line'>    <span class="nv">src</span><span class="o">=</span>
+</span><span class='line'>      <span class="s2">&quot;http://hits.sinajs.cn/A1/weiboshare.html?url=http://www.yanjiuyanjiu.com/tools/2013/04/02/my-octopress-configuration/&amp;amp;type=3&amp;amp;count=1&amp;amp;language=zh_cn&quot;</span>&gt;
+</span><span class='line'>  &lt;/iframe&gt;
+</span><span class='line'>  <span class="o">{</span>% endif %<span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>同时要在_config.yml文件中加入weibo_share 字段，设置其值为true。</p>
+
+<p>推荐使用jiathis.com 的分享按钮，集成了国内主流的网站，非常方便。获取JS代码后，替换掉上面代码即可。这时，可以在_config.yml 中，将twitter, google+ 和facebook like的按钮设置为false，取消显示，因为JiaThis已经集成了这三者，在本文底部可以看到效果。</p>
+
+<h2>社会化评论</h2>
+
+<p><del>启用Disqus，填入 short name即可。</del>Disqus在国外流行，在国内的加载速度太慢，而且只有twitter, facebook, g+，没有照顾到国内的用户习惯，因此替换成国内的<a href="www.duoshuo.com">多说</a>。参考这篇博客 <a href="http://ihavanna.org/Internet/2013-02/add-duoshuo-commemt-system-into-octopress.html">为 Octopress 添加多说评论系统</a>。不过配置略有不同：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>duoshuo_comments: <span class="nb">true</span>
+</span><span class='line'>duoshuo_short_name: yanjiuyanjiu
+</span><span class='line'>duoshuo_asides_num: 5      <span class="c"># 侧边栏评论显示条目数</span>
+</span><span class='line'>duoshuo_asides_avatars: 1   <span class="c"># 侧边栏评论是否显示头像</span>
+</span><span class='line'>duoshuo_asides_time: 1      <span class="c"># 侧边栏评论是否显示时间</span>
+</span><span class='line'>duoshuo_asides_title: 1     <span class="c"># 侧边栏评论是否显示标题</span>
+</span><span class='line'>duoshuo_asides_admin: 0     <span class="c"># 侧边栏评论是否显示作者评论</span>
+</span><span class='line'>duoshuo_asides_length: 32   <span class="c"># 侧边栏评论截取的长度</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>设置固定链接</h2>
+
+<p>在 _config.yml 里，找到 permalink，设置如下：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>permalink: pretty
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>参考官方文档<a href="https://github.com/mojombo/jekyll/wiki/Permalinks">jekyll Permalinks</a>。</p>
+
+<h2>侧边栏显示分类目录</h2>
+
+<p>使用第三方插件 <a href="https://github.com/tokkonopapa/octopress-tagcloud">octopress-tagcloud</a>。</p>
+
+<h2>中文目录</h2>
+
+<p>TODO</p>
+
+<h2>头导航菜单</h2>
+
+<p>头部导航菜单的修改可以打开并编辑<code>source/_includes/custom/navigation.html</code></p>
+
+<h2>一些汉化工作</h2>
+
+<p>在 _config.yml中，把 <code>Read on</code> 改为 &#8220;继续阅读&#8221;。</p>
+
+<h2>添加统计代码</h2>
+
+<p>填入 Google Analytics Tracking ID，例如 <code>UA-7583537-4</code>。</p>
+
+<h2>第三方主题和插件</h2>
+
+<p>主题：<a href="https://github.com/imathis/octopress/wiki/3rd-Party-Octopress-Themes">3rd Party Octopress Themes</a>
+插件：<a href="https://github.com/imathis/octopress/wiki/3rd-party-plugins">3rd party plugins</a></p>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[使用github + Octopress 搭建免费博客]]></title>
-    <link href="http://www.yanjiuyanjiu.com/blog/2013/04/02/using-github-and-octoperss-to-create-a-free-blog/"/>
+    <link href="http://www.yanjiuyanjiu.com/tools/2013/04/02/using-github-and-octoperss-to-create-a-free-blog/"/>
     <updated>2013-04-02T15:14:00+08:00</updated>
-    <id>http://www.yanjiuyanjiu.com/blog/2013/04/02/using-github-and-octoperss-to-create-a-free-blog</id>
+    <id>http://www.yanjiuyanjiu.com/tools/2013/04/02/using-github-and-octoperss-to-create-a-free-blog</id>
     <content type="html"><![CDATA[<h3>前提条件</h3>
 
 <p>注册一个github账号。</p>
@@ -342,6 +444,10 @@ Windows预设是Big5编码,所以要想’rake generate’的时候不报编码�
 
 <p>很多人喜欢去掉www，用xxx.com的形式来访问，不过大家去试一下，在浏览器输入qq.com, douban.com, baidu.com，发现都会自动跳转到www，也就是说这些大网站，目前也是用www.xxx.com的域名为主，因此建议大家也这样做。</p>
 
+<p>用www, blog之类的二级域名，还有个好处是方便升级，比如新版本用www1指向，等测试完成后，改成www指向，无缝切换。</p>
+
+<p>在使用Octopress的时候，每次<code>rake generate</code>, <code>rake deploy</code>后，master分支下面的CNAME文件消失了。正确的做法是，在 source 目录下新建CNAME文件，<code>rake generate</code> 会自动拷贝到\public目录下，<code>rake deploy</code>再从public目录到_deploy目录，并提交到master分支。</p>
+
 <h3>参考资料</h3>
 
 <ol>
@@ -350,6 +456,7 @@ Windows预设是Big5编码,所以要想’rake generate’的时候不报编码�
 <li><a href="http://rubyer.me/blog/134/">windows下安装DevKit</a></li>
 <li><a href="http://blog.sprabbit.com/blog/2012/12/21/recover-octopress/">在新Windows系统中重新部署Octopress</a></li>
 <li><a href="http://hivan.me/octopress-install-to-windows8/">Windows 8安装Octopress记录</a></li>
+<li><a href="http://blog.sprabbit.com/blog/2012/03/23/octopress/">关于在64位 Windows 7 中部署中文化的Octopress</a></li>
 </ol>
 
 ]]></content>
