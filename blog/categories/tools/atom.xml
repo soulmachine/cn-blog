@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: tools | 研究研究]]></title>
+  <link href="http://www.yanjiuyanjiu.com/blog/categories/tools/atom.xml" rel="self"/>
+  <link href="http://www.yanjiuyanjiu.com/"/>
+  <updated>2013-04-03T13:16:07+08:00</updated>
+  <id>http://www.yanjiuyanjiu.com/</id>
+  <author>
+    <name><![CDATA[soulmachine]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[我的Octopress配置]]></title>
+    <link href="http://www.yanjiuyanjiu.com/tools/2013/04/02/my-octopress-configuration/"/>
+    <updated>2013-04-02T15:35:00+08:00</updated>
+    <id>http://www.yanjiuyanjiu.com/tools/2013/04/02/my-octopress-configuration</id>
+    <content type="html"><![CDATA[<h2>实时预览</h2>
+
+<p>使用如下命令可以实现实时预览：
+<code>bash
+rake preview  
+</code></p>
+
+<p><code>rake preview</code> 会自动监视文件的变化，重新生成静态页面。因此修改markdown文件后，只需要在浏览器里刷新一下页面，就立刻可以看到效果。不过如果修改了_config.yml的话，则需要Ctrl+C终止，用<code>rake generate</code>重新生成，才能看到效果。</p>
+
+<h2>嵌入代码块</h2>
+
+<p>见官方文档<a href="http://octopress.org/docs/blogging/code/">Sharing Code Snippets</a>。</p>
+
+<p>Octopress是一款为hacker量身定制的博客系统，当然内置了代码高亮的功能！它的代码高亮功能是通过Pygments实现的，配色方案用的是Solarized，堪称完美。</p>
+
+<p>Octopress支持多种方式嵌入代码，可以直接嵌入代码，也可以引用github上的gist 。</p>
+
+<p>我喜欢用<strong>三个反引号</strong>直接嵌入代码，比 <code>codeblock</code>要简洁。</p>
+
+<h3>MathJax</h3>
+
+<h2>首页只显示部分正文(Excerpts)</h2>
+
+<p>Octopress中，可以使用 <code>&lt;!--more--&gt;</code>，这样首页只显示一部分正文，并在每篇文章底下加一个Read on超链接。</p>
+
+<h2>插入图片</h2>
+
+<p>使用<a href="http://octopress.org/docs/plugins/image-tag/">Image Tag</a>。</p>
+
+<p>语法
+<code>
+<img class="[class names]" src="/path/to/image" title="[width] [height] [title text [alt text]]" >
+</code></p>
+
+<p>例子
+<code>
+<img src="http://placekitten.com/890/280">
+<img class="left" src="http://placekitten.com/320/250" title="Place Kitten #2" >
+<img class="right" src="http://placekitten.com/300/500" width="150" height="250" title="Place Kitten #3" >
+<img class="right" src="http://placekitten.com/300/500" width="150" height="250" title="Place Kitten #4" alt="An image of a very cute kitten">
+</code></p>
+
+<!--more-->
+
+
+<h2>添加about me 边栏</h2>
+
+<p>编辑 source_includes\custom\asides\about.html，内容如下：
+```
+<section>
+  <h1>About Me</h1>
+  <p>一句话自我介绍.</p>
+  <p>Sina Weibo: <a href="http://weibo.com/soulmachine">@soulmachine</a><br/></p>
+
+<pre><code> Twitter: &lt;a href="https://twitter.com/#!/soulmachine"&gt;@soulmachine&lt;/a&gt;&lt;br/&gt;
+ Other: &lt;a href="https://github.com/soulmachine"&gt;Github&lt;/a&gt;, &lt;a href="https://plus.google.com/103519507226474510310"&gt;Google+&lt;/a&gt;, &lt;a href="http://www.linkedin.com/in/soulmachine"&gt;LinkedIn&lt;/a&gt;, &lt;a href="http://www.quora.com/Jason-Day-2"&gt;Quora&lt;/a&gt;&lt;/p&gt;
+</code></pre>
+
+<p>  </p>
+</section>
+```
+在 _config.yml 的 default_asides 里添加 custom/asides/about.html。</p>
+
+<h2>添加about页面</h2>
+
+<p><code>
+rake new_page[about]
+</code>
+会生成 source/about/index.markdown 文件。</p>
+
+<p>编辑该文件的内容。</p>
+
+<p>然后在头部导航菜单中添加页面的超链接。具体做法是编辑 /source/_includes/custom/navigation.html 文件。</p>
+
+<h2>社会化分享</h2>
+
+<p>启用 twitter 分享， facebook like 和Google +1，设置如下：
+<code>
+google_plus_one: true
+twitter_tweet_button: true
+facebook_like: true
+</code></p>
+
+<p><strong>添加新浪微博分享</strong><br/>
+参考这篇博客 <a href="http://programus.github.com/blog/2012/03/04/share-weibo-button/">为Octopress追加[分享到微博]按钮</a>。</p>
+
+<p>在<code>source/_includes/post/sharing.html</code>中，加入代码：
+```
+
+  &lt;iframe</p>
+
+<pre><code>allowTransparency="true"
+frameborder="0"
+scrolling="no"
+width="72" 
+height="16" 
+src=
+  "http://hits.sinajs.cn/A1/weiboshare.html?url=http://www.yanjiuyanjiu.comblog/categories/tools/atom.xml&amp;amp;type=3&amp;amp;count=1&amp;amp;language=zh_cn"&gt;
+</code></pre>
+
+<p>  </iframe>
+  
+```
+同时要在_config.yml文件中加入weibo_share 字段，设置其值为true。</p>
+
+<p>推荐使用jiathis.com 的分享按钮，集成了国内主流的网站，非常方便。获取JS代码后，替换掉上面代码即可。这时，可以在_config.yml 中，将twitter, google+ 和facebook like的按钮设置为false，取消显示，因为JiaThis已经集成了这三者，在本文底部可以看到效果。</p>
+
+<h2>社会化评论</h2>
+
+<p><del>启用Disqus，填入 short name即可。</del>Disqus在国外流行，在国内的加载速度太慢，而且只有twitter, facebook, g+，没有照顾到国内的用户习惯，因此替换成国内的<a href="www.duoshuo.com">多说</a>。参考这篇博客 <a href="http://ihavanna.org/Internet/2013-02/add-duoshuo-commemt-system-into-octopress.html">为 Octopress 添加多说评论系统</a>。不过配置略有不同：
+<code>
+duoshuo_comments: true
+duoshuo_short_name: yanjiuyanjiu
+duoshuo_asides_num: 5      # 侧边栏评论显示条目数
+duoshuo_asides_avatars: 1   # 侧边栏评论是否显示头像
+duoshuo_asides_time: 1      # 侧边栏评论是否显示时间
+duoshuo_asides_title: 1     # 侧边栏评论是否显示标题
+duoshuo_asides_admin: 0     # 侧边栏评论是否显示作者评论
+duoshuo_asides_length: 32   # 侧边栏评论截取的长度
+</code></p>
+
+<h2>设置固定链接</h2>
+
+<p>在 _config.yml 里，找到 permalink，设置如下：
+<code>
+permalink: pretty
+</code>
+参考官方文档<a href="https://github.com/mojombo/jekyll/wiki/Permalinks">jekyll Permalinks</a>。</p>
+
+<h2>侧边栏显示分类目录</h2>
+
+<p>使用第三方插件 <a href="https://github.com/tokkonopapa/octopress-tagcloud">octopress-tagcloud</a>。</p>
+
+<h2>中文目录</h2>
+
+<p>TODO</p>
+
+<h2>头导航菜单</h2>
+
+<p>头部导航菜单的修改可以打开并编辑<code>source/_includes/custom/navigation.html</code></p>
+
+<h2>一些汉化工作</h2>
+
+<p>在 _config.yml中，把 <code>Read on</code> 改为 "继续阅读"。</p>
+
+<h2>添加统计代码</h2>
+
+<p>填入 Google Analytics Tracking ID，例如 <code>UA-7583537-4</code>。</p>
+
+<h2>第三方主题和插件</h2>
+
+<p>主题：<a href="https://github.com/imathis/octopress/wiki/3rd-Party-Octopress-Themes">3rd Party Octopress Themes</a>
+插件：<a href="https://github.com/imathis/octopress/wiki/3rd-party-plugins">3rd party plugins</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[使用github + Octopress 搭建免费博客]]></title>
+    <link href="http://www.yanjiuyanjiu.com/tools/2013/04/02/using-github-and-octoperss-to-create-a-free-blog/"/>
+    <updated>2013-04-02T15:14:00+08:00</updated>
+    <id>http://www.yanjiuyanjiu.com/tools/2013/04/02/using-github-and-octoperss-to-create-a-free-blog</id>
+    <content type="html"><![CDATA[<h3>前提条件</h3>
+
+<p>注册一个github账号。</p>
+
+<p>任何资料，都不如<a href="http://octopress.org/docs/">Octopress</a> 和<a href="https://help.github.com/categories/20/articles">Github Pages</a>的官方文档，建议首先阅读官方文档。</p>
+
+<h3>GitHub Pages快速体验</h3>
+
+<p>在GitHub网站上，点击右上角的+号图标，创建一个新的Repo，Repository 的名字必须为 username.github.com。然后点击Settings进入该Repo的设置页面。看到"Automatic Page Generator"，说明这个Repo已经启用了GitHub Page。点击按钮进入设置。</p>
+
+<p>在"Create a GitHub User Page"填写一些基本信息，点击右下角的"Continue to Layout"。布局就用默认的，点击绿色的"Publish"按钮。</p>
+
+<p>大功告成，输入"username.github.com"，看到一个页面没？这就是你刚刚创建的一个页面。</p>
+
+<p>GitHub Pages分为两种类型，一种是"User and Org Pages"，一种是"Project Pages"。前者是用户的主页，一个用户仅有一个。后者是每个项目的主页。见github page官方的文档 <a href="https://help.github.com/articles/user-organization-and-project-pages">Creating Pages with the automatic generator</a>。</p>
+
+<p>本文创建的是第一种类型。</p>
+
+<p>这篇博客 <a href="http://www.ruanyifeng.com/blog/2012/08/blogging_with_jekyll.html">搭建一个免费的，无限流量的Blog----github Pages和Jekyll入门 - 阮一峰的网络日志</a>  很通俗易懂，不过它创建的是第二种类型，在一个Repo上新建了一个branch，并命名为gh-pages。</p>
+
+<p>下面正式开始折腾。</p>
+
+<!--more-->
+
+
+<h3>安装 msysgit并配置</h3>
+
+<ul>
+<li>下载<a href="http://msysgit.github.com/">msysgit</a>, 然后双击exe文件开始安装。</li>
+<li>双击桌面图标Git Bash，启动一个shell，输入如下命令进行配置：</li>
+</ul>
+
+
+<p>产生公钥ssh key，默认全部回车<br/>
+``` bash</p>
+
+<pre><code>ssh-keygen -C github-account-email -t rsa
+</code></pre>
+
+<p>```</p>
+
+<p>Note: username@email.com需要更换成你自己的在Github上注册的Email地址。
+这样会在用户目录(C:\Documents and Settings\UserName)下产生一个.ssh文件夹，里面为对应的SSH Keys，其中id_rsa.pub是Github需要的SSH公钥文件。</p>
+
+<p>在Github的Account Settings里选择SSH Keys，在其中将id_rsa.pub文件里内容拷贝至 其中的Key里。</p>
+
+<p>这样以后就可以直接使用Git和GitHub了。</p>
+
+<p>测试一下
+<code>bash  
+ssh -T git@github.com
+</code></p>
+
+<p>如果出现 hi xxx! You've successfully authenticated, bug GitHub does not povide shell access。说明SSH链接成功。</p>
+
+<p>接下来配置其他信息。
+``` bash</p>
+
+<pre><code>git config --global user.name github-username  
+git config --global user.email github-account-email  
+git config --global github.user github-username  
+git config --global credential.helper cache  
+git config --global credential.helper 'cache --timeout=3600'
+</code></pre>
+
+<p>```
+本节参考了 <a href="http://www.cnblogs.com/kysnail/archive/2012/03/16/2399589.html">msysGit 安装后的配置</a>。</p>
+
+<h3>克隆Repo到本地</h3>
+
+<p>在D盘新建一个文件夹，例如github。
+<code>bash
+cd d:\github  
+git clone git@github.com:username/username.github.com.git
+</code></p>
+
+<h3>安装Octopress</h3>
+
+<p>参考官方文档<a href="http://octopress.org/docs/setup/">setup</a>.<br/>
+<strong>安装Ruby</strong><br/>
+Octopress 2.0 需要 Ruby 1.9.3，安装其他版本的Ruby可能会行不通。</p>
+
+<p>如果是Linux，使用RVM来安装Ruby，如果是Windows，则使用<a href="http://rubyinstaller.org/downloads/">RubyInstaller</a>。在这个<a href="http://rubyinstaller.org/downloads/">下载页面</a>下载Ruby 1.9.3-p392和DevKit(带mingw的版本)，双击exe文件进行安装。<br/>
+<strong>安装DevKit</strong><br/>
+双击DevKit的exe文件，解压到C:\DevKit
+<code>bash  
+cd C:\DevKit
+ruby dk.rb init
+ruby dk.rb install
+gem install rdiscount --platform=ruby
+</code></p>
+
+<p><strong>安装Octopress</strong><br/>
+下载Octopress。
+<code>bash  
+cd d:\github  
+git clone git://github.com/imathis/octopress.git octopress  
+cd octopress  
+ruby --version  # Should report Ruby 1.9.3
+rbenv rehash  # 可选，如果安装了rbenv，就需要执行这一步
+</code></p>
+
+<p><strong>注意</strong>: rubygems.org在中国的下载速度很慢，会导致bundle install这一步下载gems的速度很慢，可能需要等待几个小时。因此需要事先切换到国内的镜像源。</p>
+
+<p>用记事本打开octopress目录下的Gemfile，将第一行修改为</p>
+
+<blockquote><p>source "http://ruby.taobao.org"</p></blockquote>
+
+<p>然后可以开始安装依赖的gems了。
+<code>bash  
+bundle install
+</code><br/>
+正常的话应该可以看到一行行的Installing xxx，表示正在安装所需要的gem。</p>
+
+<p>安装默认的Octopress主题。
+<code>bash  
+rake install
+</code><br/>
+如果这一步出现问题，则试一下 bundle update再执行 rake install。</p>
+
+<h3>部署到GitHub</h3>
+
+<p>将Octopress和自己的Repo关联起来
+<code>bash  
+rake setup_github_pages
+</code><br/>
+生成JeKyll所需要的静态文件
+<code>bash  
+rake generate
+</code><br/>
+预览
+<code>bash  
+rake preview
+</code></p>
+
+<p>部署到github
+<code>bash  
+rake deploy
+</code></p>
+
+<p><strong>终止预览</strong><br/>
+启用<code>rake preview</code>后，直接按<code>ctrl+c</code>无法正常终止该进程，老提示<code>终止批处理操作吗（Y/N）？</code>，这时候可以另开一个Git Bash窗口，使用<code>ps aux | grep ruby</code>命令找出<code>pid(第一个数值)</code>，然后执行<code>kill &lt;pid&gt;</code>来停止该进程(参考<a href="http://linuxabc.heroku.com/blog/octopress-on-heroku-2">octopress on heroku (二)</a>)。<br/>
+<strong>UTF-8 编码</strong><br/>
+Windows预设是Big5编码,所以要想’rake generate’的时候不报编码错误,我们需要设置一下编码! 方法有两个,一个是直接在Git Bash中设置环境:
+<code>bash  
+set LANG=zh_CN.UTF-8  
+set LC_ALL=zh_CN.UTF-8
+</code><br/>
+还有一个是在环境变量中加入这两个变量: 右击电脑->属性，新添加LANG和LC_ALL两个环境变量，值为为zh_CN.UTF-8.</p>
+
+<p>然后在Git Bash中做如下设置:
+<code>bash  
+echo "export LANG LC_ALL" &gt; ~/.bash\_profile
+</code></p>
+
+<h3>绑定域名</h3>
+
+<p>参考官方文档<a href="https://help.github.com/articles/setting-up-a-custom-domain-with-pages">Setting up a custom domain with Pages</a>。</p>
+
+<p>非常简单，在master分支的根目录，添加一个文本文件，名字为CNAME，里面的内容就是要绑定的域名，例如本博客CNAME文件的内容是：</p>
+
+<blockquote><p>www.yanjiuyanjiu.com</p></blockquote>
+
+<p>然后去DNSPod，添加一条CNAME，指向 username.github.com。</p>
+
+<p>很多人喜欢去掉www，用xxx.com的形式来访问，不过大家去试一下，在浏览器输入qq.com, douban.com, baidu.com，发现都会自动跳转到www，也就是说这些大网站，目前也是用www.xxx.com的域名为主，因此建议大家也这样做。</p>
+
+<p>用www, blog之类的二级域名，还有个好处是方便升级，比如新版本用www1指向，等测试完成后，改成www指向，无缝切换。</p>
+
+<p>在使用Octopress的时候，每次<code>rake generate</code>, <code>rake deploy</code>后，master分支下面的CNAME文件消失了。正确的做法是，在 source 目录下新建CNAME文件，<code>rake generate</code> 会自动拷贝到\public目录下，<code>rake deploy</code>再从public目录到_deploy目录，并提交到master分支。</p>
+
+<h3>参考资料</h3>
+
+<ol>
+<li><a href="http://corey600.github.com/blog/2013/02/28/use-github-and-octopress-create-blog/">【原创】用Github和Octopress搭建博客</a></li>
+<li><a href="http://www.blogjava.net/lishunli/archive/2012/03/18/372115.html">试用Octopress</a></li>
+<li><a href="http://rubyer.me/blog/134/">windows下安装DevKit</a></li>
+<li><a href="http://blog.sprabbit.com/blog/2012/12/21/recover-octopress/">在新Windows系统中重新部署Octopress</a></li>
+<li><a href="http://hivan.me/octopress-install-to-windows8/">Windows 8安装Octopress记录</a></li>
+<li><a href="http://blog.sprabbit.com/blog/2012/03/23/octopress/">关于在64位 Windows 7 中部署中文化的Octopress</a></li>
+</ol>
+
+]]></content>
+  </entry>
+  
+</feed>
