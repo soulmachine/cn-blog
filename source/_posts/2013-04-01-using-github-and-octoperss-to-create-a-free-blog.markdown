@@ -154,7 +154,7 @@ set LC_ALL=zh_CN.UTF-8
 
 然后在Git Bash中做如下设置:
 ``` bash  
-echo "export LANG LC_ALL" > ~/.bash\_profile
+echo "export LANG LC_ALL" > ~/.bash_profile
 ```
   
 ### 绑定域名
