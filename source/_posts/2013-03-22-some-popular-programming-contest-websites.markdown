@@ -8,108 +8,282 @@ categories: algorithm
 今天把各个主流的编程网站仔细对比了一下，下面从各个角度对比一下这些编程竞赛网站。
 
 ##分类和排名
-<table cellspacing="0" cellpadding="0" border="1">
+<table border="1" cellspacing="0" cellpadding="0">
 <tbody>
 <tr>
-<td valign="top" width="180"><a name="OLE_LINK1"></a><strong>网站地址</strong></td>
-<td valign="top" width="47"><strong>类别</strong></td>
-<td valign="top" width="33"><strong>PR</strong></td>
-<td valign="top" width="62"><strong>ATR</strong></td>
-<td valign="top" width="48"><strong>QF</strong></td>
-<td valign="top" width="147"><strong>主办方</strong></td>
-<td valign="top" width="74"><strong>备注</strong></td>
-</tr>
-<tr>
-<td valign="top" width="180">TopCoder <a href="http://www.topcoder.com/" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://www.topcoder.com']);">http://www.topcoder.com/</a></td>
-<td valign="top" width="47">综合</td>
-<td valign="top" width="33">6</td>
-<td valign="top" width="62">33,586</td>
-<td valign="top" width="48">4167</td>
-<td valign="top" width="147">TopCoder公司</td>
-<td valign="top" width="74">&nbsp;</td>
-</tr>
-<tr>
-<td valign="top" width="180">CodeChef <a href="http://www.codechef.com/" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://www.codechef.com']);">http://www.codechef.com/</a></td>
-<td valign="top" width="47">综合</td>
-<td valign="top" width="33">6</td>
-<td valign="top" width="62">41,217</td>
-<td valign="top" width="48">5758</td>
-<td valign="top" width="147">Directi公司</td>
-<td valign="top" width="74">&nbsp;</td>
-</tr>
-<tr>
-<td valign="top" width="180">CodeForces <a href="http://codeforces.com/" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://codeforces.com']);">http://codeforces.com/</a></td>
-<td valign="top" width="47">综合</td>
-<td valign="top" width="33">5</td>
-<td valign="top" width="62">73,012</td>
-<td valign="top" width="48">599</td>
-<td valign="top" width="147">CodeForces公司</td>
-<td valign="top" width="74">&nbsp;</td>
-</tr>
-<tr>
-<td valign="top" width="180">SPOJ <a href="http://www.spoj.com/" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://www.spoj.com']);">http://www.spoj.com/</a></td>
-<td valign="top" width="47">ACM</td>
-<td valign="top" width="33">3</td>
-<td valign="top" width="62">75,653</td>
-<td valign="top" width="48">1520</td>
-<td valign="top" width="147">Sphere Research Labs</td>
-<td valign="top" width="74">&nbsp;</td>
-</tr>
-<tr>
-<td valign="top" width="180">POJ <a href="http://poj.org/" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://poj.org']);">http://poj.org/</a></td>
-<td valign="top" width="47">ACM</td>
-<td valign="top" width="33">7</td>
-<td valign="top" width="62">364,925</td>
-<td valign="top" width="48">N/A</td>
-<td valign="top" width="147">北京大学</td>
-<td valign="top" width="74">&nbsp;</td>
-</tr>
-<tr>
-<td valign="top" width="180">ZOJ <a href="http://acm.zju.edu.cn" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://acm.zju.edu.cn']);">http://acm.zju.edu.cn</a></td>
-<td valign="top" width="47">ACM</td>
-<td valign="top" width="33">6</td>
-<td valign="top" width="62">N/A</td>
-<td valign="top" width="48">N/A</td>
-<td valign="top" width="147">浙江大学</td>
-<td valign="top" width="74">&nbsp;</td>
-</tr>
-<tr>
-<td valign="top" width="180">UVA OJ <a href="http://uva.onlinejudge.org" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://uva.onlinejudge.org']);">http://uva.onlinejudge.org</a></td>
-<td valign="top" width="47">ACM</td>
-<td valign="top" width="33">6</td>
-<td valign="top" width="62">166,991</td>
-<td valign="top" width="48">N/A</td>
-<td valign="top" width="147">University of Virginia</td>
-<td valign="top" width="74">&nbsp;</td>
-</tr>
-<tr>
-<td valign="top" width="180">SGU OJ
-<p><a href="http://acm.sgu.ru/" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://acm.sgu.ru']);">http://acm.sgu.ru/</a></p>
+<td valign="top" width="94">
+<p><a name="OLE_LINK30"></a><a name="OLE_LINK1"><b>网站地址</b></a></p>
 </td>
-<td valign="top" width="47">ACM</td>
-<td valign="top" width="33">5</td>
-<td valign="top" width="62">194,881</td>
-<td valign="top" width="48">N/A</td>
-<td valign="top" width="147">Saratov State University</td>
-<td valign="top" width="74">&nbsp;</td>
+<td valign="top" width="57">
+<p><b>类别</b></p>
+</td>
+<td valign="top" width="38">
+<p><b>PR</b></p>
+</td>
+<td valign="top" width="60">
+<p><b>ATR</b></p>
+</td>
+<td valign="top" width="44">
+<p><b>QF</b></p>
+</td>
+<td valign="top" width="151">
+<p><b>主办方</b></p>
+</td>
+<td valign="top" width="47">
+<p><b>备注</b></p>
+</td>
 </tr>
 <tr>
-<td valign="top" width="180">HackerRank <a href="https://www.hackerrank.com/" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://www.hackerrank.com']);">https://www.hackerrank.com/</a></td>
-<td valign="top" width="47">综合</td>
-<td valign="top" width="33">5</td>
-<td valign="top" width="62">126,192</td>
-<td valign="top" width="48">56</td>
-<td valign="top" width="147">InterviewStreet公司</td>
-<td valign="top" width="74">&nbsp;</td>
+<td valign="top" width="94">
+<p><a name="_Hlk352791085"></a><a href="http://www.topcoder.com/" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://www.topcoder.com']);">TopCoder </a></p>
+</td>
+<td valign="top" width="57">
+<p>综合</p>
+</td>
+<td valign="top" width="38">
+<p>6</p>
+</td>
+<td valign="top" width="60">
+<p>33,586</p>
+</td>
+<td valign="top" width="44">
+<p>4167</p>
+</td>
+<td valign="top" width="151">
+<p>TopCoder公司</p>
+</td>
+<td valign="top" width="47">&nbsp;</td>
 </tr>
 <tr>
-<td valign="top" width="180">Project Euler <a href="http://projecteuler.net/" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://projecteuler.net']);">http://projecteuler.net/</a></td>
-<td valign="top" width="47">数学</td>
-<td valign="top" width="33">6</td>
-<td valign="top" width="62">53,854</td>
-<td valign="top" width="48">428</td>
-<td valign="top" width="147">Project Euler公司</td>
-<td valign="top" width="74">&nbsp;</td>
+<td valign="top" width="94">
+<p><a href="http://www.codechef.com/" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://www.codechef.com']);">CodeChef </a></p>
+</td>
+<td valign="top" width="57">
+<p>综合</p>
+</td>
+<td valign="top" width="38">
+<p>6</p>
+</td>
+<td valign="top" width="60">
+<p>41,217</p>
+</td>
+<td valign="top" width="44">
+<p>5758</p>
+</td>
+<td valign="top" width="151">
+<p>Directi公司</p>
+</td>
+<td valign="top" width="47">&nbsp;</td>
+</tr>
+<tr>
+<td valign="top" width="94">
+<p><a href="http://codeforces.com/" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://codeforces.com']);">CodeForces </a></p>
+</td>
+<td valign="top" width="57">
+<p>综合</p>
+</td>
+<td valign="top" width="38">
+<p>5</p>
+</td>
+<td valign="top" width="60">
+<p>73,012</p>
+</td>
+<td valign="top" width="44">
+<p>599</p>
+</td>
+<td valign="top" width="151">
+<p>CodeForces公司</p>
+</td>
+<td valign="top" width="47">&nbsp;</td>
+</tr>
+<tr>
+<td valign="top" width="94">
+<p><a href="http://www.spoj.com/" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://www.spoj.com']);">SPOJ</a></p>
+</td>
+<td valign="top" width="57">
+<p>ACM</p>
+</td>
+<td valign="top" width="38">
+<p>3</p>
+</td>
+<td valign="top" width="60">
+<p>75,653</p>
+</td>
+<td valign="top" width="44">
+<p>1520</p>
+</td>
+<td valign="top" width="151">
+<p>Sphere Research Labs</p>
+</td>
+<td valign="top" width="47">&nbsp;</td>
+</tr>
+<tr>
+<td valign="top" width="94">
+<p><a href="http://poj.org/" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://poj.org']);">POJ</a></p>
+</td>
+<td valign="top" width="57">
+<p>ACM</p>
+</td>
+<td valign="top" width="38">
+<p>7</p>
+</td>
+<td valign="top" width="60">
+<p>364,925</p>
+</td>
+<td valign="top" width="44">
+<p>N/A</p>
+</td>
+<td valign="top" width="151">
+<p>北京大学</p>
+</td>
+<td valign="top" width="47">&nbsp;</td>
+</tr>
+<tr>
+<td valign="top" width="94">
+<p><a href="http://acm.zju.edu.cn" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://acm.zju.edu.cn']);">ZOJ</a></p>
+</td>
+<td valign="top" width="57">
+<p>ACM</p>
+</td>
+<td valign="top" width="38">
+<p>6</p>
+</td>
+<td valign="top" width="60">
+<p>N/A</p>
+</td>
+<td valign="top" width="44">
+<p>N/A</p>
+</td>
+<td valign="top" width="151">
+<p>浙江大学</p>
+</td>
+<td valign="top" width="47">&nbsp;</td>
+</tr>
+<tr>
+<td valign="top" width="94">
+<p><a href="http://uva.onlinejudge.org/" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://uva.onlinejudge.org']);">UVA OJ</a></p>
+</td>
+<td valign="top" width="57">
+<p>ACM</p>
+</td>
+<td valign="top" width="38">
+<p>6</p>
+</td>
+<td valign="top" width="60">
+<p>166,991</p>
+</td>
+<td valign="top" width="44">
+<p>N/A</p>
+</td>
+<td valign="top" width="151">
+<p>University of Virginia</p>
+</td>
+<td valign="top" width="47">&nbsp;</td>
+</tr>
+<tr>
+<td valign="top" width="94">
+<p><a href="http://acm.sgu.ru/" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://acm.sgu.ru']);">SGU OJ</a></p>
+</td>
+<td valign="top" width="57">
+<p>ACM</p>
+</td>
+<td valign="top" width="38">
+<p>5</p>
+</td>
+<td valign="top" width="60">
+<p>194,881</p>
+</td>
+<td valign="top" width="44">
+<p>N/A</p>
+</td>
+<td valign="top" width="151">
+<p>Saratov State University</p>
+</td>
+<td valign="top" width="47">&nbsp;</td>
+</tr>
+<tr>
+<td valign="top" width="94">
+<p><a href="https://www.hackerrank.com/" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://www.hackerrank.com']);">HackerRank</a></p>
+</td>
+<td valign="top" width="57">
+<p>综合</p>
+</td>
+<td valign="top" width="38">
+<p>5</p>
+</td>
+<td valign="top" width="60">
+<p>126,192</p>
+</td>
+<td valign="top" width="44">
+<p>56</p>
+</td>
+<td valign="top" width="151">
+<p>InterviewStreet公司</p>
+</td>
+<td valign="top" width="47">&nbsp;</td>
+</tr>
+<tr>
+<td valign="top" width="94">
+<p><a href="http://projecteuler.net/" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://projecteuler.net']);">Project Euler</a></p>
+</td>
+<td valign="top" width="57">
+<p>数学</p>
+</td>
+<td valign="top" width="38">
+<p>6</p>
+</td>
+<td valign="top" width="60">
+<p>53,854</p>
+</td>
+<td valign="top" width="44">
+<p>428</p>
+</td>
+<td valign="top" width="151">
+<p>Project Euler公司</p>
+</td>
+<td valign="top" width="47">&nbsp;</td>
+</tr>
+<tr>
+<td valign="top" width="94">
+<p><a href="http://www.careercup.com/" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://www.careercup.com']);">CareerUp</a></p>
+</td>
+<td valign="top" width="57">
+<p>面试</p>
+</td>
+<td valign="top" width="38">
+<p>4</p>
+</td>
+<td valign="top" width="60">
+<p>51,089</p>
+</td>
+<td valign="top" width="44">
+<p>654</p>
+</td>
+<td valign="top" width="151">
+<p>CareerUp公司</p>
+</td>
+<td valign="top" width="47">&nbsp;</td>
+</tr>
+<tr>
+<td valign="top" width="94">
+<p><a href="http://leetcode.com/" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://leetcode.com']);">LeetCode</a></p>
+</td>
+<td valign="top" width="57">
+<p>面试</p>
+</td>
+<td valign="top" width="38">
+<p>4</p>
+</td>
+<td valign="top" width="60">
+<p>188,196</p>
+</td>
+<td valign="top" width="44">
+<p>N/A</p>
+</td>
+<td valign="top" width="151">
+<p>LeetCode公司</p>
+</td>
+<td valign="top" width="47">&nbsp;</td>
 </tr>
 </tbody>
 </table>
@@ -592,3 +766,6 @@ categories: algorithm
 
 可以看出ACRush和Tourist使用C++，Petr和Egor使用Java。从我的亲身经验，周围参加ACM的同学大部分用C++。不过，注意一点，大部分人认为Java慢，这在五六年前是对的，但是到了在现在，JVM经过各大IT巨头的重金打造，性能已经跟C++一样持平了，至少不再有数量级上的差距。因此Java也是一个很好地选择。
 
+
+##更新历史
+2013-04-06，从 [加州求职记](http://blog.liancheng.info/job-hunting-in-california/) 得知了两个专门针对面试的新兴网站，[CareerCup](http://www.careercup.com/) 和 [LeetCode](http://leetcode.com/onlinejudge)，跟 InterviewStreet 很类似。

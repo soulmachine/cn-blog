@@ -4,7 +4,10 @@ title: "机器学习的一些通俗易懂的tutorial"
 date: 2013-03-27 21:50
 comments: true
 categories: machine-learning
+published: true
 ---
+以下记录了我的学习历程，按我的阅读顺序排序。
+
 ##距离和相似度度量
 [距离和相似度度量 » webdataanalysis.net](http://webdataanalysis.net/reference-and-source/distance-and-similarity/)
 
