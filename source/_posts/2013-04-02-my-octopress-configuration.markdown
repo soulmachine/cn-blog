@@ -212,6 +212,13 @@ $header-subtitle-font-family: arial, sans-serif;
 主题：[3rd Party Octopress Themes](https://github.com/imathis/octopress/wiki/3rd-Party-Octopress-Themes)  
 插件：[3rd party plugins](https://github.com/imathis/octopress/wiki/3rd-party-plugins)
 
+##TODO
+修改字体大小
+
+添加TAG支持
+
+修改header，将导航和header合并，减少header的高度
+
 ##参考资料
 1. [Octopress主题改造](http://shanewfx.github.com/blog/2012/08/13/improve-blog-theme/)
 1. 

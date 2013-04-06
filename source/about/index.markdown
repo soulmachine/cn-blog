@@ -13,6 +13,8 @@ footer: true
 Twitter: [@soulmachine](https://twitter.com/#!/soulmachine)  
 其他：[Github](https://github.com/soulmachine), [Google+](https://plus.google.com/103519507226474510310), [LinkedIn](http://www.linkedin.com/in/soulmachine), [Quora](http://www.quora.com/Jason-Day-2)
 
+Bitcoin: 1EHXT3K4rH4hGH3Vd4En5o6GqwhvELHUcq
+
 ##机器学习读书会
 我每周在清华组织一个机器学习读书会，欢迎各位前来交流切磋。
 

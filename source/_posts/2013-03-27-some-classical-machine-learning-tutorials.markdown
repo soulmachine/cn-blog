@@ -34,9 +34,15 @@ categories: machine-learning
 [2002. Lindsay I Smith. A tutorial on Principal Components Analysis](http://www.ce.yildiz.edu.tr/personal/songul/file/1097/principal_components.pdf)
 
 
-##EM(Expectation Maximization)
+##期望最大化(EM, Expectation Maximization)
 [2009. Sean Borman. The Expectation Maximization Algorithm A short tutorial](http://www.seanborman.com/publications/EM_algorithm.pdf)
 
+李航.《统计学习方法》，P155 第9章 EM算法及其推广. 2012.
 
-##SVM(Support Vector Machines)
+##支持向量机(SVM, Support Vector Machines)
 [Andrew Ng. CS229 Lecture notes Support Vector Machines](http://cs229.stanford.edu/notes/cs229-notes3.pdf)
+
+##条件随机场(CRF, Conditional Random Field)
+[Introduction to Conditional Random Fields](http://blog.echen.me/2012/01/03/introduction-to-conditional-random-fields/)
+
+李航.《统计学习方法》，P192 第11章 条件随机场. 2012.
