@@ -45,27 +45,32 @@ dev@master:~$ sudo vi /etc/hosts
 ```
 添加三行内容
 
-> 192.168.1.131 master  
-> 192.168.1.133 slave01  
-> 192.168.1.134 slave02  
-
+``` bash
+192.168.1.131 master  
+192.168.1.133 slave01  
+192.168.1.134 slave02  
+```
 **注意一定要注释掉**
 
-> \# 127.0.1.1      bogon.localdomain       bogon
+```
+# 127.0.1.1      bogon.localdomain       bogon
+```
 
 最后hosts文件内容如下：
 
-> 127.0.0.1       localhost
-> \# 127.0.1.1      bogon.localdomain       bogon
-> 192.168.1.131 master
-> 192.168.1.133 slave01
-> 192.168.1.134 slave02
-> \# The following lines are desirable for IPv6 capable hosts
-> ::1     ip6-localhost ip6-loopback
-> fe00::0 ip6-localnet
-> ff00::0 ip6-mcastprefix
-> ff02::1 ip6-allnodes
-> ff02::2 ip6-allrouters
+``` bash
+127.0.0.1       localhost
+# 127.0.1.1      bogon.localdomain       bogon
+192.168.1.131 master
+192.168.1.133 slave01
+192.168.1.134 slave02
+# The following lines are desirable for IPv6 capable hosts
+::1     ip6-localhost ip6-loopback
+fe00::0 ip6-localnet
+ff00::0 ip6-mcastprefix
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
+```
 
 * 将hosts文件拷贝到另外两台台机器上，覆盖原来的hosts文件
 
