@@ -9,7 +9,7 @@ footer: true
 ##About Me
 **Name**:       戴方勤（Fangqin, Dai）  
 **Born**:       1985, China  
-**Contact me**: [Email](mailto:soulmachine@gmail.com) [Weibo](http://weibo.com/soulmachine) [Twitter](https://twitter.com/#!/soulmachine) [LinkedIn](http://www.linkedin.com/in/soulmachine) [Google+](https://plus.google.com/103519507226474510310)  
+**Contact me**: [Weibo](http://weibo.com/soulmachine) [Twitter](https://twitter.com/#!/soulmachine) [LinkedIn](http://www.linkedin.com/in/soulmachine) [Google+](https://plus.google.com/103519507226474510310)  
 
 **Experiences**:  
 2011.09 -- 2014.06, Master, Tsinghua University  

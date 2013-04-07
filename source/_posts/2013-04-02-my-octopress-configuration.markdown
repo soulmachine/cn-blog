@@ -7,6 +7,7 @@ categories: tools
 ---
 ## 实时预览
 使用如下命令可以实现实时预览：
+
 ``` bash
 rake preview  
 ```
@@ -24,7 +25,8 @@ Octopress支持多种方式嵌入代码，可以直接嵌入代码，也可以�
 
 ###启用MathJax
 在`source/_includes/custom/footer.html`的第一行加入如下代码：
-```
+
+``` javascript
 <!-- mathjax config similar to math.stackexchange -->
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
@@ -41,21 +43,67 @@ MathJax.Hub.Config({
 </script>
 <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML" type="text/javascript"></script>
 ```
+
 这样就引入了MathJax的JS包，可以直接在markdown文件里直接写公式了，例如 $\dfrac {\pi}{2}$。
 
-上面的代码也可以在head.html里添加，不过这样会使得页面的加载速度变慢。
+上面的代码也可以在`source/_includes/custom/header.html`里添加，不过这样会使得页面的加载速度变慢。还可以在`source/_layouts/default.html`里添加。
 
 <!--more-->
 
-本节参考了[Writing Math Equations on Octopress](http://www.idryman.org/blog/2012/03/10/writing-math-equations-on-octopress/)，不过省去了安装kramdown的步骤，因为引入了MathJax的JS后，就可以直接写公式了，可以看看[edchen博客的_config.yml](https://github.com/echen/echen.github.com/blob/source/_config.yml)，依然用的rdiscount，再看看它的网页源码，引用了MathJax的JS。
+有一个问题，rdiscount这个解析器，对 mathjax 大部分支持，某些细节处理的不好，举个例子，它会在动把公式中的 `^n`转换成`<sup>n</sup>`，例如`$2^n$`会解析成`$2<sup>n</sup>$`，这样就破坏了整个公式，导致公式无法解析。参考[这里](http://christopherpoole.github.io/using-mathjax-on-github-pages/)一段话：
+> as discount for example automatically replaces `x^2` with `x<sup>2</sup>` which interrupts the MathJax rendering.
 
-**右击公式全屏空白**：这时候右击公式，全屏空白。解决这个问题很简单，参考[在Octopress中使用Latex公式](http://jasonllinux.github.com/blog/2012/11/06/write-latex-in-octopress/)，只需在 `sass/base/_theme.scss`添加"#main"即可：
+因此要换一个解析器，[Maruku](http://maruku.rubyforge.org/) 和 [Kramdown](http://kramdown.rubyforge.org/) 都可以，由于Maruku主页PR=4，Kramdown的主页PR=5，我选择了Kramdown。
+
+**用Kramdown代替Rdiscount**  
+修改Gemfile，增加一行：
+
+```
+gem 'kramdown', '~> 0.14'
+```
+很多博客都说要配套安装coderay这个gem，其实是没有必要的，只要代码块以 \`\`\` 开始和结束，自带的pygments就能实现代码高亮。
+
+在Git Bash输入如下命令：
+
+``` bash
+bundle install
+```
+就会自动安装kramdown。
+
+然后在\_config.yml 文件中，见markdown: rdiscount 修改为  markdown: kramdown。
+
+使用kramdown，感觉它的语法要求比rdiscout严格，例如每个代码块开头，必须有一个空行，否则高亮就会失败，大家可以试试看。每个标题掐面，也必须有一个开头。
+
+kramdown的两种公式，display和inline，都是以`$$`开头和结尾的，display模式时，`$$`要单独占一行。这跟标准的$$\latex$$有点不一样。参考[这里](http://kqueue.org/blog/2012/01/05/hello-world/)。
+
+**右击公式全屏空白**：这时候右击公式，全屏空白。解决这个问题很简单，只需在 `sass/base/_theme.scss`添加"#main"即可：
+
 ```
 body {
   > div#main {
     background: $sidebar-bg $noise-bg;
 ```
 看blog.echen.me的[改动](https://github.com/echen/echen.github.com/commit/e0f9b550e564c39239e2dbe10ce8d20e2b1102e8#sass/base/_layout.scss)，两处都改为了 div#main，暂时不知道为什么，不过我也两处都改。
+
+本节参考了[Writing Math Equations on Octopress](http://www.idryman.org/blog/2012/03/10/writing-math-equations-on-octopress/) 和 [在Octopress中使用Latex公式](http://jasonllinux.github.com/blog/2012/11/06/write-latex-in-octopress/)。
+
+##kramdown的扩展语法
+kramdown扩展了标准markdown的语法，有很多使用的功能。[语法见官网文档](http://kramdown.rubyforge.org/syntax.html)。这里选一些我常用的。
+
+**脚注(footnote)**  
+脚注定义是：`[^1]:`，数字可以改变，引用语法是`[^1]`。没有被引用到的参考文献，会被忽略掉。
+
+**表格**  
+一下是一个示例：
+
+	|-----------------+------------+-----------------+----------------|
+	| Default aligned |Left aligned| Center aligned  | Right aligned  |
+	|-----------------|:-----------|:---------------:|---------------:|
+	| First body part |Second cell | Third cell      | fourth cell    |
+	| Second line     |foo         | **strong**      | baz            |
+	| Third line      |quux        | baz             | bar            |
+	|-----------------+------------+-----------------+----------------|
+更详细说明见官网。
 
 ## 首页只显示部分正文(Excerpts)
 Octopress中，可以使用 `<!--more-->`，这样首页只显示一部分正文，并在每篇文章底下加一个Read on超链接。
@@ -64,11 +112,13 @@ Octopress中，可以使用 `<!--more-->`，这样首页只显示一部分正文
 使用[Image Tag](http://octopress.org/docs/plugins/image-tag/)。
 
 语法
+
 ```
 {% img [class names] /path/to/image [width] [height] [title text [alt text]] %}
 ```
 
 例子
+
 ```
 {% img http://placekitten.com/890/280 %}
 {% img left http://placekitten.com/320/250 Place Kitten #2 %}
@@ -78,6 +128,7 @@ Octopress中，可以使用 `<!--more-->`，这样首页只显示一部分正文
 
 ## 添加about me 边栏
 编辑 source\_includes\custom\asides\about.html，内容如下：
+
 ```
 <section>
   <h1>About Me</h1>
@@ -91,6 +142,7 @@ Octopress中，可以使用 `<!--more-->`，这样首页只显示一部分正文
 在 _config.yml 的 default_asides 里添加 custom/asides/about.html。
 
 ##添加about页面
+
 ```
 rake new_page[about]
 ```
@@ -102,6 +154,7 @@ rake new_page[about]
 
 ## 社会化分享
 启用 twitter 分享， facebook like 和Google +1，设置如下：
+
 ```
 google_plus_one: true
 twitter_tweet_button: true
@@ -112,7 +165,8 @@ facebook_like: true
 参考这篇博客 [为Octopress追加[分享到微博]按钮](http://programus.github.com/blog/2012/03/04/share-weibo-button/)。
 
 在`source/_includes/post/sharing.html`中，加入代码：
-```
+
+``` html
 {% if site.weibo_share %}
   <iframe 
     allowTransparency="true"
@@ -131,6 +185,7 @@ facebook_like: true
 
 ## 社会化评论
 <del>启用Disqus，填入 short name即可。</del>Disqus在国外流行，在国内的加载速度太慢，而且只有twitter, facebook, g+，没有照顾到国内的用户习惯，因此替换成国内的[多说](www.duoshuo.com)。参考这篇博客 [为 Octopress 添加多说评论系统](http://ihavanna.org/Internet/2013-02/add-duoshuo-commemt-system-into-octopress.html)。不过配置略有不同：
+
 ```
 duoshuo_comments: true
 duoshuo_short_name: yanjiuyanjiu
@@ -144,6 +199,7 @@ duoshuo_asides_length: 32   # 侧边栏评论截取的长度
 
 ## 设置固定链接
 在 _config.yml 里，找到 permalink，设置如下：
+
 ```
 permalink: /blog/:year:month:day/ 
 ```
@@ -156,6 +212,7 @@ permalink: /blog/:year:month:day/
 
 ##友情链接
 在`source\_includes\custom\asides` 目录下添加一个blogroll.html文件，模仿about.html，添加一些友情链接，例如：
+
 ```
 <section>
   <h1>友情链接</h1>
@@ -184,6 +241,7 @@ TODO
 Octopresss默认使用的是 google webfonts，见`source/_includes/custom/head.html`里的两行代码。Google Webfonts是个好东西，但遗憾的是它没有中文字体。所以你用**粗体**，发现并没有变粗，就是这个原因。
 
 首先，将head.html中的两行代码注释掉，省去了加载字体，加快网页加载速度。
+
 ```
 <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <!-- <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css"> -->
@@ -191,6 +249,7 @@ Octopresss默认使用的是 google webfonts，见`source/_includes/custom/head.
 
 ```
 参考 这篇博客 [最佳 Web 中文默认字体](http://lifesinger.wordpress.com/2011/04/06/best-web-default-fonts/)，在`sass/custom/_fonts.scss`中添加如下三行代码：
+
 ```
 $heading-font-family: arial, sans-serif;
 $header-title-font-family: arial, sans-serif;
