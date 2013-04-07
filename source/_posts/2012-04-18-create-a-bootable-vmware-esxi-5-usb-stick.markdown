@@ -40,6 +40,7 @@ categories: tools
 5. 大功告成
 6. 注意，本文主要参考了末尾的参考资料。但是不需要原文的第4步和第5步。因为用普通的 “interactive installation”安装就很方便了。第4步和第5步用于一键自动化安装，适用于大量安装的情况，这里不详细讨论。 
 见文章末尾的评论，
+
 > @Cesar: if you do not edit the boot.cfg with the “ks=usb” option and select a interactive installation it will work。
 
 **参考资料**  

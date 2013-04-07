@@ -74,7 +74,7 @@ bundle install
 
 使用kramdown，感觉它的语法要求比rdiscout严格，例如每个代码块开头，必须有一个空行，否则高亮就会失败，大家可以试试看。每个标题掐面，也必须有一个开头。
 
-kramdown的两种公式，display和inline，都是以`$$`开头和结尾的，display模式时，`$$`要单独占一行。这跟标准的$$\latex$$有点不一样。参考[这里](http://kqueue.org/blog/2012/01/05/hello-world/)。
+kramdown的两种公式，display和inline，都是以`$$`开头和结尾的，display模式时，`$$`要单独占一行。这跟标准的LaTex有点不一样。参考[这里](http://kqueue.org/blog/2012/01/05/hello-world/)。
 
 **右击公式全屏空白**：这时候右击公式，全屏空白。解决这个问题很简单，只需在 `sass/base/_theme.scss`添加"#main"即可：
 

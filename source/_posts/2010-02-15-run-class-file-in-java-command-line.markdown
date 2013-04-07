@@ -6,6 +6,7 @@ comments: true
 categories: language
 ---
 今天碰到了一个很变态的问题，写了一个很简单的HelloWord.java，内容如下：
+
 ``` java
 package com.yanjiuyanjiu;
 

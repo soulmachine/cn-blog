@@ -31,6 +31,7 @@ Java Image I/O API 主要在 javax.imageio 下面。JDK已经内置了常见图�
 <!--more-->
 
 下面这段代码可以展示，JDK内置支持的图片格式。
+
 ``` java
 import javax.imageio.*;
 import java.util.Arrays;
@@ -52,6 +53,7 @@ System.out.println(“Writers:  ” + Arrays.asList(writeFormats));
 ##3.1 读写图片
 javax.imageio.ImageIO类提供了一组静态方法进行最简单的图像I/O操作。
 读取一个标准格式(GIF, PNG, or JPEG)的图片很简单：
+
 ``` java
 File f = new File(“c:imagesmyimage.gif”);
 BufferedImage bi = ImageIO.read(f);
@@ -61,6 +63,7 @@ Java Image I/O API 会自动探测图片的格式并调用对应的插件进行�
 插件，新的格式会被自动理解，程序代码不需要改变。
 
 写图片同样简单：
+
 ``` java
 BufferedImage bi;
 File f = new File(“c:imagesmyimage.png”);
@@ -75,6 +78,7 @@ ImageWriter。
 ##3.3 ImageReader 类
 与其用ImageIO类来进行所有的解码操作，不如用ImageIO类去得到一个ImageReader对象，
 再用这个对象去进行读操作：
+
 ``` java
 Iterator readers = ImageIO.getImageReadersByFormatName(“gif”);
 ImageReader reader = (ImageReader)readers.next();
@@ -89,6 +93,7 @@ I/O API定义的专用输入源。
 
 获得一个ImageInputStream 是简单的。给定一个File或InputStream，一个
 ImageInputStream对象可以通过调用如下函数产生：
+
 ``` java
 Object source; // File or InputStream
 ImageInputStream iis = ImageIO.createImageInputStream(source);
@@ -112,11 +117,13 @@ ImageReadParam对象可以让程序更好的利用内存。它不仅允许指定
 可以指定一个抽样因子，用于向下采样。
 
 例如，为了只解码图片的左上角的1/4，程序可以先获取一个合适的ImageReadParam对象：
+
 ``` java
 ImageReadParam param = reader.getDefaultReadParam();
 ```
 
 接下来，指定图片区域：
+
 ``` java
 import java.awt.Rectangle;
 int imageIndex = 0;
@@ -127,6 +134,7 @@ param.setSourceRegion(rect);
 ```
 
 最后，读取图片：
+
 ``` java
 BufferedImage bi = reader.read(imageIndex, param);
 ```
@@ -135,6 +143,7 @@ BufferedImage bi = reader.read(imageIndex, param);
 
 另一个例子，为了读取每三个像素中的一个，产生一个原图片1/9大小的图片，可以用
 ImageReadParam指定抽样因子：
+
 ``` java
 param = reader.getDefaultImageParam();
 param.setSourceSubsampling(3, 3, 0, 0);
@@ -166,6 +175,7 @@ allowSearch。有的图片格式，典型的GIF，没有提供任何获取文件
 reader.getNumThumbnails(imageIndex);
 
 如果存在缩略图，可以调用如下代码获取：
+
 ``` java
 int thumbailIndex = 0;
 BufferedImage bi;
@@ -175,6 +185,7 @@ bi = reader.readThumbnail(imageIndex, thumbnailIndex);
 ##3.4 ImageWriter 类 
 就像我们可以用ImageIO 的一个方法获取某种图片格式的ImageReader对象一样，我们也可
 以获取ImageWriter对象：
+
 ``` java
 Iterator writers = ImageIO.getImageWritersByFormatName(“png”);
 ImageWriter writer = (ImageWriter)writers.next();
@@ -186,6 +197,7 @@ writer.setOutput(ios);
 ```
 
 最后，可以把图片写入到输出源：
+
 ``` java
 BufferedImage bi;
 writer.write(bi);
@@ -197,6 +209,7 @@ IIOImage类用于存储图片，缩略图或元信息的引用。下一节将讨
 ImageWriter 类有一个方法write()，用于从IIOImage创建一个新文件，还有一个方法
 writeInsert()，用于向一个已存在文件添加一个IIOImage对象。通过调用这两者，可以创
 建一个多图片文件：
+
 ``` java
 BufferedImage first_bi, second_bi;
 IIOImage first_IIOImage = new IIOImage(first_bi, null, null);

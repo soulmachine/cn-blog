@@ -16,18 +16,21 @@ categories: "cloud"
 这一步的作用是让命令行提示看起来好看点，由默认的 dev@bogon变为 dev@master，这步可选，optional，可以跳过。
 
 * 192.168.1.131上执行
+
 ``` bash
 dev@bogon:~$ sudo vi /etc/hostname
 ```
 输入`master`，重启，会发现命令提示符变为了 `dev@master:~$`
 
 * 192.168.1.132上执行
+
 ``` bash
 dev@bogon:~$ sudo vi /etc/hostname
 ```
 输入`slave01`，重启，会发现命令提示符变为了 `dev@slave01:~$`
 
 * 192.168.1.133上执行
+
 ``` bash
 dev@bogon:~$ sudo vi /etc/hostname
 ```
@@ -36,18 +39,22 @@ dev@bogon:~$ sudo vi /etc/hostname
 <!-- more -->
 
 ##3. 修改master的hosts文件，并拷贝到每台slave上
+
 ``` bash
 dev@master:~$ sudo vi /etc/hosts
 ```
 添加三行内容
+
 > 192.168.1.131 master  
 > 192.168.1.133 slave01  
 > 192.168.1.134 slave02  
 
 **注意一定要注释掉**
+
 > \# 127.0.1.1      bogon.localdomain       bogon
 
 最后hosts文件内容如下：
+
 > 127.0.0.1       localhost
 > \# 127.0.1.1      bogon.localdomain       bogon
 > 192.168.1.131 master
@@ -61,20 +68,26 @@ dev@master:~$ sudo vi /etc/hosts
 > ff02::2 ip6-allrouters
 
 * 将hosts文件拷贝到另外两台台机器上，覆盖原来的hosts文件
+
 ``` bash
 dev@master:~$ scp /etc/hosts dev@192.168.1.132:~
 
 dev@master:~$ scp /etc/hosts dev@192.168.1.133:~
+
 ```
 * 在192.168.1.132上执行
+
 ``` bash
 dev@slave01:~$ sudo mv hosts /etc/hosts
 ```
 * 在192.168.1.133上执行
+
 ``` bash
 dev@slave02:~$ sudo mv hosts /etc/hosts
 ```
+
 ##4. 配置 master 无密码登陆到所有机器（**包括本机**）
+
 ``` bash
 dev@master:~$ ssh-keygen -t rsa
 
@@ -89,15 +102,20 @@ dev@slave01:~$ cat id_rsa.pub >> .ssh/authorized_keys
 dev@slave02:~$ cat id_rsa.pub >> .ssh/authorized_keys
 ```
 测试一下，
+
 ``` bash
 dev@master:~$ ssh slav01
 ```
+
 如果登陆不上，试试先关闭slave01的防火墙，
+
 ``` bash
 dev@slave01:~$ sudo ufw disable
 ```
+
 ##5. 复制hadoop安装包到所有机器
 从hadoop.apache.org下载 hadoop-1.0.0-bin.tar.gz，上传到master中，解压，然后复制到其他机器，解压。
+
 ``` bash
 dev@master:~$ tar -zxvf hadoop-1.0.0-bin.tar.gz
 
@@ -109,18 +127,22 @@ dev@slave01:~$ tar -zxvf hadoop-1.0.0-bin.tar.gz
 
 dev@slave02:~$ tar -zxvf hadoop-1.0.0-bin.tar.gz
 ```
+
 ##6. 编辑配置文件
+
 ``` bash
 dev@master:~$ cd hadoop-1.0.0/etc/hadoop
 
 dev@master:~/hadoop-1.0.0/etc/hadoop$  vi hadoop-env.sh
 ```
 仅需要设置JAVA_HOME，
+
 ``` bash
 export JAVA_HOME=/usr/lib/jvm/java-7-openjdk-i386
 
 dev@master:~/hadoop-1.0.0/etc/hadoop$  vi core-site.xml
 ```
+
 ``` xml
 <configuration>
 <property>
@@ -133,9 +155,11 @@ dev@master:~/hadoop-1.0.0/etc/hadoop$  vi core-site.xml
 </property>
 </configuration>
 ```
+
 ``` bash
 dev@master:~/hadoop-1.0.0/etc/hadoop$  vi mapred-site.xml
 ```
+
 ``` xml
 <configuration>
 <property>
@@ -144,9 +168,11 @@ dev@master:~/hadoop-1.0.0/etc/hadoop$  vi mapred-site.xml
 </property>
 </configuration>
 ```
+
 ``` bash
 dev@master:~/hadoop-1.0.0/etc/hadoop$  vi hdfs-site.xml
 ```
+
 ``` xml
 <configuration>
 <property>
@@ -155,6 +181,7 @@ dev@master:~/hadoop-1.0.0/etc/hadoop$  vi hdfs-site.xml
 </property>
 </configuration>
 ```
+
 ``` bash
 dev@master:~/hadoop-1.0.0/etc/hadoop$  vi masters
 
@@ -166,15 +193,19 @@ dev@master:~/hadoop-1.0.0/etc/hadoop$  vi slaves
 
 192.168.1.134
 ```
+
 ##7. 将配置文件拷贝到各台slave
+
 ``` bash
 dev@master:~/hadoop-1.0.0/etc/hadoop$ scp hadoop-env.sh core-site.xml hdfs-site.xml mapred-site.xml masters slaves dev@192.168.1.133:~/hadoop-1.0.0/etc/hadoop
 
 dev@master:~/hadoop-1.0.0/etc/hadoop$ scp hadoop-env.sh core-site.xml hdfs-site.xml mapred-site.xml masters slaves dev@192.168.1.134:~/hadoop-1.0.0/etc/hadoop
 ```
 （master和slaves这2个配置文件可以不拷贝到slave机器上，只在master上保存即可。待验证）
+
 ##8. 设置环境变量
 * 设置master的环境变量
+
 ``` bash
 dev@master:~$ vi .bashrc
 
@@ -192,6 +223,7 @@ export PATH=$PATH:$HADOOP_HOME/bin
 dev@master:~$ source .bashrc
 ```
 * 将master上的.bashrc拷贝到其他机器，并source刷新。
+
 ``` bash
 dev@master:~$ scp .bashrc dev@192.168.1.133:~
 
@@ -201,13 +233,17 @@ dev@slave01:~$ source .bashrc
 
 dev@slave02:~$ source .bashrc
 ```
+
 ##9. 运行 hadoop
+
 ``` bash
 dev@master:~$ hadoop  namenode -format  （只需一次，下次启动不再需要格式化，只需 start-all.sh）
 
 dev@master:~$ start-all.sh
 ```
+
 ##10. 检查是否运行成功
+
 ``` bash
 dev@master:~$ jps
 
@@ -228,7 +264,9 @@ dev@slave02:~$ jps
 3618 DataNode
 3702 TaskTracker
 ```
+
 ##11. 停止 hadoop集群
+
 ``` bash
 dev@master:~$ stop-all.sh
 ```
@@ -239,6 +277,7 @@ dev@master:~$ stop-all.sh
 1. stat-all.sh 启动后，刚刚开始，namenode的日志里有些异常，是正常的，过一两分钟就好了，如果两分钟后，还有异常不断在打印，就有问题了。datanode的日志，从一开始，正常情况下，就没有异常，如果报了异常，说明有异常，要去排除。
 
 2. masters文件，这个文件很容易被误解，它实际上存放的是secondarynamenode，而不是namenode。
+
 	> An HDFS instance is started on a cluster by logging in to the NameNode machine and running$HADOOP_HOME/bin/start-dfs.sh (orstart-all.sh ). This script. starts a local instance of the NameNode process, logs into every machine listed in theconf/slaves file and starts an instance of the DataNode process, and logs into every machine listed in theconf/masters file and starts an instance of the SecondaryNameNode process. Themasters file does not govern which nodes become NameNodes or JobTrackers; those are started on the machine(s) wherebin/start-dfs.sh andbin/start-mapred.sh are executed. A more accurate filename might be “secondaries,” but that’s not currently the case.
 
 	参考以下三篇文章：

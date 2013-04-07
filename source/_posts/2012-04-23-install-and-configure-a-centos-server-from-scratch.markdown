@@ -16,14 +16,19 @@ root密码：root123
 CentOS 自带了ssh  
  
 安装完操作系统后，添加一个用户 dev
+
 ``` bash
 [root@localhost ~]$ useradd dev
+
 ```
 然后密码设为 dev123
+
 ``` bash
 [root@localhost ~]$ passwd dev
 ```
+
 给予 sudo 权限
+
 ``` bash
 [root@localhost ~]$ chmod u+w /etc/sudoers
 [root@localhost ~]$ vim /etc/sudoers
@@ -33,6 +38,7 @@ CentOS 自带了ssh
 
 ##设置上网
 安装完操作系统后，还不能上网，配置DHCP方式上网：
+
 ``` bash
 vim /etc/sysconfig/network-scripts/ifcfg-eth0
 DEVICE="eth0"
@@ -50,6 +56,7 @@ sudo service network restart
 <!-- more -->
 
 或者，配置静态IP
+
 ``` bash
 DEVICE="eth0"
 HWADDR="00:0C:29:10:F4:4C"
@@ -72,6 +79,7 @@ sudo service network restart
 如果失败，比如IP已被占用，换一个IP试试
 
 修改DNS，即时生效
+
 ``` bash
 sudo vim /etc/resolv.conf
 nameserver 192.168.0.1
@@ -88,6 +96,7 @@ search localhost
 第二种方式操作简单，敲打的命令少，但是往往yum源的更新速度跟不上各个软件的官网速度，用Yum安装的版本经常比较旧。
 
 yum的命令形式一般是如下：`yum [options] [command] [package ...]`，其中的[options]是可选的，选项包括-h（帮助），-y（当安装过程提示选择全部为"yes"），-q（不显示安装的过程）等等。[command]为所要进行的操作，[package ...]是操作的对象。
+
 ``` bash
 #yum search package-name # 在线搜索包 
 #yum list installed # 列出所有已经安装的包
@@ -111,12 +120,16 @@ sudo yum clean all && yum clean metadata && yum clean dbcache
 ```
 
 ##安装编译工具
+
 ###方法一
 去 http://gcc.gnu.org/ 下载源码
+
 ``` bash
 # TODO
 ```
+
 ###方法二
+
 ``` bash
 sudo yum groupinstall "Development Tools"
 ```
@@ -124,6 +137,7 @@ sudo yum groupinstall "Development Tools"
 
 
 ##安装JDK
+
 ``` bash
 #删除旧的JDK
 yum list installed | grep jdk
@@ -133,6 +147,7 @@ sudo yum remove java-1.6.0-openjdk.x86_64
 ```
 
 ###方法一
+
 ``` bash
 #从官网下载最新版的，当前是jdk6u32
 #开始安装
@@ -152,6 +167,7 @@ java -version
 ```
 
 ###方法二
+
 ``` bash
 yum search jdk
 # java-1.6.0-openjdk只包含了JRE，如果在这台机器上开发java程序，则需要安装JDK，
@@ -178,10 +194,12 @@ java -version
 ```
 
 ##安装 apache
+
 ###方法一
 源码在官网 http://httpd.apache.org/ 下载。  
 先下载apt, apr-util, pcre三个库，httpd 在编译时需要用到这三个库  
 apr, apr-util官网 http://apr.apache.org , pcre官网为 [http://pcre.org ](http://pcre.org )
+
 ``` bash
 # 编译，安装 apr
 tar -jxf apr-1.4.6.tar.bz2
@@ -240,6 +258,7 @@ chkconfig --list httpd
 ```
 
 ###方法二
+
 ``` bash
 sudo yum install httpd
 #可选？sudo yum install httpd-devel
@@ -257,7 +276,9 @@ sudo chkconfig httpd on
 ```
 
 ##安装 mysql
+
 ###方法一
+
 ``` bash
 #去官网下载 Oracle & Red Hat 6的安装包，64位为MySQL-5.5.23-1.el6.x86_64.tar，
 #32位为 MySQL-5.5.23-1.el6.i686.tar
@@ -272,6 +293,7 @@ sudo chkconfig mysql on
 ```
 
 ###方法二
+
 ``` bash
 sudo yum install mysql-server
 sudo chgrp -R mysql /var/lib/mysql
@@ -283,6 +305,7 @@ sudo chkconfig mysqld on
 ```
 
 ###公共的操作
+
 ``` bash
 # root 初始密码为空，修改root密码
 mysql -u root
@@ -300,12 +323,13 @@ sudo vim /etc/sysconfig/iptables
 sudo service iptables restart
 ```
 
-
 ##安装 php5
+
 ###方法一
 TODO
 
 ###方法二
+
 ``` bash
 sudo yum install php php-pear
 #重启 apache，以确保apache 加载PHP模块
@@ -328,10 +352,10 @@ sudo yum install php-devel php-gd php-mbstring php-xml
 sudo chown -R apache.apache /var/www/html
 ```
 
-
-
 ## 安装 memcached
+
 ###方法一
+
 ``` bash
 # memcached依赖libevent，首先要安装 libevent
 # 去 http://libevent.org/ 下载libevent源码，然后编译，安装
@@ -399,7 +423,9 @@ sudo chkconfig  memcached on
 TODO
 
 ##安装 tomcat6
+
 ###方法一
+
 ``` bash
 # 去 http://tomcat.apache.org 下载 apache-tomcat-6.0.35.tar.gz
 tar -zxf apache-tomcat-6.0.35.tar.gz
@@ -462,6 +488,7 @@ sudo service iptables restart
 ```
 
 ###方法二
+
 ``` bash
 #搜索一下 tomcat包的名字
 yum search tomcat
@@ -469,7 +496,9 @@ sudo yum search tomcat6.noarch
 ```
 
 ##安装Python
+
 ###方法一：去[官网](http://www.python.org)下载源码，编译，安装
+
 ``` bash
 #开始解压，编译，安装
 tar -jxf Python-3.2.3.tar.bz2
@@ -486,12 +515,15 @@ sudo make install
 ```
 
 ###方法二
+
 ``` bash
 sudo yum install python
 ```
 
 ##安装ruby
+
 ###方法一
+
 ``` bash
 # http://www.ruby-lang.org/en/downloads/ ，选择 "Stable Snapshot"
 tar -zxf ruby-1.9-stable.tar.gz
@@ -502,11 +534,13 @@ sudo make install
 ```
 
 ###方法二
+
 ``` bash
 sudo yum install ruby
 ```
 
 ##安装go
+
 ``` bash
 #去官网 http://code.google.com/p/go/downloads 下载，go1.0.1.linux-i386.tar.gz (32位)，go1.0.1.linux-amd64.tar.gz（64位）
 tar -zxf go1.0.1.linux-amd64.tar.gz
@@ -521,6 +555,7 @@ go version
 ```
 
 ##安装lua
+
 ``` bash
 # 去官网下载源码，编译，安装。由于官网仅提供源码，故推荐源码编译安装方式。
 # 去官网 http://www.lua.org/ 下载源码，lua-5.2.0.tar.gz
@@ -542,6 +577,7 @@ protoc
 ```
 
 ##清理安装包
+
 ``` bash
 cd ~
 rm * -rf

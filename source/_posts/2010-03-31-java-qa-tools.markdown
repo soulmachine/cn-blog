@@ -59,4 +59,4 @@ PMD 检查源码，分析源代码
 我个人平时最常用的是Checkstyle，其次是PMD，大家可以参考一下。
 
 ##参考资料
-[http://blog.csdn.net/cb_121/archive/2009/05/22/4208792.aspx](http://blog.csdn.net/cb_121/archive/2009/05/22/4208792.aspx)
+<http://blog.csdn.net/cb_121/archive/2009/05/22/4208792.aspx>

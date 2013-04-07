@@ -6,6 +6,7 @@ comments: true
 categories: tools
 ---
 用VisualVM连接 tomcat 服务器时，需要让tomcat启动JMX，在catalina.sh 中添加一行代码即可：
+
 ``` bash
 JAVA_OPTS=”$JAVA_OPTS -Djava.rmi.server.hostname=192.168.0.123 -Dcom.sun.management.jmxremote=true -Dcom.sun.management.jmxremote.port=8086 -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false
 ```
