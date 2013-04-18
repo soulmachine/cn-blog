@@ -101,3 +101,9 @@ LEd已经很久不更新，且只有windows版，放弃。
 
 大牛陈硕用的是Tex Live，他的书使用Tex Live来排版的。  
 ![](http://yanjiuyanjiu-wordpress.stor.sinaapp.com/uploads/2013/04/chenshuo_texlive.png)
+
+##安装和配置
+在windows下安装 Tex Live 2012，先下载DVD ISO，然后安装即可。假设安装到`D:\texlive`。
+
+安装完后，将`D:\texlive\2012\bin\win32`添加到PATH环境变量。这样Texmaker，Texstudio就不用配置了，安装后即可正常编译。如果没有添加到PATH环境变量，则在Texmaker，Texstudio中指定一些exe文件的绝对路径。
+
