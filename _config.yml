@@ -105,14 +105,3 @@ google_analytics_tracking_id: UA-7583537-4
 
 # Facebook Like
 facebook_like: false
-
-# Weibo
-weibo_share: true   # Whether show the sharing button
-# Please refer to http://weibo.com/tool/weiboshow to get your uid and verifier. 
-weibo_uid: # 1663402687
-weibo_verifier: b218d70f
-weibo_title: 1    # 是否显示“新浪微博”四个字作为标题
-weibo_fansline: 0   # 粉丝显示多少行
-weibo_show: false    # 是否显示最近微博内容
-weibo_pic: true     # 是否显示微博中的图片
-weibo_skin: 1      # 使用哪种配色风格，数字为从1开始的微博秀风格序号

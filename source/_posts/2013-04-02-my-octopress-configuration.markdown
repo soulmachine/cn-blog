@@ -153,36 +153,27 @@ rake new_page[about]
 
 然后在头部导航菜单中添加页面的超链接。具体做法是编辑 /source/_includes/custom/navigation.html 文件。
 
-## 社会化分享
-启用 twitter 分享， facebook like 和Google +1，设置如下：
-
-```
-google_plus_one: true
-twitter_tweet_button: true
-facebook_like: true
-```
-
-**添加新浪微博分享**  
-参考这篇博客 [为Octopress追加[分享到微博]按钮](http://programus.github.com/blog/2012/03/04/share-weibo-button/)。
-
-在`source/_includes/post/sharing.html`中，加入代码：
+## 社会化分享 
+使用addthis.com的分享按钮，在网站上获取代码，粘贴到`source/_includes/post/sharing.html`中，例如我的代码如下：
 
 ``` html
-{% if site.weibo_share %}
-  <iframe 
-    allowTransparency="true"
-	frameborder="0"
-	scrolling="no"
-    width="72" 
-    height="16" 
-    src=
-      "http://hits.sinajs.cn/A1/weiboshare.html?url={{ site.url }}{{ page.url }}&amp;type=3&amp;count=1&amp;{% if site.weibo_uid %}ralateUid={{ site.weibo_uid }}&amp;{% endif %}language=zh_cn">
-  </iframe>
-  {% endif %}
+<div class="sharing">
+  <!-- AddThis Button BEGIN -->
+  <div class="addthis_toolbox addthis_default_style addthis_32x32_style">
+  <a class="addthis_button_sinaweibo"></a>
+  <a class="addthis_button_facebook"></a>
+  <a class="addthis_button_twitter"></a>
+  <a class="addthis_button_google_plusone_share"></a>
+  <a class="addthis_button_delicious"></a>
+  <a class="addthis_button_digg"></a>
+  <a class="addthis_button_reddit"></a>
+  <a class="addthis_button_compact"></a><a class="addthis_counter addthis_bubble_style"></a>
+</div>
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=undefined"></script>
+<!-- AddThis Button END -->
 ```
-同时要在_config.yml文件中加入weibo_share 字段，设置其值为true。
 
-推荐使用jiathis.com 的分享按钮，集成了国内主流的网站，非常方便。获取JS代码后，替换掉上面代码即可。这时，可以在_config.yml 中，将twitter, google+ 和facebook like的按钮设置为false，取消显示，因为JiaThis已经集成了这三者，在本文底部可以看到效果。
+在_config.yml 中，将twitter, google+ 和facebook like的按钮设置为false，取消显示，因为 AddThis 已经集成了这三者。
 
 ## 社会化评论
 <del>启用Disqus，填入 short name即可。</del>Disqus在国外流行，在国内的加载速度太慢，而且只有twitter, facebook, g+，没有照顾到国内的用户习惯，因此替换成国内的[多说](www.duoshuo.com)。参考这篇博客 [为 Octopress 添加多说评论系统](http://ihavanna.org/Internet/2013-02/add-duoshuo-commemt-system-into-octopress.html)。`source/_includes/post/duoshuo_thread.html`的代码略有不同，添加了`data-title="{{ page.title }}"`，否则侧边栏的最近评论，标题为空白，感谢[碟姐 - 在octopress中添加多说的最近评论](http://yrzhll.com/blog/2012/12/12/comment/)指出了这一点，代码如下：
