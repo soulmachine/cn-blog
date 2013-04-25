@@ -83,7 +83,6 @@ body {
   > div#main {
     background: $sidebar-bg $noise-bg;
 ```
-看blog.echen.me的[改动](https://github.com/echen/echen.github.com/commit/e0f9b550e564c39239e2dbe10ce8d20e2b1102e8#sass/base/_layout.scss)，两处都改为了 div#main，暂时不知道为什么，不过我也两处都改。
 
 本节参考了[Writing Math Equations on Octopress](http://www.idryman.org/blog/2012/03/10/writing-math-equations-on-octopress/) 和 [在Octopress中使用Latex公式](http://jasonllinux.github.com/blog/2012/11/06/write-latex-in-octopress/)。
 
@@ -160,17 +159,17 @@ rake new_page[about]
 <div class="sharing">
   <!-- AddThis Button BEGIN -->
   <div class="addthis_toolbox addthis_default_style addthis_32x32_style">
-  <a class="addthis_button_sinaweibo"></a>
-  <a class="addthis_button_facebook"></a>
-  <a class="addthis_button_twitter"></a>
-  <a class="addthis_button_google_plusone_share"></a>
-  <a class="addthis_button_delicious"></a>
-  <a class="addthis_button_digg"></a>
-  <a class="addthis_button_reddit"></a>
-  <a class="addthis_button_compact"></a><a class="addthis_counter addthis_bubble_style"></a>
-</div>
-<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=undefined"></script>
-<!-- AddThis Button END -->
+    <a class="addthis_button_sinaweibo"></a>
+    <a class="addthis_button_facebook"></a>
+    <a class="addthis_button_twitter"></a>
+    <a class="addthis_button_google_plusone_share"></a>
+    <a class="addthis_button_delicious"></a>
+    <a class="addthis_button_digg"></a>
+    <a class="addthis_button_reddit"></a>
+    <a class="addthis_button_compact"></a><a class="addthis_counter addthis_bubble_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=undefined"></script>
+  <!-- AddThis Button END -->
 ```
 
 在_config.yml 中，将twitter, google+ 和facebook like的按钮设置为false，取消显示，因为 AddThis 已经集成了这三者。
@@ -272,22 +271,20 @@ $header-subtitle-font-family: arial, sans-serif;
 在 _config.yml中，把 `Read on` 改为 "继续阅读"。
 在 `source/_includes/custom/asides`目录下，将"Recent Comments"改为“最新评论”，"Categories"改为“分类目录”，将`source/_includes/asides/recent_posts.html`中"Recent Posts"改为“最新文章”。
 
-##修改顶部Header
-类似这样 http://xueran.github.com/blog/2012/12/26/blog-theme2/
-
 ## 添加统计代码
-填入 Google Analytics Tracking ID，例如 `UA-7583537-4`。
+在_config.yml填入 Google Analytics Tracking ID，例如 `UA-7583537-4`。
 
 ##第三方主题和插件
 主题：[3rd Party Octopress Themes](https://github.com/imathis/octopress/wiki/3rd-Party-Octopress-Themes)  
 插件：[3rd party plugins](https://github.com/imathis/octopress/wiki/3rd-party-plugins)
 
+##在一台新电脑上恢复
+如果换了一台电脑，怎样迅速恢复环境呢？参考 [Clone Your Octopress to Blog From Two Places](http://blog.zerosharp.com/clone-your-octopress-to-blog-from-two-places/)。
+
 ##TODO
 修改字体大小
 
 添加TAG支持
-
-修改header，将导航和header合并，减少header的高度
 
 ##参考资料
 1. [Octopress主题改造](http://shanewfx.github.com/blog/2012/08/13/improve-blog-theme/)
