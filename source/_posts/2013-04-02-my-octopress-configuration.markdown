@@ -103,6 +103,7 @@ kramdown扩展了标准markdown的语法，有很多使用的功能。[语法见
 	| Second line     |foo         | **strong**      | baz            |
 	| Third line      |quux        | baz             | bar            |
 	|-----------------+------------+-----------------+----------------|
+
 更详细说明见官网。
 
 ## 首页只显示部分正文(Excerpts)
@@ -184,7 +185,26 @@ facebook_like: true
 推荐使用jiathis.com 的分享按钮，集成了国内主流的网站，非常方便。获取JS代码后，替换掉上面代码即可。这时，可以在_config.yml 中，将twitter, google+ 和facebook like的按钮设置为false，取消显示，因为JiaThis已经集成了这三者，在本文底部可以看到效果。
 
 ## 社会化评论
-<del>启用Disqus，填入 short name即可。</del>Disqus在国外流行，在国内的加载速度太慢，而且只有twitter, facebook, g+，没有照顾到国内的用户习惯，因此替换成国内的[多说](www.duoshuo.com)。参考这篇博客 [为 Octopress 添加多说评论系统](http://ihavanna.org/Internet/2013-02/add-duoshuo-commemt-system-into-octopress.html)。不过配置略有不同：
+<del>启用Disqus，填入 short name即可。</del>Disqus在国外流行，在国内的加载速度太慢，而且只有twitter, facebook, g+，没有照顾到国内的用户习惯，因此替换成国内的[多说](www.duoshuo.com)。参考这篇博客 [为 Octopress 添加多说评论系统](http://ihavanna.org/Internet/2013-02/add-duoshuo-commemt-system-into-octopress.html)。`source/_includes/post/duoshuo_thread.html`的代码略有不同，添加了`data-title="{{ page.title }}"`，否则侧边栏的最近评论，标题为空白，感谢[碟姐 - 在octopress中添加多说的最近评论](http://yrzhll.com/blog/2012/12/12/comment/)指出了这一点，代码如下：
+
+``` javascript
+<!-- Duoshuo Comment BEGIN -->
+<div class="ds-thread" data-title="{{ page.title }}"></div>
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"yanjiuyanjiu"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = 'http://static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		|| document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+</script>
+<!-- Duoshuo Comment END -->
+```
+
+_config.yml 中的配置也略有不同： 
 
 ```
 duoshuo_comments: true
