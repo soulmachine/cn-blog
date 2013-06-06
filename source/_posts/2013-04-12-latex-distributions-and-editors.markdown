@@ -14,7 +14,7 @@ TeX类似于Linux，有很多不同的发行版(distribution)。
 |----------+-------------------------------+--------+-----------+------------------+-----------+-----------|  
 | **名字** |            **官网**           | **PR** | **Alexa** |   **最后更新**   | **weibo** | **quora** |  
 |:--------:|:-----------------------------:|:------:|:---------:|:----------------:|:---------:|:--------:|  
-| TeX Live |     <http://www.ctex.org/>    |    7   |    N/A    |    2012-07-01    |     43    |    N/A    |  
+| TeX Live |     <http://www.tug.org/texlive/>    |    7   |    N/A    |    2012-07-01    |     43    |    N/A    |  
 |  MiKTeX  |     <http://miktex.org/>      |    7   |  188,485  | 1.3.2 2012-09-24 |     54    |    N/A    |  
 |   CTeX   |     <http://www.ctex.org/>    |    6   |  252,657  | 2.9.2 2012-03-30 |     344   |    N/A    |  
 |  proTeXt | <http://www.tug.org/protext/> |    7   |    N/A    | 3.1.1 2012-07-23 |     10    |    N/A    |  
@@ -83,7 +83,7 @@ TeXmaker, TeXstudio, TeXworks 来进行比较
 | TeXstudio |         有乱码           |          无乱码        |  
 |-----------+--------------------------+------------------------|  
 
-TeXmaker, TeXstudio, TeXworks 界面丑陋，且中文支持不好，功能没有多，抛弃之。
+TeXmaker 界面丑陋，且中文支持不好，功能没有多，抛弃之。
 TeXmaker 和 TeXstudio 界面比较美观，而且二者界面风格很类似。因为TeXstudio是在TeXmaker的基础上而来的，[见wikipedia的描述](http://en.wikipedia.org/wiki/TeXstudio)：
 
 > Originally called TexMakerX, TeXstudio was started as a fork of Texmaker that tried to extend it with additional features while keeping its look and feel.
