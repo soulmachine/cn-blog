@@ -79,9 +79,9 @@ git clone git@github.com:username/username.github.com.git
 **安装Ruby**  
 Octopress 2.0 需要 Ruby 1.9.3，安装其他版本的Ruby可能会行不通。
 
-如果是Linux，使用RVM来安装Ruby，如果是Windows，则使用[RubyInstaller](http://rubyinstaller.org/downloads/)。在这个[下载页面](http://rubyinstaller.org/downloads/)下载Ruby 1.9.3-p392和DevKit(带mingw的版本)，双击exe文件进行安装。  
+如果是Linux，使用RVM来安装Ruby，如果是Windows，则使用[RubyInstaller](http://rubyinstaller.org/downloads/)。在这个[下载页面](http://rubyinstaller.org/downloads/)下载Ruby 1.9.3-p392和DevKit(DevKit-tdm-32-4.5.2-20111229-1559-sfx.exe)，双击exe文件进行安装。  
 **安装DevKit**  
-双击DevKit的exe文件，解压到C:\DevKit
+双击DevKit的exe文件，解压到C:\DevKit，在CMD下执行如下命令
 
 ``` bash  
 cd C:\DevKit
@@ -134,11 +134,27 @@ rake generate
 ```  
 这个命令主要是根据source目录的内容，编译生成JeKyll所需要的静态文件，存放到public目录下。source 目录对应着git上的source分支。
 
+**UTF-8 编码**  
+Windows预设是Big5编码,所以要想’rake generate’的时候不报编码错误,我们需要设置一下编码! 方法有两个,一个是直接在Git Bash中设置环境:
+
+``` bash  
+set LANG=zh_CN.UTF-8  
+set LC_ALL=zh_CN.UTF-8
+```  
+还有一个是在环境变量中加入这两个变量: 右击电脑->属性，新添加LANG和LC\_ALL两个环境变量，值为为zh_CN.UTF-8.
+
+然后在Git Bash中做如下设置:
+
+``` bash  
+echo "export LANG LC_ALL" > ~/.bash_profile
+```
+
 预览
 
 ``` bash  
 rake preview
 ```
+用浏览器打开 <http://localhost:4000/>，就可以看到效果了。
 
 部署到github
 
@@ -158,20 +174,7 @@ source 目录下保存了所有的markdown源文件，是博客的原始数据�
 
 **终止预览**  
 启用`rake preview`后，直接按`ctrl+c`无法正常终止该进程，老提示`终止批处理操作吗（Y/N）？`，这时候可以另开一个Git Bash窗口，使用`ps aux | grep ruby`命令找出`pid(第一个数值)`，然后执行`kill <pid>`来停止该进程(参考[octopress on heroku (二)](http://linuxabc.heroku.com/blog/octopress-on-heroku-2))。  
-**UTF-8 编码**  
-Windows预设是Big5编码,所以要想’rake generate’的时候不报编码错误,我们需要设置一下编码! 方法有两个,一个是直接在Git Bash中设置环境:
 
-``` bash  
-set LANG=zh_CN.UTF-8  
-set LC_ALL=zh_CN.UTF-8
-```  
-还有一个是在环境变量中加入这两个变量: 右击电脑->属性，新添加LANG和LC\_ALL两个环境变量，值为为zh_CN.UTF-8.
-
-然后在Git Bash中做如下设置:
-
-``` bash  
-echo "export LANG LC_ALL" > ~/.bash_profile
-```
   
 ### 绑定域名
 参考官方文档[Setting up a custom domain with Pages](https://help.github.com/articles/setting-up-a-custom-domain-with-pages)。
