@@ -279,7 +279,7 @@ $header-subtitle-font-family: arial, sans-serif;
 插件：[3rd party plugins](https://github.com/imathis/octopress/wiki/3rd-party-plugins)
 
 ##在一台新电脑上恢复
-如果换了一台电脑，怎样迅速恢复环境呢？参考 [Clone Your Octopress to Blog From Two Places](http://blog.zerosharp.com/clone-your-octopress-to-blog-from-two-places/)。
+如果换了一台电脑，怎样迅速恢复环境呢？参考 [Clone Your Octopress to Blog From Two Places](http://blog.zerosharp.com/clone-your-octopress-to-blog-from-two-places/)。 **注意，在windows上，要首先安装python，否则，虽然所有操作可以成功，不报错误，但是你发现打开后首页一篇空白，我当时百思不得其解，因为没有任何错误信息，最后去看生成的文件，所有index.html都是0字节，就猜测应该是编译出了问题。安装python就好了，linux默认是有Python的，就没有这个问题，windows真是坑爹！以后只在windows下做编辑类的工作，编译和运行都放到Linux下。**
 
 ##TODO
 修改字体大小
