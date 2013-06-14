@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "CentOS 服务器安装操作全记录"
+title: "安装和配置CentOS服务器的详细步骤"
 date: 2012-04-23 20:43
 comments: true
 categories: tools
