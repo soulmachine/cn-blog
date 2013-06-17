@@ -12,7 +12,18 @@ Ubuntu上安装，请参考我的另一篇博客，[在Ubuntu上安装Hadoop](ht
 ##1. 用vmware workstation 创建三台虚拟机
 首先用vmware workstation 新建一台CentOS 6.4，装好操作系统，选择 Basic Server，安装JDK，参考我的另一篇博客，[安装和配置CentOS服务器的详细步骤](http://www.yanjiuyanjiu.com/blog/20120423/)。安装好后然后用浅拷贝`Create a linked clone` 克隆出两台作为slave，这样有了三台虚拟机。启动三台机器，假设IP分别为`192.168.1.131, 192.168.1.132, 192.168.1.133`, 131做为master 和 SecondaryNameNode, 身兼两职， 132和133为 slaves。
 
-##2. 修改hostname
+##2 关闭防火墙
+临时关闭防火墙
+
+	$ sudo service iptables stop
+下次开机后，防火墙还是会启动。
+
+永久关闭防火墙
+
+	$ sudo chkconfig iptables off
+由于这几台虚拟机是开发机，不是生产环境，因此不必考虑安全性，可以永久关闭防火墙，还能给开发阶段带来很多便利。
+
+##3. 修改hostname
 这一步看起来貌似不必要，其实是必须的，否则最后运行wordcount等例子时，会出现“Too many fetch-failures”。因为HDFS用hostname而不是IP，来相互之间进行通信（见后面的注意1）。
 
 在CentOS上修改hostname，包含两个步骤(假设将hostname1改为hostname2，参考[这里](http://www.ichiayi.com/wiki/tech/linux_hostname)，但不需要第一步)：
@@ -30,13 +41,13 @@ Ubuntu上安装，请参考我的另一篇博客，[在Ubuntu上安装Hadoop](ht
 	192.168.1.132 slave01
 	192.168.1.133 slave02
 
-##2. 本地模式和伪分布式模式
+##4. 本地模式和伪分布式模式
 
 为了能顺利安装成功，我们先练习在单台机器上安装Hadoop。在单台机器上，可以配置成本地模式(local mode)和伪分布式模式(Pseudo-Distributed Mode)，参考官方文档[Single Node Setup](http://hadoop.apache.org/docs/r1.1.2/single_node_setup.html)。
 
 将 hadoop-1.1.2-bin.tar.gz 上传到三台机器的 home目录下，然后解压。
 
-###2.1 编辑 conf/hadoop-env.sh，设置 JAVA_HOME
+###4.1 编辑 conf/hadoop-env.sh，设置 JAVA_HOME
 
     cd hadoop-1.1.2
     vim conf/hadoop-env.sh
@@ -45,7 +56,7 @@ Ubuntu上安装，请参考我的另一篇博客，[在Ubuntu上安装Hadoop](ht
 
 	export JAVA_HOME=/usr/lib/jvm/java-1.7.0-openjdk-1.7.0.19.x86_64
 
-###2.2 测试本地模式是否正常
+###4.2 测试本地模式是否正常
 默认情况下，Hadoop就被配置为本地模式，现在就可以开始测试一下。
 
 	$ mkdir input 
@@ -57,7 +68,7 @@ Ubuntu上安装，请参考我的另一篇博客，[在Ubuntu上安装Hadoop](ht
 
 <!-- more -->
 
-###2.3 配置SSH无密码登陆本机
+###4.3 配置SSH无密码登陆本机
 
 	$ ssh-keygen -t dsa -P '' -f ~/.ssh/id_dsa
 	$ cat ~/.ssh/id_dsa.pub >> ~/.ssh/authorized_keys
@@ -80,7 +91,7 @@ Ubuntu上安装，请参考我的另一篇博客，[在Ubuntu上安装Hadoop](ht
 
 	$ chmod 600 ~/.ssh/authorized_keys
 
-###2.4 修改配置文件
+###4.4 修改配置文件
 conf/core-site.xml:
 
 	<configuration>
@@ -108,7 +119,7 @@ conf/mapred-site.xml:
 	     </property>
 	</configuration>
 
-###2.5 启动Hadoop，测试伪分布式模式
+###4.5 启动Hadoop，测试伪分布式模式
 
 格式化namenode
 
@@ -117,10 +128,6 @@ conf/mapred-site.xml:
 启动 Hadoop 后台进程
 
 	$ bin/start-all.sh
-
-关闭防火墙
-
-	$ sudo service iptables stop
 
 现在可以用浏览器打开NameNode和JobTracker的web界面了。  
 NameNode - <http://localhost:50070/>  
@@ -147,10 +154,10 @@ JobTracker - <http://localhost:50030/>
 	$ bin/stop-all.sh
 
 
-##3. 分布式模式
+##5. 分布式模式
 如果有多台机器，就可以把Hadoop 配置成分布式模式(或称为集群模式)。参考官方文档[Cluster Setup](http://hadoop.apache.org/docs/r1.1.2/cluster_setup.html).
 
-##3.1 配置 master 无密码登陆到所有机器（**包括master自己登陆自己**）
+##5.1 配置 master 无密码登陆到所有机器（**包括master自己登陆自己**）
 首先在两台slave上修改sshd的配置文件，然后重启sshd服务。
 
 	$ sudo vim /etc/ssh/sshd_config
@@ -202,7 +209,7 @@ JobTracker - <http://localhost:50030/>
 
 	$ sudo service iptables stop
 
-###3.2 修改6个配置文件
+###5.2 修改6个配置文件
 在 master 上修改配置文件。
 
 编辑 conf/hadoop-env.sh，设置 JAVA_HOME。
@@ -253,13 +260,13 @@ conf/mapred-site.xml:
 	    </property>
 	</configuration>
 
-###3.4 将配置文件拷贝到所有slaves
+###5.3 将配置文件拷贝到所有slaves
 
 	$ cd ~/hadoop-1.1.2/conf/
 	$ scp hadoop-env.sh core-site.xml hdfs-site.xml mapred-site.xml masters slaves dev@192.168.1.132:~/hadoop-1.1.2/conf/
 	$ scp hadoop-env.sh core-site.xml hdfs-site.xml mapred-site.xml masters slaves dev@192.168.1.133:~/hadoop-1.1.2/conf/
 
-###3.3 设置环境变量HADOOP\_HOME，并将`$HADOOP_HOME/bin`加入PATH
+###5.4 设置环境变量HADOOP\_HOME，并将`$HADOOP_HOME/bin`加入PATH
 所有机器都要设置环境变量HADOOP\_HOME，并将`$HADOOP_HOME/bin`加入PATH，因为master登陆到slave后，要执行`$HADOOP_HOME/bin` 下的一些命令。
 
 	$ vim ~/.bash_profile
@@ -274,14 +281,14 @@ source一下，使得环境变量立刻生效
 
 	$ source ~/.bash_profile
 
-###3.5 运行 hadoop
+###5.5 运行 hadoop
 在master上执行以下命令，启动hadoop
 
 	#只需一次，下次启动不再需要格式化，只需 start-all.sh
 	$ hadoop  namenode -format
 	$ start-all.sh
 
-###3.6 检查是否启动成功
+###5.6 检查是否启动成功
 
 在master上执行：
 
@@ -310,7 +317,7 @@ source一下，使得环境变量立刻生效
 
 可见进程都启动起来了，说明hadoop运行成功。
 
-###3.7 运行wordcount例子，进一步测试是否安装成功
+###5.7 运行wordcount例子，进一步测试是否安装成功
 将输入数据拷贝到分布式文件系统中:
 
 	$ cd $HADOOP_HOME
@@ -327,12 +334,12 @@ source一下，使得环境变量立刻生效
 
 如果能看到结果，说明这个例子运行成功。
 
-###3.8 停止 hadoop集群
+###5.8 停止 hadoop集群
 在master上执行：
 
 	$ stop-all.sh
 
-##4. 排除错误
+##6. 排除错误
 本文已经尽可能的把步骤详细列出来了，但是我相信大部分人不会一次成功。这时候，查找错误就很重要了。查找错误最重要的手段是查看hadoop的日志，一般在logs目录下。把错误消息复制粘贴到google，搜索一下，慢慢找错误。
 
 ##注意

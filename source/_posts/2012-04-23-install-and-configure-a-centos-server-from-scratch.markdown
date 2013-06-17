@@ -583,6 +583,24 @@ cd ~
 rm * -rf
 ```
 
+##压缩打包
+安装完后，可以Clone，压缩打包成一个zip文件，方便分享给别人。
+
+在关机之前，有一件事需要做，
+
+	sudo vim /etc/sysconfig/network-scripts/ifcfg-eth0, 把HWADDR=.... 这行删掉
+	sudo rm /etc/udev/rules.d/70-persistent-net.rules
+	sudo shutdown -h now
+
+如果没有执行上述命令，克隆后的虚拟机，开机后无法上网，重启网络，`sudo service network restart`也没有效果，会出现错误“Device eth0 does not seem to be present, delaying initialization.” 
+
+这是因为克隆后的虚拟机，它的MAC地址变了，即在它的.vmx文件里，MAC地址变了（`ethernet0.generatedAddress`这项），但是linux不知道这个变化，网络配置文件还是旧的，这样跟它的而真实mac不匹配，网络就无法启动。
+
+执行上述命令，删除了`70-persistent-net.rules`后，相当于删除了旧的配置文件，在开机时会生成新的配置文件。
+
+关机后，右击标签，选择"Manage->Clone"，选择"Create a full clone"，克隆完成后，关闭这台虚拟机的标签（否则文件夹里有一些临时垃圾文件），然后把文件夹压缩打包。以后就可以把这个zip包拷贝给周围的人，别人就不用经历一遍重装的过程了。
+
+
 ##参考资料
 [LAMP Server on CentOS 6](http://library.linode.com/lamp-guides/centos-6)
 
