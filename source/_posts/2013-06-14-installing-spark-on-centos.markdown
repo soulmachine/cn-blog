@@ -73,15 +73,18 @@ This is the most important step that must be done , but unfortunately the offici
 
 ##4.3 Now you can run SparkPi.
 
-$ cd ~/spark-0.7.2
-$ ./run spark.examples.SparkPi local 
+	$ cd ~/spark-0.7.2
+	$ ./run spark.examples.SparkPi local 
 
 #5. Cluster Mode
+
+<!-- more -->
+
 ##5.1 Install hadoop
-Use VMware Workstation to create 3 CentOS virtual machines, which's hostnames are master, slave01, slave02, setup password-less ssh to the slaves, install hadoop on the three machines and start up the hadoop cluster. For more details please read another blog of mine, [在CentOS上安装Hadoop](http://www.yanjiuyanjiu.com/blog/20130612).
+Use VMware Workstation to create three CentOS virtual machines, which's hostnames are master, slave01, slave02, setup password-less ssh to the slaves, install hadoop on the three machines and start up the hadoop cluster. For more details please read another blog of mine, [在CentOS上安装Hadoop](http://www.yanjiuyanjiu.com/blog/20130612).
 
 ##5.2 Install JDK and Scala
-Install JDK 1.7 and Scala 2.9.3 on the three machines, according to section 1 abd section 2.
+Install JDK 1.7 and Scala 2.9.3 on the three machines, according to section 1 and section 2.
 
 ##5.3 Install and configure Spark on master
 	$ tar -zxf spark-0.7.2-prebuilt-hadoop1.tgz
@@ -133,7 +136,7 @@ Check whether the processes have been started.
 	2152 NameNode
 	4822 Master
 
-Look at the master’s web UI (http://localhost:8080 by default). You should see the new node listed there, along with its number of CPUs and memory (minus one gigabyte left for the OS).
+Look at the master’s web UI (<http://localhost:8080> by default). You should see the new node listed there, along with its number of CPUs and memory (minus one gigabyte left for the OS).
 
 ##5.6 run the SparkPi example in cluster mode
 
