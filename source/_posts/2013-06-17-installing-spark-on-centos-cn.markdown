@@ -10,7 +10,7 @@ categories: spark
 折腾了几天，终于把Spark 集群安装成功了，其实比hadoop要简单很多，由于网上搜索到的博客大部分都还停留在需要依赖mesos的版本，走了不少弯路。
 
 
-#1. 安装 JDK 1.7.
+#1. 安装 JDK 1.7
 	yum search openjdk-devel
 	sudo yum install java-1.7.0-openjdk-devel.x86_64
 	/usr/sbin/alternatives --config java
@@ -53,18 +53,12 @@ Spark 0.7.2 依赖 Scala 2.9.3, 我们必须要安装Scala 2.9.3.
 
 #4. 本地模式
 
-##4.1 解压，设置 SPARK\_HOME环境变量
+##4.1 解压
 
 	$ tar -zxf spark-0.7.2-prebuilt-hadoop1.tgz
-	$ vim ~/.bash_profile
-	# add the following lines at the end
-	export SPARK_HOME=$HOME/spark-0.7.2
-	export PATH=$PATH:$SPARK_HOME/bin
-	# save and exit vim
-	# make environment variables take effect immediately
-	$ source /etc/profile
-
+	
 ##4.2 设置SPARK\_EXAMPLES\_JAR 环境变量
+
 	$ vim ~/.bash_profile
 	# add the following lines at the end
 	export SPARK_EXAMPLES_JAR=$SPARK_HOME/examples/target/scala-2.9.3/spark-examples_2.9.3-0.7.2.jar
@@ -74,7 +68,16 @@ Spark 0.7.2 依赖 Scala 2.9.3, 我们必须要安装Scala 2.9.3.
 
 这一步其实最关键，很不幸的是，官方文档和网上的博客，都没有提及这一点。我是偶然看到了这两篇帖子，[Running SparkPi](https://groups.google.com/forum/?fromgroups#!topic/spark-users/nQ6wB2lcFN8), [Null pointer exception when running ./run spark.examples.SparkPi local](https://groups.google.com/forum/#!msg/spark-users/x5UczgI-Xm8/wzMm3Mb77-oJ)，才补上了这一步，之前死活都无法运行SparkPi。
 
-##4.3 现在可以运行SparkPi了
+##4.3 （可选）设置 SPARK\_HOME环境变量，并将SPARK\_HOME/bin加入PATH
+	$ vim ~/.bash_profile
+	# add the following lines at the end
+	export SPARK_HOME=$HOME/spark-0.7.2
+	export PATH=$PATH:$SPARK_HOME/bin
+	# save and exit vim
+	# make environment variables take effect immediately
+	$ source /etc/profile
+
+##4.4 现在可以运行SparkPi了
 
 	$ cd ~/spark-0.7.2
 	$ ./run spark.examples.SparkPi local 
@@ -90,11 +93,14 @@ Spark 0.7.2 依赖 Scala 2.9.3, 我们必须要安装Scala 2.9.3.
 在三台机器上都要安装 Scala 2.9.3 , 按照第2节的步骤。JDK在安装Hadoop时已经安装了。
 
 ##5.3 在master上安装并配置Spark
+解压
+
 	$ tar -zxf spark-0.7.2-prebuilt-hadoop1.tgz
+
+设置SPARK\_EXAMPLES\_JAR 环境变量
+
 	$ vim ~/.bash_profile
 	# add the following lines at the end
-	export SPARK_HOME=$HOME/spark-0.7.2
-	export PATH=$PATH:$SPARK_HOME/bin
 	export SPARK_EXAMPLES_JAR=$SPARK_HOME/examples/target/scala-2.9.3/spark-examples_2.9.3-0.7.2.jar
 	# save and exit vim
 	# make environment variables take effect immediately
@@ -115,19 +121,29 @@ Spark 0.7.2 依赖 Scala 2.9.3, 我们必须要安装Scala 2.9.3.
 	slave02
 	# save and exit
 
+（可选）设置 SPARK\_HOME环境变量，并将SPARK\_HOME/bin加入PATH
+
+	$ vim ~/.bash_profile
+	# add the following lines at the end
+	export SPARK_HOME=$HOME/spark-0.7.2
+	export PATH=$PATH:$SPARK_HOME/bin
+	# save and exit vim
+	# make environment variables take effect immediately
+	$ source /etc/profile
+
 ##5.4 在所有worker上安装并配置Spark
-既然master上的这个文件件已经配置好了，把它拷贝到所有的worker。
+既然master上的这个文件件已经配置好了，把它拷贝到所有的worker。**注意，三台机器spark所在目录必须一致，因为master会登陆到worker上执行命令，master认为worker的spark路径与自己一样。**
 
 	scp -r spark-0.7.2 dev@slave01:~
 	scp -r spark-0.7.2 dev@slave02:~
 
-按照第5.3节设置环境变量。
+按照第5.3节设置环境变量和配置文件。
 
 
 ##5.5 启动 Spark 集群
 在master上执行
 
-	$ cd $SPARK_HONE
+	$ cd ~/spark-0.7.2
 	$ bin/start-all.sh
 
 检测进程是否启动
@@ -142,12 +158,12 @@ Spark 0.7.2 依赖 Scala 2.9.3, 我们必须要安装Scala 2.9.3.
 浏览master的web UI(默认<http://localhost:8080>). 这是你应该可以看到所有的word节点，以及他们的CPU个数和内存等信息。
 ##5.6 运行SparkPi例子
 
-	$ cd $SPARK_HONE
+	$ cd ~/spark-0.7.2
 	$ ./run spark.examples.SparkPi spark://master:7077
 
 ##5.7 从HDFS读取文件并运行WordCount
 
-	$ cd $SPARK_HOME
+	$ cd ~/spark-0.7.2
 	$ hadoop fs -put README.md .
 	$ ./spark-shell
 	scala> val file = sc.textFile("hdfs://master:9000/user/dev/README.md")
@@ -156,7 +172,7 @@ Spark 0.7.2 依赖 Scala 2.9.3, 我们必须要安装Scala 2.9.3.
 
 ##5.8 停止 Spark 集群
 
-	$ cd $SPARK_HONE
+	$ cd ~/spark-0.7.2
 	$ bin/stop-all.sh
 
 #参考资料

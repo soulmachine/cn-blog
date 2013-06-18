@@ -45,7 +45,7 @@ Ubuntu上安装，请参考我的另一篇博客，[在Ubuntu上安装Hadoop](ht
 
 为了能顺利安装成功，我们先练习在单台机器上安装Hadoop。在单台机器上，可以配置成本地模式(local mode)和伪分布式模式(Pseudo-Distributed Mode)，参考官方文档[Single Node Setup](http://hadoop.apache.org/docs/r1.1.2/single_node_setup.html)。
 
-将 hadoop-1.1.2-bin.tar.gz 上传到三台机器的 home目录下，然后解压。
+将 hadoop-1.1.2-bin.tar.gz 上传到三台机器的 home目录下，然后解压。**注意，三台机器hadoop所在目录必须一致，因为master会登陆到slave上执行命令，master认为slave的hadoop路径与自己一样。**
 
 ###4.1 编辑 conf/hadoop-env.sh，设置 JAVA_HOME
 
@@ -266,7 +266,7 @@ conf/mapred-site.xml:
 	$ scp hadoop-env.sh core-site.xml hdfs-site.xml mapred-site.xml masters slaves dev@192.168.1.132:~/hadoop-1.1.2/conf/
 	$ scp hadoop-env.sh core-site.xml hdfs-site.xml mapred-site.xml masters slaves dev@192.168.1.133:~/hadoop-1.1.2/conf/
 
-###5.4 设置环境变量HADOOP\_HOME，并将`$HADOOP_HOME/bin`加入PATH
+###5.4 （可选）设置环境变量HADOOP\_HOME，并将`$HADOOP_HOME/bin`加入PATH
 所有机器都要设置环境变量HADOOP\_HOME，并将`$HADOOP_HOME/bin`加入PATH，因为master登陆到slave后，要执行`$HADOOP_HOME/bin` 下的一些命令。
 
 	$ vim ~/.bash_profile
@@ -284,9 +284,10 @@ source一下，使得环境变量立刻生效
 ###5.5 运行 hadoop
 在master上执行以下命令，启动hadoop
 
+	$ cd ~/hadoop-1.1.2/
 	#只需一次，下次启动不再需要格式化，只需 start-all.sh
-	$ hadoop  namenode -format
-	$ start-all.sh
+	$ bin/hadoop  namenode -format
+	$ bin/start-all.sh
 
 ###5.6 检查是否启动成功
 
@@ -320,24 +321,24 @@ source一下，使得环境变量立刻生效
 ###5.7 运行wordcount例子，进一步测试是否安装成功
 将输入数据拷贝到分布式文件系统中:
 
-	$ cd $HADOOP_HOME
-	$ hadoop fs -put conf input
+	$ cd ~/hadoop-1.1.2/
+	$ bin/hadoop fs -put conf input
 
 运行 Hadoop 自带的例子:
 
-	$ hadoop jar hadoop-examples-*.jar wordcount input output
+	$ bin/hadoop jar hadoop-examples-*.jar wordcount input output
 
 查看输出文件:
 
-	$ hadoop s -ls output
-	$ hadoop fs -cat output/part-r-00000
+	$ bin/hadoop s -ls output
+	$ bin/hadoop fs -cat output/part-r-00000
 
 如果能看到结果，说明这个例子运行成功。
 
 ###5.8 停止 hadoop集群
 在master上执行：
 
-	$ stop-all.sh
+	$ bin/stop-all.sh
 
 ##6. 排除错误
 本文已经尽可能的把步骤详细列出来了，但是我相信大部分人不会一次成功。这时候，查找错误就很重要了。查找错误最重要的手段是查看hadoop的日志，一般在logs目录下。把错误消息复制粘贴到google，搜索一下，慢慢找错误。

@@ -9,7 +9,7 @@ categories: spark
 
 After a few days hacking , I have found that installing a Spark cluster is exteremely easy :)
 
-#1. Install JDK 1.7.
+#1. Install JDK 1.7
 	yum search openjdk-devel
 	sudo yum install java-1.7.0-openjdk-devel.x86_64
 	/usr/sbin/alternatives --config java
@@ -50,16 +50,9 @@ If you want to compile it from scratch, download the source package, but I don�
 
 #4. Local Mode
 
-##4.1 Untar the tarball and set SPARK\_HOME
+##4.1 Untar the tarball
 
 	$ tar -zxf spark-0.7.2-prebuilt-hadoop1.tgz
-	$ vim ~/.bash_profile
-	# add the following lines at the end
-	export SPARK_HOME=$HOME/spark-0.7.2
-	export PATH=$PATH:$SPARK_HOME/bin
-	# save and exit vim
-	# make environment variables take effect immediately
-	$ source /etc/profile
 
 ##4.2 Set the SPARK\_EXAMPLES\_JAR environment variable
 	$ vim ~/.bash_profile
@@ -71,7 +64,17 @@ If you want to compile it from scratch, download the source package, but I don�
 
 This is the most important step that must be done , but unfortunately the official docs and most web blogs haven’t mentioned this. I found this step when I bumped into these posts, [Running SparkPi](https://groups.google.com/forum/?fromgroups#!topic/spark-users/nQ6wB2lcFN8), [Null pointer exception when running ./run spark.examples.SparkPi local](https://groups.google.com/forum/#!msg/spark-users/x5UczgI-Xm8/wzMm3Mb77-oJ).
 
-##4.3 Now you can run SparkPi.
+##4.3 (Optional)Set SPARK\_HOME and add SPARK\_HOME/bin to PATH
+
+	$ vim ~/.bash_profile
+	# add the following lines at the end
+	export SPARK_HOME=$HOME/spark-0.7.2
+	export PATH=$PATH:$SPARK_HOME/bin
+	# save and exit vim
+	# make environment variables take effect immediately
+	$ source /etc/profile
+
+##4.4 Now you can run SparkPi.
 
 	$ cd ~/spark-0.7.2
 	$ ./run spark.examples.SparkPi local 
@@ -87,11 +90,14 @@ Use VMware Workstation to create three CentOS virtual machines, which's hostname
 Install JDK 1.7 and Scala 2.9.3 on the three machines, according to section 1 and section 2.
 
 ##5.3 Install and configure Spark on master
+Untar
+
 	$ tar -zxf spark-0.7.2-prebuilt-hadoop1.tgz
+
+Set the SPARK\_EXAMPLES\_JAR environment variable
+
 	$ vim ~/.bash_profile
 	# add the following lines at the end
-	export SPARK_HOME=$HOME/spark-0.7.2
-	export PATH=$PATH:$SPARK_HOME/bin
 	export SPARK_EXAMPLES_JAR=$SPARK_HOME/examples/target/scala-2.9.3/spark-examples_2.9.3-0.7.2.jar
 	# save and exit vim
 	# make environment variables take effect immediately
@@ -112,8 +118,18 @@ In`conf/slaves`, add hostnames of Spark workers, one per line.
 	slave02
 	# save and exit
 
+(Optional)Set SPARK\_HOME and add SPARK\_HOME/bin to PATH
+
+	$ vim ~/.bash_profile
+	# add the following lines at the end
+	export SPARK_HOME=$HOME/spark-0.7.2
+	export PATH=$PATH:$SPARK_HOME/bin
+	# save and exit vim
+	# make environment variables take effect immediately
+	$ source /etc/profile
+
 ##5.4 Install and configure Spark on workers
-Copy the spark directory to all slaves
+Copy the spark directory to all slaves. **Remark，the spark directories must locat at the the same path on all machines，because the master will login to work to execute spark commands, it assumes that workers have the same path as itself**
 
 	scp -r spark-0.7.2 dev@slave01:~
 	scp -r spark-0.7.2 dev@slave02:~
@@ -124,7 +140,7 @@ Set environment variables on all slaves as section 5.3.
 ##5.5 Start Spark cluster
 On master
 
-	$ cd $SPARK_HONE
+	$ cd ~/spark-0.7.2
 	$ bin/start-all.sh
 
 Check whether the processes have been started.
@@ -140,12 +156,12 @@ Look at the master’s web UI (<http://localhost:8080> by default). You should s
 
 ##5.6 run the SparkPi example in cluster mode
 
-	$ cd $SPARK_HONE
+	$ cd ~/spark-0.7.2
 	$ ./run spark.examples.SparkPi spark://master:7077
 
 ##5.7 read files from HDFS and run WordCount
 
-	$ cd $SPARK_HOME
+	$ cd ~/spark-0.7.2
 	$ hadoop fs -put README.md .
 	$ ./spark-shell
 	scala> val file = sc.textFile("hdfs://master:9000/user/dev/README.md")
@@ -154,7 +170,7 @@ Look at the master’s web UI (<http://localhost:8080> by default). You should s
 
 ##5.8 Stop Spark cluster
 
-	$ cd $SPARK_HONE
+	$ cd ~/spark-0.7.2
 	$ bin/stop-all.sh
 
 #References
