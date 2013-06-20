@@ -22,7 +22,7 @@ categories: spark
 	export PATH=$PATH:$JAVA_HOME/bin
 	export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
 	# save and exit vim
-	# make environment variables take effect immediately
+	# make the bash profile take effect immediately
 	$ source /etc/profile
 	# test
 	$ java -version
@@ -41,7 +41,7 @@ Spark 0.7.2 依赖 Scala 2.9.3, 我们必须要安装Scala 2.9.3.
 	export SCALA_HOME=/usr/lib/scala-2.9.3
 	export PATH=$PATH:$SCALA_HOME/bin
 	# save and exit vim
-	# make environment variables take effect immediately
+	#make the bash profile take effect immediately
 	source /etc/profile
 	# test
 	$ scala -version
@@ -61,9 +61,9 @@ Spark 0.7.2 依赖 Scala 2.9.3, 我们必须要安装Scala 2.9.3.
 
 	$ vim ~/.bash_profile
 	# add the following lines at the end
-	export SPARK_EXAMPLES_JAR=$SPARK_HOME/examples/target/scala-2.9.3/spark-examples_2.9.3-0.7.2.jar
+	export SPARK_EXAMPLES_JAR=$HOME/spark-0.7.2/examples/target/scala-2.9.3/spark-examples_2.9.3-0.7.2.jar
 	# save and exit vim
-	# make environment variables take effect immediately
+	#make the bash profile take effect immediately
 	$ source /etc/profile
 
 这一步其实最关键，很不幸的是，官方文档和网上的博客，都没有提及这一点。我是偶然看到了这两篇帖子，[Running SparkPi](https://groups.google.com/forum/?fromgroups#!topic/spark-users/nQ6wB2lcFN8), [Null pointer exception when running ./run spark.examples.SparkPi local](https://groups.google.com/forum/#!msg/spark-users/x5UczgI-Xm8/wzMm3Mb77-oJ)，才补上了这一步，之前死活都无法运行SparkPi。
@@ -74,7 +74,7 @@ Spark 0.7.2 依赖 Scala 2.9.3, 我们必须要安装Scala 2.9.3.
 	export SPARK_HOME=$HOME/spark-0.7.2
 	export PATH=$PATH:$SPARK_HOME/bin
 	# save and exit vim
-	# make environment variables take effect immediately
+	#make the bash profile take effect immediately
 	$ source /etc/profile
 
 ##4.4 现在可以运行SparkPi了
@@ -101,16 +101,17 @@ Spark 0.7.2 依赖 Scala 2.9.3, 我们必须要安装Scala 2.9.3.
 
 	$ vim ~/.bash_profile
 	# add the following lines at the end
-	export SPARK_EXAMPLES_JAR=$SPARK_HOME/examples/target/scala-2.9.3/spark-examples_2.9.3-0.7.2.jar
+	export SPARK_EXAMPLES_JAR=$HOME/spark-0.7.2/examples/target/scala-2.9.3/spark-examples_2.9.3-0.7.2.jar
 	# save and exit vim
-	# make environment variables take effect immediately
+	#make the bash profile take effect immediately
 	$ source /etc/profile
 
 在 in `conf/spark-env.sh` 中设置`SCALA_HOME`
 
-	$ cd $SPARK_HOME/conf
+	$ cd ~/spark-0.7.2/conf
 	$ mv spark-env.sh.template spark-env.sh
 	$ vim spark-env.sh
+	# add the following line
 	export SCALA_HOME=/usr/lib/scala-2.9.3
 	# save and exit
 
@@ -128,16 +129,17 @@ Spark 0.7.2 依赖 Scala 2.9.3, 我们必须要安装Scala 2.9.3.
 	export SPARK_HOME=$HOME/spark-0.7.2
 	export PATH=$PATH:$SPARK_HOME/bin
 	# save and exit vim
-	# make environment variables take effect immediately
+	#make the bash profile take effect immediately
 	$ source /etc/profile
 
 ##5.4 在所有worker上安装并配置Spark
 既然master上的这个文件件已经配置好了，把它拷贝到所有的worker。**注意，三台机器spark所在目录必须一致，因为master会登陆到worker上执行命令，master认为worker的spark路径与自己一样。**
+	
+	$ cd
+	$ scp -r spark-0.7.2 dev@slave01:~
+	$ scp -r spark-0.7.2 dev@slave02:~
 
-	scp -r spark-0.7.2 dev@slave01:~
-	scp -r spark-0.7.2 dev@slave02:~
-
-按照第5.3节设置环境变量和配置文件。
+按照第5.3节设置`SPARK_EXAMPLES_JAR`环境变量，配置文件不用配置了，因为是直接从master复制过来的，已经配置好了。
 
 
 ##5.5 启动 Spark 集群
@@ -161,11 +163,19 @@ Spark 0.7.2 依赖 Scala 2.9.3, 我们必须要安装Scala 2.9.3.
 	$ cd ~/spark-0.7.2
 	$ ./run spark.examples.SparkPi spark://master:7077
 
+（可选）运行自带的例子，SparkLR 和 SparkKMeans.
+	
+	#Logistic Regression
+	#./run spark.examples.SparkLR spark://master:7077
+	#kmeans
+	$ ./run spark.examples.SparkKMeans spark://master:7077 ./kmeans_data.txt 2 1
+	
+
 ##5.7 从HDFS读取文件并运行WordCount
 
 	$ cd ~/spark-0.7.2
 	$ hadoop fs -put README.md .
-	$ ./spark-shell
+	$ MASTER=spark://master:7077 ./spark-shell
 	scala> val file = sc.textFile("hdfs://master:9000/user/dev/README.md")
 	scala> val count = file.flatMap(line => line.split(" ")).map(word => (word, 1)).reduceByKey(_+_)
 	scala> count.collect()

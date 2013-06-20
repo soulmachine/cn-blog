@@ -21,7 +21,7 @@ After a few days hacking , I have found that installing a Spark cluster is exter
 	export PATH=$PATH:$JAVA_HOME/bin
 	export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
 	# save and exit vim
-	# make environment variables take effect immediately
+	# make the bash profile take effect immediately
 	$ source /etc/profile
 	# test
 	$ java -version
@@ -38,7 +38,7 @@ Download [scala-2.9.3.tgz](http://www.scala-lang.org/downloads/distrib/files/sca
 	export SCALA_HOME=/usr/lib/scala-2.9.3
 	export PATH=$PATH:$SCALA_HOME/bin
 	# save and exit vim
-	# make environment variables take effect immediately
+	# make the bash profile take effect immediately
 	source /etc/profile
 	# test
 	$ scala -version
@@ -57,9 +57,9 @@ If you want to compile it from scratch, download the source package, but I don�
 ##4.2 Set the SPARK\_EXAMPLES\_JAR environment variable
 	$ vim ~/.bash_profile
 	# add the following lines at the end
-	export SPARK_EXAMPLES_JAR=$SPARK_HOME/examples/target/scala-2.9.3/spark-examples_2.9.3-0.7.2.jar
+	export SPARK_EXAMPLES_JAR=$HOME/spark-0.7.2/examples/target/scala-2.9.3/spark-examples_2.9.3-0.7.2.jar
 	# save and exit vim
-	# make environment variables take effect immediately
+	# make the bash profile take effect immediately
 	$ source /etc/profile
 
 This is the most important step that must be done , but unfortunately the official docs and most web blogs haven’t mentioned this. I found this step when I bumped into these posts, [Running SparkPi](https://groups.google.com/forum/?fromgroups#!topic/spark-users/nQ6wB2lcFN8), [Null pointer exception when running ./run spark.examples.SparkPi local](https://groups.google.com/forum/#!msg/spark-users/x5UczgI-Xm8/wzMm3Mb77-oJ).
@@ -71,7 +71,7 @@ This is the most important step that must be done , but unfortunately the offici
 	export SPARK_HOME=$HOME/spark-0.7.2
 	export PATH=$PATH:$SPARK_HOME/bin
 	# save and exit vim
-	# make environment variables take effect immediately
+	# make the bash profile take effect immediately
 	$ source /etc/profile
 
 ##4.4 Now you can run SparkPi.
@@ -98,16 +98,17 @@ Set the SPARK\_EXAMPLES\_JAR environment variable
 
 	$ vim ~/.bash_profile
 	# add the following lines at the end
-	export SPARK_EXAMPLES_JAR=$SPARK_HOME/examples/target/scala-2.9.3/spark-examples_2.9.3-0.7.2.jar
+	export SPARK_EXAMPLES_JAR=$HOME/spark-0.7.2/examples/target/scala-2.9.3/spark-examples_2.9.3-0.7.2.jar
 	# save and exit vim
-	# make environment variables take effect immediately
+	# make the bash profile take effect immediately
 	$ source /etc/profile
 
 Set `SCALA_HOME` in `conf/spark-env.sh`
 
-	$ cd $SPARK_HOME/conf
+	$ cd ~/spark-0.7.2/conf
 	$ mv spark-env.sh.template spark-env.sh
 	$ vim spark-env.sh
+	# add the following line
 	export SCALA_HOME=/usr/lib/scala-2.9.3
 	# save and exit
 
@@ -125,17 +126,17 @@ In`conf/slaves`, add hostnames of Spark workers, one per line.
 	export SPARK_HOME=$HOME/spark-0.7.2
 	export PATH=$PATH:$SPARK_HOME/bin
 	# save and exit vim
-	# make environment variables take effect immediately
+	# make the bash profile take effect immediately
 	$ source /etc/profile
 
 ##5.4 Install and configure Spark on workers
 Copy the spark directory to all slaves. **Remark，the spark directories must locat at the the same path on all machines，because the master will login to work to execute spark commands, it assumes that workers have the same path as itself**
 
-	scp -r spark-0.7.2 dev@slave01:~
-	scp -r spark-0.7.2 dev@slave02:~
+	$ cd
+	$ scp -r spark-0.7.2 dev@slave01:~
+	$ scp -r spark-0.7.2 dev@slave02:~
 
-Set environment variables on all slaves as section 5.3.
-
+Set `SPARK_EXAMPLES_JAR`  on all slaves as section 5.3. There is no need to edit configuration files because they are copied from master, which are already well configured.
 
 ##5.5 Start Spark cluster
 On master
@@ -159,11 +160,18 @@ Look at the master’s web UI (<http://localhost:8080> by default). You should s
 	$ cd ~/spark-0.7.2
 	$ ./run spark.examples.SparkPi spark://master:7077
 
+(Optional)Run built-in examples, SparkLR and SparkKMeans.
+	
+	#Logistic Regression
+	#./run spark.examples.SparkLR spark://master:7077
+	#kmeans
+	$ ./run spark.examples.SparkKMeans spark://master:7077 ./kmeans_data.txt 2 1
+
 ##5.7 read files from HDFS and run WordCount
 
 	$ cd ~/spark-0.7.2
 	$ hadoop fs -put README.md .
-	$ ./spark-shell
+	$ MASTER=spark://master:7077 ./spark-shell
 	scala> val file = sc.textFile("hdfs://master:9000/user/dev/README.md")
 	scala> val count = file.flatMap(line => line.split(" ")).map(word => (word, 1)).reduceByKey(_+_)
 	scala> count.collect()

@@ -267,21 +267,34 @@ conf/mapred-site.xml:
 	$ scp hadoop-env.sh core-site.xml hdfs-site.xml mapred-site.xml masters slaves dev@192.168.1.133:~/hadoop-1.1.2/conf/
 
 ###5.4 （可选）设置环境变量HADOOP\_HOME，并将`$HADOOP_HOME/bin`加入PATH
-所有机器都要设置环境变量HADOOP\_HOME，并将`$HADOOP_HOME/bin`加入PATH，因为master登陆到slave后，要执行`$HADOOP_HOME/bin` 下的一些命令。
+这一步是为了将bin目录加入PATH，这样可以在任何位置执行hadoop的各种命令。这步是可选的。
+
+Hadoop不推荐使用`$HADOOP_HOME`，你可以试一下，当设置了`$HADOOP_HOME`后，执行`bin/start-all.sh`，第一行会打印出一行警告信息，`Warning: $HADOOP_HOME is deprecated.`
+
+给所有机器设置环境变量HADOOP\_HOME，并将`$HADOOP_HOME/bin`加入PATH。
 
 	$ vim ~/.bash_profile
-
-添加以下内容：
-
+	# add the following lines at the end
 	export HADOOP_HOME=$HOME/hadoop-1.1.2
 	export PATH=$PATH:$HOME/bin:$HADOOP_HOME/bin::$HADOOP_HOME/sbin
 	export CLASSPATH=$CLASSPATH:$HADOOP_HOME/hadoop-core-1.1.2.jar
-
-source一下，使得环境变量立刻生效
-
+	# make the bash profile take effect immediately
 	$ source ~/.bash_profile
 
-###5.5 运行 hadoop
+
+##5.5 （可选）设置别名，名称为hadoop，指向bin/hadoop
+像bin目录下的start-all.sh, stop-all.sh其实不常用，对于一个hadoop使用者而言，最常用的命令是hadoop，例如`hadoop fs -ls`。前面5.4节将bin目录加入PATH，相当于一股脑儿将所有的命令加入了PATH，其实大可不必，我们只需要设置一个别名，名称为hadoop，指向bin/hadoop就可以了。
+
+在所有机器上设置hadoop 别名，步骤如下：
+
+	$ vim ~/.bash_profile
+	# add the following line at the end
+	alias hadoop='~/hadoop-1.1.2/bin/hadoop'
+	#make the bash profile take effect immediately
+	$ source ~/.bash_profile
+
+
+###5.6 运行 hadoop
 在master上执行以下命令，启动hadoop
 
 	$ cd ~/hadoop-1.1.2/
@@ -289,7 +302,7 @@ source一下，使得环境变量立刻生效
 	$ bin/hadoop  namenode -format
 	$ bin/start-all.sh
 
-###5.6 检查是否启动成功
+###5.7 检查是否启动成功
 
 在master上执行：
 
@@ -318,7 +331,7 @@ source一下，使得环境变量立刻生效
 
 可见进程都启动起来了，说明hadoop运行成功。
 
-###5.7 运行wordcount例子，进一步测试是否安装成功
+###5.8 运行wordcount例子，进一步测试是否安装成功
 将输入数据拷贝到分布式文件系统中:
 
 	$ cd ~/hadoop-1.1.2/
@@ -335,7 +348,7 @@ source一下，使得环境变量立刻生效
 
 如果能看到结果，说明这个例子运行成功。
 
-###5.8 停止 hadoop集群
+###5.9 停止 hadoop集群
 在master上执行：
 
 	$ bin/stop-all.sh
