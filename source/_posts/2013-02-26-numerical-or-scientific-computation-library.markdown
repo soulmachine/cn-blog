@@ -34,6 +34,12 @@ LAPACK是BLAS的第一个实现，是最老牌的数值计算库，用FORTRAN 77
 
 [java-matrix-benchmark](https://code.google.com/p/java-matrix-benchmark/)这个开源项目，比较了各类Java线性代数库的性能。
 
+Java的数值计算库主要分为两类：Pure Java和Natie Wrapper。Pure Java是指用纯Java编写的，Native Wrapper是指该库底层调用了C++或Fortan编写的第三方库，上面封装了一层，提供了更有好的接口。
+
+Pure Java的有：[Colt](http://dsd.lbl.gov/~hoschek/colt/), [Commons Math](http://commons.apache.org/proper/commons-math/), [EJML](https://code.google.com/p/efficient-java-matrix-library/), [JAMA](http://math.nist.gov/javanumerics/jama/), 
+
+Native Wrapper有：[jblas](http://jblas.org)，[Matrix Toolkit Java](https://github.com/fommil/matrix-toolkits-java)
+
 下面介绍一些影响力较大的java数值计算/科学计算库。
 
 [Commons Math](http://commons.apache.org/proper/commons-math/), 最新版本是3.1.1,2013年1月9号发布。这个库提供一些基本的数学运算，没有high-level的东西，例如矩阵，向量等，用起来会比较繁琐。

@@ -16,45 +16,50 @@ Java代码质量检测评估工具
 
 一下列举了一些目前比较流行的工具。网址后面列出了其PR值，可以反映此工具的流行度。
 
-1、编码风格
+##1. 编码风格
 CheckStyle
 Home page: <http://checkstyle.sourceforge.net/> (6)  
 对应的eclipse插件有多个，其中eclipsecs最常用  
 Home page: <http://eclipse-cs.sourceforge.net/> (6)  
 eclipse插件URL：<http://eclipse-cs.sf.net/update/>
 
-2、冗余代码
+##2. 冗余代码
 Simian <http://www.redhillconsulting.com.au/products/simian/> (5)  
 PMD 的 CPD <http://pmd.sourceforge.net/cpd.html> (5)
-<!--more-->
-3、代码覆盖率
+
+##3. 代码覆盖率
 EMMA  <http://emma.sourceforge.net/> (6)  
 Cobertura  <http://cobertura.sourceforge.net/> (6)  
 EclEmma <http://update.eclemma.org/> (5)  
 Coverlipse <http://coverlipse.sourceforge.net/> (3)
 
-4、依赖项分析
+##4. 依赖项分析
 JDepend <http://clarkware.com/software/JDepend.html> (6)
 
-5、复杂度监控
+##5. 复杂度监控
 Metrics <http://metrics.sourceforge.net/> (4)
 
-具有以上两项或两项以上的综合工具（也称为静态分析工具）：
-1、PMD
+##6. 静态分析工具
+具有以上两项或两项以上的综合工具（也称为静态分析工具）： 
+
+###6.1 PMD
 Home page: <http://pmd.sourceforge.net/> (6)  
 eclipse插件URL：<http://sourceforge.net/projects/pmd/files/pmd-eclipse/update-site/>
 
-2、FindBugs <http://findbugs.sourceforge.net/> (6)  
+###6.2 FindBugs <http://findbugs.sourceforge.net/> (6)  
 eclipse插件URL：<http://findbugs.cs.umd.edu/eclipse>
 
 FindBugs 检查程序生成的class文件，即分析字节码
 PMD 检查源码，分析源代码
 
-3、Jtest <http://www.parasoft.com/jtest>
+###6.3 Jtest
+<http://www.parasoft.com/jtest>
 
-4、Jlint <http://artho.com/jlint/> (5)
+###6.4 Jlint
+<http://artho.com/jlint/> (5)
 
-5、Lint4j <http://www.jutils.com/> (4)
+###6.5 Lint4j
+<http://www.jutils.com/> (4)
 
 我个人平时最常用的是Checkstyle，其次是PMD，大家可以参考一下。
 

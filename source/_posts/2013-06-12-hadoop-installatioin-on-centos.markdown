@@ -16,11 +16,13 @@ Ubuntu上安装，请参考我的另一篇博客，[在Ubuntu上安装Hadoop](ht
 临时关闭防火墙
 
 	$ sudo service iptables stop
+
 下次开机后，防火墙还是会启动。
 
 永久关闭防火墙
 
 	$ sudo chkconfig iptables off
+
 由于这几台虚拟机是开发机，不是生产环境，因此不必考虑安全性，可以永久关闭防火墙，还能给开发阶段带来很多便利。
 
 ##3. 修改hostname
@@ -202,6 +204,7 @@ JobTracker - <http://localhost:50030/>
 	$ exit
 	$ ssh 192.168.1.133
 	$ exit
+
 如果不需要密码，则说明配置成功了。
 
 
