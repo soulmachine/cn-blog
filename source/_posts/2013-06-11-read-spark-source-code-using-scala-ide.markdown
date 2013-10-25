@@ -76,4 +76,6 @@ Linux下可以省略以上两步，spark源码自带了一个sbt，且启动sbt�
 
 如果不想折腾，可以下载我已经生成好的项目, [spark-0.7.2.zip](http://pan.baidu.com/share/link?shareid=534521368&uk=2466605404)。解压，启动Scala IDE，选择菜单`File->Import->General->Existing projects into workspace`，浏览到 spark-0.7.2目录，批量导入5个项目。导入后项目图标有红色感叹号，这是因为你的电脑上路径和我的路径不一样，找不到引用的jar了。右击项目，选择`Build Path->Configure Build Path`，选择`Libraries`标签，这时可以看到所有jar都有红叉叉，全选，删除，然后点击`Add External Jars`，浏览到`spark-0.7.2\lib_managed\jars`，把所有jar都导入，导入后红色感叹号就消失了。对每个项目都执行上述操作。
 
-**TODO**: 虽然红色感叹号消失了，不过项目还是有红色小叉叉图标，这是因为IDE找不到某些类的定义，暂时不知道如何解决。
+**2013-07-27 更新**：eclipse项目上有红色小叉叉图标，之前一直没解决，今天解决了，主要原因是，**Scala IDE 版本不对！** scala-ide.org 官网最新的的3.0.1只支持scala 2.10，不再支持2.9.3。由于Spark目前使用scala 2.9.3写的，所以我们要下载支持 scala 2.9.3 版，scala ide 3.0.0是支持 2.9.3的，不过首选要下载 eclipse JUNO，不要使用新版的eclipse，例如eclipse Indigo, Kepler都不行。
+
+因此，正确的做法是，先下载 eclipse juno，然后下载 3.0.0 的zip包，解压，然后启动eclipse，点击菜单"help->Install New Software"，浏览到刚刚解压的`site`文件夹，就可以安装scala ide插件了。

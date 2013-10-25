@@ -1,40 +1,21 @@
 ---
 layout: post
-title: "安装和配置CentOS服务器的详细步骤"
-date: 2012-04-23 20:43
+title: "安装和配置Ubuntu服务器的详细步骤"
+date: 2013-10-27 23:26
 comments: true
-categories: tools
+categories: 
+published: false
 ---
 
-这是我安装CentOS服务器的过程，记录下来，与大家一起分享。
+这是我安装Ubuntu服务器的过程，分享给大家。CentOS服务器请参考我另一篇博客，[安装和配置CentOS服务器的详细步骤](http://www.yanjiuyanjiu.com/blog/20120423/)。
+
 
 ##安装操作系统
-CentOS 6.2 ，CentOS-6.2-i386-bin-DVD1.iso（32位） ，CentOS-6.2-x86_64-bin-DVD1.iso（64位）
 
-安装 CentOS时，选择 "Basic Server"  
-root密码：root123  
-CentOS 自带了ssh  
- 
-安装完操作系统后，添加一个用户 dev
+所使用的ISO文件是 ubuntu-13.04-server-amd64.iso
 
-``` bash
-[root@localhost ~]$ useradd dev
+首先在虚拟机或物理机上安装操作系统，用户名为manong，密码 manong123
 
-```
-然后密码设为 dev123
-
-``` bash
-[root@localhost ~]$ passwd dev
-```
-
-给予 sudo 权限
-
-``` bash
-[root@localhost ~]$ chmod u+w /etc/sudoers
-[root@localhost ~]$ vim /etc/sudoers
-# 在root ALL=(ALL) ALL 下 添加dev ALL=(ALL) ALL
-[root@localhost ~]$ chmod u-w /etc/sudoers 
-```
 
 ##设置上网
 安装完操作系统后，还不能上网，配置DHCP方式上网：
@@ -600,15 +581,3 @@ rm * -rf
 执行上述命令，删除了`70-persistent-net.rules`后，相当于删除了旧的配置文件，在开机时会生成新的配置文件。
 
 关机后，右击标签，选择"Manage->Clone"，选择"Create a full clone"，克隆完成后，关闭这台虚拟机的标签（否则文件夹里有一些临时垃圾文件），然后把文件夹压缩打包。以后就可以把这个zip包拷贝给周围的人，别人就不用经历一遍重装的过程了。
-
-
-##参考资料
-[LAMP Server on CentOS 6](http://library.linode.com/lamp-guides/centos-6)
-
-[CentOS - Installing Apache and PHP5](http://articles.slicehost.com/2008/2/6/centos-installing-apache-and-php5)
-
-[Setting up a LAMP stack](http://fedorasolved.org/server-solutions/lamp-stack)
-
-[CentOS5.5使用yum来安装LAMP](http://myohmy.blog.51cto.com/140917/327310)
-
-[Install Java JDK on CentOS without prompts using an automated script!](http://it.megocollector.com/?p=1719)
