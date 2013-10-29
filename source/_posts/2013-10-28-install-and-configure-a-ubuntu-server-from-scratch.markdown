@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "安装和配置Ubuntu服务器的详细步骤"
-date: 2013-10-27 23:26
+date: 2013-10-28 23:26
 comments: true
 categories: 
 published: false

@@ -8,7 +8,7 @@ categories: docker
 
 ## 1 在 CentOS 6.4 上安装 docker
 
-docker当前官方只支持Ubuntu，所以在 CentOS 安装Docker比较麻烦。
+docker当前官方只支持Ubuntu，所以在 CentOS 安装Docker比较麻烦([Issue #172](https://github.com/dotcloud/docker/issues/172))。
 
 docker官方文档说要求Linux kernel至少3.8以上，CentOS 6.4是2.6的内核，于是我哼哧哼哧的[编译安装了最新的kernel 3.11.6](http://www.yanjiuyanjiu.com/blog/20131024)，重启后运行docker还是失败，最后找到原因，是因为编译时忘记集成aufs模块了。aufs 需要和 kernel 一起编译，很麻烦。
 
@@ -80,7 +80,7 @@ docker官方文档说要求Linux kernel至少3.8以上，CentOS 6.4是2.6的内�
 
 ### 1.11 运行 hello world
 
-<--- more -->
+<!--more-->
 
 	sudo docker run ubuntu /bin/echo hello world
 	hello world
