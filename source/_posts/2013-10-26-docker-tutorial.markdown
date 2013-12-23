@@ -119,17 +119,11 @@ docker貌似是不识别`http_proxy`, `https_proxy`和`no_proxy`环境变量的�
 	# RUN echo "Acquire::https::proxy \"proxy_server:port\";" >> /etc/apt/apt.conf
 	
 	
-	# make sure the package repository is up to date
-	RUN echo "deb http://mirrors.163.com/ubuntu/ precise main restricted universe multiverse" > /etc/apt/sources.list
-	RUN echo "deb http://mirrors.163.com/ubuntu/ precise-security main restricted universe multiverse" >> /etc/apt/sources.list
-	RUN echo "deb http://mirrors.163.com/ubuntu/ precise-updates main restricted universe multiverse" >> /etc/apt/sources.list
-	RUN echo "deb http://mirrors.163.com/ubuntu/ precise-proposed main restricted universe multiverse" >> /etc/apt/sources.list
-	RUN echo "deb http://mirrors.163.com/ubuntu/ precise-backports main restricted universe multiverse" >> /etc/apt/sources.list
-	RUN echo "deb-src http://mirrors.163.com/ubuntu/ precise main restricted universe multiverse" >> /etc/apt/sources.list
-	RUN echo "deb-src http://mirrors.163.com/ubuntu/ precise-security main restricted universe multiverse" >> /etc/apt/sources.list
-	RUN echo "deb-src http://mirrors.163.com/ubuntu/ precise-updates main restricted universe multiverse" >> /etc/apt/sources.list
-	RUN echo "deb-src http://mirrors.163.com/ubuntu/ precise-proposed main restricted universe multiverse" >> /etc/apt/sources.list
-	RUN echo "deb-src http://mirrors.163.com/ubuntu/ precise-backports main restricted universe multiverse" >> /etc/apt/sources.list
+	# choose a faster mirror, see http://t.cn/zWYrzCE
+	RUN echo "deb mirror://mirrors.ubuntu.com/mirrors.txt precise main restricted universe multiverse" > /etc/apt/sources.list
+	RUN echo "deb mirror://mirrors.ubuntu.com/mirrors.txt precise-updates main restricted universe multiverse" >> /etc/apt/sources.list
+	RUN echo "deb mirror://mirrors.ubuntu.com/mirrors.txt precise-backports main restricted universe multiverse" >> /etc/apt/sources.list
+	RUN echo "deb mirror://mirrors.ubuntu.com/mirrors.txt precise-security main restricted universe multiverse" >> /etc/apt/sources.list
 	
 	RUN apt-get update -y
 	# currently docker official ubuntu image has a problem with apt-get upgrade

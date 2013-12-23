@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "安装Spark集群(在CentOS上)"
-date: 2013-10-16 11:58
+title: "安装Spark 0.8 集群(在CentOS上)"
+date: 2013-10-17 11:58
 comments: true
 categories: spark
 ---

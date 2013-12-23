@@ -66,13 +66,6 @@ ssh -T git@github.com
 ```
 本节参考了 [msysGit 安装后的配置](http://www.cnblogs.com/kysnail/archive/2012/03/16/2399589.html)。
 
-### 克隆Repo到本地
-在D盘新建一个文件夹，例如github。
-
-``` bash
-cd d:\github  
-git clone git@github.com:username/username.github.com.git
-```
 
 ### 安装Octopress
 参考官方文档[setup](http://octopress.org/docs/setup/).  
@@ -179,7 +172,7 @@ source 目录下保存了所有的markdown源文件，是博客的原始数据�
 ### 绑定域名
 参考官方文档[Setting up a custom domain with Pages](https://help.github.com/articles/setting-up-a-custom-domain-with-pages)。
 
-非常简单，在master分支的根目录，添加一个文本文件，名字为CNAME，里面的内容就是要绑定的域名，例如本博客CNAME文件的内容是：
+非常简单，在`source`目录下，添加一个文本文件，名字为CNAME，里面的内容就是要绑定的域名，例如本博客CNAME文件的内容是：
 
 > www.yanjiuyanjiu.com
 

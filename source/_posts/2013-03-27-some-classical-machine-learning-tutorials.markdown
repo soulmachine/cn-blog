@@ -8,6 +8,9 @@ published: true
 ---
 以下记录了我的学习历程，按我的阅读顺序排序。
 
+##Prior, Likelihood, Posterior
+MLAPP第3.2节，讲的很好，用了一个叫 number game 的小游戏做例子，通俗易懂
+
 ##距离和相似度度量
 [距离和相似度度量 » webdataanalysis.net](http://webdataanalysis.net/reference-and-source/distance-and-similarity/)
 
@@ -33,8 +36,12 @@ published: true
 
 <!-- more -->
 
+
 ##PCA(Principal Components Analysis)
 [2002. Lindsay I Smith. A tutorial on Principal Components Analysis](http://www.ce.yildiz.edu.tr/personal/songul/file/1097/principal_components.pdf)
+
+##因子分析(Factor analysis)
+[因子分析（Factor Analysis）- JerryLead - 博客园](http://www.cnblogs.com/jerrylead/archive/2011/05/11/2043317.html)
 
 
 ##期望最大化(EM, Expectation Maximization)
@@ -42,10 +49,21 @@ published: true
 
 李航.《统计学习方法》，P155 第9章 EM算法及其推广. 2012.
 
+
 ##支持向量机(SVM, Support Vector Machines)
 [Andrew Ng. CS229 Lecture notes Support Vector Machines](http://cs229.stanford.edu/notes/cs229-notes3.pdf)
+
+
+##隐马尔科夫模型(Hidden Markov Model, HMM)
+李航《统计学习方法》第10章 隐马尔科夫模型，讲得非常好，有非常具体的例子
+
 
 ##条件随机场(CRF, Conditional Random Field)
 [Introduction to Conditional Random Fields](http://blog.echen.me/2012/01/03/introduction-to-conditional-random-fields/)
 
 李航.《统计学习方法》，P192 第11章 条件随机场. 2012.
+
+##LDA
+[LDA数学八卦](http://vdisk.weibo.com/s/bjfcErv7QQc/1384745764)
+
+[正态分布的前世今生](http://vdisk.weibo.com/s/aYEKfaE9OnRv)
