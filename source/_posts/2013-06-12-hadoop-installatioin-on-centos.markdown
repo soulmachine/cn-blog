@@ -187,22 +187,15 @@ JobTracker - <http://localhost:50030/>
 	# 拷贝到自己
 	$ cat ~/.ssh/id_dsa.pub >> ~/.ssh/authorized_keys
 	# 拷贝到两台slaves机器上
-	$ scp ~/.ssh/id_rsa.pub dev@192.168.1.132:~/.ssh/authorized_keys
-	$ scp ~/.ssh/id_rsa.pub dev@192.168.1.133:~/.ssh/authorized_keys
-
-修改 .ssh目录和authorized_keys 文件的权限
-
-	#在三台机器上执行以下命令
-	$ chmod 600 ~/.ssh/authorized_keys
-	# 在两台 slaves 上执行以下命令
-	$ chmod 700 ~/.ssh
+	$ scp ~/.ssh/id_dsa.pub dev@slave01:~/.ssh/authorized_keys
+	$ scp ~/.ssh/id_dsa.pub dev@slave02:~/.ssh/authorized_keys
 
 测试，看看 master 是否可以无密码登陆两台slave
 
 	#在 master执行
-	$ ssh 192.168.1.132
+	$ ssh slave01
 	$ exit
-	$ ssh 192.168.1.133
+	$ ssh slave02
 	$ exit
 
 如果不需要密码，则说明配置成功了。
@@ -211,6 +204,8 @@ JobTracker - <http://localhost:50030/>
 如果登陆不上，试试先关闭两台slaves的防火墙
 
 	$ sudo service iptables stop
+
+参考资料，[HOWTO: Generating SSH Keys for Passwordless Login](http://hortonworks.com/kb/generating-ssh-keys-for-passwordless-login/)
 
 ###5.2 修改6个配置文件
 在 master 上修改配置文件。
