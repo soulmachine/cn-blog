@@ -28,6 +28,7 @@ First you need to clone the `source` branch to the local octopress folder.
 
     $ git clone -b source git@github.com:username/username.github.com.git octopress
 
+<!-- more -->
 Then clone the `master` branch to the `_deploy` subfolder.
 
     $ cd octopress

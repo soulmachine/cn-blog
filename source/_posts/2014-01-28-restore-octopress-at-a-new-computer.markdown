@@ -38,14 +38,11 @@ Then run the rake installation to configure everything
 
     $ gem install bundler
     $ bundle install
-    $ rake setup_github_pages
-
-It will prompt you for your repository URL.
-
-    Enter the read/write url for your repository
-    (For example, 'git@github.com:your_username/your_username.github.com)
 
 NOW you've setup with a new local copy of your Octopress blog.
+
+You don't need to run `rake setup_github_pages` any more.
+
 
 ##3. Blogging at more than one computer
 
