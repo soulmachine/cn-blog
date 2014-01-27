@@ -67,28 +67,8 @@ categories: "hadoop"
 
 		dev@slave02:~$ sudo mv hosts /etc/hosts
 
-##4. 配置 master 无密码登陆到所有机器（**包括本机**）
-
-	dev@master:~$ ssh-keygen -t rsa
-	
-	dev@master:~$ cat .ssh/id_rsa.pub >> .ssh/authorized_keys
-	
-	dev@master:~$ scp .ssh/id_rsa.pub dev@192.168.1.132:~/
-	
-	dev@master:~$ scp .ssh/id_rsa.pub dev@192.168.1.133:~/
-	
-	dev@slave01:~$ cat id_rsa.pub >> .ssh/authorized_keys
-	
-	dev@slave02:~$ cat id_rsa.pub >> .ssh/authorized_keys
-
-测试一下，
-
-	dev@master:~$ ssh slav01
-
-
-如果登不上，试试先关闭slave01的防火墙，
-
-	dev@slave01:~$ sudo ufw disable
+##4. 配置 master 无密码登陆到所有机器（包括本机）
+参考我的另一篇博客，[SSH无密码登录的配置](http://www.yanjiuyanjiu.com/blog/20120102/)
 
 
 ##5. 复制hadoop安装包到所有机器

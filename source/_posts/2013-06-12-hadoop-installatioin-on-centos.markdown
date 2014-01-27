@@ -159,7 +159,7 @@ JobTracker - <http://localhost:50030/>
 ##5. 分布式模式
 如果有多台机器，就可以把Hadoop 配置成分布式模式(或称为集群模式)。参考官方文档[Cluster Setup](http://hadoop.apache.org/docs/r1.1.2/cluster_setup.html).
 
-##5.1 配置 master 无密码登陆到所有机器（**包括master自己登陆自己**）
+##5.1 配置 master 无密码登陆到所有机器（包括master自己登陆自己）
 首先在两台slave上修改sshd的配置文件，然后重启sshd服务。
 
 	$ sudo vim /etc/ssh/sshd_config
@@ -177,35 +177,7 @@ JobTracker - <http://localhost:50030/>
 
 	$ mkdir ~/.ssh
 
-在master机器上执行： 
- 
-	#生成公钥
-	$ ssh-keygen -t dsa -P '' -f ~/.ssh/id_dsa
-
-把公钥拷贝到所有机器上（包括自己）
-	
-	# 拷贝到自己
-	$ cat ~/.ssh/id_dsa.pub >> ~/.ssh/authorized_keys
-	# 拷贝到两台slaves机器上
-	$ scp ~/.ssh/id_dsa.pub dev@slave01:~/.ssh/authorized_keys
-	$ scp ~/.ssh/id_dsa.pub dev@slave02:~/.ssh/authorized_keys
-
-测试，看看 master 是否可以无密码登陆两台slave
-
-	#在 master执行
-	$ ssh slave01
-	$ exit
-	$ ssh slave02
-	$ exit
-
-如果不需要密码，则说明配置成功了。
-
-
-如果登陆不上，试试先关闭两台slaves的防火墙
-
-	$ sudo service iptables stop
-
-参考资料，[HOWTO: Generating SSH Keys for Passwordless Login](http://hortonworks.com/kb/generating-ssh-keys-for-passwordless-login/)
+接着，参考我的另一篇博客，[SSH无密码登录的配置](http://www.yanjiuyanjiu.com/blog/20120102/)
 
 ###5.2 修改6个配置文件
 在 master 上修改配置文件。
