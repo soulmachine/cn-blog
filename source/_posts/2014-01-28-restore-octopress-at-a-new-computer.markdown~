@@ -22,6 +22,7 @@ Exit current shell, and open a new shell,
 
 You have successfully installed ruby.
 
+
 ##2. Clone your blog to the new machine
 First you need to clone the `source` branch to the local octopress folder.
 
