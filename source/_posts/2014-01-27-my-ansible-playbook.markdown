@@ -13,6 +13,10 @@ categories:
 	
 	  tasks:
 	  ########## for CentOS and RedHat ##########
+	    - name: Install the libselinux-python package
+	      yum: name=libselinux-python state=installed
+	      when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'
+
 	    # update YUM repositories
 	    - shell: 'yum -y update'
 	      when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'

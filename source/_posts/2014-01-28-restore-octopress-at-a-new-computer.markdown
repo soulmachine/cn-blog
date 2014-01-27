@@ -22,8 +22,14 @@ Exit current shell, and open a new shell,
 
 You have successfully installed ruby.
 
+##2. Install Python
 
-##2. Clone your blog to the new machine
+    $ sudo apt-get install -y python
+
+Because [Pygments](http://pygments.org/) syntax highlighting needs Python.
+
+
+##3. Clone your blog to the new machine
 First you need to clone the `source` branch to the local octopress folder.
 
     $ git clone -b source git@github.com:username/username.github.com.git octopress
@@ -44,9 +50,9 @@ NOW you've setup with a new local copy of your Octopress blog.
 You don't need to run `rake setup_github_pages` any more.
 
 
-##3. Blogging at more than one computer
+##4. Blogging at more than one computer
 
-###3.1 Pushing changes
+###4.1 Pushing changes
 If you want to blog at more than one computer, you need to make sure that you push everything before switching computers. From the first machine do the following whenever you’ve made changes:
 
     $ rake new_post["hello world"] 
@@ -60,7 +66,7 @@ Don't forget to commit the source for your blog.
     $ git commit -am "Some comment here." 
     $ git push origin source  # update the remote source branch 
 
-###3.2 Pull changes at another computer
+###4.2 Pull changes at another computer
 
     $ cd octopress
     $ git pull origin source  # update the local source branch
