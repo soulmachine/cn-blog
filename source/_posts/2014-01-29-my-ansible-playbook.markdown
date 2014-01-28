@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "我的Ansible playbook"
-date: 2014-01-27 22:08
+date: 2014-01-29 22:08
 comments: true
 categories: 
 ---

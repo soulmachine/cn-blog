@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Ansible 快速入门"
-date: 2014-01-29 12:10
+date: 2014-01-27 12:10
 comments: true
 categories: SA
 ---
@@ -30,6 +30,7 @@ Ad-hoc命令的形式一般如下：
 
     ansible groupname -m module -a arguments
 
+<!-- more -->
 例如：
 
     ansible all -m yum -a "name=wget state=present"
