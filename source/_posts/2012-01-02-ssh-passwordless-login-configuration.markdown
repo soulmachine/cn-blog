@@ -3,7 +3,7 @@ layout: post
 title: "SSH无密码登录的配置"
 date: 2012-01-02 02:16
 comments: true
-categories: SA
+categories: DevOps
 ---
 
 根据公钥加密的思想，如果机器A想无密码登录其他N台机器，只需要在自己机器上生成一对公钥和密钥，然后把密钥给这N台机器，这样，这N台机器，有了A的公钥，就可以解密A的数据包，跟A正常通信了。
