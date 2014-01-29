@@ -3,7 +3,7 @@ layout: post
 title: "使用Scala IDE 阅读spark源码 -- 将sbt项目转化为eclipse项目"
 date: 2013-06-11 11:48
 comments: true
-categories: spark
+categories: Spark
 tags: [scala, spark]
 ---
 阅读Spark源代码，最简单的方式是下载源码包，解压后用纯文本方式来阅读源码。这样效率不高，可以用sbteclipse这个插件，将sbt项目文件转化为eclipse项目文件，然后导入到Scala IDE，用eclipse来阅读源码，效率大大提高。

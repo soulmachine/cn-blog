@@ -3,7 +3,7 @@ layout: post
 title: "/boot 目录空间不足"
 date: 2014-01-26 22:07
 comments: true
-categories: SA
+categories: DevOps
 ---
 今天在服务器上执行 `sudo yum -y update`的时候报错：
 

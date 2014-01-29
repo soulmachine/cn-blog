@@ -3,7 +3,7 @@ layout: post
 title: "Rdesktop 快速入门"
 date: 2014-01-25 22:05
 comments: true
-categories: SA
+categories: DevOps
 ---
 
 rdesktop是一款Linux下兼容Windows Remote Desktop Protocal(RDP)协议的客户端，可以用它连接开启了3389的windows机器。输入`rdesktop`可以看到该命令的所有选项，其中最常用的选项如下：

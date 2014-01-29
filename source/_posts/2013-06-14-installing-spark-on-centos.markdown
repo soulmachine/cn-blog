@@ -3,7 +3,7 @@ layout: post
 title: "Installing Spark on CentOS"
 date: 2013-06-14 19:06
 comments: true
-categories: spark
+categories: Spark
 ---
 **Environment**:CentOS 6.4, Hadoop 1.1.2, JDK 1.7, Spark 0.7.2, Scala 2.9.3
 

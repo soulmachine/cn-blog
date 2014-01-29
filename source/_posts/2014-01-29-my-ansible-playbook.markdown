@@ -3,8 +3,10 @@ layout: post
 title: "我的Ansible playbook"
 date: 2014-01-29 22:08
 comments: true
-categories: 
+categories: DevOps
 ---
+
+**前提**，安装好Ansible，参考我的上一篇博客，[Ansible 快速入门](http://www.yanjiuyanjiu.com/blog/20140127)
 
 	---
 	- hosts: all

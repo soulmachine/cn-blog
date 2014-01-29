@@ -3,7 +3,7 @@ layout: post
 title: "Ansible 快速入门"
 date: 2014-01-27 12:10
 comments: true
-categories: SA
+categories: DevOps
 ---
 
 Ansible 是一个比Puppet, Chef 更轻量的provisioning 工具，不需要启动daemon进程。这点跟跟pssh差不多，但是比pssh更加强大。
@@ -17,7 +17,7 @@ Ansible 是一个比Puppet, Chef 更轻量的provisioning 工具，不需要启�
 
     sudo apt-get install ansible
 
-在`/etc/ansible/hosts`添加想要操作的机器，且这些机器都是能[SSH无密码登录的](http://www.yanjiuyanjiu.com/blog/20120102)，然后测试一下：
+在`/etc/ansible/hosts`添加想要操作的机器(这个`hosts`文件也叫做[Inventory](http://docs.ansible.com/intro_inventory.html))，且这些机器都是能[SSH无密码登录的](http://www.yanjiuyanjiu.com/blog/20120102)，然后测试一下：
 
     ansible all -a "/bin/echo hello"
 
@@ -106,4 +106,7 @@ playbook.yml:
 
     ansible-playbook playbook.yml
 
+##4. 进阶
+想要进一步了解ansible，可以学习官网的例子, [ansible examples](https://github.com/ansible/ansible-examples/)。
 
+一定要仔细阅读官网给出的最佳实践规范，[Best Practices](http://docs.ansible.com/playbooks_best_practices.html)。

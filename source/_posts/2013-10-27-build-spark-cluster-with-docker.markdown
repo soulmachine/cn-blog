@@ -3,7 +3,7 @@ layout: post
 title: "使用docker打造spark集群"
 date: 2013-10-27 20:30
 comments: true
-categories: spark
+categories: Spark
 ---
 **前提条件：**安装好了docker，见我的另一篇博客，[Docker安装](http://www.yanjiuyanjiu.com/blog/20131025)
 

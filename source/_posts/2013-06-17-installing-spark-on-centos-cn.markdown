@@ -3,7 +3,7 @@ layout: post
 title: "安装Spark集群(在CentOS上)"
 date: 2013-06-17 22:16
 comments: true
-categories: spark
+categories: Spark
 ---
 **环境**:CentOS 6.4, Hadoop 1.1.2, JDK 1.7, Spark 0.7.2, Scala 2.9.3
 
