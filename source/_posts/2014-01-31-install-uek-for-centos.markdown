@@ -20,7 +20,7 @@ UEK的稳定版还是 2.6 内核的，beta版的内核是3.8的，所以我们�
 
     sudo wget http://public-yum.oracle.com/beta/public-yum-ol6-beta.repo -P /etc/yum.repos.d
 
-将 `enabled=0`改为 `enabled=1`
+由于UEK3还没有加入到正式版本中，还目前属于测试阶段，，需要手工将 `enabled=0`改为 `enabled=1`
 
     sudo vim /etc/yum.repos.d/public-yum-ol6-beta.repo
 
@@ -60,4 +60,7 @@ UEK的稳定版还是 2.6 内核的，beta版的内核是3.8的，所以我们�
     sudo docker -d
 
 `Ctrl+C` 终止 docker，然后用 `sudo service docker start` 再次启动docker。
+
+##参考资料
+[UEK R3升级手记](http://blog.liulantao.com/Technology/2013/09/23/kernel-uek-3813-upgrade-notes.html)
 
