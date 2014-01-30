@@ -24,25 +24,25 @@ categories: DevOps
 
 注意，如果你是刚刚 `yum -y update`过，需要重启一下，内核才会更新，不重启的话`uname -r`还是显示的旧的。
 
-##3. 删除所有没有使用的内核
+##3. 删除没有使用的内核
 
     rpm -e 2.6.32-431.el6.x86_64
     rpm -e xxx
 
 将`rpm -q kernel`显示的内核复制粘贴到`xxx`位置。
 
-## 4. 手动删除/boot下的其他文件
-如果/boot下还有其他内核版本的文件，可以把他们全部删除。
+## 4. 手动删除其他文件
+把所有未使用的版本全部删除。
 
-    cd /boot
-    sudo rm initramfs-2.6.32-431.el6.x86_64.img 
-    sudo rm initramfs-2.6.32-431.el6.x86_64.debug.img
-    sudo rm config-2.6.32-431.el6.x86_64.debug 
-    sudo rm System.map-2.6.32-431.el6.x86_64.debug
-    sudo rm vmlinuz-2.6.32-431.el6.x86_64.debug
-    sudo rm symvers-2.6.32-431.el6.x86_64.debug.gz
+    sudo rm -rf /lib/modules/2.6.32-431.el6.x86_64
+    sudo rm -rf /usr/src/kernels/2.6.32-431.el6.x86_64
+    sudo rm -rf /usr/src/kernels/2.6.32-431.el6.x86_64.debug
+    sudo rm /boot/*2.6.32-431*
 
-##5. 再执行 yum update
+##5. 删除grub里的条目
+上面的步骤做完了后，最后，把grub里未使用的内核删掉，条目序号是从0开始编号的，删除条目后，记得把`default`设置为正确的序号。
+
+##6. 再执行 yum update
 
     sudo yum -y update
 
@@ -51,3 +51,5 @@ categories: DevOps
 [boot目录空间不足]( http://rajaruan.blog.51cto.com/2771737/868293)
 
 [yum update -y，提示/boot 空间不足的解决方法]( http://www.xiaohuai.com/3301)
+
+[如何卸载自己编译的内核？【已解决，方法见6L】](http://forum.ubuntu.org.cn/viewtopic.php?f=97&t=334647)

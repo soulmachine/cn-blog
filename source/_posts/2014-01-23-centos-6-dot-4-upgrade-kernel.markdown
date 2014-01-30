@@ -3,7 +3,7 @@ layout: post
 title: "CentOS 6.5 升级内核到 3.10.28"
 date: 2014-01-23 00:02
 comments: true
-categories: 
+categories: DevOps
 ---
 
 本文适用于CentOS 6.4, CentOS 6.5，亲测可行，估计也适用于其他Linux发行版。
