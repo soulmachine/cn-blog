@@ -25,6 +25,10 @@ Ansible 是一个比Puppet, Chef 更轻量的provisioning 工具，不需要启�
 
 如果忘记了以上两点，运行任何ansible命令的时候，会卡住不动很久。
 
+如果发现在 "GATHERING FACTS"这里卡住，多半是sudo需要密码，试试加上-K选项，例如`ansible-playbook -K playbook.yml`，参考[Running ansible on local Linux desktop hangs on Gathering Facts](https://groups.google.com/forum/#!topic/ansible-project/FL0mxyxOo4M)。
+
+`-vvvv`表示调试模式，加上后会输出很多中间信息，帮助你调试。
+
 ##1. 安装Ansible
 只需要在一台机器上安装，其他机器不需要安装任何东西，这就是ansible比puppet, chef方便的地方。
 
