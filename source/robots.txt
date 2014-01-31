@@ -7,7 +7,6 @@ Disallow: /archives
 Disallow: /javascripts
 Disallow: /font
 Disallow: /assets
-Disallow: /blog
 Disallow: /soulmachine
 
 Sitemap: {{ site.url }}/sitemap.xml 
