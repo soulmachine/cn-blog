@@ -12,7 +12,7 @@ categories: DevOps
 
 给CentOS 升级内核，有三种途径，一种是yum官方源里有更新的版本，一种途径是自己编译，另一种途径是使用别人编译好了的内核。
 
-CentOS yum源是除了名的更新慢，目前没有 3.8版内核，第二种途径很麻烦，工作量很大，因此本文用第三种。例如UEK，Oracle提供了一个公共的yum源，<http://public-yum.oracle.com/>
+CentOS yum源是出了名的更新慢，目前没有 3.8版内核，第二种途径很麻烦，工作量很大，因此本文用第三种。例如UEK，Oracle提供了一个公共的yum源，<http://public-yum.oracle.com/>
 
 ##添加yum源
 
@@ -62,5 +62,7 @@ UEK的稳定版还是 2.6 内核的，beta版的内核是3.8的，所以我们�
 `Ctrl+C` 终止 docker，然后用 `sudo service docker start` 再次启动docker。
 
 ##参考资料
+[Public Yum Server from Oracle](http://public-yum.oracle.com/)
+
 [UEK R3升级手记](http://blog.liulantao.com/Technology/2013/09/23/kernel-uek-3813-upgrade-notes.html)
 
