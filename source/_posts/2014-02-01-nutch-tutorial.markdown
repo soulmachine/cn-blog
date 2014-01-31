@@ -151,3 +151,57 @@ hbase(main):001:0>
 
     ./bin/nutch readdb -crawlId douban -stats
 
+##4 使用crawl脚本一键抓取
+刚才我们是手工敲入多个命令，一个一个步骤，来完成抓取的，其实Nutch自带了一个脚本，`./bin/crawl`，把抓取的各个步骤合并成一个命令，看一下它的用法
+
+    $ ./bin/crawl 
+    Missing seedDir : crawl <seedDir> <crawlID> <solrURL> <numberOfRounds>
+
+可以看出这个脚本需要Solr，我们先安装Solr。
+
+###4.1 安装Solr
+主要参考[Solr Tutorial](http://lucene.apache.org/solr/4_6_1/tutorial.html)
+
+下载，解压
+
+wget http://mirrors.cnnic.cn/apache/lucene/solr/4.6.1/solr-4.6.1.tgz
+tar -zxf solr-4.6.1.tgz
+
+运行Solr
+
+    cd example
+    java -jar start.jar
+
+验证是否启动成功
+
+用浏览器打开 <http://localhost:8983/solr/admin/>，如果能看到页面，说明启动成功。
+
+###4.2 将Nutch与Solr集成在一起
+
+将`NUTCH_DIR/conf/schema-solr4.xml`拷贝到`SOLR_DIR/solr/collection1/conf/`，重命名为schema.xml，并在`<fields>...</fields>`最后添加一行(具体解释见[Solr 4.2 - what is _version_field?](http://stackoverflow.com/questions/15527380/solr-4-2-what-is-version-field))，
+
+    <field name="_version_" type="long" indexed="true" stored="true" multiValued="false"/>
+
+重启Solr，
+
+    # Ctrl+C to stop Solr
+    java -jar start.jar
+
+###4.3 在nutch-site.xml 添加agent信息
+
+    <property>
+      <name>http.agent.name</name>
+      <value>My Nutch Spider</value>
+    </property>
+
+这一步是从这本书上看到的，[Web Crawling and Data Mining with Apache Nutch](http://www.packtpub.com/web-crawling-and-data-mining-with-apache-nutch/book)，第14页。
+
+###4.3 抓取网页
+
+    ./bin/crawl ~/urls/ TestCrawl http://localhost:8983/solr/ 2
+
+* `～/urls` 是存放了种子url的目录
+* TestCrawl 是crawlId，这会在HBase中创建一张以crawlId为前缀的表，例如TestCrawl_Webpage。
+* http://localhost:8983/solr/ , 这是Solr服务器
+* 2，numberOfRounds，迭代的次数
+
