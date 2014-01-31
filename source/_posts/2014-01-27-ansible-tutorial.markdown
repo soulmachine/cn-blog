@@ -8,6 +8,23 @@ categories: DevOps
 
 Ansible 是一个比Puppet, Chef 更轻量的provisioning 工具，不需要启动daemon进程。这点跟跟pssh差不多，但是比pssh更加强大。
 
+##前提
+* 所使用的remote_user要能够SSH无密码登录到所有机器，配置方法见[SSH无密码登录的配置](http://www.yanjiuyanjiu.com/blog/20120102/)
+* remote_use sudo的时候不需要密码，配置方法如下，
+
+        sudo chmod +w /etc/sudoers
+        sudo vim /etc/sudoers
+
+    找到 `root    ALL=(ALL:ALL) ALL`，在下面添加一行
+
+       username    ALL=(ALL:ALL) NOPASSWD:ALL
+
+    保存退出，然后恢复为只读，
+
+        sudo chmod +w /etc/sudoers 
+
+如果忘记了以上两点，运行任何ansible命令的时候，会卡住不动很久。
+
 ##1. 安装Ansible
 只需要在一台机器上安装，其他机器不需要安装任何东西，这就是ansible比puppet, chef方便的地方。
 
