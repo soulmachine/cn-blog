@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Nutch快速入门"
+title: "Nutch 快速入门(Nutch 2.2.1)"
 date: 2014-02-01 04:11
 comments: true
 categories: Search Engine
@@ -204,4 +204,32 @@ tar -zxf solr-4.6.1.tgz
 * TestCrawl 是crawlId，这会在HBase中创建一张以crawlId为前缀的表，例如TestCrawl_Webpage。
 * http://localhost:8983/solr/ , 这是Solr服务器
 * 2，numberOfRounds，迭代的次数
+
+过了一会儿，屏幕上出现了一大堆url，可以看到爬虫正在抓取！
+
+    fetching http://music.douban.com/subject/25811077/ (queue crawl delay=5000ms)
+    fetching http://read.douban.com/ebook/1919781 (queue crawl delay=5000ms)
+    fetching http://www.douban.com/online/11670861/ (queue crawl delay=5000ms)
+    fetching http://book.douban.com/tag/绘本 (queue crawl delay=5000ms)
+    fetching http://movie.douban.com/tag/科幻 (queue crawl delay=5000ms)
+    49/50 spinwaiting/active, 56 pages, 0 errors, 0.9 1 pages/s, 332 245 kb/s, 131 URLs in 5 queues
+    fetching http://music.douban.com/subject/25762454/ (queue crawl delay=5000ms)
+    fetching http://read.douban.com/reader/ebook/1951242/ (queue crawl delay=5000ms)
+    fetching http://www.douban.com/mobile/read-notes (queue crawl delay=5000ms)
+    fetching http://book.douban.com/tag/诗歌 (queue crawl delay=5000ms)
+    50/50 spinwaiting/active, 61 pages, 0 errors, 0.9 1 pages/s, 334 366 kb/s, 127 URLs in 5 queues
+
+###4.4 查看结果
+
+    ./bin/nutch readdb -crawlId TestCrawl -stats
+
+也可以进HBase shell 查看，
+
+    cd ~/hbase-0.90.4
+    ./bin/hbase shell
+    hbase(main):001:0> scan 'TestCrawl_webpage'
+
+屏幕开始不断输出内容，可以用Ctrl+C 结束。
+
+在运行scan查看表中内容时，对于列的含义不确定时可以查看`conf/gora-hbase-mapping.xml`文件，该文件定义了列族及列的含义。
 

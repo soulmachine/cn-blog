@@ -33,14 +33,25 @@ categories: DevOps
 
     dev@master:~$ scp ~/.ssh/id_dsa.pub dev@slave01:~
     dev@master:~$ scp ~/.ssh/id_dsa.pub dev@slave02:~
-	#追加到authorized_keys
-	dev@slave01:~$ cat id_dsa.pub >> .ssh/authorized_keys
-	dev@slave02:~$ cat id_dsa.pub >> .ssh/authorized_keys
+    #追加到authorized_keys
+    dev@master:~$ ssh slave01
+    dev@slave01:~$ mkdir .ssh
+    dev@slave01:~$ cat id_dsa.pub >> .ssh/authorized_keys
+    dev@slave01:~$ exit
+    dev@master:~$ ssh slave02
+    dev@slave02:~$ mkdir .ssh
+    dev@slave02:~$ cat id_dsa.pub >> .ssh/authorized_keys
+    dev@slave02:~$ exit
 
+##4. 设置.ssh目录和authorized_keys文件的权限
+在被登录的每台机器上，执行如下命令：
 
-##4. 测试一下
+    chmod 755 .ssh
+    chmod 600 ~/.ssh/authorized_keys
 
-	#在 master执行
+##5. 测试一下
+
+    #在 master执行
     dev@master:~$ ssh slave01
 
 第一次还是需要密码的，`exit`退出再试一次，就不需要密码了。
@@ -50,4 +61,6 @@ categories: DevOps
 	dev@slave01:~$ sudo ufw disable
 
 ##参考资料
+[Howto Linux / UNIX setup SSH with DSA public key authentication (password less login)](http://www.cyberciti.biz/faq/ssh-password-less-login-with-dsa-publickey-authentication/)
+
 [HOWTO: Generating SSH Keys for Passwordless Login](http://hortonworks.com/kb/generating-ssh-keys-for-passwordless-login/)
