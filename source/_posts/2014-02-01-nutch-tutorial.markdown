@@ -3,7 +3,7 @@ layout: post
 title: "Nutch 快速入门(Nutch 2.2.1)"
 date: 2014-02-01 04:11
 comments: true
-categories: Search Engine
+categories: Search-Engine
 ---
 
 ##1. 安装并运行HBase
@@ -28,7 +28,7 @@ categories: Search Engine
       </property>
     </configuration>
 
-`hbase.rootdir`目录是用来存放HBase的相关信息的，默认值是`/tmp/hbase-${user.name}/hbase； `hbase.zookeeper.property.dataDir`目录是用来存放zookeeper（HBase内置了zookeeper）的相关信息的，默认值是`/tmp/hbase-${user.name}/zookeeper。
+`hbase.rootdir`目录是用来存放HBase的相关信息的，默认值是`/tmp/hbase-${user.name}/hbase`； `hbase.zookeeper.property.dataDir`目录是用来存放zookeeper（HBase内置了zookeeper）的相关信息的，默认值是`/tmp/hbase-${user.name}/zookeeper`。
 
 ###1.3 启动
 
@@ -147,6 +147,17 @@ hbase(main):001:0>
     cd runtime/local
     ./bin/nutch inject ~/urls -crawlId douban
 
+##3.2 设置agent名字
+
+conf/nutch-site.xml:
+
+    <property>
+      <name>http.agent.name</name>
+      <value>My Nutch Spider</value>
+    </property>
+
+这一步是从这本书上看到的，[Web Crawling and Data Mining with Apache Nutch](http://www.packtpub.com/web-crawling-and-data-mining-with-apache-nutch/book)，第14页。
+
 ###3.2 查看结果
 
     ./bin/nutch readdb -crawlId douban -stats
@@ -186,15 +197,6 @@ tar -zxf solr-4.6.1.tgz
 
     # Ctrl+C to stop Solr
     java -jar start.jar
-
-###4.3 在nutch-site.xml 添加agent信息
-
-    <property>
-      <name>http.agent.name</name>
-      <value>My Nutch Spider</value>
-    </property>
-
-这一步是从这本书上看到的，[Web Crawling and Data Mining with Apache Nutch](http://www.packtpub.com/web-crawling-and-data-mining-with-apache-nutch/book)，第14页。
 
 ###4.3 抓取网页
 

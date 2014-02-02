@@ -145,7 +145,7 @@ Hadoop的log写入到了`${HADOOP_HOME}/logs`目录下。
 ##3 分布式模式(Fully-Distributed Mode)
 主要参考官方文档[Cluster Setup](http://hadoop.apache.org/docs/r1.2.1/cluster_setup.html).
 
-##3.1 准备5台机器
+##3.1 准备3台机器
 这里，我们用vmware workstation 创建3台虚拟机。首先用vmware workstation 新建一台CentOS 6.5，装好操作系统，选择 Basic Server，安装JDK，参考我的另一篇博客，[安装和配置CentOS服务器的详细步骤](http://www.yanjiuyanjiu.com/blog/20120423/)。安装好后然后用**浅拷贝**`Create a linked clone` 克隆出2台，这样有了3台虚拟机。启动3台机器，假设IP分别为`192.168.1.131, 192.168.1.132, 192.168.1.133`, 131做为NameNode,JobTracker和SecondaryNameNode，身兼3个角色，这3个角色应该放到3台不同的机器上，这里为了简化，用一台机器来做3个角色；132和133为 slave。三台机器上的用户名是`dev`。
 
 ##3.2 关闭防火墙
@@ -214,7 +214,7 @@ Hadoop的配置文件比较多，其设计原则可以概括为如下两点：
 
     export HADOOP_OPTS="-server -Djava.net.preferIPv4Stack=true $HADOOP_OPTS"
 
-参考[Disabling IPv6](http://www.michael-noll.com/tutorials/running-hadoop-on-ubuntu-linux-single-node-cluster/#disabling-ipv6)
+参考[Disabling IPv6](http://www.michael-noll.com/tutorials/running-hadoop-on-ubuntu-linux-single-node-cluster/#disabling-ipv6)，以及Web Crawling and Data Mining with Apache Nutch这本书的第66页。
 
 conf/masters:
 
@@ -251,7 +251,13 @@ conf/hdfs-site.xml:
 	         <name>dfs.data.dir</name>
 	         <value>/home/dev/hadoop/dfs/data</value>
 	     </property>
+             <property>
+               <name>dfs.replication</name>
+               <value>2</value>
+             </property>
 	</configuration>
+
+我们只有2台slave，因此`dfs.replication`设置为2。
 
 Hadoop会自动在master创建 /home/dev/hadoop/dfs/name 目录，在 slaves上创建 /home/dev/hadoop/dfs/data 目录。
 
