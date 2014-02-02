@@ -57,7 +57,7 @@ HDFS本身没有提供用户名、用户组的创建，在客户端调用hadoop 
     $ bin/hadoop fs -chgrp hbase /user/hbase
 
 ###2.2 设置mapreduce.jobtracker.staging.root.dir，然后重启hadoop集群
-客户端向集群提交任务时，需要把该job需要的文件打包，拷贝到HDFS上。在拷贝之前，得先确定这些资源文件存放在HDFS的什么地方。JobTracker设置有一个工作目录(Staging area, 也称数据中转站)，用来存储与每个job相关的数据。这个目录的前缀由`mapreduce.jobtracker.staging.root.dir` 参数来指定，默认是${hadoop.tmp.dir}/mapred/staging，每个client user可以提交多个job，在这个目录后就得附加user name的信息。所以这个工作目录(Staging area)默认是${hadoop.tmp.dir}/mapred/staging/denny/.staging/。
+客户端向集群提交任务时，需要把该job需要的文件打包，拷贝到HDFS上。在拷贝之前，得先确定这些资源文件存放在HDFS的什么地方。JobTracker设置有一个工作目录(Staging area, 也称数据中转站)，用来存储与每个job相关的数据。这个目录的前缀由`mapreduce.jobtracker.staging.root.dir` 参数来指定，默认是`${hadoop.tmp.dir}/mapred/staging`，每个client user可以提交多个job，在这个目录后就得附加user name的信息。所以这个工作目录(Staging area)默认是`${hadoop.tmp.dir}/mapred/staging/denny/.staging/`。
 
 一般把前缀设置为`/user`，这是官方推荐的，见 <http://hadoop.apache.org/docs/r1.2.1/mapred-default.html> 里的`mapreduce.jobtracker.staging.root.dir`处：
 
