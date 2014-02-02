@@ -5,6 +5,7 @@ date: 2014-02-01 04:11
 comments: true
 categories: Search-Engine
 ---
+本文主要参考[Nutch 2.x Tutorial](http://wiki.apache.org/nutch/Nutch2Tutorial)
 
 ##1. 安装并运行HBase
 为了简单起见，使用Standalone模式，参考 [HBase Quick start](http://hbase.apache.org/book/quickstart.html)
@@ -136,18 +137,25 @@ hbase(main):001:0>
 
 要等一会儿才能编译结束。编译完后，多出来了 build 和 runtime两个文件夹。
 
-##3 抓取网页
+第3、4、5、6步与另一篇博客[Nutch 快速入门(Nutch 1.7)]()中的第3、4、5、6步骤一模一样。
 
-###3.1 添加种子url，并开始抓取
+##3 添加种子URL
 
     mkdir ~/urls
     vim ～/urls/seed.txt
-    http://www.douban.com
+    http://movie.douban.com/subject/5323968/
 
-    cd runtime/local
-    ./bin/nutch inject ~/urls -crawlId douban
+##4 设置URL过滤规则
+如果只想抓取某种类型的URL，可以在 `conf/regex-urlfilter.txt`设置正则表达式，于是，只有匹配这些正则表达式的URL才会被抓取。
 
-##3.2 设置agent名字
+例如，我只想抓取豆瓣电影的数据，可以这样设置：
+    
+    # accept anything else
+    #注释掉这行
+    #+.
+    +^http://movie.douban.com/subject/[0-9]*/
+
+##5 设置agent名字
 
 conf/nutch-site.xml:
 
@@ -158,27 +166,17 @@ conf/nutch-site.xml:
 
 这一步是从这本书上看到的，[Web Crawling and Data Mining with Apache Nutch](http://www.packtpub.com/web-crawling-and-data-mining-with-apache-nutch/book)，第14页。
 
-###3.2 查看结果
+##6 安装Solr
+由于建索引的时候需要使用Solr，因此我们需要安装并启动一个Solr服务器。
 
-    ./bin/nutch readdb -crawlId douban -stats
+参考[Nutch Tutorial](http://wiki.apache.org/nutch/NutchTutorial) 第4、5、6步，以及[Solr Tutorial](http://lucene.apache.org/solr/4_6_1/tutorial.html)。
 
-##4 使用crawl脚本一键抓取
-刚才我们是手工敲入多个命令，一个一个步骤，来完成抓取的，其实Nutch自带了一个脚本，`./bin/crawl`，把抓取的各个步骤合并成一个命令，看一下它的用法
-
-    $ ./bin/crawl 
-    Missing seedDir : crawl <seedDir> <crawlID> <solrURL> <numberOfRounds>
-
-可以看出这个脚本需要Solr，我们先安装Solr。
-
-###4.1 安装Solr
-主要参考[Solr Tutorial](http://lucene.apache.org/solr/4_6_1/tutorial.html)
-
-下载，解压
+###6.1 下载，解压
 
 wget http://mirrors.cnnic.cn/apache/lucene/solr/4.6.1/solr-4.6.1.tgz
 tar -zxf solr-4.6.1.tgz
 
-运行Solr
+###6.2 运行Solr
 
     cd example
     java -jar start.jar
@@ -187,7 +185,7 @@ tar -zxf solr-4.6.1.tgz
 
 用浏览器打开 <http://localhost:8983/solr/admin/>，如果能看到页面，说明启动成功。
 
-###4.2 将Nutch与Solr集成在一起
+###6.3 将Nutch与Solr集成在一起
 
 将`NUTCH_DIR/conf/schema-solr4.xml`拷贝到`SOLR_DIR/solr/collection1/conf/`，重命名为schema.xml，并在`<fields>...</fields>`最后添加一行(具体解释见[Solr 4.2 - what is _version_field?](http://stackoverflow.com/questions/15527380/solr-4-2-what-is-version-field))，
 
@@ -198,9 +196,24 @@ tar -zxf solr-4.6.1.tgz
     # Ctrl+C to stop Solr
     java -jar start.jar
 
-###4.3 抓取网页
+第7步和第8步也和Nutch 1.7那篇博客中的7、8步很类似。主要区别在于，Nutch 2.x的所有数据，不再以文件和目录的形式存放在硬盘上，而是存放到HBase里。
 
-    ./bin/crawl ~/urls/ TestCrawl http://localhost:8983/solr/ 2
+##7 一步一步使用单个命令抓取网页
+TODO
+
+##8 使用crawl脚本一键抓取
+刚才我们是手工敲入多个命令，一个一个步骤，来完成抓取的，其实Nutch自带了一个脚本，`./bin/crawl`，把抓取的各个步骤合并成一个命令，看一下它的用法
+
+    $ ./bin/crawl 
+    Missing seedDir : crawl <seedDir> <crawlID> <solrURL> <numberOfRounds>
+
+**注意**，这里是`crawlId`，不再是`crawlDir`。
+
+先删除第7节产生的数据，使用HBase shell，用`disable`删除表。
+
+###8.1 抓取网页
+
+    $ ./bin/crawl ~/urls/ TestCrawl http://localhost:8983/solr/ 2
 
 * `～/urls` 是存放了种子url的目录
 * TestCrawl 是crawlId，这会在HBase中创建一张以crawlId为前缀的表，例如TestCrawl_Webpage。
@@ -221,7 +234,7 @@ tar -zxf solr-4.6.1.tgz
     fetching http://book.douban.com/tag/诗歌 (queue crawl delay=5000ms)
     50/50 spinwaiting/active, 61 pages, 0 errors, 0.9 1 pages/s, 334 366 kb/s, 127 URLs in 5 queues
 
-###4.4 查看结果
+###8.2 查看结果
 
     ./bin/nutch readdb -crawlId TestCrawl -stats
 
@@ -234,4 +247,8 @@ tar -zxf solr-4.6.1.tgz
 屏幕开始不断输出内容，可以用Ctrl+C 结束。
 
 在运行scan查看表中内容时，对于列的含义不确定时可以查看`conf/gora-hbase-mapping.xml`文件，该文件定义了列族及列的含义。
+
+##相关文章
+[Nutch 快速入门(Nutch 1.7)](http://www.yanjiuyanjiu.com/blog/20140121/)
+
 
