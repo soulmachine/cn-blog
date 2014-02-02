@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "在CentOS上安装Hadoop"
+title: "在CentOS上安装Hadoop集群"
 date: 2014-02-02 12:39
 comments: true
 categories: hadoop
