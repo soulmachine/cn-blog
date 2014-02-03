@@ -103,7 +103,36 @@ categories: Search-Engine
 
 在"VM Arguments"里填写`-Dhadoop.log.dir=logs -Dhadoop.log.file=hadoop.log`
 
+###6.5 运行
 最后点击"Apply", "Run"，就开始抓取了。
+
+###6.6 查看结果
+
+####6.6.1 查看segments目录
+右击`org.apache.nutch.segment.SegmentReader`，选择"Run as -> Run Configurations"，在`Program arguments`里填写：
+
+    -dump TestCrawl/segments/* TestCrawl/segments/dump
+
+然后点击"Run"。
+
+用文本编辑器打开文件 `TestCrawl/segments/dump/dump`查看segments中存储的信息。
+
+####6.6.2 查看crawldb目录
+右击`org.apache.nutch.crawl.CrawlDbReader`，选择"Run as -> Run Configurations"，在`Program arguments`里填写：
+
+    TestCrawl/crawldb -stats
+
+然后点击"Run"，控制台会输出 crawldb统计信息。
+
+####6.6.3 查看linkdb目录
+右击`org.apache.nutch.crawl.LinkDbReader`，选择"Run as -> Run Configurations"，在`Program arguments`里填写：
+
+    TestCrawl/linkdb -dump TestCrawl/linkdb_dump
+
+然后点击"Run"。
+
+用文本编辑器打开文件 `TestCrawl/linkdb_dump/part-00000`查看linkdb中存储的信息
+
 
 ###6.5 每个nutch命令对应的java类
 怎么知道每个nutch命令对应的java类呢？打开`src/bin/nutch`并滚动到底部，就会找到每个命令对应的java类。
