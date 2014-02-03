@@ -134,7 +134,7 @@ categories: Search-Engine
 用文本编辑器打开文件 `TestCrawl/linkdb_dump/part-00000`查看linkdb中存储的信息
 
 
-###6.5 每个nutch命令对应的java类
+###6.7 每个nutch命令对应的java类
 怎么知道每个nutch命令对应的java类呢？打开`src/bin/nutch`并滚动到底部，就会找到每个命令对应的java类。
 
 ##7 在Eclipse里单步调试
