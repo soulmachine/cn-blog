@@ -7,7 +7,7 @@ categories: Search-Engine
 ---
 本文主要参考[Nutch Tutorial](http://wiki.apache.org/nutch/NutchTutorial)
 
-Nutch 2.x 与 Nutch 1.x 相比，剥离出了存储层，放到了gora中，结构更加清晰，功能更加专注了，就是一个爬虫。但是Nutch 2.2.1目前性能没有Nutch 1.7好，参考这里，[NUTCH FIGHT! 1.7 vs 2.2.1](http://digitalpebble.blogspot.com/2013/09/nutch-fight-17-vs-221.html). 所以我目前还是使用的Nutch 1.7。
+Nutch 2.2.1目前性能没有Nutch 1.7好，参考这里，[NUTCH FIGHT! 1.7 vs 2.2.1](http://digitalpebble.blogspot.com/2013/09/nutch-fight-17-vs-221.html). 所以我目前还是使用的Nutch 1.7。
 
 ##1 下载已编译好的二进制包，解压
     $ wget http://psg.mtu.edu/pub/apache/nutch/1.7/apache-nutch-1.7-bin.tar.gz
@@ -40,7 +40,7 @@ Nutch 2.x 与 Nutch 1.x 相比，剥离出了存储层，放到了gora中，结�
     # accept anything else
     #注释掉这行
     #+.
-    +^http://movie.douban.com/subject/[0-9]*/
+    +^http://movie.douban.com/subject/[0-9]*/$
 
 ##5 设置agent名字
 
@@ -162,7 +162,7 @@ Nutch data is composed of:
     $ ./bin/crawl ~/urls/ ./TestCrawl http://localhost:8983/solr/ 2
 
 * `～/urls` 是存放了种子url的目录
-* TestCrawl 是crawlId，这会在HBase中创建一张以crawlId为前缀的表，例如TestCrawl_Webpage。
+* TestCrawl 是存放数据的根目录（在Nutch 2.x中，则表示crawlId，这会在HBase中创建一张以crawlId为前缀的表，例如TestCrawl_Webpage）
 * http://localhost:8983/solr/ , 这是Solr服务器
 * 2，numberOfRounds，迭代的次数
 

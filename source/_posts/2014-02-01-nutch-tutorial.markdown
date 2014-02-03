@@ -7,6 +7,8 @@ categories: Search-Engine
 ---
 本文主要参考[Nutch 2.x Tutorial](http://wiki.apache.org/nutch/Nutch2Tutorial)
 
+Nutch 2.x 与 Nutch 1.x 相比，剥离出了存储层，放到了gora中，可以使用多种数据库，例如HBase, Cassandra, MySql来存储数据了。Nutch 1.7 则是把数据直接存储在HDFS上。
+
 ##1. 安装并运行HBase
 为了简单起见，使用Standalone模式，参考 [HBase Quick start](http://hbase.apache.org/book/quickstart.html)
 
@@ -153,7 +155,7 @@ hbase(main):001:0>
     # accept anything else
     #注释掉这行
     #+.
-    +^http://movie.douban.com/subject/[0-9]*/
+    +^http://movie.douban.com/subject/[0-9]*/$
 
 ##5 设置agent名字
 
