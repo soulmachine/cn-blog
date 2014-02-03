@@ -146,7 +146,7 @@ Hadoop的log写入到了`${HADOOP_HOME}/logs`目录下。
 主要参考官方文档[Cluster Setup](http://hadoop.apache.org/docs/r1.2.1/cluster_setup.html).
 
 ##3.1 准备3台机器
-这里，我们用vmware workstation 创建3台虚拟机。首先用vmware workstation 新建一台CentOS 6.5，装好操作系统，选择 Basic Server，安装JDK，参考我的另一篇博客，[安装和配置CentOS服务器的详细步骤](http://www.yanjiuyanjiu.com/blog/20120423/)。安装好后然后用**浅拷贝**`Create a linked clone` 克隆出2台，这样有了3台虚拟机。启动3台机器，假设IP分别为`192.168.1.131, 192.168.1.132, 192.168.1.133`, 131做为NameNode,JobTracker和SecondaryNameNode，身兼3个角色，这3个角色应该放到3台不同的机器上，这里为了简化，用一台机器来做3个角色；132和133为 slave。三台机器上的用户名是`dev`。
+这里，我们用vmware workstation 创建3台虚拟机。首先用vmware workstation 新建一台CentOS 6.5，装好操作系统，选择 Basic Server，安装JDK，参考我的另一篇博客，[安装和配置CentOS服务器的详细步骤](http://www.yanjiuyanjiu.com/blog/20120423/)。安装好后然后用**浅拷贝**`Create a linked clone` 克隆出2台，这样有了3台虚拟机。启动3台机器，假设IP分别为`192.168.1.131, 192.168.1.132, 192.168.1.133`, 131做为NameNode,JobTracker和SecondaryNameNode，身兼3个角色，这3个角色应该放到3台不同的机器上，这里为了简化，用一台机器来做3个角色；132和133为 slave。三台机器上的用户名是`soulmachine`。
 
 ##3.2 关闭防火墙
 临时关闭防火墙
@@ -208,26 +208,32 @@ Hadoop的配置文件比较多，其设计原则可以概括为如下两点：
 
 在 master 上修改6个配置文件。
 
-在 conf/hadoop-env.sh里，设置 `JAVA_HOME`。如果集群中，每台机器的JDK不一定统一安装在同一个路径，那就要在每个节点的hadoop-env.sh里分别设置`JAVA_HOME`。且要设置`HADOOP_PID_DIR`，这里我们令其为`HADOOP_PID_DIR=/home/dev/hadoop/pid`，参考[Hadoop的pid配置](http://www.iteye.com/topic/299219)。
+###3.7.1 conf/hadoop-env.sh
+在 conf/hadoop-env.sh里，设置 `JAVA_HOME`。如果集群中，每台机器的JDK不一定统一安装在同一个路径，那就要在每个节点的hadoop-env.sh里分别设置`JAVA_HOME`。且要设置`HADOOP_PID_DIR`，这里我们令其为`HADOOP_PID_DIR=/home/soulmachine/local/var/hadoop/pids`，参考[Hadoop的pid配置](http://www.iteye.com/topic/299219)。
 
-注意，还要**禁用IPv6**，用命令`cat /proc/sys/net/ipv6/conf/all/disable_ipv6`检查一下系统是否启用了IPv6，如果是0,说明启用了。Hadoop在IPv6的情况下不正常，我们需禁用IPv6。不过我们不用真的禁用IPv6，让java选择IPv4即可，在conf/hadoop-env.sh 里添加如下一行，
+    export JAVA_HOME=/usr/lib/jvm/java
+    export HADOOP_PID_DIR=/home/soulmachine/local/var/hadoop/pids
+
+注意，还要**禁用IPv6**，用命令`cat /proc/sys/net/ipv6/conf/all/disable_ipv6`检查一下系统是否启用了IPv6，如果是0,说明启用了。Hadoop在IPv6的情况下运行不正常，因此需禁用IPv6。
+
+不过我们不用真的禁用IPv6，还有另外一种方法，让java优先选择IPv4即可，在conf/hadoop-env.sh 里添加如下一行，
 
     export HADOOP_OPTS="-server -Djava.net.preferIPv4Stack=true $HADOOP_OPTS"
 
 参考[Disabling IPv6](http://www.michael-noll.com/tutorials/running-hadoop-on-ubuntu-linux-single-node-cluster/#disabling-ipv6)，以及Web Crawling and Data Mining with Apache Nutch这本书的第66页。
 
-conf/masters:
+###3.7.2 conf/masters
 
 	master
 
-conf/slaves:
+###3.7.3 conf/slaves
 
 	slave01
 	slave02
 
 这里解释一下，masters文件，存放的其实是SecondaryNameNode。关于masters和slaves两个配置文件，更精确的说明见这个StackOverflow答案，[hadoop conf/masters and conf/slaves on jobtracker?](http://stackoverflow.com/a/19779590/381712)
 
-conf/core-site.xml:
+###3.7.4 conf/core-site.xml
 
 	<configuration>
 	    <property>
@@ -236,20 +242,20 @@ conf/core-site.xml:
 	    </property>
 	    <property>
 	        <name>fs.checkpoint.dir</name>
-	        <value>/home/dev/hadoop/dfs/namesecondary</value>
+	        <value>/home/soulmachine/local/var/hadoop/dfs/namesecondary</value>
 	    </property>
 	</configuration>
 
-conf/hdfs-site.xml:
+###3.7.5 conf/hdfs-site.xml
 
 	<configuration>
 	     <property>
 	         <name>dfs.name.dir</name>
-	         <value>/home/dev/hadoop/dfs/name</value>
+	         <value>/home/soulmachine/local/var/hadoop/dfs/name</value>
 	     </property>
 	     <property>
 	         <name>dfs.data.dir</name>
-	         <value>/home/dev/hadoop/dfs/data</value>
+	         <value>/home/soulmachine/local/var/hadoop/dfs/data</value>
 	     </property>
              <property>
                <name>dfs.replication</name>
@@ -259,9 +265,9 @@ conf/hdfs-site.xml:
 
 我们只有2台slave，因此`dfs.replication`设置为2。
 
-Hadoop会自动在master创建 /home/dev/hadoop/dfs/name 目录，在 slaves上创建 /home/dev/hadoop/dfs/data 目录。
+Hadoop会自动在master创建 /home/soulmachine/local/var/hadoop/dfs/name 目录，在 slaves上创建 /home/soulmachine/local/var/hadoop/dfs/data 目录。
 
-conf/mapred-site.xml:
+###3.7.6 conf/mapred-site.xml
 
 	<configuration>
 	    <property>
@@ -270,24 +276,24 @@ conf/mapred-site.xml:
 	    </property>
 	    <property>
 	        <name>mapred.local.dir</name>
-	        <value>/home/dev/hadoop/mapred/local</value>
+	        <value>/home/soulmachine/local/var/hadoop/mapred/local</value>
 	    </property>
 	    <property>
 	        <name>mapred.system.dir</name>
-	        <value>/home/dev/hadoop/mapred/system</value>
+	        <value>/home/soulmachine/local/var/hadoop/mapred/system</value>
 	    </property>
 	</configuration>
 
 ###3.8 将配置文件拷贝到所有slaves
 
-	$ cd ~/hadoop-1.2.1/conf/
-	$ scp hadoop-env.sh core-site.xml hdfs-site.xml mapred-site.xml masters slaves dev@slave01:~/hadoop-1.2.1/conf/
-	$ scp hadoop-env.sh core-site.xml hdfs-site.xml mapred-site.xml masters slaves dev@slave02:~/hadoop-1.2.1/conf/
+	$ cd ~/local/opt/hadoop-1.2.1/conf/
+	$ scp hadoop-env.sh core-site.xml hdfs-site.xml mapred-site.xml masters slaves soulmachine@slave01:~/local/opt/hadoop-1.2.1/conf/
+	$ scp hadoop-env.sh core-site.xml hdfs-site.xml mapred-site.xml masters slaves soulmachine@slave02:~/local/opt/hadoop-1.2.1/conf/
 
 ###3.9 运行 hadoop
 在master上执行以下命令，启动hadoop
 
-	$ cd ~/hadoop-1.2.1/
+	$ cd ~/local/opt/hadoop-1.2.1/
 	#只需一次，下次启动不再需要格式化，只需 start-all.sh
 	$ bin/hadoop namenode -format
 	$ bin/start-all.sh
@@ -324,7 +330,7 @@ conf/mapred-site.xml:
 ###3.11 运行wordcount例子，进一步测试是否安装成功
 将输入数据拷贝到分布式文件系统中:
 
-	$ cd ~/hadoop-1.2.1/
+	$ cd ~/local/opt/hadoop-1.2.1/
 	$ bin/hadoop fs -put conf input
 
 运行 Hadoop 自带的例子:
@@ -352,7 +358,7 @@ Hadoop不推荐使用`$HADOOP_HOME`，你可以试一下，当设置了`$HADOOP_
 
 	$ vim ~/.bashrc
 	# add the following lines at the end
-	export HADOOP_PREFIX=$HOME/hadoop-1.2.1
+	export HADOOP_PREFIX=$HOME/local/opt/hadoop-1.2.1
 	export PATH=$PATH:$HOME/bin:$HADOOP_PREFIX/bin::$HADOOP_HOME/sbin
 	export CLASSPATH=$CLASSPATH:$HADOOP_PREFIX/hadoop-core-1.2.1.jar
 	# make the bash profile take effect immediately
@@ -365,7 +371,7 @@ Hadoop不推荐使用`$HADOOP_HOME`，你可以试一下，当设置了`$HADOOP_
 
 	$ vim ~/.bashrc
 	# add the following line at the end
-	alias hadoop='~/hadoop-1.2.1/bin/hadoop'
+	alias hadoop='~/local/opt/hadoop-1.2.1/bin/hadoop'
 	#make the bash profile take effect immediately
 	$ source ~/.bashrc
 

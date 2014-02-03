@@ -30,16 +30,16 @@ categories: Search-Engine
 ##2 配置
 把 conf/ 下的 `nutch-site.xml.template`复制一份，命名为`nutch-site.xml`，在里面添加如下配置：
 
-<property>
-  <name>http.agent.name</name>
-  <value>My Nutch Spider</value>
-</property>
- <property>
-   <name>plugin.folders</name>
-   <value>$NUTCH_DIR/build/plugins</value>
- </property>
+    <property>
+      <name>http.agent.name</name>
+      <value>My Nutch Spider</value>
+    </property>
+    <property>
+      <name>plugin.folders</name>
+      <value>$NUTCH_HOME/build/plugins</value>
+    </property>
 
-`$NUTCH_DIR`是指nutch源码的根目录，例如我的是`/home/soulmachine/local/src/release-1.7`.
+`$NUTCH_HOME`是指nutch源码的根目录，例如我的是`/home/soulmachine/local/opt/apache-nutch-1.7`.
 
 ##3 生成Eclipse项目文件，即.project文件
 
