@@ -246,6 +246,8 @@ Hadoop的配置文件比较多，其设计原则可以概括为如下两点：
 	    </property>
 	</configuration>
 
+会自动创建吗？
+
 ###3.7.5 conf/hdfs-site.xml
 
 	<configuration>
@@ -257,10 +259,10 @@ Hadoop的配置文件比较多，其设计原则可以概括为如下两点：
 	         <name>dfs.data.dir</name>
 	         <value>/home/soulmachine/local/var/hadoop/dfs/data</value>
 	     </property>
-             <property>
-               <name>dfs.replication</name>
-               <value>2</value>
-             </property>
+	     <property>
+	       <name>dfs.replication</name>
+	       <value>2</value>
+	     </property>
 	</configuration>
 
 我们只有2台slave，因此`dfs.replication`设置为2。
@@ -279,8 +281,8 @@ Hadoop会自动在master创建 /home/soulmachine/local/var/hadoop/dfs/name 目�
 	        <value>/home/soulmachine/local/var/hadoop/mapred/local</value>
 	    </property>
 	    <property>
-	        <name>mapred.system.dir</name>
-	        <value>/home/soulmachine/local/var/hadoop/mapred/system</value>
+	        <name>mapreduce.jobtracker.staging.root.dir</name>
+	        <value>/user</value>
 	    </property>
 	</configuration>
 
@@ -390,5 +392,4 @@ source使之立刻生效，
 1. 所有配置文件只能用hostname，不能用IP。两年前我不懂，还为此[在stackoverflow上发了帖子](http://stackoverflow.com/questions/8702637/hadoop-conf-fs-default-name-cant-be-setted-ipport-format-directly)。hadoop会反向解析hostname，即使是用了IP，也会使用hostname 来启动TaskTracker。参考[hdfs LAN ip address hostname resolution](http://stackoverflow.com/questions/15230946/hdfs-lan-ip-address-hostname-resolution)，[hadoop入门经验总结- 杨贵堂的博客](http://www.makenotes.net/?p=337004)，[hadoop集群配置](http://51mst.iteye.com/blog/1152439)。
 1. 在第2.5步骤，如果出现 `SafeModeException` 异常，不用担心，等待几分钟即可。因为hadoop刚刚启动时，会进入安全模式进行自检，这需要花点时间。
 1. 如果在任何一步失败，可以`stop-all.sh`, 然后`hadoop  namenode -format`，重试几次，一般可以成功。如果还是不成功，多看看 logs目录下的日志文件，把错误消息复制粘贴到google，搜索答案。
-
 
