@@ -3,7 +3,7 @@ layout: post
 title: "Hadoop多用户的配置"
 date: 2014-02-03 10:05
 comments: true
-categories: hadoop
+categories: Hadoop
 ---
 假设我们以名为hadoop的用户，建好了集群，见[在CentOS上安装Hadoop集群](http://www.yanjiuyanjiu.com/blog/20140202)。通常，我们会把这个集群共享给多个用户，而不是让大家都登录为hadoop，这样做有几个好处：
 

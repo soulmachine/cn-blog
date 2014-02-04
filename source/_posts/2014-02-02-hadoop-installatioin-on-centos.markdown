@@ -3,7 +3,7 @@ layout: post
 title: "在CentOS上安装Hadoop集群"
 date: 2014-02-02 12:39
 comments: true
-categories: hadoop
+categories: Hadoop
 ---
 Ubuntu上安装，请参考我的另一篇博客，[在Ubuntu上安装Hadoop](http://www.yanjiuyanjiu.com/blog/20120103/)。
 

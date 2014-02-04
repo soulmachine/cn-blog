@@ -3,7 +3,7 @@ layout: post
 title: "在Ubuntu上安装Hadoop"
 date: 2012-01-03 18:54
 comments: true
-categories: "hadoop"
+categories: Hadoop
 ---
 本文所使用的版本是 hadoop 1.0.0，即 [2011年12月27日发布的1.0正式版](http://www.iteye.com/news/23874)。
 

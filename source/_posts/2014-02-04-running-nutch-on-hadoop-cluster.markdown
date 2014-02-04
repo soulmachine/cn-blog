@@ -32,6 +32,8 @@ categories: Search-Engine
 ##3 把Hadoop的6个配置文件拷贝到Nutch的conf/目录
 将Hadoop的六个配置文件，拷贝到Nutch的conf/目录，相当于把Hadoop集群的配置信息告诉Nutch，
 
+<!-- more -->
+
 在伪分布式模式下，
 
     $ cd ~/local/opt/hadoop-1.2.1/conf
@@ -91,7 +93,7 @@ categories: Search-Engine
 
 查看结果
 
-    $ bin/hadoop fs -ls TestCrawl
+    $ hadoop fs -ls TestCrawl
 
     Found 3 items
     drwxr-xr-x   - soulmachine supergroup          0 2014-02-04 02:17 /user/soulmachine/TestCrawl/crawldb
