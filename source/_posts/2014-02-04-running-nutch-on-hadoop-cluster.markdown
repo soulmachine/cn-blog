@@ -100,9 +100,18 @@ categories: Search-Engine
     drwxr-xr-x   - soulmachine supergroup          0 2014-02-04 02:18 /user/soulmachine/TestCrawl/linkdb
     drwxr-xr-x   - soulmachine supergroup          0 2014-02-04 02:16 /user/soulmachine/TestCrawl/segments
 
+##7 注意
+如果出现`java.io.IOException: No valid local directories in property: mapred.local.dir`的错误，说明你的客户机的mapred-site.xml是从hadoop集群拷贝过来的，没有修改过，`mapred.local.dir`是一个本地目录，集群上的机器有这个目录，但是你的本机上没有，所以出现了这个错误。解决办法是，在本地新建一个目录，然后把`mapred.local.dir`设置为这个路径。
+
+如果出现`org.apache.hadoop.security.AccessControlException: Permission denied: user=soulmachine, access=WRITE, inode="tmp"`的错误，多半是因为你没有给这个用户创建`hadoop.tmp.dir`文件夹，见[Hadoop多用户的配置](http://www.yanjiuyanjiu.com/blog/20140203)第2.2节。
+
+
 ##参考资料
 1. [Web Crawling and Data Mining with Apache Nutch 的第3.2节](http://packtlib.packtpub.com/library/web-crawling-and-data-mining-with-apache-nutch/ch03lvl1sec20)
 1. [Install Nutch 1.7 and Hadoop 1.2.0](http://nutchhadoop.blogspot.com/)
+
+1. [hadoop mapred(hive)执行目录 文件权限问题](http://blog.csdn.net/azhao_dn/article/details/6921398)
+
 
 ##废弃的资料
 1. [Nutch and Hadoop Tutorial](http://wiki.apache.org/nutch/NutchHadoopTutorial)，讲的是Nutch 1.3的，太老了，完全不适用Nutch 1.7

@@ -30,6 +30,17 @@ categories: Hadoop
     $ scp hadoop@localhost:~/local/opt/hadoop-1.2.1/conf/core-site.xml ./conf/
     $ scp hadoop@localhost:~/local/opt/hadoop-1.2.1/conf/mapred-site.xml ./conf/
 
+修改conf/mapred-site.xml中的`mapred.local.dir`，改为本机上的某个目录，确保这个目录存在且有写入。因为这个目录是本地目录，每台机器都可以不同。例如我的是：
+
+    <property>
+      <name>mapred.local.dir</name>
+      <value>/home/soulmachine/local/var/hadoop/mapred/local</value>
+    </property>
+
+确保这个目录存在，
+
+    $ mkdir -p ~/local/var/hadoop/mapred/local
+
 <!-- more -->
 
 ##2. 在master上配置权限
@@ -41,16 +52,34 @@ HDFS本身没有提供用户名、用户组的创建，在客户端调用hadoop 
 
 启动hadoop hdfs系统的用户即为超级用户（在这里就是名为hadoop的这个用户），可以进行任意的操作。
 
+在客户端机器上，用gropus命令看一下hbase所在的组，
 
-###2.1 为客户端用户创建文件夹
+    $ groups
+    hbase
 
-    # 以hadoop用户登录namenode机器
+说明hbase这个用户所在的组为hbase。
+
+###2.1 为客户端用户创建home文件夹
+
     $ bin/hadoop fs -mkdir /user/hbase
     $ bin/hadoop fs -chown hbase /user/hbase
-    # 在客户端机器上，用gropus命令看一下hbase所在的组
     $ bin/hadoop fs -chgrp hbase /user/hbase
 
-###2.2 设置mapreduce.jobtracker.staging.root.dir，然后重启hadoop集群
+###2.2 为客户端用户创建hadoop.tmp.dir文件夹
+`hadoop.tmp.dir`既是一个本地目录，也是HDFS上的一个目录，参考[What should be hadoop.tmp.dir?](http://stackoverflow.com/questions/2354525/what-should-be-hadoop-tmp-dir)。默认是`/tmp/hadoop-${user.name}`（参考官方表格，[core-default](http://hadoop.apache.org/docs/r1.2.1/core-default.html)），所以我们需要为用户创建这个文件夹，
+
+    $ bin/hadoop fs -mkdir /tmp/hadoop-hbase
+    $ bin/hadoop fs -chown hbase /tmp/hadoop-hbase
+    $ bin/hadoop fs -chgrp hbase /tmp/hadoop-hbase
+
+补充说明一下各个常见目录的相关知识，
+
+* `dfs.name.dir`和`dfs.data.dir`都是本地目录，它们是HDFS的基础，所以只可能是本地目录
+* `mapred.local.dir`是本地目录，当客户端向集群提交了一个任务后，该job相关的文件（jar包和配置文件）会存放在HDFS上，各个slave从HDFS把这些文件下载到本地，然后开始执行。
+* `mapred.system.dir`是一个HDFS目录，存放了一个job的控制信息，被多个slave所共享，所以只能是HDFS目录。
+* `mapred.temp.dir`是一个HDFS目录，存放着一个job的临时文件，job结束后会被自动删除。
+
+###2.3 设置mapreduce.jobtracker.staging.root.dir，然后重启hadoop集群
 客户端向集群提交任务时，需要把该job需要的文件打包，拷贝到HDFS上。在拷贝之前，得先确定这些资源文件存放在HDFS的什么地方。JobTracker设置有一个工作目录(Staging area, 也称数据中转站)，用来存储与每个job相关的数据。这个目录的前缀由`mapreduce.jobtracker.staging.root.dir` 参数来指定，默认是`${hadoop.tmp.dir}/mapred/staging`，每个client user可以提交多个job，在这个目录后就得附加user name的信息。所以这个工作目录(Staging area)默认是`${hadoop.tmp.dir}/mapred/staging/denny/.staging/`。
 
 一般把前缀设置为`/user`，这是官方推荐的，见 <http://hadoop.apache.org/docs/r1.2.1/mapred-default.html> 里的`mapreduce.jobtracker.staging.root.dir`处：
@@ -63,6 +92,9 @@ HDFS本身没有提供用户名、用户组的创建，在客户端调用hadoop 
       <name>mapreduce.jobtracker.staging.root.dir</name>
       <value>/user</value>
     </property>
+
+重启集群，
+
     $ bin/stop-all.sh
     $ bin/start-all.sh
 
@@ -100,11 +132,11 @@ source使之立刻生效，
 	$ source ~/.bashrc
 
 ##参考资料
-[hadoop远程客户端安装配置、多用户权限配置](http://blog.csdn.net/j3smile/article/details/7887826)
 
-[hadoop如何创建多用户](http://blog.csdn.net/a999wt/article/details/8718707)
-
-[关于多用户时hadoop的权限问题](http://blog.sina.com.cn/s/blog_605f5b4f0101897z.html)
-
-[MapReduce: Job提交过程](http://langyu.iteye.com/blog/909170)
+1. [hadoop远程客户端安装配置、多用户权限配置](http://blog.csdn.net/j3smile/article/details/7887826)
+1. [hadoop如何创建多用户](http://blog.csdn.net/a999wt/article/details/8718707)
+1. [关于多用户时hadoop的权限问题](http://blog.sina.com.cn/s/blog_605f5b4f0101897z.html)
+1. [MapReduce: Job提交过程](http://langyu.iteye.com/blog/909170)
+1. [hadoop中的dfs.name.dir,mapred.local.dir,mapred.system.dir和hadoop.tmp.dir说明](http://www.hadoopor.com/archiver/tid-481.html)
+1. [Hadoop 參數設定 – mapred-site.xml](http://fenriswolf.me/2012/08/06/hadoop-%E5%8F%83%E6%95%B8%E8%A8%AD%E5%AE%9A-mapred-site-xml/)
 
