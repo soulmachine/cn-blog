@@ -128,4 +128,12 @@ categories: DevOps
           shell: chdir=/opt creates=/opt/sbt-{{sbt_version}} mv sbt/ sbt-{{sbt_version}}/
         - lineinfile: dest=/etc/profile regexp='^#?\s*export SBT_HOME=(.*)$' line='export SBT_HOME=/opt/sbt-{{sbt_version}}' state=present
         - lineinfile: dest=/etc/profile regexp='^#?\s*export PATH=(.*)SBT_HOME(.*)$' line="export PATH=$PATH:$SBT_HOME/bin" state=present
+    
+        # Install Go
+        - name: Download Go
+          get_url: url=https://go.googlecode.com/files/go1.2.linux-amd64.tar.gz dest=/tmp/go1.2.linux-amd64.tar.gz
+        - name: Untar Go
+          shell: chdir=/tmp creates=/opt/go tar -zxf go1.2.linux-amd64.tar.gz -C /opt
+        - lineinfile: dest=/etc/profile regexp='^#?\s*export GOROOT=(.*)$' line='export GOROOT=/opt/go' state=present
+        - lineinfile: dest=/etc/profile regexp='^#?\s*export PATH=(.*)GOROOT(.*)$' line="export PATH=$PATH:$GOROOT/bin" state=present
 

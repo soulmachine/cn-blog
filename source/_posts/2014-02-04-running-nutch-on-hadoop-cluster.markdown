@@ -86,8 +86,8 @@ categories: Search-Engine
 
 可以打开web页面监控job的进度，
 
-* Jobtracer: http://localhost:50030
-* Namenode: http://localhost:50070
+* Jobtracer: <http://localhost:50030>
+* Namenode: <http://localhost:50070>
 
 把Nutch运行在伪分布式Hadoop集群上，比Standalone模式要好，因为可以通过web页面监控job。
 
