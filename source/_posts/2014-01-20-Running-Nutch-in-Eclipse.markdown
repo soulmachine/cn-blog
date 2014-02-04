@@ -20,12 +20,12 @@ categories: Search-Engine
 ##1 下载源码
 有两种方法，
 
-1. 官网下载apache-nutch-1.7-src.tar.gz
+1. 去官网首页下载apache-nutch-1.7-src.tar.gz
 1. 用svn checkout
 
-推荐用第2种方法，因为用SVN checkout出来的有`pom.xml`文件，即maven文件，但是压缩包里没有，只有ant的`build.xml`文件。
+        $ svn co https://svn.apache.org/repos/asf/nutch/tags/release-1.7
 
-    $ svn co https://svn.apache.org/repos/asf/nutch/tags/release-1.7
+推荐用第2种方法，因为用SVN checkout出来的有`pom.xml`文件，即maven文件，但是压缩包里没有，只有ant的`build.xml`文件。
 
 ##2 配置
 把 conf/ 下的 `nutch-site.xml.template`复制一份，命名为`nutch-site.xml`，在里面添加如下配置：
@@ -53,7 +53,7 @@ categories: Search-Engine
     $ export HTTP_PROXY=localhost:8087    #我用的goagent
     $ ant runtime
 
-##4 装载到Eclipse
+##4 加载到Eclipse
 启动Eclipse，点击"File->Import->General->Existing projects into workspace"，浏览到`$NUTCH_DIR`，点击"Finish"。
 
 ![](http://wiki.apache.org/nutch/RunNutchInEclipse?action=AttachFile&do=get&target=importproject.png)

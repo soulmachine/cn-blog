@@ -356,12 +356,15 @@ Hadoop不推荐使用`$HADOOP_HOME`，你可以试一下，当设置了`$HADOOP_
 
 给所有机器设置环境变量HADOOP\_PREFIX，并将`$HADOOP_PREFIX/bin`加入PATH。
 
-	$ vim ~/.bashrc
-	# add the following lines at the end
-	export HADOOP_PREFIX=$HOME/local/opt/hadoop-1.2.1
-	export PATH=$PATH:$HOME/bin:$HADOOP_PREFIX/bin::$HADOOP_HOME/sbin
-	export CLASSPATH=$CLASSPATH:$HADOOP_PREFIX/hadoop-core-1.2.1.jar
-	# make the bash profile take effect immediately
+在 `~/.bashrc`中添加如下4行：
+
+	unalias hadoop &> /dev/null
+	alias hadoop="$HOME/local/opt/hadoop-1.2.1/bin/hadoop"
+	unalias hls &> /dev/null
+	alias hls="hadoop fs -ls"
+
+source使之立刻生效，
+
 	$ source ~/.bashrc
 
 ###3.14 （可选）在master上设置别名，名称为hadoop，指向bin/hadoop
@@ -371,9 +374,14 @@ Hadoop不推荐使用`$HADOOP_HOME`，你可以试一下，当设置了`$HADOOP_
 
 	$ vim ~/.bashrc
 	# add the following line at the end
-	alias hadoop='~/local/opt/hadoop-1.2.1/bin/hadoop'
+	unalias hadoop &> /dev/null
+	alias hadoop="$HOME/local/opt/hadoop-1.2.1/bin/hadoop"
+	unalias hls &> /dev/null
+	alias hls="hadoop fs -ls"
 	#make the bash profile take effect immediately
 	$ source ~/.bashrc
+
+这一步也应该在Hadoop客户端上设置一下，方便用户使用集群。
 
 ##4. 排除错误
 本文已经尽可能的把步骤详细列出来了，但是我相信大部分人不会一次成功。这时候，查找错误就很重要了。查找错误最重要的手段是查看hadoop的日志，一般在logs目录下。把错误消息复制粘贴到google，搜索一下，慢慢找错误。
