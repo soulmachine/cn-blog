@@ -152,10 +152,13 @@ hbase(main):001:0>
 
 例如，我只想抓取豆瓣电影的数据，可以这样设置：
     
+    #注释掉这一行
+    # skip URLs containing certain characters as probable queries, etc.
+    #-[?*!@=]
     # accept anything else
     #注释掉这行
     #+.
-    +^http://movie.douban.com/subject/[0-9]*/$
+    +^http:\/\/movie\.douban\.com\/subject\/[0-9]+\/(\?.+)?$
 
 ##5 设置agent名字
 

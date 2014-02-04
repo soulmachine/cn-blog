@@ -83,11 +83,14 @@ categories: Search-Engine
 如果只想抓取某种类型的URL，可以在 `conf/regex-urlfilter.txt`设置正则表达式，于是，只有匹配这些正则表达式的URL才会被抓取。
 
 例如，我只想抓取豆瓣电影的数据，可以这样设置：
-    
+
+    #注释掉这一行
+    # skip URLs containing certain characters as probable queries, etc.
+    #-[?*!@=]
     # accept anything else
     #注释掉这行
     #+.
-    +^http://movie.douban.com/subject/[0-9]*/$
+    +^http:\/\/movie\.douban\.com\/subject\/[0-9]+\/(\?.+)?$
 
 **注意**，每次修改了conf目录中的配置文件，必须重新编译，修改才能生效，原因是ant里有拷贝文件的任务，将conf/下的xml文件拷贝到`runtie/local/conf`和`runtime/deploy/conf`下。
 
