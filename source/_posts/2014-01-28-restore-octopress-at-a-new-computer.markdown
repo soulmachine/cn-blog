@@ -14,6 +14,7 @@ OS: Ubuntu 12.04 64-bit
     $ \curl -sSL https://get.rvm.io | bash -s stable --ruby
 
 ###1.2 [Integrating RVM with gnome-terminal](https://rvm.io/integration/gnome-terminal)
+`/etc/profile`, `~/.bash_profile` are for login shell, and `~/.bashrc` is for interactive shell, and RVM's path is added to `~/.bash_profile`, so you need to set the shell as a login shell.
 
 ###1.3 Give it a try
 Exit current shell, and open a new shell,
