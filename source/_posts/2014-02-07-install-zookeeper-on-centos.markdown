@@ -94,3 +94,9 @@ ZooKeeper不存在明显的master/slave关系，各个节点都是服务器，le
 
 连接上以后，就可以执行各种命令，使用`help`查看帮助。
 
+
+##参考资料
+
+1. [Getting Started](http://zookeeper.apache.org/doc/trunk/zookeeperStarted.html)
+1. [Zookeeper 3.4.5 集群安装笔记](http://blog.csdn.net/jmy99527/article/details/17582349)
+
