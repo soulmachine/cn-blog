@@ -260,6 +260,13 @@ HBase还需要一个正在运行的HDFS集群，如何搭建请参考我的这�
 * HMaster: <http://master:60010>
 * HRegionServer: <http://slave:60030>
 
+
+##4 客户端
+想要在另一台机器，或者另一个用户下访问HBase，怎么办？把hbase的安装目录整个拷贝过来即可，不用任何配置（跟Hadoop想比简单多了）。
+
+运行`./bin/hbase shell`，就可以使用HBase集群了。
+
+
 ##参考资料
 
 1. [1.2. Quick Start](http://hbase.apache.org/book/quickstart.html)
