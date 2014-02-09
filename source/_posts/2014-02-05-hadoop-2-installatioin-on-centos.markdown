@@ -10,6 +10,21 @@ categories: Hadoop
 
 本文主要参考官网的文档，[Hadoop 2.2.0 Single Node Setup](http://hadoop.apache.org/docs/r2.2.0/hadoop-project-dist/hadoop-common/SingleCluster.html)， [Hadoop 2.2.0  Cluster Setup](http://hadoop.apache.org/docs/r2.2.0/hadoop-project-dist/hadoop-common/ClusterSetup.html)
 
+##（可选）创建新用户
+一般我倾向于把需要启动daemon进程，对外提供服务的程序，简单的说，就是服务器类程序，安装在单独的用户下面。这样可以做到隔离，运维方面，安全性也提高了。
+
+创建一个新的group,
+
+    $ sudo groupadd hadoop
+
+创建一个新的用户，并加入group,
+
+    $ sudo useradd -g hadoop hadoop
+
+给新用户设置密码，
+
+    $ sudo passwd hadoop
+
 ##1 伪分布式模式(Pseudo-Distributed Mode)
 Hadoop能在单台机器上以伪分布式模式运行，即每个Hadoop模块运行在单独的java进程里。
 
@@ -341,8 +356,8 @@ mapred-site.xml:
 
 查看结果：
 
-    $ hdfs dfs -lsr /output
-    $ hdfs dfs -cat /output/part-r-00000
+    $ hdfs dfs -lsr output
+    $ hdfs dfs -cat output/part-r-00000
 
 如果能看到结果，说明这个例子运行成功。
 
