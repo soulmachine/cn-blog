@@ -10,6 +10,23 @@ categories: Hadoop
 
 本文主要参考官网的[Getting Started](http://zookeeper.apache.org/doc/trunk/zookeeperStarted.html)
 
+
+##（可选）创建新用户
+一般我倾向于把需要启动daemon进程，对外提供服务的程序，即服务器类的程序，安装在单独的用户下面。这样可以做到隔离，运维方面，安全性也提高了。
+
+创建一个新的group,
+
+    $ sudo groupadd zookeeper
+
+创建一个新的用户，并加入group,
+
+    $ sudo useradd -g zookeeper zookeeper
+
+给新用户设置密码，
+
+    $ sudo passwd zookeeper
+
+
 ##1. 单机模式(Standalone mode)
 单机模式在开发和调试阶段很有用。
 
@@ -39,7 +56,7 @@ categories: Hadoop
 
 <!-- more -->
 
-ZooKeeper集群，也称为ZooKeeper ensemble，或者  quorum.
+ZooKeeper集群一般被称为ZooKeeper ensemble，或者  quorum.
 
 ###2.1 准备3台机器
 假设有三台机器，hostname和ip对应关系是：
