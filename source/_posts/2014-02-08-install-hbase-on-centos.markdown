@@ -8,8 +8,6 @@ categories: Hadoop
 
 环境：CentOS 6.5, jdk 1.7, HBase 0.96.1.1
 
-本文主要参考 [HBase Quick start](http://hbase.apache.org/book/quickstart.html)
-
 
 ##（可选）创建新用户，并配置好SSH无密码登录
 一般我倾向于把需要启动daemon进程，对外提供服务的程序，即服务器类的程序，安装在单独的用户下面。这样可以做到隔离，运维方面，安全性也提高了。
