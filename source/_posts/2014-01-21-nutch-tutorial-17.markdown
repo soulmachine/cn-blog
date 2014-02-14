@@ -186,6 +186,16 @@ Nutch data is composed of:
 ###8.2 查看结果
 
     $ bin/nutch readdb TestCrawl/crawldb/ -stats
+    14/02/14 16:35:47 INFO crawl.CrawlDbReader: Statistics for CrawlDb: TestCrawl/crawldb/
+    14/02/14 16:35:47 INFO crawl.CrawlDbReader: TOTAL urls:	70
+    14/02/14 16:35:47 INFO crawl.CrawlDbReader: retry 0:	70
+    14/02/14 16:35:47 INFO crawl.CrawlDbReader: min score:	0.005
+    14/02/14 16:35:47 INFO crawl.CrawlDbReader: avg score:	0.03877143
+    14/02/14 16:35:47 INFO crawl.CrawlDbReader: max score:	1.23
+    14/02/14 16:35:47 INFO crawl.CrawlDbReader: status 1 (db_unfetched):	59
+    14/02/14 16:35:47 INFO crawl.CrawlDbReader: status 2 (db_fetched):	11
+    14/02/14 16:35:47 INFO crawl.CrawlDbReader: CrawlDb statistics: done
+
 
 ##相关文章
 [Nutch 快速入门(Nutch 2.2.1)](http://www.yanjiuyanjiu.com/blog/20140201/)

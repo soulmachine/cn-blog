@@ -108,6 +108,40 @@ categories: Search-Engine
 
 如果出现`org.apache.hadoop.security.AccessControlException: Permission denied: user=soulmachine, access=WRITE, inode="tmp"`的错误，多半是因为你没有给这个用户创建`hadoop.tmp.dir`文件夹，见[Hadoop多用户的配置](http://www.yanjiuyanjiu.com/blog/20140203)第2.2节。
 
+##8 把Nutch 1.7 爬虫部署到Hadoop 2.x集群上
+事实证明是完全可行的，Hadoop 2.x 向后兼容。
+
+把hadoop 2.x的配置文件，全部拷贝到 nutch 的conf目录下
+
+    cp ~/local/opt/hadoop-2.2.0/etc/hadoop* ~/local/src/apache-nutch-1.7/conf
+
+然后编译，
+
+    ant runtime
+
+把种子列表上传到hdfs,
+
+    $ hdfs dfs -put ~/urls urls
+    $ hdfs dfs -lsr urls
+
+提交Job,
+
+    $ hadoop jar ./runtime/deploy/apache-nutch-1.7.job org.apache.nutch.crawl.Crawl urls -dir TestCrawl -depth 2
+
+查看结果，
+
+    $ cd runtime/deploy
+    $ ./bin/readdb hdfs://localhost/user/soulmachine/TestCrawl/crawldb/ -stats
+    14/02/14 16:51:07 INFO crawl.CrawlDbReader: Statistics for CrawlDb: hdfs://localhost/user/soulmachine/TestCrawl/crawldb/
+    14/02/14 16:51:07 INFO crawl.CrawlDbReader: TOTAL urls:	70
+    14/02/14 16:51:07 INFO crawl.CrawlDbReader: retry 0:	70
+    14/02/14 16:51:07 INFO crawl.CrawlDbReader: min score:	0.006
+    14/02/14 16:51:07 INFO crawl.CrawlDbReader: avg score:	0.03972857
+    14/02/14 16:51:07 INFO crawl.CrawlDbReader: max score:	1.2
+    14/02/14 16:51:07 INFO crawl.CrawlDbReader: status 1 (db_unfetched):	59
+    14/02/14 16:51:07 INFO crawl.CrawlDbReader: status 2 (db_fetched):	11
+    14/02/14 16:51:07 INFO crawl.CrawlDbReader: CrawlDb statistics: done
+
 
 ##参考资料
 1. [Web Crawling and Data Mining with Apache Nutch 的第3.2节](http://packtlib.packtpub.com/library/web-crawling-and-data-mining-with-apache-nutch/ch03lvl1sec20)
