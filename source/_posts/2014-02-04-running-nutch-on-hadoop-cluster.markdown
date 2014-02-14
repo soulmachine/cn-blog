@@ -57,10 +57,13 @@ categories: Search-Engine
 
 修改 `regex-urlfilter.txt`, 见[Nutch 快速入门(Nutch 1.7)](http://www.yanjiuyanjiu.com/blog/20140121/) 第4节，
 
+    #注释掉这一行
+    # skip URLs containing certain characters as probable queries, etc.
+    #-[?*!@=]
     # accept anything else
     #注释掉这行
     #+.
-    +^http://movie.douban.com/subject/[0-9]*/$
+    +^http:\/\/movie\.douban\.com\/subject\/[0-9]+\/(\?.+)?$
 
 ##5 重新编译Nutch
 每次修改了`$NUTCH_HOME/conf`下的的文件，都需要重新编译Nutch，重新打包生成一个nutch-x.x.x.job文件，见这里，[Running Nutch in (pseudo) distributed-mode](http://wiki.apache.org/nutch/NutchHadoopSingleNodeTutorial)。也可以打开build.xml看看里面的"runtime"这个task干了什么，就明白了。
@@ -86,8 +89,8 @@ categories: Search-Engine
 
 可以打开web页面监控job的进度，
 
-* Jobtracer: <http://localhost:50030>
-* Namenode: <http://localhost:50070>
+* Jobtracer: <http://master:50030>
+* Namenode: <http://master:50070>
 
 把Nutch运行在伪分布式Hadoop集群上，比Standalone模式要好，因为可以通过web页面监控job。
 

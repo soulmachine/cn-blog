@@ -324,8 +324,8 @@ mapred-site.xml:
 ####2.6.5 Web UI
 可以用浏览器打开NameNode, ResourceManager和各个NodeManager的web界面，
 
-* NameNode web UI, <http://localhost:50070/>
-* ResourceManager web UI, <http://localhost:8088/>
+* NameNode web UI, <http://master:50070/>
+* ResourceManager web UI, <http://master:8088/>
 * NodeManager web UI, <http://slave01:8042>
 
 还可以启动JobHistory Server，能够通过Web页面查看集群的历史Job，执行如下命令：
