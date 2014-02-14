@@ -3,7 +3,7 @@ layout: post
 title: "用VisualVM连接 tomcat 服务器时，如何配置tomcat启动JMX"
 date: 2012-08-11 21:37
 comments: true
-categories: tools
+categories: Tools
 ---
 用VisualVM连接 tomcat 服务器时，需要让tomcat启动JMX，在catalina.sh 中添加一行代码即可：
 

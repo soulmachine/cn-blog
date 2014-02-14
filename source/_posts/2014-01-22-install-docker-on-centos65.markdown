@@ -3,7 +3,7 @@ layout: post
 title: "在Centos 6.5上安装docker"
 date: 2014-01-22 15:25
 comments: true
-categories: docker
+categories: Docker
 ---
 
 ## 1 Enable EPEL Repo on CentOS

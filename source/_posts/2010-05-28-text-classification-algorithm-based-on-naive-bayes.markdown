@@ -3,7 +3,7 @@ layout: post
 title: "基于朴素贝叶斯的文本分类算法"
 date: 2010-05-28 17:15
 comments: true
-categories: "machine-learning"
+categories: "Machine-Learning"
 ---
 作者: 灵魂机器  
 新浪博客：[www.weibo.com/soulmachine](www.weibo.com/soulmachine)  

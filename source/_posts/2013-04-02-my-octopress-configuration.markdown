@@ -3,7 +3,7 @@ layout: post
 title: "我的Octopress配置"
 date: 2013-04-02 15:35
 comments: true
-categories: tools
+categories: Tools
 ---
 ## 实时预览
 使用如下命令可以实现实时预览：

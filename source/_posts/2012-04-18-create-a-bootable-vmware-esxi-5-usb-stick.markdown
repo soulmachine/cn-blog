@@ -3,7 +3,7 @@ layout: post
 title: "制作 VMware ESXI 5 U盘安装盘"
 date: 2012-04-18 20:17
 comments: true
-categories: tools
+categories: Tools
 ---
 有两种方法，使用 unetbootin ，或使用 LinuxLive USB Creator刻录可启动U盘。 
 ##使用 unetbootin

@@ -3,7 +3,7 @@ layout: post
 title: "Java使用imageio 读写图像"
 date: 2010-04-01 16:53
 comments: true
-categories: tools
+categories: Tools
 ---
 Java中进行图像I/O（即读图片和写图片，不涉及到复杂图像处理）有三个方法：
 

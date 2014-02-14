@@ -3,7 +3,7 @@ layout: post
 title: "一些主流的编程竞赛网站"
 date: 2013-03-22 21:57
 comments: true
-categories: algorithm
+categories: Algorithm
 ---
 今天把各个主流的编程网站仔细对比了一下，下面从各个角度对比一下这些编程竞赛网站。
 

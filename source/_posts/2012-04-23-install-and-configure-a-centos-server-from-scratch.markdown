@@ -3,7 +3,7 @@ layout: post
 title: "安装和配置CentOS服务器的详细步骤"
 date: 2012-04-23 20:43
 comments: true
-categories: tools
+categories: Tools
 ---
 
 这是我安装CentOS服务器的过程，记录下来，与大家一起分享。

@@ -3,7 +3,7 @@ layout: post
 title: "Restore Octopress at a new computer"
 date: 2014-01-28 00:04
 comments: true
-categories: tools
+categories: Tools
 ---
 OS: Ubuntu 12.04 64-bit
 

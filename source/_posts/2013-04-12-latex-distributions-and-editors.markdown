@@ -3,8 +3,7 @@ layout: post
 title: "LaTeX的各种发行版和编辑器的比较"
 date: 2013-04-12 11:01
 comments: true
-categories: tools
-published: true
+categories: Tools
 ---
 ##发行版(distribution)
 TeX类似于Linux，有很多不同的发行版(distribution)。

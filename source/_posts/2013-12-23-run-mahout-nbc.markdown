@@ -3,7 +3,7 @@ layout: post
 title: "运行mahout的朴素贝叶斯分类器"
 date: 2013-12-23 17:20
 comments: true
-categories: machine-learning
+categories: Machine-Learning
 tags: [mahout, naive bayes]
 ---
 ##1.准备数据

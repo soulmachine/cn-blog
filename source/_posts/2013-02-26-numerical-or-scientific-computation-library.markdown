@@ -3,7 +3,7 @@ layout: post
 title: "数值计算库与科学计算库"
 date: 2013-02-26 23:15
 comments: true
-categories: machine-learning
+categories: Machine-Learning
 ---
 ##BLAS 接口
 [BLAS](http://www.netlib.org/blas/), [LAPACK](http://www.netlib.org/lapack/), [ATLAS](http://math-atlas.sourceforge.net/) 这些数值计算库的名字很类似，他们之间有什么关系呢？BLAS是一组线性代数运算接口，目前是事实上的标准，很多数值计算/科学计算都实现了这套接口。

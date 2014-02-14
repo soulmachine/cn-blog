@@ -3,8 +3,7 @@ layout: post
 title: "简洁的Scala"
 date: 2013-08-29 21:38
 comments: true
-categories: language
-published: true
+categories: Language
 ---
 Scala语言是很注重一致性(consistency)的，Scala的简洁性(concision)都是由其一致性带来的。
 

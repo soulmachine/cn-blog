@@ -4,7 +4,7 @@ title: "使用github + Octopress 搭建免费博客"
 date: 2013-04-01 15:14
 comments: true
 share: true
-categories: tools
+categories: Tools
 ---
 ### 前提条件
 注册一个github账号。

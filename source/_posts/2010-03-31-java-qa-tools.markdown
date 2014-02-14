@@ -3,7 +3,7 @@ layout: post
 title: "Java质量检测评估工具"
 date: 2010-03-31 16:45
 comments: true
-categories: tools
+categories: Tools
 ---
 Java代码质量检测评估工具
 “五大” 代码分析领域：

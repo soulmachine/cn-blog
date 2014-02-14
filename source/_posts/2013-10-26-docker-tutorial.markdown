@@ -3,7 +3,7 @@ layout: post
 title: "docker 快速入门"
 date: 2013-10-26 23:41
 comments: true
-categories: docker
+categories: Docker
 ---
 
 **前提条件：**要安装好 docker，见我的另一篇博客，[docker 安装](http://www.yanjiuyanjiu.com/blog/20131025)

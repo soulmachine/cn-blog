@@ -3,7 +3,7 @@ layout: post
 title: "推荐给TeX新手的电子书和书籍"
 date: 2011-04-17 17:03
 comments: true
-categories: tools
+categories: Tools
 ---
 ##CTEX自带的文档
 1. 安装好CTEX后，c:CTEXCTeXctexdoc下的两个文档，ctex-faq.pdf和lshort-cn.pdf（即93 分钟学会 LaTeX2e）

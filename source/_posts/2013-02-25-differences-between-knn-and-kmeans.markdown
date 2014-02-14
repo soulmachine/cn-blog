@@ -3,7 +3,7 @@ layout: post
 title: "KNN与K-Means的区别"
 date: 2013-02-25 23:41
 comments: true
-categories: machine-learning
+categories: Machine-Learning
 ---
 ##KNN(K-Nearest Neighbor)介绍
 Wikipedia上的[KNN词条](http://en.wikipedia.org/wiki/K-nearest_neighbor_algorithm)中有一个比较经典的图如下：

@@ -3,7 +3,7 @@ layout: post
 title: "docker安装"
 date: 2013-10-25 23:41
 comments: true
-categories: docker
+categories: Docker
 ---
 
 ## 1 在 CentOS 6.4 上安装 docker

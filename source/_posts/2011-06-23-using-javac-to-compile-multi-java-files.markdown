@@ -3,7 +3,7 @@ layout: post
 title: "用javac命令行编译多个java文件"
 date: 2011-06-23 17:22
 comments: true
-categories: language
+categories: Language
 ---
 1. CLASSPATH一定要具体到jar路径，例如
 

@@ -3,8 +3,7 @@ layout: post
 title: "机器学习的一些通俗易懂的tutorial"
 date: 2013-03-27 21:50
 comments: true
-categories: machine-learning
-published: true
+categories: Machine-Learning
 ---
 以下记录了我的学习历程，按我的阅读顺序排序。
 

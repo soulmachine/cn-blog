@@ -3,7 +3,7 @@ layout: post
 title: "使用pdfbox 抽取PDF文件中的文本"
 date: 2010-03-28 16:41
 comments: true
-categories: tools
+categories: Tools
 ---
 ``` java
 package com.yanjiuyanjiu.search;
