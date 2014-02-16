@@ -6,10 +6,79 @@ comments: true
 categories: Spark
 ---
 
+**软件版本**：Spark 0.9
+
 配置Spark开发环境，其实分为三个层次，一种是针对运维人员，把Spark安装部署到集群；一种是针对普通开发者，引入Spark的jar包，调用Spark提供的接口，编写分布式程序，写好后编译成jar，就可以提交到Spark集群去运行了；第三种是针对Spark开发者，为了给Spark贡献代码，需要git clone Spark的代码，然后导入IDE，为Spark开发代码。
 
-##1 部署Spark
-TODO
+##1 部署Spark集群
+这种是运维人员在生产环境下，搭建起一个Spark集群。
+
+###（可选）创建新用户 Spark
+一般我倾向于把需要启动daemon进程，对外提供服务的程序，即服务器类的程序，安装在单独的用户下面。这样可以做到隔离，运维方面，安全性也提高了。
+
+创建一个新的group,
+
+    $ sudo groupadd spark
+
+创建一个新的用户，并加入group,
+
+    $ sudo useradd -g spark spark
+
+给新用户设置密码，
+
+    $ sudo passwd spark
+
+在每台机器上创建 spark 新用户，并配置好SSH无密码，参考我的另一篇博客，[SSH无密码登录的配置](http://www.yanjiuyanjiu.com/blog/20120102/)
+
+
+假设有三台机器，hostname分别是 master, worker01, worker02。
+
+###1.1 下载 Spark 预编译好的二进制包
+如果你需要用到HDFS，则要针对Hadoop 1.x 和Hadoop 2.x 选择不同的版本。这里我选择 Hadoop 2.x 版。
+
+    spark@master $ wget http://d3kbcqa49mib13.cloudfront.net/spark-0.9.0-incubating-bin-hadoop1.tgz
+    spark@master $ tar zxf spark-0.9.0-incubating-bin-hadoop1.tgz -C ~/local/opt
+
+###1.2 将tgz压缩包scp到所有机器，解压到相同的路径
+
+    spark@master $ scp spark-0.9.0-incubating-bin-hadoop1.tgz spark@worker01:~
+    spark@master $ ssh worker01
+    spark@worker01 $ tar zxf spark-0.9.0-incubating-bin-hadoop1.tgz -C ~/local/opt
+    spark@worker01 $ exit
+    spark@master $ scp spark-0.9.0-incubating-bin-hadoop1.tgz spark@worker02:~
+    spark@master $ ssh worker02
+    spark@worker02 $ tar zxf spark-0.9.0-incubating-bin-hadoop1.tgz -C ~/local/opt
+    spark@worker02 $ exit
+
+###1.3 修改配置文件
+Spark 0.9 以后，配置文件简单多了，只有一个必须要配置，就是 `conf/slaves` 这个文件。在这个文件里添加slave的hostname。
+
+###1.4 拷贝配置文件到所有slave
+
+    spark@master $ spark@master $ scp ./conf/slaves spark@worker01:~/local/opt/spark-0.9.0-incubating-bin-hadoop1/conf
+    spark@master $ spark@master $ scp ./conf/slaves spark@worker02:~/local/opt/spark-0.9.0-incubating-bin-hadoop1/conf
+
+###1.5 启动Spark集群
+
+    spark@master $ ./sbin/start-all.sh
+
+<!-- more -->
+
+也可以一台一台启动，先启动 master
+
+    spark@master $ ./sbin/start-master.sh
+
+启动两台 slave，
+
+    spark@worker01 $ ./sbin/start-slave.sh 1 spark://master:7077
+    spark@worker02 $ ./sbin/start-slave.sh 2 spark://master:7077
+
+其中，`1`, `2` 是 worker的编号，可以是任意数字，只要不重复即可，`spark://master:7077` 是 master 的地址。以后向集群提交作业的时候，也需要这个地址。
+
+###1.6 测试一下，向集群提交一个作业
+
+    spark@master $ ./bin/run-example org.apache.spark.examples.SparkPi spark://master:7077
+
 
 ##2 配置普通开发环境
 TODO
