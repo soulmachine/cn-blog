@@ -86,81 +86,15 @@ tar -zxf solr-4.6.1.tgz
     # Ctrl+C to stop Solr
     java -jar start.jar
 
-##7 一步一步使用单个命令抓取网页
-
-###7.1 基本概念
-Nutch data is composed of:
-
-- The crawl database, or `crawldb`. This contains information about every URL known to Nutch, including whether it was fetched, and, if so, when.
-- The link database, or `linkdb`. This contains the list of known links to each URL, including both the source URL and anchor text of the link.
-- A set of `segments`. Each segment is a set of URLs that are fetched as a unit. Segments are directories with the following subdirectories:
-  + a `crawl_generate` names a set of URLs to be fetched
-  + a `crawl_fetch` contains the status of fetching each URL
-  + a `content` contains the raw content retrieved from each URL
-  + a `parse_text` contains the parsed text of each URL
-  + a `parse_data` contains outlinks and metadata parsed from each URL
-  + a `crawl_parse` contains the outlink URLs, used to update the crawldb
-
-###7.2 inject:使用种子URL列表，生成crawldb
-
-    $ bin/nutch inject TestCrawl/crawldb ~/urls
-
-###7.3 generate
-
-    $ bin/nutch generate TestCrawl/crawldb TestCrawl/segments
-
-这会生成一个fetch list，存放在一个segments目录下，该segment以被创建时间为名字，对应着一个同名目录。我们将这个segment的名字保存在shell变量`s1`里：
-
-    $ s1=`ls -d TestCrawl/segments/2* | tail -1`
-    $ echo $s1
-
-###7.4 fetch
-
-    $ bin/nutch fetch $s1
-
-###7.5 parse
-
-    $ bin/nutch parse $s1
-
-###7.6 updatedb
-
-    $ bin/nutch updatedb TestCrawl/crawldb $s1
-
-###7.7 invertlinks
-
-    $ bin/nutch invertlinks TestCrawl/linkdb -dir TestCrawl/segments
-
-###7.8 查看结果
-
-    $ bin/nutch readdb TestCrawl/crawldb/ -stats
-
-###7.9 solrindex, 提交数据给solr，建立索引
-
-    $ bin/nutch solrindex http://localhost:8983/solr TestCrawl/crawldb/ -linkdb TestCrawl/linkdb/ TestCrawl/segments/20140203004348/ -filter -normalize
-
-###7.10 solrdedup, 给索引去重
-有时重复添加了数据，导致索引里有重复数据，我们需要去重，
-
-    $bin/nutch solrdedup http://localhost:8983/solr
-
-###7.11 solrclean, 删除索引
-如果数据过时了，需要在索引里删除，也是可以的。
-
-    $ bin/nutch solrclean TestCrawl/crawldb/ http://localhost:8983/solr
-
-##8 使用crawl脚本一键抓取
-刚才我们是手工敲入多个命令，一个一个步骤，来完成抓取的，其实Nutch自带了一个脚本，`./bin/crawl`，把抓取的各个步骤合并成一个命令，看一下它的用法
+##7 使用crawl脚本一键抓取
+Nutch自带了一个脚本，`./bin/crawl`，把抓取的各个步骤合并成一个命令，看一下它的用法
 
     $ bin/crawl 
     Missing seedDir : crawl <seedDir> <crawlDir> <solrURL> <numberOfRounds>
 
 注意，是使用`bin/crawl`，不是`bin/nutch crawl`，后者已经是deprecated的了。
 
-先删除第7节产生的数据，
-
-    $ rm -rf TestCrawl/
-
-###8.1 抓取网页
+###7.1 抓取网页
 
     $ ./bin/crawl ~/urls/ ./TestCrawl http://localhost:8983/solr/ 2
 
@@ -183,7 +117,7 @@ Nutch data is composed of:
     fetching http://book.douban.com/tag/诗歌 (queue crawl delay=5000ms)
     50/50 spinwaiting/active, 61 pages, 0 errors, 0.9 1 pages/s, 334 366 kb/s, 127 URLs in 5 queues
 
-###8.2 查看结果
+###7.2 查看结果
 
     $ bin/nutch readdb TestCrawl/crawldb/ -stats
     14/02/14 16:35:47 INFO crawl.CrawlDbReader: Statistics for CrawlDb: TestCrawl/crawldb/
@@ -196,6 +130,82 @@ Nutch data is composed of:
     14/02/14 16:35:47 INFO crawl.CrawlDbReader: status 2 (db_fetched):	11
     14/02/14 16:35:47 INFO crawl.CrawlDbReader: CrawlDb statistics: done
 
+##8 一步一步使用单个命令抓取网页
+上一节为了简单性，一个命令搞定。本节我将严格按照抓取的步骤，一步一步来，揭开爬虫的神秘面纱。感兴趣的读者也可以看看 `bin/crawl` 脚本里的内容，可以很清楚的看到各个步骤。
+
+先删除第7节产生的数据，
+
+    $ rm -rf TestCrawl/
+
+###8.1 基本概念
+Nutch data is composed of:
+
+- The crawl database, or `crawldb`. This contains information about every URL known to Nutch, including whether it was fetched, and, if so, when.
+- The link database, or `linkdb`. This contains the list of known links to each URL, including both the source URL and anchor text of the link.
+- A set of `segments`. Each segment is a set of URLs that are fetched as a unit. Segments are directories with the following subdirectories:
+  + a `crawl_generate` names a set of URLs to be fetched
+  + a `crawl_fetch` contains the status of fetching each URL
+  + a `content` contains the raw content retrieved from each URL
+  + a `parse_text` contains the parsed text of each URL
+  + a `parse_data` contains outlinks and metadata parsed from each URL
+  + a `crawl_parse` contains the outlink URLs, used to update the crawldb
+
+###8.2 inject:使用种子URL列表，生成crawldb
+
+    $ bin/nutch inject TestCrawl/crawldb ~/urls
+
+将根据`～/urls`下的种子URL，生成一个URL数据库，放在`crawdb`目录下。
+
+###8.3 generate
+
+    $ bin/nutch generate TestCrawl/crawldb TestCrawl/segments
+
+这会生成一个 fetch list，存放在一个`segments/日期`目录下。我们将这个目录的名字保存在shell变量`s1`里：
+
+    $ s1=`ls -d TestCrawl/segments/2* | tail -1`
+    $ echo $s1
+
+###8.4 fetch
+
+    $ bin/nutch fetch $s1
+
+将会在 `$1` 目录下，生成两个子目录, `crawl_fetch` 和 `content`。
+
+###8.5 parse
+
+    $ bin/nutch parse $s1
+
+将会在 `$1` 目录下，生成3个子目录, `crawl_parse`, `parse_data` 和 `parse_text` 。
+
+###8.6 updatedb
+
+    $ bin/nutch updatedb TestCrawl/crawldb $s1
+
+这将把`crawldb/current`重命名为`crawldb/old`，并生成新的 `crawldb/current` 。
+
+###8.7 查看结果
+
+    $ bin/nutch readdb TestCrawl/crawldb/ -stats
+
+###8.8 invertlinks
+
+在建立索引之前，我们首先要反转所有的链接，这样我们就可以获得一个页面所有的锚文本，并给这些锚文本建立索引。
+
+    $ bin/nutch invertlinks TestCrawl/linkdb -dir TestCrawl/segments
+
+###8.9 solrindex, 提交数据给solr，建立索引
+
+    $ bin/nutch solrindex http://localhost:8983/solr TestCrawl/crawldb/ -linkdb TestCrawl/linkdb/ TestCrawl/segments/20140203004348/ -filter -normalize
+
+###8.10 solrdedup, 给索引去重
+有时重复添加了数据，导致索引里有重复数据，我们需要去重，
+
+    $bin/nutch solrdedup http://localhost:8983/solr
+
+###8.11 solrclean, 删除索引
+如果数据过时了，需要在索引里删除，也是可以的。
+
+    $ bin/nutch solrclean TestCrawl/crawldb/ http://localhost:8983/solr
 
 ##相关文章
 [Nutch 快速入门(Nutch 2.2.1)](http://www.yanjiuyanjiu.com/blog/20140201/)
