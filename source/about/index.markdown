@@ -7,7 +7,7 @@ sharing: true
 footer: true
 ---
 ##About Me
-**Name**:       戴方勤 (Frank, Dai)
+**Nickname**:   灵魂机器
 **Born**:       1985, China  
 **Contact me**: [Weibo](http://weibo.com/soulmachine) [Twitter](https://twitter.com/#!/soulmachine) [LinkedIn](http://www.linkedin.com/in/soulmachine) [Google+](https://plus.google.com/103519507226474510310) [Github](https://github.com/soulmachine) [Quora](http://www.quora.com/Jason-Day-2) 
 
