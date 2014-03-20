@@ -3,12 +3,12 @@
 # ----------------------- #
 baseurl: /
 url: http://cn.soulmachine.me
-title: 研究研究
-subtitle: 专注于机器学习
+title: 灵魂机器
+subtitle: 机器也有灵魂
 author: soulmachine
 author_email: soulmachine@gmail.com
 simple_search: http://google.com/search
-description: 一个关于机器学习的技术博客
+description: 一个专注于机器学习的技术博客
 
 # Default date format is "ordinal" (resulting in "July 22nd 2007")
 # You can customize the format as defined in
@@ -28,7 +28,7 @@ email:
 
 # If publishing to a subdirectory as in http://site.com/project set 'root: /project'
 root: /
-permalink: /blog/:year:month:day
+permalink: /blog/:year:month:day/
 source: source
 destination: public
 plugins: plugins
