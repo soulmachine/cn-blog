@@ -92,7 +92,7 @@ disqus_show_comment_count: false
 
 # duoshuo comments
 duoshuo_comments: true
-duoshuo_short_name: yanjiuyanjiu
+duoshuo_short_name: soulmachine
 duoshuo_asides_num: 5      # 侧边栏评论显示条目数
 duoshuo_asides_avatars: 1   # 侧边栏评论是否显示头像
 duoshuo_asides_time: 1      # 侧边栏评论是否显示时间
