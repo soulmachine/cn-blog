@@ -40,7 +40,7 @@ categories: Deep-Learning
 
 	sudo yum install boost-devel
 
-<-- more -->
+<!-- more -->
 
 ##3. 安装MKL
 MKL是Intel的商业软件，性能很高，也卖的很贵。还好可以申请非商业版，去这里 <https://registrationcenter.intel.com/RegCenter/NComForm.aspx?ProductID=1461&pass=yes> 申请，申请成功之后你会得到一个序列号以及下载地址，下载完并解压， 执行`sudo ./install.sh` ， 之后按提示安装就好了，这个安装特别简单。
