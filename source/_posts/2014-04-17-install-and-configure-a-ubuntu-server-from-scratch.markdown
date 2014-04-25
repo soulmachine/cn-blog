@@ -1,15 +1,16 @@
 ---
 layout: post
-title: "安装和配置CentOS服务器的详细步骤"
-date: 2012-04-23 20:43
+title: "安装和配置Ubuntu服务器的详细步骤"
+date: 2014-04-17 22:05
 comments: true
-categories: Tools
+categories: DevOps
+published: false
 ---
 
-这是我安装CentOS服务器的过程，记录下来，与大家一起分享。Ubuntu请见[安装和配置Ubuntu服务器的详细步骤](http://cn.soulmachine.me/blog/20140417/)。
+这是我安装Ubuntu服务器的过程，记录下来，与大家一起分享。CentOS请见[安装和配置CentOS服务器的详细步骤](http://cn.soulmachine.me/blog/20120423/)。
 
 ##安装操作系统
-CentOS 6.2 ，CentOS-6.2-i386-bin-DVD1.iso（32位） ，CentOS-6.2-x86_64-bin-DVD1.iso（64位）
+ubuntu-12.04.4-desktop-amd64.iso
 
 安装 CentOS时，选择 "Basic Server"  
 root密码：root123  
@@ -90,18 +91,18 @@ search localhost
 
 ##安装常用软件
 有两种方式，方法一，去官网下载已经编译好的二进制文件，或源代码，编译安装
-方法二，用yum 命令安装，安装官方yum源里已经编译好的程序包。  
-第一种方式要敲很多命令，比yum麻烦，但是可以预先下载好文件，省略了下载的时间，整体速度比yum安装方式快很多，而且可以安装最新版。推荐第一种方式
+方法二，用`apt-get`命令安装，安装官方源里已经编译好的程序包。  
+第一种方式要敲很多命令，比yum麻烦，但是可以预先下载好文件，省略了下载的时间，批量给很多服务器安装时，可以节省很多流量，速度比yum安装方式快很多，而且可以安装最新版。
 
-第二种方式操作简单，敲打的命令少，但是往往yum源的更新速度跟不上各个软件的官网速度，用Yum安装的版本经常比较旧。
+第二种方式操作简单，敲打的命令少，但是往往官方源的更新速度跟不上各个软件的官网速度，用apt安装的版本经常比较旧。但是这种方式安装简单，更新也简单，推荐第这种方式。
 
-yum的命令形式一般是如下：`yum [options] [command] [package ...]`，其中的[options]是可选的，选项包括-h（帮助），-y（当安装过程提示选择全部为"yes"），-q（不显示安装的过程）等等。[command]为所要进行的操作，[package ...]是操作的对象。
+`apt`的命令形式一般是如下：`apt [options] [command] [package ...]`，其中的[options]是可选的，选项包括-h（帮助），-y（当安装过程提示选择全部为"yes"），-q（不显示安装的过程）等等。[command]为所要进行的操作，[package ...]是操作的对象。
 
 ``` bash
-#yum search package-name # 在线搜索包 
-#yum list installed # 列出所有已经安装的包
+#apt-cache search package-name # 在线搜索包 
+#apt-get list installed # 列出所有已经安装的包
 #
-#sudo yum install package-name # 安装程序包 
+#sudo apt-get install package-name # 安装程序包 
 #sudo yum groupinsall group-name 安装程序组
 #
 #sudo yum remove package-name 删除程序包
@@ -119,37 +120,67 @@ sudo yum update
 sudo yum clean all && yum clean metadata && yum clean dbcache
 ```
 
-##安装编译工具
+##安装GCC
 
-###方法一
+###方法一 编译源码安装
 去 http://gcc.gnu.org/ 下载源码
 
 ``` bash
 # TODO
 ```
 
-###方法二
+###方法二 apt安装
 
 ``` bash
-sudo yum groupinstall "Development Tools"
+sudo apt-get install build-essential
 ```
-该命令类似于 Ubuntu 下的`apt-get install build-essential`，会自动安装一下软件包：autoconf automake bison byacc cscope ctags diffstat doxygen flex gcc gcc-c++ gcc-gfortran git indent intltool libtool patchutils rcs redhat-rpm-config rpm-build subversion swig systemtap，同时安装了以下依赖包：apr, apr-util, 等等。
+该命令的作用是批量安装编译所需要的软件包，会自动安装一下软件包：autoconf automake bison byacc cscope ctags diffstat doxygen flex gcc gcc-c++ gcc-gfortran git indent intltool libtool patchutils rcs redhat-rpm-config rpm-build subversion swig systemtap，同时安装了以下依赖包：apr, apr-util, 等等。
 
 
 ##安装JDK
 
+###方法1：安装OpenJDK
+
 ``` bash
-#删除旧的JDK
-yum list installed | grep jdk
-#复制显示出来的JDK，卸载
-sudo yum remove java-1.6.0-openjdk.x86_64
-#安装新的jdk
+sudo apt-get install openjdk-7-jdk
+#检测一下
+$ java -version
 ```
 
-###方法一
+如果机器上已经安装了OpenJDK6，可以升级到OpenJDK7，
+
+###升级OpenJDK, OpenJDK6-->OpenJDK7
 
 ``` bash
-#从官网下载最新版的，当前是jdk6u32
+#查看已安装的JDK，是 java 6
+$ update-java-alternatives -l
+java-1.6.0-openjdk-amd64 1061 /usr/lib/jvm/java-1.6.0-openjdk-amd64
+#先安装OpenJDK7
+$ sudo apt-get install openjdk-7-jdk
+#现在有两个JDK了
+$ update-java-alternatives -l
+java-1.6.0-openjdk-amd64 1061 /usr/lib/jvm/java-1.6.0-openjdk-amd64
+java-1.7.0-openjdk-amd64 1051 /usr/lib/jvm/java-1.7.0-openjdk-amd64
+#设置OpenJDK为默认
+$ sudo apt-get install icedtea-7-plugin
+$ sudo update-java-alternatives -s java-1.7.0-openjdk-amd64
+#检测一下
+$ java -version
+#删除OpenJDK6
+$ sudo apt-get remove openjdk-6-jdk
+#现在只有一个JDK了
+$ update-java-alternatives -l
+java-1.6.0-openjdk-amd64 1061 /usr/lib/jvm/java-1.6.0-openjdk-amd64
+java-1.7.0-openjdk-amd64 1051 /usr/lib/jvm/java-1.7.0-openjdk-amd64
+为什么还是有两个？
+```
+
+
+###方法2：安装Oracal JDK
+Oracal JDK是有专利的，所以Ubuntu的官方源没有Oracal JDK，只能去官方下载并安装。
+
+``` bash
+#从官网下载JDK, 当前最新版是 jdk-8u5-linux-x64.tar.gz
 #开始安装
 chmod u+x chmod u+x jdk-6u32-linux-x64-rpm.bin
 sudo ./jdk-6u32-linux-x64-rpm.bin
@@ -603,7 +634,7 @@ rm * -rf
 
 
 ##参考资料
-[LAMP Server on CentOS 6](http://library.linode.com/lamp-guides/centos-6)
+1. [Is there a way to update all Java related alternatives?](http://askubuntu.com/questions/141791/is-there-a-way-to-update-all-java-related-alternatives)
 
 [CentOS - Installing Apache and PHP5](http://articles.slicehost.com/2008/2/6/centos-installing-apache-and-php5)
 
