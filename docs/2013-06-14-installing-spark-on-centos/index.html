@@ -1,0 +1,877 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="机器学习, 深度学习, 人工智能" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="Environment:CentOS 6.4, Hadoop 1.1.2, JDK 1.7, Spark 0.7.2, Scala 2.9.3
+After a few days hacking , I have found that installing a Spark cluster is exteremely easy :)
+#1. Install JDK 1.7    yum search">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Installing Spark on CentOS">
+<meta property="og:url" content="http://cn.soulmachine.me/2013-06-14-installing-spark-on-centos/index.html">
+<meta property="og:site_name" content="灵魂机器">
+<meta property="og:description" content="Environment:CentOS 6.4, Hadoop 1.1.2, JDK 1.7, Spark 0.7.2, Scala 2.9.3
+After a few days hacking , I have found that installing a Spark cluster is exteremely easy :)
+#1. Install JDK 1.7    yum search">
+<meta property="og:updated_time" content="2016-08-18T09:21:04.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Installing Spark on CentOS">
+<meta name="twitter:description" content="Environment:CentOS 6.4, Hadoop 1.1.2, JDK 1.7, Spark 0.7.2, Scala 2.9.3
+After a few days hacking , I have found that installing a Spark cluster is exteremely easy :)
+#1. Install JDK 1.7    yum search">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> Installing Spark on CentOS | 灵魂机器 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?259b539fcd8cab18ad0a6deb98ac2046";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">灵魂机器</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">终有一天机器也有灵魂</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Installing Spark on CentOS
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2013-06-14T19:06:00+00:00" content="2013-06-14">
+              2013-06-14
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Spark/" itemprop="url" rel="index">
+                    <span itemprop="name">Spark</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2013-06-14-installing-spark-on-centos/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2013-06-14-installing-spark-on-centos/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><strong>Environment</strong>:CentOS 6.4, Hadoop 1.1.2, JDK 1.7, Spark 0.7.2, Scala 2.9.3</p>
+<p>After a few days hacking , I have found that installing a Spark cluster is exteremely easy :)</p>
+<p>#1. Install JDK 1.7<br>    yum search openjdk-devel<br>    sudo yum install java-1.7.0-openjdk-devel.x86_64<br>    /usr/sbin/alternatives –config java<br>    /usr/sbin/alternatives –config javac<br>    sudo vim /etc/profile</p>
+<pre><code># add the following lines at the end
+export JAVA_HOME=/usr/lib/jvm/java-1.7.0-openjdk-1.7.0.19.x86_64
+export JRE_HOME=$JAVA_HOME/jre
+export PATH=$PATH:$JAVA_HOME/bin
+export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
+# save and exit vim
+# make the bash profile take effect immediately
+$ source /etc/profile
+# test
+$ java -version
+</code></pre><p>#2. Install Scala 2.9.3<br>Spark 0.7.2 depends on Scala 2.9.3, So we must install Scala of version 2.9.3.</p>
+<p>Download <a href="http://www.scala-lang.org/downloads/distrib/files/scala-2.9.3.tgz" target="_blank" rel="external">scala-2.9.3.tgz</a> and save it to home directory.</p>
+<pre><code>$ tar -zxf scala-2.9.3.tgz
+$ sudo mv scala-2.9.3 /usr/lib
+$ sudo vim /etc/profile
+# add the following lines at the end
+export SCALA_HOME=/usr/lib/scala-2.9.3
+export PATH=$PATH:$SCALA_HOME/bin
+# save and exit vim
+# make the bash profile take effect immediately
+source /etc/profile
+# test
+$ scala -version
+</code></pre><p>#3. Download prebuilt packages<br>Download prebuilt packages, <a href="http://www.spark-project.org/download-spark-0.7.2-prebuilt-hadoop1" target="_blank" rel="external">spark-0.7.2-prebuilt-hadoop1.tgz</a>. </p>
+<p>If you want to compile it from scratch, download the source package, but I don’t recommend this way, because in Chinese Mainland the GFW has blocked one of maven repositories, twitter4j.org, which makes the compilation an impossible mission unless you can conquer GFW.</p>
+<p>#4. Local Mode</p>
+<p>##4.1 Untar the tarball</p>
+<pre><code>$ tar -zxf spark-0.7.2-prebuilt-hadoop1.tgz
+</code></pre><p>##4.2 Set the SPARK_EXAMPLES_JAR environment variable<br>    $ vim ~/.bash_profile</p>
+<pre><code># add the following lines at the end
+export SPARK_EXAMPLES_JAR=$HOME/spark-0.7.2/examples/target/scala-2.9.3/spark-examples_2.9.3-0.7.2.jar
+# save and exit vim
+# make the bash profile take effect immediately
+$ source /etc/profile
+</code></pre><p>This is the most important step that must be done , but unfortunately the official docs and most web blogs haven’t mentioned this. I found this step when I bumped into these posts, <a href="https://groups.google.com/forum/?fromgroups#!topic/spark-users/nQ6wB2lcFN8" target="_blank" rel="external">Running SparkPi</a>, <a href="https://groups.google.com/forum/#!msg/spark-users/x5UczgI-Xm8/wzMm3Mb77-oJ" target="_blank" rel="external">Null pointer exception when running ./run spark.examples.SparkPi local</a>.</p>
+<p>##4.3 (Optional)Set SPARK_HOME and add SPARK_HOME/bin to PATH</p>
+<pre><code>$ vim ~/.bash_profile
+# add the following lines at the end
+export SPARK_HOME=$HOME/spark-0.7.2
+export PATH=$PATH:$SPARK_HOME/bin
+# save and exit vim
+# make the bash profile take effect immediately
+$ source /etc/profile
+</code></pre><p>##4.4 Now you can run SparkPi.</p>
+<pre><code>$ cd ~/spark-0.7.2
+$ ./run spark.examples.SparkPi local 
+</code></pre><p>#5. Cluster Mode</p>
+<a id="more"></a>
+<p>##5.1 Install hadoop<br>Use VMware Workstation to create three CentOS virtual machines, which’s hostnames are master, slave01, slave02, setup password-less ssh to the slaves, install hadoop on the three machines and start up the hadoop cluster. For more details please read another blog of mine, <a href="http://www.yanjiuyanjiu.com/blog/20130612" target="_blank" rel="external">在CentOS上安装Hadoop</a>.</p>
+<p>##5.2 Install JDK and Scala<br>Install JDK 1.7 and Scala 2.9.3 on the three machines, according to section 1 and section 2.</p>
+<p>##5.3 Install and configure Spark on master<br>Untar</p>
+<pre><code>$ tar -zxf spark-0.7.2-prebuilt-hadoop1.tgz
+</code></pre><p>Set the SPARK_EXAMPLES_JAR environment variable</p>
+<pre><code>$ vim ~/.bash_profile
+# add the following lines at the end
+export SPARK_EXAMPLES_JAR=$HOME/spark-0.7.2/examples/target/scala-2.9.3/spark-examples_2.9.3-0.7.2.jar
+# save and exit vim
+# make the bash profile take effect immediately
+$ source /etc/profile
+</code></pre><p>Set <code>SCALA_HOME</code> in <code>conf/spark-env.sh</code></p>
+<pre><code>$ cd ~/spark-0.7.2/conf
+$ mv spark-env.sh.template spark-env.sh
+$ vim spark-env.sh
+# add the following line
+export SCALA_HOME=/usr/lib/scala-2.9.3
+# save and exit
+</code></pre><p>In<code>conf/slaves</code>, add hostnames of Spark workers, one per line.</p>
+<pre><code>$ vim slaves
+slave01
+slave02
+# save and exit
+</code></pre><p>(Optional)Set SPARK_HOME and add SPARK_HOME/bin to PATH</p>
+<pre><code>$ vim ~/.bash_profile
+# add the following lines at the end
+export SPARK_HOME=$HOME/spark-0.7.2
+export PATH=$PATH:$SPARK_HOME/bin
+# save and exit vim
+# make the bash profile take effect immediately
+$ source /etc/profile
+</code></pre><p>##5.4 Install and configure Spark on workers<br>Copy the spark directory to all slaves. <strong>Remark，the spark directories must locat at the the same path on all machines，because the master will login to work to execute spark commands, it assumes that workers have the same path as itself</strong></p>
+<pre><code>$ cd
+$ scp -r spark-0.7.2 dev@slave01:~
+$ scp -r spark-0.7.2 dev@slave02:~
+</code></pre><p>Set <code>SPARK_EXAMPLES_JAR</code>  on all slaves as section 5.3. There is no need to edit configuration files because they are copied from master, which are already well configured.</p>
+<p>##5.5 Start Spark cluster<br>On master</p>
+<pre><code>$ cd ~/spark-0.7.2
+$ bin/start-all.sh
+</code></pre><p>Check whether the processes have been started.</p>
+<pre><code>$ jps
+11055 Jps
+2313 SecondaryNameNode
+2409 JobTracker
+2152 NameNode
+4822 Master
+</code></pre><p>Look at the master’s web UI (<a href="http://localhost:8080" target="_blank" rel="external">http://localhost:8080</a> by default). You should see the new node listed there, along with its number of CPUs and memory (minus one gigabyte left for the OS).</p>
+<p>##5.6 run the SparkPi example in cluster mode</p>
+<pre><code>$ cd ~/spark-0.7.2
+$ ./run spark.examples.SparkPi spark://master:7077
+</code></pre><p>(Optional)Run built-in examples, SparkLR and SparkKMeans.</p>
+<pre><code>#Logistic Regression
+#./run spark.examples.SparkLR spark://master:7077
+#kmeans
+$ ./run spark.examples.SparkKMeans spark://master:7077 ./kmeans_data.txt 2 1
+</code></pre><p>##5.7 read files from HDFS and run WordCount</p>
+<pre><code>$ cd ~/spark-0.7.2
+$ hadoop fs -put README.md .
+$ MASTER=spark://master:7077 ./spark-shell
+scala&gt; val file = sc.textFile(&quot;hdfs://master:9000/user/dev/README.md&quot;)
+scala&gt; val count = file.flatMap(line =&gt; line.split(&quot; &quot;)).map(word =&gt; (word, 1)).reduceByKey(_+_)
+scala&gt; count.collect()
+</code></pre><p>##5.8 Stop Spark cluster</p>
+<pre><code>$ cd ~/spark-0.7.2
+$ bin/stop-all.sh
+</code></pre><p>#References</p>
+<ol>
+<li><a href="http://spark-project.org/docs/latest/spark-standalone.html" target="_blank" rel="external">Spark Standalone Mode</a></li>
+<li><a href="https://github.com/mesos/spark/wiki/Running-A-Spark-Standalone-Cluster" target="_blank" rel="external">Running A Spark Standalone Cluster</a></li>
+<li><a href="http://sprism.blogspot.com/2012/11/lightning-fast-wordcount-using-spark.html" target="_blank" rel="external">Lightning-Fast WordCount using Spark Alongside Hadoop</a></li>
+</ol>
+<p>The following posts are outdated.</p>
+<ol>
+<li><a href="http://chapeau.freevariable.com/2013/04/installing-spark-on-fedora-18.html" target="_blank" rel="external">Installing Spark on Fedora 18</a></li>
+<li><a href="http://rdc.taobao.com/team/jm/archives/1823" target="_blank" rel="external">Spark随谈（二）—— 安装攻略</a></li>
+<li><a href="http://www.cnblogs.com/jerrylead/archive/2012/08/13/2636115.html" target="_blank" rel="external">Spark安装与学习</a></li>
+</ol>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2013-06-11-read-spark-source-code-using-scala-ide/" rel="next" title="使用Scala IDE 阅读spark源码 -- 将sbt项目转化为eclipse项目">
+                <i class="fa fa-chevron-left"></i> 使用Scala IDE 阅读spark源码 -- 将sbt项目转化为eclipse项目
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2013-06-17-installing-spark-on-centos-cn/" rel="prev" title="安装Spark集群(在CentOS上)">
+                安装Spark集群(在CentOS上) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2013-06-14-installing-spark-on-centos/"
+           data-title="Installing Spark on CentOS" data-url="http://cn.soulmachine.me/2013-06-14-installing-spark-on-centos/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://tva2.sinaimg.cn/crop.4.536.2038.2038.180/632582bfgw1f31kbqdasbj21kw23uhdt.jpg"
+               alt="soulmachine" />
+          <p class="site-author-name" itemprop="name">soulmachine</p>
+          <p class="site-description motion-element" itemprop="description">一些技术笔记</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">56</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/soulmachine" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/soulmachine" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/soulmachine" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/soulmachine" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-block">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.liancheng.info/" title="连城" target="_blank">连城</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://yewen.us/" title="笨狗随手留下" target="_blank">笨狗随手留下</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.rational.so/" title="阎栋" target="_blank">阎栋</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.parallellabs.com/" title="并行实验室" target="_blank">并行实验室</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.javachen.com/" title="JavaChen" target="_blank">JavaChen</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://shenfeng.me/" title="沈峰" target="_blank">沈峰</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.lihaipeng.info/" title="李海鹏" target="_blank">李海鹏</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.chioka.in/" title="Eric" target="_blank">Eric</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/lgnlgn" title="梁兄的技术博客" target="_blank">梁兄的技术博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.doesbetter.com/" title="王孝舒的博客" target="_blank">王孝舒的博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.foreverlee.net/" title="ForeverLee" target="_blank">ForeverLee</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.cnblogs.com/yuzhangcmu/" title="CMU张宇" target="_blank">CMU张宇</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">soulmachine</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"soulmachine"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+
+</body>
+</html>

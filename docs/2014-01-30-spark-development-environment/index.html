@@ -1,0 +1,811 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="机器学习, 深度学习, 人工智能" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="软件版本：Spark 0.9
+配置Spark开发环境，其实分为三个层次，一种是针对运维人员，把Spark安装部署到集群；一种是针对普通开发者，引入Spark的jar包，调用Spark提供的接口，编写分布式程序，写好后编译成jar，就可以提交到Spark集群去运行了；第三种是针对Spark开发者，为了给Spark贡献代码，需要git clone Spark的代码，然后导入IDE，为Spark开发代码">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spark开发环境的配置">
+<meta property="og:url" content="http://cn.soulmachine.me/2014-01-30-spark-development-environment/index.html">
+<meta property="og:site_name" content="灵魂机器">
+<meta property="og:description" content="软件版本：Spark 0.9
+配置Spark开发环境，其实分为三个层次，一种是针对运维人员，把Spark安装部署到集群；一种是针对普通开发者，引入Spark的jar包，调用Spark提供的接口，编写分布式程序，写好后编译成jar，就可以提交到Spark集群去运行了；第三种是针对Spark开发者，为了给Spark贡献代码，需要git clone Spark的代码，然后导入IDE，为Spark开发代码">
+<meta property="og:updated_time" content="2016-08-18T09:21:04.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Spark开发环境的配置">
+<meta name="twitter:description" content="软件版本：Spark 0.9
+配置Spark开发环境，其实分为三个层次，一种是针对运维人员，把Spark安装部署到集群；一种是针对普通开发者，引入Spark的jar包，调用Spark提供的接口，编写分布式程序，写好后编译成jar，就可以提交到Spark集群去运行了；第三种是针对Spark开发者，为了给Spark贡献代码，需要git clone Spark的代码，然后导入IDE，为Spark开发代码">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> Spark开发环境的配置 | 灵魂机器 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?259b539fcd8cab18ad0a6deb98ac2046";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">灵魂机器</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">终有一天机器也有灵魂</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Spark开发环境的配置
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2014-01-30T16:36:00+00:00" content="2014-01-30">
+              2014-01-30
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Spark/" itemprop="url" rel="index">
+                    <span itemprop="name">Spark</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2014-01-30-spark-development-environment/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014-01-30-spark-development-environment/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><strong>软件版本</strong>：Spark 0.9</p>
+<p>配置Spark开发环境，其实分为三个层次，一种是针对运维人员，把Spark安装部署到集群；一种是针对普通开发者，引入Spark的jar包，调用Spark提供的接口，编写分布式程序，写好后编译成jar，就可以提交到Spark集群去运行了；第三种是针对Spark开发者，为了给Spark贡献代码，需要git clone Spark的代码，然后导入IDE，为Spark开发代码。</p>
+<p>##1 部署Spark集群<br>这种是运维人员在生产环境下，搭建起一个Spark集群。</p>
+<p>###（可选）创建新用户 Spark<br>一般我倾向于把需要启动daemon进程，对外提供服务的程序，即服务器类的程序，安装在单独的用户下面。这样可以做到隔离，运维方面，安全性也提高了。</p>
+<p>创建一个新的group,</p>
+<pre><code>$ sudo groupadd spark
+</code></pre><p>创建一个新的用户，并加入group,</p>
+<pre><code>$ sudo useradd -g spark spark
+</code></pre><p>给新用户设置密码，</p>
+<pre><code>$ sudo passwd spark
+</code></pre><p>在每台机器上创建 spark 新用户，并配置好SSH无密码，参考我的另一篇博客，<a href="http://www.yanjiuyanjiu.com/blog/20120102/" target="_blank" rel="external">SSH无密码登录的配置</a></p>
+<p>假设有三台机器，hostname分别是 master, worker01, worker02。</p>
+<p>###1.1 下载 Spark 预编译好的二进制包<br>如果你需要用到HDFS，则要针对Hadoop 1.x 和Hadoop 2.x 选择不同的版本。这里我选择 Hadoop 2.x 版。</p>
+<pre><code>spark@master $ wget http://d3kbcqa49mib13.cloudfront.net/spark-0.9.0-incubating-bin-hadoop1.tgz
+spark@master $ tar zxf spark-0.9.0-incubating-bin-hadoop1.tgz -C ~/local/opt
+</code></pre><p>###1.2 将tgz压缩包scp到所有机器，解压到相同的路径</p>
+<pre><code>spark@master $ scp spark-0.9.0-incubating-bin-hadoop1.tgz spark@worker01:~
+spark@master $ ssh worker01
+spark@worker01 $ tar zxf spark-0.9.0-incubating-bin-hadoop1.tgz -C ~/local/opt
+spark@worker01 $ exit
+spark@master $ scp spark-0.9.0-incubating-bin-hadoop1.tgz spark@worker02:~
+spark@master $ ssh worker02
+spark@worker02 $ tar zxf spark-0.9.0-incubating-bin-hadoop1.tgz -C ~/local/opt
+spark@worker02 $ exit
+</code></pre><p>###1.3 修改配置文件<br>Spark 0.9 以后，配置文件简单多了，只有一个必须要配置，就是 <code>conf/slaves</code> 这个文件。在这个文件里添加slave的hostname。</p>
+<p>###1.4 拷贝配置文件到所有slave</p>
+<pre><code>spark@master $ spark@master $ scp ./conf/slaves spark@worker01:~/local/opt/spark-0.9.0-incubating-bin-hadoop1/conf
+spark@master $ spark@master $ scp ./conf/slaves spark@worker02:~/local/opt/spark-0.9.0-incubating-bin-hadoop1/conf
+</code></pre><p>###1.5 启动Spark集群</p>
+<pre><code>spark@master $ ./sbin/start-all.sh
+</code></pre><a id="more"></a>
+<p>也可以一台一台启动，先启动 master</p>
+<pre><code>spark@master $ ./sbin/start-master.sh
+</code></pre><p>启动两台 slave，</p>
+<pre><code>spark@worker01 $ ./sbin/start-slave.sh 1 spark://master:7077
+spark@worker02 $ ./sbin/start-slave.sh 2 spark://master:7077
+</code></pre><p>其中，<code>1</code>, <code>2</code> 是 worker的编号，可以是任意数字，只要不重复即可，<code>spark://master:7077</code> 是 master 的地址。以后向集群提交作业的时候，也需要这个地址。</p>
+<p>###1.6 测试一下，向集群提交一个作业</p>
+<pre><code>spark@master $ ./bin/run-example org.apache.spark.examples.SparkPi spark://master:7077
+</code></pre><p>##2 配置普通开发环境<br>TODO</p>
+<p>##3 配置Spark开发环境<br>当你需要修改Spark的代码，或给Spark添加代码，就需要阅读本节了。</p>
+<h3 id="3-1-git-clone-代码"><a href="#3-1-git-clone-代码" class="headerlink" title="3.1 git clone 代码"></a>3.1 git clone 代码</h3><pre><code>git clone git@github.com:apache/incubator-spark.git
+</code></pre><p>###3.2 编译<br>Spark脚本会自动下载对应版本的sbt和scala编译器，因此机器事先不需要安装sbt和scala</p>
+<p>按照 github 官方repo首页的文档，输入如下一行命令即可开始编译，</p>
+<pre><code>./sbt/sbt assembly
+</code></pre><p>###3.3 运行一个例子</p>
+<pre><code>./run-example org.apache.spark.examples.SparkPi local
+</code></pre><p>说明安装成功了。</p>
+<p>###3.4 试用 spark shell<br><!-- more --></p>
+<p>./spark-shell</p>
+<p>会出现<code>scala&gt;</code>提示符号，可见spark脚本自动下载了scala编译器，其实就是一个jar，例如<code>scala-compiler-2.10.3.jar</code>。</p>
+<p>###3.5 安装scala<br>开发Spark的时候，由于Intellij Idea 需要调用外部的sbt和scala，因此机器上还是需要安装scala和sbt。</p>
+<p>打开 <code>projects/SparkBuild.scala</code>，搜索<code>scalaVersion</code>，获得spark所使用的scala编译器版本，然后去scala官网<a href="http://www.scala-lang.org/" target="_blank" rel="external">http://www.scala-lang.org/</a>，下载该版本的scala编译器，并设置<code>SCALA_HOME</code>环境变量，将bin目录加入PATH。例如下载scala-2.10.3.tgz，解压到/opt，设置环境变量如下：</p>
+<pre><code>sudo vim /etc/profile
+export SCALA_HOME=/opt/scala-2.10.3
+export PATH=$PATH:$SCALA_HOME/bin
+</code></pre><p>###3.6 安装sbt</p>
+<p>打开<code>projects/build.properties</code>，可以看到spark所使用的sbt版本号，去<br>官网<a href="http://www.scala-sbt.org/" target="_blank" rel="external">http://www.scala-sbt.org/</a>下载该版本的sbt，双击安装。并设置<code>SBT_HOME</code>环境变量，将bin目录加入PATH。</p>
+<p>###3.7 下载并安装idea</p>
+<p>Spark核心团队的hashjoin曾在我博客上留言，说他们都使用idea在开发spark，我用过<a href="www.scala-ide.org">Scala IDE</a>和idea，两者各有优劣，总的来说，idea要好用一些，虽然我是老牌eclipse用户，但我还是转向了idea。</p>
+<p>去idea官网下载idea的tar.gz包，解压就行。运行idea，安装scala插件。</p>
+<p>###3.8 生成idea项目文件<br>在源码根目录，使用如下命令</p>
+<pre><code>./sbt/sbt gen-idea
+</code></pre><p>就生成了idea项目文件。</p>
+<p>###3.9 Open Project<br>使用 idea，点击<code>File-&gt;Open project</code>，浏览到 <code>incubator-spark</code>文件夹，打开项目，就可以修改Spark代码了。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2014-01-29-my-ansible-playbook/" rel="next" title="我的Ansible playbook">
+                <i class="fa fa-chevron-left"></i> 我的Ansible playbook
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2014-01-31-install-uek-for-centos/" rel="prev" title="给CentOS安装UEK内核">
+                给CentOS安装UEK内核 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2014-01-30-spark-development-environment/"
+           data-title="Spark开发环境的配置" data-url="http://cn.soulmachine.me/2014-01-30-spark-development-environment/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://tva2.sinaimg.cn/crop.4.536.2038.2038.180/632582bfgw1f31kbqdasbj21kw23uhdt.jpg"
+               alt="soulmachine" />
+          <p class="site-author-name" itemprop="name">soulmachine</p>
+          <p class="site-description motion-element" itemprop="description">一些技术笔记</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">56</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/soulmachine" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/soulmachine" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/soulmachine" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/soulmachine" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-block">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.liancheng.info/" title="连城" target="_blank">连城</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://yewen.us/" title="笨狗随手留下" target="_blank">笨狗随手留下</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.rational.so/" title="阎栋" target="_blank">阎栋</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.parallellabs.com/" title="并行实验室" target="_blank">并行实验室</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.javachen.com/" title="JavaChen" target="_blank">JavaChen</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://shenfeng.me/" title="沈峰" target="_blank">沈峰</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.lihaipeng.info/" title="李海鹏" target="_blank">李海鹏</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.chioka.in/" title="Eric" target="_blank">Eric</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/lgnlgn" title="梁兄的技术博客" target="_blank">梁兄的技术博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.doesbetter.com/" title="王孝舒的博客" target="_blank">王孝舒的博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.foreverlee.net/" title="ForeverLee" target="_blank">ForeverLee</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.cnblogs.com/yuzhangcmu/" title="CMU张宇" target="_blank">CMU张宇</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-git-clone-代码"><span class="nav-number">1.</span> <span class="nav-text">3.1 git clone 代码</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">soulmachine</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"soulmachine"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,970 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="机器学习, 深度学习, 人工智能" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="环境：CentOS 6.5, OPenJDK 1.7, Hadoop 2.2.0
+本文主要参考官网的文档，Hadoop 2.2.0 Single Node Setup， Hadoop 2.2.0  Cluster Setup
+##（可选）创建新用户一般我倾向于把需要启动daemon进程，对外提供服务的程序，简单的说，就是服务器类程序，安装在单独的用户下面。这样可以做到隔离，运维方面，安全性也提高了">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在CentOS上安装Hadoop 2.x 集群">
+<meta property="og:url" content="http://cn.soulmachine.me/2014-02-05-hadoop-2-installatioin-on-centos/index.html">
+<meta property="og:site_name" content="灵魂机器">
+<meta property="og:description" content="环境：CentOS 6.5, OPenJDK 1.7, Hadoop 2.2.0
+本文主要参考官网的文档，Hadoop 2.2.0 Single Node Setup， Hadoop 2.2.0  Cluster Setup
+##（可选）创建新用户一般我倾向于把需要启动daemon进程，对外提供服务的程序，简单的说，就是服务器类程序，安装在单独的用户下面。这样可以做到隔离，运维方面，安全性也提高了">
+<meta property="og:updated_time" content="2016-08-18T09:21:04.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="在CentOS上安装Hadoop 2.x 集群">
+<meta name="twitter:description" content="环境：CentOS 6.5, OPenJDK 1.7, Hadoop 2.2.0
+本文主要参考官网的文档，Hadoop 2.2.0 Single Node Setup， Hadoop 2.2.0  Cluster Setup
+##（可选）创建新用户一般我倾向于把需要启动daemon进程，对外提供服务的程序，简单的说，就是服务器类程序，安装在单独的用户下面。这样可以做到隔离，运维方面，安全性也提高了">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 在CentOS上安装Hadoop 2.x 集群 | 灵魂机器 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?259b539fcd8cab18ad0a6deb98ac2046";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">灵魂机器</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">终有一天机器也有灵魂</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                在CentOS上安装Hadoop 2.x 集群
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2014-02-05T12:39:00+00:00" content="2014-02-05">
+              2014-02-05
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Hadoop/" itemprop="url" rel="index">
+                    <span itemprop="name">Hadoop</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2014-02-05-hadoop-2-installatioin-on-centos/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014-02-05-hadoop-2-installatioin-on-centos/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><strong>环境</strong>：CentOS 6.5, OPenJDK 1.7, Hadoop 2.2.0</p>
+<p>本文主要参考官网的文档，<a href="http://hadoop.apache.org/docs/r2.2.0/hadoop-project-dist/hadoop-common/SingleCluster.html" target="_blank" rel="external">Hadoop 2.2.0 Single Node Setup</a>， <a href="http://hadoop.apache.org/docs/r2.2.0/hadoop-project-dist/hadoop-common/ClusterSetup.html" target="_blank" rel="external">Hadoop 2.2.0  Cluster Setup</a></p>
+<p>##（可选）创建新用户<br>一般我倾向于把需要启动daemon进程，对外提供服务的程序，简单的说，就是服务器类程序，安装在单独的用户下面。这样可以做到隔离，运维方面，安全性也提高了。</p>
+<p>创建一个新的group,</p>
+<pre><code>$ sudo groupadd hadoop
+</code></pre><p>创建一个新的用户，并加入group,</p>
+<pre><code>$ sudo useradd -g hadoop hadoop
+</code></pre><p>给新用户设置密码，</p>
+<pre><code>$ sudo passwd hadoop
+</code></pre><p>##1 伪分布式模式(Pseudo-Distributed Mode)<br>Hadoop能在单台机器上以伪分布式模式运行，即每个Hadoop模块运行在单独的java进程里。</p>
+<p>###1.1 设置SSH无密码登录localhost<br>先检查一下是能够无密码登录本机，</p>
+<pre><code>ssh localhost
+</code></pre><p>如果提示输入密码，说明不能，按如下步骤设置。</p>
+<pre><code>$ ssh-keygen -t dsa -P &apos;&apos; -f ~/.ssh/id_dsa 
+$ cat ~/.ssh/id_dsa.pub &gt;&gt; ~/.ssh/authorized_keys
+</code></pre><p>###1.2 下载已经编译好的二进制包，解压<br>用浏览器下载或wget,</p>
+<pre><code>$ wget http://mirrors.hust.edu.cn/apache/hadoop/common/hadoop-2.2.0/hadoop-2.2.0.tar.gz
+$ tar -zxf hadoop-2.2.0.tar.gz -C ~/local/opt
+$ cd ~/local/opt/hadoop-2.2.0
+</code></pre><p>###1.3 设置环境变量</p>
+<pre><code>$ vim ~/.bashrc
+export HADOOP_PREFIX=$HOME/local/opt/hadoop-2.2.0
+export HADOOP_COMMON_HOME=$HADOOP_PREFIX
+export HADOOP_HDFS_HOME=$HADOOP_PREFIX
+export HADOOP_MAPRED_HOME=$HADOOP_PREFIX
+export HADOOP_YARN_HOME=$HADOOP_PREFIX
+export HADOOP_CONF_DIR=$HADOOP_PREFIX/etc/hadoop
+export PATH=$PATH:$HADOOP_PREFIX/bin:$HADOOP_PREFIX/sbin
+</code></pre><a id="more"></a>
+<p>###1.4 修改配置文件<br>配置文件的位置在 <code>$HADOOP_PREIFIX/etc/hadoop</code>下面。</p>
+<p>###1.4.1 hadoop-env.sh<br>在这个文件中要告诉hadoop JDK 安装在了哪里</p>
+<pre><code>$ echo $JAVA_HOME
+/usr/lib/jvm/java
+$ vim conf/hadoop-env.sh
+</code></pre><p>取消<code>JAVA_HOME</code>那一行的注释，设置正确的JDK位置</p>
+<pre><code>export JAVA_HOME=/usr/lib/jvm/java
+</code></pre><p>####1.4.2 HDFS的配置<br>为了简单，我们仍采用Hadoop 1.x中的HDFS工作模式（不配置HDFS Federation）。</p>
+<p>core-site.xml:</p>
+<pre><code>&lt;configuration&gt;
+  &lt;property&gt;
+    &lt;name&gt;fs.defaultFS&lt;/name&gt;
+    &lt;value&gt;hdfs://localhost&lt;/value&gt;
+  &lt;/property&gt;
+&lt;/configuration&gt;
+</code></pre><p>hdfs-site.xml:</p>
+<pre><code>&lt;configuration&gt;
+  &lt;property&gt;
+    &lt;name&gt;dfs.datanode.data.dir&lt;/name&gt;
+    &lt;value&gt;file:///home/hadoop/local/var/hadoop/hdfs/datanode&lt;/value&gt;
+  &lt;/property&gt;
+  &lt;property&gt;
+    &lt;name&gt;dfs.namenode.name.dir&lt;/name&gt;
+    &lt;value&gt;file:///home/hadoop/local/var/hadoop/hdfs/namenode&lt;/value&gt;
+  &lt;/property&gt;
+  &lt;property&gt;
+    &lt;name&gt;dfs.namenode.checkpoint.dir&lt;/name&gt;
+    &lt;value&gt;file:///home/hadoop/local/var/hadoop/hdfs/namesecondary&lt;/value&gt;
+  &lt;/property&gt;
+  &lt;property&gt;
+    &lt;name&gt;dfs.replication&lt;/name&gt;
+    &lt;value&gt;1&lt;/value&gt;
+  &lt;/property&gt;
+&lt;/configuration&gt;
+</code></pre><p>Hadoop会自动创建目录。</p>
+<p>####1.4.3 YARN的配置<br>yarn-site.xml，不用修改，保持为空。</p>
+<p>####1.4.4 MapReduce的配置<br>Yarn不仅仅只支持MapReduce这种计算模式，还支持Spar, Tez, MPI等框架，因此，要显式地配置Yarn，使其支持mapreduce。在Hadoop 1.x中，只支持MapReduce，因此需要而且必须配置mapred-site.xml，到了Hadoop 2.x，MapReduce的配置是可选的。</p>
+<p>在yarn-site.xml中添加：</p>
+<pre><code>&lt;property&gt;
+   &lt;name&gt;yarn.nodemanager.aux-services&lt;/name&gt;
+   &lt;value&gt;mapreduce_shuffle&lt;/value&gt;
+&lt;/property&gt;
+</code></pre><p><strong>解释</strong>：为了能够运行MapReduce程序，需要让各个NodeManager在启动时加载shuffle server，shuffle server实际上是Jetty/Netty Server，Reduce Task通过该server从各个NodeManager上远程拷贝Map Task产生的中间结果。上面增加的这个配置用于指定shuffle server。</p>
+<p>将 mapred-site.xml.template 复制一份，重命名为mapred-site.xml。</p>
+<p>mapred-site.xml:</p>
+<pre><code>&lt;property&gt;
+   &lt;name&gt;mapreduce.framework.name&lt;/name&gt;
+   &lt;value&gt;yarn&lt;/value&gt;
+&lt;/property&gt;
+</code></pre><p><strong>解释</strong>：用mapreduce.framework.name指定采用的框架名称，默认是将作业提交到MRv1的JobTracker端。</p>
+<p>###1.5 测试</p>
+<p>####1.5.1 启动HDFS</p>
+<pre><code>$ hdfs namenode -format
+$ start-dfs.sh
+</code></pre><p>####1.5.2 启动Yarn</p>
+<pre><code>$ start-yarn.sh
+</code></pre><p>####1.5.3 启动MapReduce<br>在Hadoop 2.x中，MapReduce Job不需要额外的daemon进程，在MapReduce Application Master启动的时候会自动启动JobTracker和TaskTracker进程，Job结束的时候会自动被关闭。</p>
+<p>####1.5.4 运行一个DistributedShell的例子<br>运行一个Hadoop自带的例子，名称为<code>DistributedShell</code>，可以同时在多台机器上运行shell命令。</p>
+<pre><code>$ hadoop jar $HADOOP_PREFIX/share/hadoop/yarn/hadoop-yarn-applications-distributedshell-2.2.0.jar org.apache.hadoop.yarn.applications.distributedshell.Client --jar $HADOOP_PREFIX/share/hadoop/yarn/hadoop-yarn-applications-distributedshell-2.2.0.jar --shell_command date --num_containers 2
+</code></pre><p>运行完成后，看看倒数第三行，有类似与<code>application_1391783685869_0001</code>的字符串，这是application ID。查看该application的每个container的输出，执行下面的命令，</p>
+<pre><code>$ grep &quot;&quot; $HADOOP_PREFIX/logs/userlogs/&lt;APPLICATION ID&gt;/**/stdout
+</code></pre><p>####1.5.5 运行wordcount</p>
+<pre><code>$ cd $HADOOP_PREFIX
+$ hdfs dfs -put ./etc/hadoop/ input
+$ hadoop jar $HADOOP_PREFIX/share/hadoop/mapreduce/hadoop-mapreduce-examples-2.2.0.jar wordcount input output
+$ hdfs dfs -lsr output
+$ hdfs dfs -cat output/part-r-00000
+</code></pre><p>结束后，关闭 Hadoop:</p>
+<pre><code>$ stop-dfs.sh
+$ stop-yarn.sh
+</code></pre><p>##2 分布式模式(Fully-Distributed Mode)</p>
+<p>###2.1 准备3台机器<br>如果你已经有了三台机器，这一步可以省略。</p>
+<p>如果没有，则可以用VMware Workstation 或 VirtualBox创建3台虚拟机。首先用vmware workstation 新建一台CentOS 6.5，装好操作系统，选择 Basic Server，安装JDK，参考我的另一篇博客，<a href="http://www.yanjiuyanjiu.com/blog/20120423/" target="_blank" rel="external">安装和配置CentOS服务器的详细步骤</a>。安装好后然后用<strong>浅拷贝</strong><code>Create a linked clone</code> 克隆出2台，这样有了3台虚拟机。启动3台机器，假设IP分别为<code>192.168.1.131, 192.168.1.132, 192.168.1.133</code>, 131做为NameNode,JobTracker和SecondaryNameNode，身兼3个角色，这3个角色应该放到3台不同的机器上，这里为了简化，用一台机器来做3个角色；132和133为 slave。假设三台机器上的用户名是<code>hadoop</code>，也可以用其他用户名，但必须三台机器都相同。</p>
+<p>####2.1.1 关闭防火墙<br>临时关闭防火墙</p>
+<pre><code>$ sudo service iptables stop
+</code></pre><p>下次开机后，防火墙还是会启动。</p>
+<p>永久关闭防火墙</p>
+<pre><code>$ sudo chkconfig iptables off
+</code></pre><p>由于这几台虚拟机是开发机，不是生产环境，因此不必考虑安全性，可以永久关闭防火墙，还能给开发阶段带来很多便利。</p>
+<p>####2.1.2 修改hostname<br>如果集群中的每一台机器事先已经有了hostname，则这一步可以跳过。</p>
+<p>这一步看起来貌似不必要，其实是必须的，否则最后运行wordcount等例子时，会出现“Too many fetch-failures”。因为HDFS用hostname而不是IP，来相互之间进行通信（见后面的注意1）。</p>
+<p>在CentOS上修改hostname，包含两个步骤(假设将hostname1改为hostname2，参考<a href="http://www.ichiayi.com/wiki/tech/linux_hostname" target="_blank" rel="external">这里</a>，但不需要第一步)：</p>
+<ol>
+<li>将 <code>/etc/sysconfig/network</code> 內的 HOSTNAME 改成 yourhostname</li>
+<li>用<code>hostname</code>命令，临时修改机器名， <code>sudo hostname yourhostname</code></li>
+</ol>
+<p>用<code>exit</code>命令退出shell，再次登录，命令提示字符串就会变成<code>[username@yourhostname ~]$</code>。</p>
+<p>用上述方法，将131改名为master，132改名为slave01，133改名为slave02。</p>
+<p><strong>注意</strong>，对于有的Ubuntu/Debia 系统，会把本机的hostname解析成 127.0.1.1，例如：</p>
+<pre><code>127.0.0.1       localhost
+127.0.1.1       master
+</code></pre><p>将第二行改为(参考<a href="http://wiki.ubuntu.org.cn/%E5%88%A9%E7%94%A8Cloudera%E5%AE%9E%E7%8E%B0Hadoop" target="_blank" rel="external">利用Cloudera实现Hadoop</a>)</p>
+<pre><code>127.0.0.1       master
+</code></pre><p>####2.1.3 修改所有机器的<code>/etc/hosts</code>文件<br>在所有机器的<code>/etc/hosts</code>文件中，添加所有hostname对应的IP，一般在一台机器上设置好，然后scp到所有机器。例如</p>
+<pre><code>192.168.1.131 master
+192.168.1.132 slave01
+192.168.1.133 slave02
+</code></pre><p>###2.2 配置 master 无密码登陆到所有机器（包括master自己登陆自己）<br>参考我的另一篇博客，<a href="http://www.yanjiuyanjiu.com/blog/20120102/" target="_blank" rel="external">SSH无密码登录的配置</a></p>
+<p>###2.3 把Hadoop压缩包上传到所有机器，并解压<br>将 hadoop-1.2.1-bin.tar.gz 上传到所有机器，然后解压。<strong>注意，所有机器的hadoop路径必须一致，因为master会登陆到slave上执行命令，master认为slave的hadoop路径与自己一样。</strong></p>
+<p>下面开始配置，配置好了后，把<code>./etc/hadoop</code>目录scp到所有其他机器。</p>
+<p>###2.4 修改配置文件<br>在第1节的基础上，增加下列修改。</p>
+<p>####2.4.1 指定NameNode<br>在core-site.xml中，<code>fs.defaultFS</code>要改为运行NameNode的那台机器的hostname，不再是localhost。</p>
+<pre><code>&lt;configuration&gt;
+  &lt;property&gt;
+    &lt;name&gt;fs.defaultFS&lt;/name&gt;
+    &lt;value&gt;hdfs://master&lt;/value&gt;
+  &lt;/property&gt;
+&lt;/configuration&gt;
+</code></pre><p>####2.4.2 指定ResourceManager<br>在yarn-site.xml中增加，</p>
+<pre><code>&lt;property&gt;
+   &lt;name&gt;yarn.resourcemanager.hostname&lt;/name&gt;
+   &lt;value&gt;master&lt;/value&gt;
+&lt;/property&gt;
+</code></pre><p>####2.4.3 添加Slave，即NodeManager<br>在 <code>etc/hadoop/slaves</code>中添加，</p>
+<pre><code>slave01
+slave02
+</code></pre><p>####2.4.4 设置 hadoop.tmp.dir<br>在core-site.xml里添加：</p>
+<pre><code>&lt;property&gt;
+  &lt;name&gt;hadoop.tmp.dir&lt;/name&gt;
+  &lt;value&gt;/home/hadoop/local/var/hadoop/tmp/hadoop-${user.name}&lt;/value&gt;
+&lt;/property&gt;
+</code></pre><p>####2.4.4 修改mapred-site.xml<br>添加如下内容：</p>
+<pre><code>&lt;property&gt;
+    &lt;name&gt;mapreduce.jobtracker.staging.root.dir&lt;/name&gt;
+    &lt;value&gt;/user&lt;/value&gt;
+&lt;/property&gt;
+</code></pre><p>这是为以后的多用户支持做准备。</p>
+<p>####2.4.4 设置pid文件的存放位置<br>在hadoop-env.sh中添加</p>
+<pre><code>export HADOOP_MAPRED_PID_DIR=/home/hadoop/local/var/hadoop/pids
+</code></pre><p>在 mapred-env.sh中添加</p>
+<pre><code>export HADOOP_PID_DIR=/home/hadoop/local/var/hadoop/pids
+</code></pre><p>####2.4.5 将dfs.replication设置为slave的个数<br>我们这里有2台slave，就设置为2。在hdfs-site.xml里添加：</p>
+<pre><code>&lt;property&gt;
+    &lt;name&gt;dfs.replication&lt;/name&gt;
+    &lt;value&gt;2&lt;/value&gt;
+&lt;/property&gt;
+</code></pre><p>####2.4.6 将配置文件拷贝到所有slaves</p>
+<pre><code>$ cd $HADOOP_PREFIX/etc/hadoop
+$ scp hadoop-env.sh mapred-env.sh core-site.xml hdfs-site.xml mapred-site.xml yarn-site.xml slaves hadoop@slave01:$HADOOP_PREFIX/etc/hadoop
+$ scp hadoop-env.sh mapred-env.sh core-site.xml hdfs-site.xml mapred-site.xml yarn-site.xml slaves hadoop@slave02:$HADOOP_PREFIX/etc/hadoop
+</code></pre><p>###2.5 设置环境变量<br>在所有机器上添加环境变量，与第1.3节相同。</p>
+<p>###2.6 启动 hadoop</p>
+<p>####2.6.1 启动HDFS<br>在NameNode这个机器（在这里是master）上执行下列命令，</p>
+<pre><code>#只需一次，下次启动不再需要格式化，只需 start-dfs.sh
+$ hdfs namenode -format
+$ start-dfs.sh
+</code></pre><p>####2.6.2 启动Yarn<br>在ResourceManager这台机器（在这里仍然是master）上执行，</p>
+<pre><code>$ start-yarn.sh
+</code></pre><p>####2.6.3 启动MapReduce<br>在Hadoop 2.x中，MapReduce Job不需要额外的daemon进程，在Job开始的时候，NodeManager会启动一个MapReduce Application Master（相当与一个精简的JobTracker），Job结束的时候自动被关闭。</p>
+<p>####2.6.4 检查是否启动成功<br>用<code>jps</code>查看java进程。</p>
+<p>在master上，应该有三个进程，NameNode, SecondaryNameNode, ResourceManger；在每台slave上，应该有两个进程，DataNode, NodeManager。</p>
+<p>####2.6.5 Web UI<br>可以用浏览器打开NameNode, ResourceManager和各个NodeManager的web界面，</p>
+<ul>
+<li>NameNode web UI, <a href="http://master:50070/" target="_blank" rel="external">http://master:50070/</a></li>
+<li>ResourceManager web UI, <a href="http://master:8088/" target="_blank" rel="external">http://master:8088/</a></li>
+<li>NodeManager web UI, <a href="http://slave01:8042" target="_blank" rel="external">http://slave01:8042</a></li>
+</ul>
+<p>还可以启动JobHistory Server，能够通过Web页面查看集群的历史Job，执行如下命令：</p>
+<pre><code>mr-jobhistory-daemon.sh start historyserver
+</code></pre><p>默认使用19888端口，通过访问<a href="http://master:19888/" target="_blank" rel="external">http://master:19888/</a>查看历史信息。</p>
+<p>终止JobHistory Server，执行如下命令：</p>
+<pre><code>mr-jobhistory-daemon.sh stop historyserver
+</code></pre><p>###2.8 运行wordcount<br>将输入数据拷贝到HDFS中:</p>
+<pre><code>$ cd $HADOOP_PREFIX
+$ hdfs dfs -put ./etc/hadoop input
+</code></pre><p>这一步会报错，”No such file or directory”, 用<code>hdfs dfs -ls /</code>查看，是空的，难怪了。我们需要手动建立”/user/hadoop”目录，</p>
+<pre><code>$ hdfs dfs -mkdir /user/hadoop
+</code></pre><p>再上传文件，就可以了。</p>
+<p>运行WordCount:</p>
+<pre><code>$ hadoop jar $HADOOP_PREFIX/share/hadoop/mapreduce/hadoop-mapreduce-examples-2.2.0.jar wordcount input output
+</code></pre><p>查看结果：</p>
+<pre><code>$ hdfs dfs -lsr output
+$ hdfs dfs -cat output/part-r-00000
+</code></pre><p>如果能看到结果，说明这个例子运行成功。</p>
+<p>###2.9 停止 hadoop集群<br>在master上执行：</p>
+<pre><code>$ stop-yarn.sh
+$ stop-hdfs.sh
+</code></pre><p>##4. 排除错误<br>本文已经尽可能的把步骤详细列出来了，但是我相信大部分人不会一次成功。这时候，查找错误就很重要了。查找错误最重要的手段是查看hadoop的日志，一般在logs目录下。把错误消息复制粘贴到google，搜索一下，慢慢找错误。</p>
+<p>##参考资料</p>
+<ol>
+<li><a href="http://hadoop.apache.org/docs/r2.2.0/hadoop-project-dist/hadoop-common/core-default.xml" target="_blank" rel="external">core-default</a>, <a href="http://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-hdfs/hdfs-default.xml" target="_blank" rel="external">hdfs-default</a>, <a href="http://hadoop.apache.org/docs/current/hadoop-yarn/hadoop-yarn-common/yarn-default.xml" target="_blank" rel="external">yarn-default</a>, <a href="http://hadoop.apache.org/docs/stable/hadoop-mapreduce-client/hadoop-mapreduce-client-core/mapred-default.xml" target="_blank" rel="external">mapred-default</a></li>
+<li><a href="http://dongxicheng.org/mapreduce-nextgen/hadoop-yarn-install/" target="_blank" rel="external">Hadoop YARN安装部署初探</a></li>
+<li><a href="http://www.alexjf.net/blog/distributed-systems/hadoop-yarn-installation-definitive-guide" target="_blank" rel="external">Hadoop YARN Installation: The definitive guide</a></li>
+<li><a href="http://codesfusion.blogspot.com/2013/10/setup-hadoop-2x-220-on-ubuntu.html" target="_blank" rel="external">Setup newest Hadoop 2.x (2.2.0) on Ubuntu</a></li>
+<li><a href="http://shiyanjun.cn/archives/561.html" target="_blank" rel="external">Hadoop-2.2.0集群安装配置实践</a></li>
+<li><a href="http://dongxicheng.org/mapreduce-nextgen/hadoop-yarn-configurations-resourcemanager-nodemanager/" target="_blank" rel="external">Hadoop YARN配置参数剖析(1)—RM与NM相关参数</a></li>
+</ol>
+<p>##相关文章</p>
+<ol>
+<li><a href="http://www.yanjiuyanjiu.com/blog/20140202" target="_blank" rel="external">在CentOS上安装Hadoop集群</a></li>
+<li><a href="http://www.yanjiuyanjiu.com/blog/20120103/" target="_blank" rel="external">在Ubuntu上安装Hadoop</a></li>
+</ol>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2014-02-04-running-nutch-on-hadoop-cluster/" rel="next" title="把Nutch爬虫部署到Hadoop集群上">
+                <i class="fa fa-chevron-left"></i> 把Nutch爬虫部署到Hadoop集群上
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2014-02-06-hadoop-multiple-users/" rel="prev" title="Hadoop多用户的配置(Hadoop 2.x)">
+                Hadoop多用户的配置(Hadoop 2.x) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2014-02-05-hadoop-2-installatioin-on-centos/"
+           data-title="在CentOS上安装Hadoop 2.x 集群" data-url="http://cn.soulmachine.me/2014-02-05-hadoop-2-installatioin-on-centos/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://tva2.sinaimg.cn/crop.4.536.2038.2038.180/632582bfgw1f31kbqdasbj21kw23uhdt.jpg"
+               alt="soulmachine" />
+          <p class="site-author-name" itemprop="name">soulmachine</p>
+          <p class="site-description motion-element" itemprop="description">一些技术笔记</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">56</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/soulmachine" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/soulmachine" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/soulmachine" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/soulmachine" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-block">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.liancheng.info/" title="连城" target="_blank">连城</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://yewen.us/" title="笨狗随手留下" target="_blank">笨狗随手留下</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.rational.so/" title="阎栋" target="_blank">阎栋</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.parallellabs.com/" title="并行实验室" target="_blank">并行实验室</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.javachen.com/" title="JavaChen" target="_blank">JavaChen</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://shenfeng.me/" title="沈峰" target="_blank">沈峰</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.lihaipeng.info/" title="李海鹏" target="_blank">李海鹏</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.chioka.in/" title="Eric" target="_blank">Eric</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/lgnlgn" title="梁兄的技术博客" target="_blank">梁兄的技术博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.doesbetter.com/" title="王孝舒的博客" target="_blank">王孝舒的博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.foreverlee.net/" title="ForeverLee" target="_blank">ForeverLee</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.cnblogs.com/yuzhangcmu/" title="CMU张宇" target="_blank">CMU张宇</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">soulmachine</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"soulmachine"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+
+</body>
+</html>

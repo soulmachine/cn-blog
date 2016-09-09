@@ -1,0 +1,780 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="机器学习, 深度学习, 人工智能" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="##发行版(distribution)TeX类似于Linux，有很多不同的发行版(distribution)。
+先看看各个发行版的流行程度。
+|———-+——————————-+——–+———–+——————+———–+———–|| 名字 |            官网           | PR | Alexa |   最后更新   | weibo | quora ||:——–:|:—————">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LaTeX的各种发行版和编辑器的比较">
+<meta property="og:url" content="http://cn.soulmachine.me/2013-04-12-latex-distributions-and-editors/index.html">
+<meta property="og:site_name" content="灵魂机器">
+<meta property="og:description" content="##发行版(distribution)TeX类似于Linux，有很多不同的发行版(distribution)。
+先看看各个发行版的流行程度。
+|———-+——————————-+——–+———–+——————+———–+———–|| 名字 |            官网           | PR | Alexa |   最后更新   | weibo | quora ||:——–:|:—————">
+<meta property="og:image" content="http://yanjiuyanjiu-wordpress.stor.sinaapp.com/uploads/2013/04/chenshuo_texlive.png">
+<meta property="og:updated_time" content="2016-08-18T09:21:04.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="LaTeX的各种发行版和编辑器的比较">
+<meta name="twitter:description" content="##发行版(distribution)TeX类似于Linux，有很多不同的发行版(distribution)。
+先看看各个发行版的流行程度。
+|———-+——————————-+——–+———–+——————+———–+———–|| 名字 |            官网           | PR | Alexa |   最后更新   | weibo | quora ||:——–:|:—————">
+<meta name="twitter:image" content="http://yanjiuyanjiu-wordpress.stor.sinaapp.com/uploads/2013/04/chenshuo_texlive.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> LaTeX的各种发行版和编辑器的比较 | 灵魂机器 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?259b539fcd8cab18ad0a6deb98ac2046";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">灵魂机器</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">终有一天机器也有灵魂</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                LaTeX的各种发行版和编辑器的比较
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2013-04-12T11:01:00+00:00" content="2013-04-12">
+              2013-04-12
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Tools/" itemprop="url" rel="index">
+                    <span itemprop="name">Tools</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2013-04-12-latex-distributions-and-editors/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2013-04-12-latex-distributions-and-editors/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>##发行版(distribution)<br>TeX类似于Linux，有很多不同的发行版(distribution)。</p>
+<p>先看看各个发行版的流行程度。</p>
+<p>|———-+——————————-+——–+———–+——————+———–+———–|<br>| <strong>名字</strong> |            <strong>官网</strong>           | <strong>PR</strong> | <strong>Alexa</strong> |   <strong>最后更新</strong>   | <strong>weibo</strong> | <strong>quora</strong> |<br>|:——–:|:—————————–:|:——:|:———:|:—————-:|:———:|:——–:|<br>| TeX Live |     <a href="http://www.tug.org/texlive/" target="_blank" rel="external">http://www.tug.org/texlive/</a>    |    7   |    N/A    |    2012-07-01    |     43    |    N/A    |<br>|  MiKTeX  |     <a href="http://miktex.org/" target="_blank" rel="external">http://miktex.org/</a>      |    7   |  188,485  | 1.3.2 2012-09-24 |     54    |    N/A    |<br>|   CTeX   |     <a href="http://www.ctex.org/" target="_blank" rel="external">http://www.ctex.org/</a>    |    6   |  252,657  | 2.9.2 2012-03-30 |     344   |    N/A    |<br>|  proTeXt | <a href="http://www.tug.org/protext/" target="_blank" rel="external">http://www.tug.org/protext/</a> |    7   |    N/A    | 3.1.1 2012-07-23 |     10    |    N/A    |<br>|———-+——————————-+——–+———–+——————+———–+———–|   </p>
+<p>其中CTeX和proTeXt都是基于MiKTeX的，再次进行了打包。国内估计用CTeX比较多。</p>
+<p>##编辑器(editor)<br>编辑器大概分为两种，一种为WYSIWYG，所见即所得，实时预览，类似于Word，另一种是纯文本编辑器，有语法高亮，没有预览功能，需要另外安装一个发行版，编译成PDF后才能预览。</p>
+<p>先看看各个编辑器的流行程度。</p>
+<p>|————–+————————————-+——–+———–+————–+————————–+———–+———–|<br>|   <strong>名字</strong>   |                 <strong>官网</strong>            | <strong>PR</strong> | <strong>Alexa</strong> | <strong>预览类型</strong> |      <strong>最后更新</strong>        | <strong>weibo</strong> | <strong>quora</strong> |<br>|:————:|:———————————–:|:——:|:———:|:————:|:————————:|:———:|:———:|<br>|   TeXmaker   | <a href="http://www.xm1math.net/texmaker/" target="_blank" rel="external">http://www.xm1math.net/texmaker/</a>  |    6   |  289,311  |    无预览    |      4.0.1 2013-03-16    |     60    |    N/A    |<br>|   TeXworks   |   <a href="http://www.tug.org/texworks/" target="_blank" rel="external">http://www.tug.org/texworks/</a>    |    5   |  90,230   |    无预览    |      0.4.4  2012-04      |     23    |    N/A    |<br>|   TeXstudio  | <a href="http://texstudio.sourceforge.net/" target="_blank" rel="external">http://texstudio.sourceforge.net/</a> |    6   |    N/A    |    无预览    |      2.5.2 2013-01-08    |     15    |    N/A    |<br>| TeXnicCenter |   <a href="http://www.texniccenter.org/" target="_blank" rel="external">http://www.texniccenter.org/</a>    |    7   |  884,570  |    无预览    |  v2.0 beta1 2012-11-03   |     10    |    N/A    |<br>|     Lyx      |       <a href="http://www.lyx.org/" target="_blank" rel="external">http://www.lyx.org/</a>         |    6   |  261,649  |   实时预览   |    2.0.5.1 2013-01-08    |     56    |     42    |<br>|    Bakoma    |   <a href="http://www.bakoma-tex.com/" target="_blank" rel="external">http://www.bakoma-tex.com/</a>      |    5   | 1,327,901 |   实时预览   |     10.10 2013-01-13     |      3    |    N/A    |<br>|   TeXmacs    |     <a href="http://www.texmacs.org" target="_blank" rel="external">http://www.texmacs.org</a>        |    6   | 1,525,373 |   实时预览   |   1.0.7.19 2013-03-27    |     27    |    N/A    |<br>|     LEd      |   <a href="http://www.latexeditor.org/" target="_blank" rel="external">http://www.latexeditor.org/</a>     |    6   |  624,564  |   实时预览   |     0.53 2009-10-09      |     0    |    N/A    |<br>|————–+————————————-+——–+———–+————–+————————–+———–+———–|  </p>
+<a id="more"></a>
+<p>##跨平台<br>下面看看各个发行版和编辑器的跨平台支持程度。</p>
+<p>|————–+———+—–+——-|<br>|   <strong>名字</strong>   | Windows | Mac | Linux |<br>|:————:|:——-:|:—:|:—–:|<br>|    编辑器     |         |     |       |<br>|   TeXmaker   |    √    |  √  |   √   |<br>|   TeXworks   |    √    |  √  |   √   |<br>|   TeXstudio  |    √    |  √  |   √   |<br>| TeXnicCenter |    √    |  ×  |   ×   |<br>|   WYSIWYG    |         |     |       |<br>|     Lyx      |    √    |  √  |   √   |<br>|    Bakoma    |    √    |  √  |   √   |<br>|   TeXmacs    |    √    |  √  |   √   |<br>|     LEd      |    √    |  ×  |   ×   |<br>|     发行版    |         |     |       |<br>|     MiKTeX   |     √   |  ×  |   ×   |<br>|    TeX Live  |    √    |  √  |   √   |<br>|     CTeX     |     √   |  ×  |   ×   |<br>|     proTeXt  |     √   |  ×  |   ×   |<br>|————–+———+—–+——-| </p>
+<p>Tex Live在Mac上，叫做MacTex，见<a href="http://www.tug.org/mactex/newfeatures.html" target="_blank" rel="external">官网的一段话</a>：</p>
+<blockquote>
+<p>MacTeX-2012 installs a completely unmodified copy of the full TeX Live 2012 distribution. This is exactly the same distribution that runs on OS X, Windows, GNU/Linux, various BSD Unix systems, and other systems.</p>
+</blockquote>
+<p>##如何选择<br>四个发新版，只有 Tex Live 是跨平台的，故使用Tex Live，其他发行版抛弃。</p>
+<p>TeXmaker, TeXstudio, TeXworks 来进行比较<br>中文支持的程度，打开.tex文件是否有乱码</p>
+<p>|———–+————————–+————————|<br>|  <strong>名字</strong> | <strong>打开GB18030的tex文件</strong> | <strong>打开UTF8编码的文件</strong> |<br>|:———:|:————————:|:———————-:|<br>| TeXworks  |         有乱码           |          无乱码        |<br>| TeXmaker  |         无乱码           |          无乱码        |<br>| TeXstudio |         有乱码           |          无乱码        |<br>|———–+————————–+————————|  </p>
+<p>TeXmaker 界面丑陋，且中文支持不好，功能没有多，抛弃之。<br>TeXmaker 和 TeXstudio 界面比较美观，而且二者界面风格很类似。因为TeXstudio是在TeXmaker的基础上而来的，<a href="http://en.wikipedia.org/wiki/TeXstudio" target="_blank" rel="external">见wikipedia的描述</a>：</p>
+<blockquote>
+<p>Originally called TexMakerX, TeXstudio was started as a fork of Texmaker that tried to extend it with additional features while keeping its look and feel.</p>
+</blockquote>
+<p>TeXnicCenter 安装时不会自动探测，第一次运行时会要求你指定 latex.exe 的路径。TeXnicCenter 界面风格是office的风格，很现代化。TeXnicCenter 只有 windows版，故放弃。</p>
+<p>LyX 安装时会自动探测到TeX Live。这点比较方便，无需配置。<br>LyX可以导入.tex文件，导入后，不能直接修改.tex源码，只能在上方的可视化区域直接输入内容，即LyX强迫你用类似word的方式来输入内容。因此抛弃LyX。</p>
+<p>Bakoma 是商业软件，30天试用期，网上搜了一下，没有破解版，故放弃。</p>
+<p>TeXmacs 1.0.7.19 在windows上安装完成后，双击后启动界面会闪退，完全没法用，换了1.0.7.18，可以启动了，目前发现两个问题：1. 打开（使用文件–&gt;打开或导入）一个含有中文的.tex文件会崩溃；2. 关闭程序管不了，需要用任务管理器杀掉才行，可见TeXmacs 还很不完善，其次TeXmacs 有着自己的语法，不是一个标准的TeX发行版，因此放弃 TeXmacs 。</p>
+<p>LEd已经很久不更新，且只有windows版，放弃。</p>
+<p>大牛陈硕用的是Tex Live，他的书使用Tex Live来排版的。<br><img src="http://yanjiuyanjiu-wordpress.stor.sinaapp.com/uploads/2013/04/chenshuo_texlive.png" alt=""></p>
+<p>##安装和配置<br>在windows下安装 Tex Live 2012，先下载DVD ISO，然后安装即可。假设安装到<code>D:\texlive</code>。</p>
+<p>安装完后，将<code>D:\texlive\2012\bin\win32</code>添加到PATH环境变量。这样Texmaker，Texstudio就不用配置了，安装后即可正常编译。如果没有添加到PATH环境变量，则在Texmaker，Texstudio中指定一些exe文件的绝对路径。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2013-04-02-my-octopress-configuration/" rel="next" title="我的Octopress配置">
+                <i class="fa fa-chevron-left"></i> 我的Octopress配置
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2013-06-11-read-spark-source-code-using-scala-ide/" rel="prev" title="使用Scala IDE 阅读spark源码 -- 将sbt项目转化为eclipse项目">
+                使用Scala IDE 阅读spark源码 -- 将sbt项目转化为eclipse项目 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2013-04-12-latex-distributions-and-editors/"
+           data-title="LaTeX的各种发行版和编辑器的比较" data-url="http://cn.soulmachine.me/2013-04-12-latex-distributions-and-editors/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://tva2.sinaimg.cn/crop.4.536.2038.2038.180/632582bfgw1f31kbqdasbj21kw23uhdt.jpg"
+               alt="soulmachine" />
+          <p class="site-author-name" itemprop="name">soulmachine</p>
+          <p class="site-description motion-element" itemprop="description">一些技术笔记</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">56</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/soulmachine" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/soulmachine" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/soulmachine" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/soulmachine" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-block">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.liancheng.info/" title="连城" target="_blank">连城</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://yewen.us/" title="笨狗随手留下" target="_blank">笨狗随手留下</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.rational.so/" title="阎栋" target="_blank">阎栋</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.parallellabs.com/" title="并行实验室" target="_blank">并行实验室</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.javachen.com/" title="JavaChen" target="_blank">JavaChen</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://shenfeng.me/" title="沈峰" target="_blank">沈峰</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.lihaipeng.info/" title="李海鹏" target="_blank">李海鹏</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.chioka.in/" title="Eric" target="_blank">Eric</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/lgnlgn" title="梁兄的技术博客" target="_blank">梁兄的技术博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.doesbetter.com/" title="王孝舒的博客" target="_blank">王孝舒的博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.foreverlee.net/" title="ForeverLee" target="_blank">ForeverLee</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.cnblogs.com/yuzhangcmu/" title="CMU张宇" target="_blank">CMU张宇</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">soulmachine</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"soulmachine"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+
+</body>
+</html>

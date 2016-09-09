@@ -1,0 +1,849 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="机器学习, 深度学习, 人工智能" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="环境：CentOS 6.5
+对于一个Linux集群，集群内的机器保持时间同步是很重要的，不然会出现很多问题。
+本文主要描述如何在集群内架设一台NTP服务器，其他机器都与这台服务器保持时间同步。
+##1 安装NTP在所有机器上执行，
+$ sudo yum install ntp
+###2 调整时区把所有机器的时区调整为上海时区，即”+8000”时区。
+先看一下机器的时区是否是对的，
+$ date -">
+<meta property="og:type" content="article">
+<meta property="og:title" content="集群时间同步--架设内网NTP服务器">
+<meta property="og:url" content="http://cn.soulmachine.me/2014-01-24-cluster-time-sync-using-ntp/index.html">
+<meta property="og:site_name" content="灵魂机器">
+<meta property="og:description" content="环境：CentOS 6.5
+对于一个Linux集群，集群内的机器保持时间同步是很重要的，不然会出现很多问题。
+本文主要描述如何在集群内架设一台NTP服务器，其他机器都与这台服务器保持时间同步。
+##1 安装NTP在所有机器上执行，
+$ sudo yum install ntp
+###2 调整时区把所有机器的时区调整为上海时区，即”+8000”时区。
+先看一下机器的时区是否是对的，
+$ date -">
+<meta property="og:updated_time" content="2016-08-18T09:21:04.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="集群时间同步--架设内网NTP服务器">
+<meta name="twitter:description" content="环境：CentOS 6.5
+对于一个Linux集群，集群内的机器保持时间同步是很重要的，不然会出现很多问题。
+本文主要描述如何在集群内架设一台NTP服务器，其他机器都与这台服务器保持时间同步。
+##1 安装NTP在所有机器上执行，
+$ sudo yum install ntp
+###2 调整时区把所有机器的时区调整为上海时区，即”+8000”时区。
+先看一下机器的时区是否是对的，
+$ date -">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 集群时间同步--架设内网NTP服务器 | 灵魂机器 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?259b539fcd8cab18ad0a6deb98ac2046";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">灵魂机器</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">终有一天机器也有灵魂</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                集群时间同步--架设内网NTP服务器
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2014-01-24T16:40:00+00:00" content="2014-01-24">
+              2014-01-24
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/DevOps/" itemprop="url" rel="index">
+                    <span itemprop="name">DevOps</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2014-01-24-cluster-time-sync-using-ntp/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014-01-24-cluster-time-sync-using-ntp/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>环境：CentOS 6.5</p>
+<p>对于一个Linux集群，集群内的机器保持时间同步是很重要的，不然会出现很多问题。</p>
+<p>本文主要描述如何在集群内架设一台NTP服务器，其他机器都与这台服务器保持时间同步。</p>
+<p>##1 安装NTP<br>在所有机器上执行，</p>
+<pre><code>$ sudo yum install ntp
+</code></pre><p>###2 调整时区<br>把所有机器的时区调整为上海时区，即”+8000”时区。</p>
+<p>先看一下机器的时区是否是对的，</p>
+<pre><code>$ date -R
+</code></pre><p>如果不是”+8000”，则要修改时区，</p>
+<pre><code>$ cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+</code></pre><p>###3 （可选）同步BIOS时间<br>Linux系统上面BIOS时间与linux系统时间是分开的，所以调整了时间之后，还需要使用<code>hwclock</code>才能将修改过的时间写入BIOS中。</p>
+<p>在<code>/etc/sysconfig/ntpd</code>中添加一行:</p>
+<pre><code>SYNC_HWCLOCK=yes
+</code></pre><p>##4 配置NTP服务器<br>选择一台能够上网的机器作为NTP服务器，以后这台服务器提供时间同步服务，集群内的其他机器不需要上网去跟公共的NTP服务器同步了。</p>
+<a id="more"></a>
+<p>###4.1 修改/etc/ntp.conf<br>ntp只有一个配置文件, <code>/etc/ntp.conf</code>.</p>
+<p>只需修改一行，找到下面这行，取消注释，</p>
+<pre><code>#restrict 192.168.1.0 mask 255.255.255.0 nomodify notrap
+</code></pre><p>变成了</p>
+<pre><code>restrict 192.168.1.0 mask 255.255.255.0 nomodify notrap
+</code></pre><p>这一行的含义是允许所有IP为<code>192.168.1.x</code>的机器与本服务器同步，这样就把这台机器变成了一台NTP服务器，对别的机器提供NTP同步服务。</p>
+<p>###4.2 开机启动ntpd</p>
+<pre><code>$ sudo chkconfig ntpd on
+</code></pre><p>###4.3 启动ntpd</p>
+<pre><code>$ sudo service ntpd start
+</code></pre><p>###4.4 验证与状态检查</p>
+<p>####4.4.1 查看ntp的端口</p>
+<pre><code>$ netstat -unlnp
+</code></pre><p>应该看到123端口</p>
+<p>####4.4.2 查看ntp服务器有无和上层连通</p>
+<pre><code>$ ntpstat
+
+synchronised to NTP server (218.75.4.130) at stratum 3 
+   time correct to within 598 ms
+   polling server every 64 s
+</code></pre><p>####4.4.3 查看ntp服务器与上层间的联系</p>
+<pre><code>$ ntptrace -n 127.0.0.1
+
+127.0.0.1: stratum 3, offset -0.001095, synch distance 0.532610
+116.193.83.174: timed out, nothing received
+</code></pre><p>####4.4.4 查看ntp服务器与上层ntp服务器的状态</p>
+<pre><code>$ ntpq -p
+     remote           refid      st t when poll reach   delay   offset  jitter
+==============================================================================
++dns.sjtu.edu.cn 202.112.31.197   3 u   47   64    3   28.873   76.001 114.194
++Hshh.org        209.51.161.238   2 u   48   64    3   43.694   75.042 131.058
++202.118.1.130   202.118.1.46     2 u   46   64    3   14.640   75.636 116.999
+*dns1.synet.edu. 202.118.1.46     2 u   44   64    3   13.968   74.514 128.913
+</code></pre><p>其中:</p>
+<ul>
+<li>remote - 本机和上层ntp的ip或主机名，“+”表示优先，“*”表示次优先</li>
+<li>refid - 参考上一层ntp主机地址</li>
+<li>st - stratum阶层</li>
+<li>t: 这个…..我也不知道啥意思^_^</li>
+<li>when - 多少秒前曾经同步过时间</li>
+<li>poll - 下次更新在多少秒后</li>
+<li>reach - 已经向上层ntp服务器要求更新的次数</li>
+<li>delay - 网络延迟</li>
+<li>offset - 时间补偿</li>
+<li>jitter - 系统时间与bios时间差</li>
+</ul>
+<p>如果所有远程服务器的jitter值是4000并且delay和reach的值是0，那么说明时间同步是有问题的，可能的原因是防火墙阻断了与server之间的通讯，检查一下123端口是否正常开放。</p>
+<p>##5 配置客户机<br>服务器配置好了，接下来就要配置所有的客户端机器，从该服务器同步时间。</p>
+<ul>
+<li>方法1，使用<code>ntpdate</code>与上面配置的NTP服务器定时同步（参考资料2），不推荐此方法</li>
+<li>方法2，安装ntpd，指定NTP服务器为上面配置的服务器地址，推荐。</li>
+</ul>
+<p>下面详细讲述方法2。以下操作适用于所有客户端机器。</p>
+<p>###5.1 指定NTP服务器</p>
+<p>删除 <code>/etc/ntp.conf</code> 里的所有公网ntp服务器，换成上面配置的服务器，</p>
+<pre><code>#server 0.centos.pool.ntp.org iburst
+#server 1.centos.pool.ntp.org iburst
+#server 2.centos.pool.ntp.org iburst
+#server 3.centos.pool.ntp.org iburst
+server techwolf-01 iburst
+</code></pre><p>用hostname或ip都可以。</p>
+<p>###5.2 开机启动ntpd</p>
+<pre><code>$ sudo chkconfig ntpd on
+</code></pre><p>###5.3 启动ntpd</p>
+<pre><code>$ sudo service ntpd start
+</code></pre><p>##参考资料</p>
+<ol>
+<li><a href="http://www.crsay.com/wiki/wiki.php/server/centos/ntp-set" target="_blank" rel="external">CentOS配置时间同步NTP</a></li>
+<li><a href="http://www.cnblogs.com/thinksasa/p/3479980.html" target="_blank" rel="external">CentOS系统时间同步（NTP）</a></li>
+</ol>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2014-01-23-centos-6-dot-4-upgrade-kernel/" rel="next" title="CentOS 6.5 升级内核到 3.10.28">
+                <i class="fa fa-chevron-left"></i> CentOS 6.5 升级内核到 3.10.28
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2014-01-25-rdesktop-tutorial/" rel="prev" title="Rdesktop 快速入门">
+                Rdesktop 快速入门 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2014-01-24-cluster-time-sync-using-ntp/"
+           data-title="集群时间同步--架设内网NTP服务器" data-url="http://cn.soulmachine.me/2014-01-24-cluster-time-sync-using-ntp/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://tva2.sinaimg.cn/crop.4.536.2038.2038.180/632582bfgw1f31kbqdasbj21kw23uhdt.jpg"
+               alt="soulmachine" />
+          <p class="site-author-name" itemprop="name">soulmachine</p>
+          <p class="site-description motion-element" itemprop="description">一些技术笔记</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">56</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/soulmachine" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/soulmachine" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/soulmachine" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/soulmachine" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-block">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.liancheng.info/" title="连城" target="_blank">连城</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://yewen.us/" title="笨狗随手留下" target="_blank">笨狗随手留下</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.rational.so/" title="阎栋" target="_blank">阎栋</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.parallellabs.com/" title="并行实验室" target="_blank">并行实验室</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.javachen.com/" title="JavaChen" target="_blank">JavaChen</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://shenfeng.me/" title="沈峰" target="_blank">沈峰</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.lihaipeng.info/" title="李海鹏" target="_blank">李海鹏</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.chioka.in/" title="Eric" target="_blank">Eric</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/lgnlgn" title="梁兄的技术博客" target="_blank">梁兄的技术博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.doesbetter.com/" title="王孝舒的博客" target="_blank">王孝舒的博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.foreverlee.net/" title="ForeverLee" target="_blank">ForeverLee</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.cnblogs.com/yuzhangcmu/" title="CMU张宇" target="_blank">CMU张宇</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">soulmachine</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"soulmachine"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+
+</body>
+</html>

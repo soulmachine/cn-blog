@@ -1,0 +1,875 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="机器学习, 深度学习, 人工智能" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="本文主要参考Nutch Tutorial
+Nutch 2.2.1目前性能没有Nutch 1.7好，参考这里，NUTCH FIGHT! 1.7 vs 2.2.1. 所以我目前还是使用的Nutch 1.7。
+##1 下载已编译好的二进制包，解压    $ wget http://psg.mtu.edu/pub/apache/nutch/1.7/apache-nutch-1.7-bin.tar.gz">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Nutch 快速入门(Nutch 1.7)">
+<meta property="og:url" content="http://cn.soulmachine.me/2014-01-21-nutch-tutorial-17/index.html">
+<meta property="og:site_name" content="灵魂机器">
+<meta property="og:description" content="本文主要参考Nutch Tutorial
+Nutch 2.2.1目前性能没有Nutch 1.7好，参考这里，NUTCH FIGHT! 1.7 vs 2.2.1. 所以我目前还是使用的Nutch 1.7。
+##1 下载已编译好的二进制包，解压    $ wget http://psg.mtu.edu/pub/apache/nutch/1.7/apache-nutch-1.7-bin.tar.gz">
+<meta property="og:updated_time" content="2016-08-18T09:21:04.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Nutch 快速入门(Nutch 1.7)">
+<meta name="twitter:description" content="本文主要参考Nutch Tutorial
+Nutch 2.2.1目前性能没有Nutch 1.7好，参考这里，NUTCH FIGHT! 1.7 vs 2.2.1. 所以我目前还是使用的Nutch 1.7。
+##1 下载已编译好的二进制包，解压    $ wget http://psg.mtu.edu/pub/apache/nutch/1.7/apache-nutch-1.7-bin.tar.gz">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> Nutch 快速入门(Nutch 1.7) | 灵魂机器 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?259b539fcd8cab18ad0a6deb98ac2046";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">灵魂机器</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">终有一天机器也有灵魂</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Nutch 快速入门(Nutch 1.7)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2014-01-21T04:11:00+00:00" content="2014-01-21">
+              2014-01-21
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Search-Engine/" itemprop="url" rel="index">
+                    <span itemprop="name">Search-Engine</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2014-01-21-nutch-tutorial-17/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014-01-21-nutch-tutorial-17/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本文主要参考<a href="http://wiki.apache.org/nutch/NutchTutorial" target="_blank" rel="external">Nutch Tutorial</a></p>
+<p>Nutch 2.2.1目前性能没有Nutch 1.7好，参考这里，<a href="http://digitalpebble.blogspot.com/2013/09/nutch-fight-17-vs-221.html" target="_blank" rel="external">NUTCH FIGHT! 1.7 vs 2.2.1</a>. 所以我目前还是使用的Nutch 1.7。</p>
+<p>##1 下载已编译好的二进制包，解压<br>    $ wget <a href="http://psg.mtu.edu/pub/apache/nutch/1.7/apache-nutch-1.7-bin.tar.gz" target="_blank" rel="external">http://psg.mtu.edu/pub/apache/nutch/1.7/apache-nutch-1.7-bin.tar.gz</a><br>    $ tar zxf apache-nutch-1.7-bin.tar.gz</p>
+<p>##2 验证一下</p>
+<pre><code>$ cd apache-nutch-1.7
+$ bin/nutch
+</code></pre><p>如果出现”Permission denied”请运行下面的命令：</p>
+<pre><code>$ chmod +x bin/nutch
+</code></pre><p>如果有Warning说 <code>JAVA_HOME</code>没有设置，请设置一下<code>JAVA_HOME</code>.</p>
+<p>##3 添加种子URL</p>
+<pre><code>mkdir ~/urls
+vim ～/urls/seed.txt
+http://movie.douban.com/subject/5323968/
+</code></pre><p>##4 设置URL过滤规则<br>如果只想抓取某种类型的URL，可以在 <code>conf/regex-urlfilter.txt</code>设置正则表达式，于是，只有匹配这些正则表达式的URL才会被抓取。</p>
+<a id="more"></a>
+<p>例如，我只想抓取豆瓣电影的数据，可以这样设置：</p>
+<pre><code>#注释掉这一行
+# skip URLs containing certain characters as probable queries, etc.
+#-[?*!@=]
+# accept anything else
+#注释掉这行
+#+.
++^http:\/\/movie\.douban\.com\/subject\/[0-9]+\/(\?.+)?$
+</code></pre><p>##5 设置agent名字</p>
+<p>conf/nutch-site.xml:</p>
+<pre><code>&lt;property&gt;
+  &lt;name&gt;http.agent.name&lt;/name&gt;
+  &lt;value&gt;My Nutch Spider&lt;/value&gt;
+&lt;/property&gt;
+</code></pre><p>这一步是从这本书上看到的，<a href="http://www.packtpub.com/web-crawling-and-data-mining-with-apache-nutch/book" target="_blank" rel="external">Web Crawling and Data Mining with Apache Nutch</a>，第14页。</p>
+<p>##6 安装Solr<br>由于建索引的时候需要使用Solr，因此我们需要安装并启动一个Solr服务器。</p>
+<p>参考<a href="http://wiki.apache.org/nutch/NutchTutorial" target="_blank" rel="external">Nutch Tutorial</a> 第4、5、6步，以及<a href="http://lucene.apache.org/solr/4_6_1/tutorial.html" target="_blank" rel="external">Solr Tutorial</a>。</p>
+<p>###6.1 下载，解压</p>
+<p>wget <a href="http://mirrors.cnnic.cn/apache/lucene/solr/4.6.1/solr-4.6.1.tgz" target="_blank" rel="external">http://mirrors.cnnic.cn/apache/lucene/solr/4.6.1/solr-4.6.1.tgz</a><br>tar -zxf solr-4.6.1.tgz</p>
+<p>###6.2 运行Solr</p>
+<pre><code>cd example
+java -jar start.jar
+</code></pre><p>验证是否启动成功</p>
+<p>用浏览器打开 <a href="http://localhost:8983/solr/admin/" target="_blank" rel="external">http://localhost:8983/solr/admin/</a>，如果能看到页面，说明启动成功。</p>
+<p>###6.3 将Nutch与Solr集成在一起</p>
+<p>将<code>NUTCH_DIR/conf/schema-solr4.xml</code>拷贝到<code>SOLR_DIR/solr/collection1/conf/</code>，重命名为schema.xml，并在<code>&lt;fields&gt;...&lt;/fields&gt;</code>最后添加一行(具体解释见<a href="http://stackoverflow.com/questions/15527380/solr-4-2-what-is-version-field" target="_blank" rel="external">Solr 4.2 - what is _version_field?</a>)，</p>
+<pre><code>&lt;field name=&quot;_version_&quot; type=&quot;long&quot; indexed=&quot;true&quot; stored=&quot;true&quot; multiValued=&quot;false&quot;/&gt;
+</code></pre><p>重启Solr，</p>
+<pre><code># Ctrl+C to stop Solr
+java -jar start.jar
+</code></pre><p>##7 使用crawl脚本一键抓取<br>Nutch自带了一个脚本，<code>./bin/crawl</code>，把抓取的各个步骤合并成一个命令，看一下它的用法</p>
+<pre><code>$ bin/crawl 
+Missing seedDir : crawl &lt;seedDir&gt; &lt;crawlDir&gt; &lt;solrURL&gt; &lt;numberOfRounds&gt;
+</code></pre><p>注意，是使用<code>bin/crawl</code>，不是<code>bin/nutch crawl</code>，后者已经是deprecated的了。</p>
+<p>###7.1 抓取网页</p>
+<pre><code>$ ./bin/crawl ~/urls/ ./TestCrawl http://localhost:8983/solr/ 2
+</code></pre><ul>
+<li><code>～/urls</code> 是存放了种子url的目录</li>
+<li>TestCrawl 是存放数据的根目录（在Nutch 2.x中，则表示crawlId，这会在HBase中创建一张以crawlId为前缀的表，例如TestCrawl_Webpage）</li>
+<li><a href="http://localhost:8983/solr/" target="_blank" rel="external">http://localhost:8983/solr/</a> , 这是Solr服务器</li>
+<li>2，numberOfRounds，迭代的次数</li>
+</ul>
+<p>过了一会儿，屏幕上出现了一大堆url，可以看到爬虫正在抓取！</p>
+<pre><code>fetching http://music.douban.com/subject/25811077/ (queue crawl delay=5000ms)
+fetching http://read.douban.com/ebook/1919781 (queue crawl delay=5000ms)
+fetching http://www.douban.com/online/11670861/ (queue crawl delay=5000ms)
+fetching http://book.douban.com/tag/绘本 (queue crawl delay=5000ms)
+fetching http://movie.douban.com/tag/科幻 (queue crawl delay=5000ms)
+49/50 spinwaiting/active, 56 pages, 0 errors, 0.9 1 pages/s, 332 245 kb/s, 131 URLs in 5 queues
+fetching http://music.douban.com/subject/25762454/ (queue crawl delay=5000ms)
+fetching http://read.douban.com/reader/ebook/1951242/ (queue crawl delay=5000ms)
+fetching http://www.douban.com/mobile/read-notes (queue crawl delay=5000ms)
+fetching http://book.douban.com/tag/诗歌 (queue crawl delay=5000ms)
+50/50 spinwaiting/active, 61 pages, 0 errors, 0.9 1 pages/s, 334 366 kb/s, 127 URLs in 5 queues
+</code></pre><p>###7.2 查看结果</p>
+<pre><code>$ bin/nutch readdb TestCrawl/crawldb/ -stats
+14/02/14 16:35:47 INFO crawl.CrawlDbReader: Statistics for CrawlDb: TestCrawl/crawldb/
+14/02/14 16:35:47 INFO crawl.CrawlDbReader: TOTAL urls:    70
+14/02/14 16:35:47 INFO crawl.CrawlDbReader: retry 0:    70
+14/02/14 16:35:47 INFO crawl.CrawlDbReader: min score:    0.005
+14/02/14 16:35:47 INFO crawl.CrawlDbReader: avg score:    0.03877143
+14/02/14 16:35:47 INFO crawl.CrawlDbReader: max score:    1.23
+14/02/14 16:35:47 INFO crawl.CrawlDbReader: status 1 (db_unfetched):    59
+14/02/14 16:35:47 INFO crawl.CrawlDbReader: status 2 (db_fetched):    11
+14/02/14 16:35:47 INFO crawl.CrawlDbReader: CrawlDb statistics: done
+</code></pre><p>##8 一步一步使用单个命令抓取网页<br>上一节为了简单性，一个命令搞定。本节我将严格按照抓取的步骤，一步一步来，揭开爬虫的神秘面纱。感兴趣的读者也可以看看 <code>bin/crawl</code> 脚本里的内容，可以很清楚的看到各个步骤。</p>
+<p>先删除第7节产生的数据，</p>
+<pre><code>$ rm -rf TestCrawl/
+</code></pre><p>###8.1 基本概念<br>Nutch data is composed of:</p>
+<ul>
+<li>The crawl database, or <code>crawldb</code>. This contains information about every URL known to Nutch, including whether it was fetched, and, if so, when.</li>
+<li>The link database, or <code>linkdb</code>. This contains the list of known links to each URL, including both the source URL and anchor text of the link.</li>
+<li>A set of <code>segments</code>. Each segment is a set of URLs that are fetched as a unit. Segments are directories with the following subdirectories:<ul>
+<li>a <code>crawl_generate</code> names a set of URLs to be fetched</li>
+<li>a <code>crawl_fetch</code> contains the status of fetching each URL</li>
+<li>a <code>content</code> contains the raw content retrieved from each URL</li>
+<li>a <code>parse_text</code> contains the parsed text of each URL</li>
+<li>a <code>parse_data</code> contains outlinks and metadata parsed from each URL</li>
+<li>a <code>crawl_parse</code> contains the outlink URLs, used to update the crawldb</li>
+</ul>
+</li>
+</ul>
+<p>###8.2 inject:使用种子URL列表，生成crawldb</p>
+<pre><code>$ bin/nutch inject TestCrawl/crawldb ~/urls
+</code></pre><p>将根据<code>～/urls</code>下的种子URL，生成一个URL数据库，放在<code>crawdb</code>目录下。</p>
+<p>###8.3 generate</p>
+<pre><code>$ bin/nutch generate TestCrawl/crawldb TestCrawl/segments
+</code></pre><p>这会生成一个 fetch list，存放在一个<code>segments/日期</code>目录下。我们将这个目录的名字保存在shell变量<code>s1</code>里：</p>
+<pre><code>$ s1=`ls -d TestCrawl/segments/2* | tail -1`
+$ echo $s1
+</code></pre><p>###8.4 fetch</p>
+<pre><code>$ bin/nutch fetch $s1
+</code></pre><p>将会在 <code>$1</code> 目录下，生成两个子目录, <code>crawl_fetch</code> 和 <code>content</code>。</p>
+<p>###8.5 parse</p>
+<pre><code>$ bin/nutch parse $s1
+</code></pre><p>将会在 <code>$1</code> 目录下，生成3个子目录, <code>crawl_parse</code>, <code>parse_data</code> 和 <code>parse_text</code> 。</p>
+<p>###8.6 updatedb</p>
+<pre><code>$ bin/nutch updatedb TestCrawl/crawldb $s1
+</code></pre><p>这将把<code>crawldb/current</code>重命名为<code>crawldb/old</code>，并生成新的 <code>crawldb/current</code> 。</p>
+<p>###8.7 查看结果</p>
+<pre><code>$ bin/nutch readdb TestCrawl/crawldb/ -stats
+</code></pre><p>###8.8 invertlinks</p>
+<p>在建立索引之前，我们首先要反转所有的链接，这样我们就可以获得一个页面所有的锚文本，并给这些锚文本建立索引。</p>
+<pre><code>$ bin/nutch invertlinks TestCrawl/linkdb -dir TestCrawl/segments
+</code></pre><p>###8.9 solrindex, 提交数据给solr，建立索引</p>
+<pre><code>$ bin/nutch solrindex http://localhost:8983/solr TestCrawl/crawldb/ -linkdb TestCrawl/linkdb/ TestCrawl/segments/20140203004348/ -filter -normalize
+</code></pre><p>###8.10 solrdedup, 给索引去重<br>有时重复添加了数据，导致索引里有重复数据，我们需要去重，</p>
+<pre><code>$bin/nutch solrdedup http://localhost:8983/solr
+</code></pre><p>###8.11 solrclean, 删除索引<br>如果数据过时了，需要在索引里删除，也是可以的。</p>
+<pre><code>$ bin/nutch solrclean TestCrawl/crawldb/ http://localhost:8983/solr
+</code></pre><p>##相关文章<br><a href="http://www.yanjiuyanjiu.com/blog/20140201/" target="_blank" rel="external">Nutch 快速入门(Nutch 2.2.1)</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2014-01-20-Running-Nutch-in-Eclipse/" rel="next" title="在Eclipse里运行Nutch">
+                <i class="fa fa-chevron-left"></i> 在Eclipse里运行Nutch
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2014-01-22-install-docker-on-centos65/" rel="prev" title="在Centos 6.5上安装docker">
+                在Centos 6.5上安装docker <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2014-01-21-nutch-tutorial-17/"
+           data-title="Nutch 快速入门(Nutch 1.7)" data-url="http://cn.soulmachine.me/2014-01-21-nutch-tutorial-17/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://tva2.sinaimg.cn/crop.4.536.2038.2038.180/632582bfgw1f31kbqdasbj21kw23uhdt.jpg"
+               alt="soulmachine" />
+          <p class="site-author-name" itemprop="name">soulmachine</p>
+          <p class="site-description motion-element" itemprop="description">一些技术笔记</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">56</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/soulmachine" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/soulmachine" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/soulmachine" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/soulmachine" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-block">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.liancheng.info/" title="连城" target="_blank">连城</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://yewen.us/" title="笨狗随手留下" target="_blank">笨狗随手留下</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.rational.so/" title="阎栋" target="_blank">阎栋</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.parallellabs.com/" title="并行实验室" target="_blank">并行实验室</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.javachen.com/" title="JavaChen" target="_blank">JavaChen</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://shenfeng.me/" title="沈峰" target="_blank">沈峰</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.lihaipeng.info/" title="李海鹏" target="_blank">李海鹏</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.chioka.in/" title="Eric" target="_blank">Eric</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/lgnlgn" title="梁兄的技术博客" target="_blank">梁兄的技术博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.doesbetter.com/" title="王孝舒的博客" target="_blank">王孝舒的博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.foreverlee.net/" title="ForeverLee" target="_blank">ForeverLee</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.cnblogs.com/yuzhangcmu/" title="CMU张宇" target="_blank">CMU张宇</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">soulmachine</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"soulmachine"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+
+</body>
+</html>

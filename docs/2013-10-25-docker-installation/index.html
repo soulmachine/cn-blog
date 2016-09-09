@@ -1,0 +1,779 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="机器学习, 深度学习, 人工智能" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="1 在 CentOS 6.4 上安装 dockerdocker当前官方只支持Ubuntu，所以在 CentOS 安装Docker比较麻烦(Issue #172)。
+docker官方文档说要求Linux kernel至少3.8以上，CentOS 6.4是2.6的内核，于是我哼哧哼哧的编译安装了最新的kernel 3.11.6，重启后运行docker还是失败，最后找到原因，是因为编译时忘记集成aufs">
+<meta property="og:type" content="article">
+<meta property="og:title" content="docker安装">
+<meta property="og:url" content="http://cn.soulmachine.me/2013-10-25-docker-installation/index.html">
+<meta property="og:site_name" content="灵魂机器">
+<meta property="og:description" content="1 在 CentOS 6.4 上安装 dockerdocker当前官方只支持Ubuntu，所以在 CentOS 安装Docker比较麻烦(Issue #172)。
+docker官方文档说要求Linux kernel至少3.8以上，CentOS 6.4是2.6的内核，于是我哼哧哼哧的编译安装了最新的kernel 3.11.6，重启后运行docker还是失败，最后找到原因，是因为编译时忘记集成aufs">
+<meta property="og:updated_time" content="2016-08-18T09:21:04.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="docker安装">
+<meta name="twitter:description" content="1 在 CentOS 6.4 上安装 dockerdocker当前官方只支持Ubuntu，所以在 CentOS 安装Docker比较麻烦(Issue #172)。
+docker官方文档说要求Linux kernel至少3.8以上，CentOS 6.4是2.6的内核，于是我哼哧哼哧的编译安装了最新的kernel 3.11.6，重启后运行docker还是失败，最后找到原因，是因为编译时忘记集成aufs">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> docker安装 | 灵魂机器 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?259b539fcd8cab18ad0a6deb98ac2046";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">灵魂机器</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">终有一天机器也有灵魂</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                docker安装
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2013-10-25T23:41:00+00:00" content="2013-10-25">
+              2013-10-25
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Docker/" itemprop="url" rel="index">
+                    <span itemprop="name">Docker</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2013-10-25-docker-installation/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2013-10-25-docker-installation/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="1-在-CentOS-6-4-上安装-docker"><a href="#1-在-CentOS-6-4-上安装-docker" class="headerlink" title="1 在 CentOS 6.4 上安装 docker"></a>1 在 CentOS 6.4 上安装 docker</h2><p>docker当前官方只支持Ubuntu，所以在 CentOS 安装Docker比较麻烦(<a href="https://github.com/dotcloud/docker/issues/172" target="_blank" rel="external">Issue #172</a>)。</p>
+<p>docker官方文档说要求Linux kernel至少3.8以上，CentOS 6.4是2.6的内核，于是我哼哧哼哧的<a href="http://www.yanjiuyanjiu.com/blog/20131024" target="_blank" rel="external">编译安装了最新的kernel 3.11.6</a>，重启后运行docker还是失败，最后找到原因，是因为编译时忘记集成aufs模块了。aufs 需要和 kernel 一起编译，很麻烦。</p>
+<p>不过不需要这么麻烦，有强人已经编译好了带aufs模块的内核，见这里<a href="http://nareshv.blogspot.com/2013/08/installing-dockerio-on-centos-64-64-bit.html" target="_blank" rel="external">Installing docker.io on centos 6.4 (64-bit)</a></p>
+<h3 id="1-1-取消selinux，因为它会干扰lxc的正常功能"><a href="#1-1-取消selinux，因为它会干扰lxc的正常功能" class="headerlink" title="1.1 取消selinux，因为它会干扰lxc的正常功能"></a>1.1 取消selinux，因为它会干扰lxc的正常功能</h3><pre><code>sudo vim /etc/selinux/config 
+SELINUX=disabled
+SELINUXTYPE=targeted
+</code></pre><h3 id="1-2-安装-Fedora-EPEL"><a href="#1-2-安装-Fedora-EPEL" class="headerlink" title="1.2 安装 Fedora EPEL"></a>1.2 安装 Fedora EPEL</h3><pre><code>sudo yum install http://ftp.riken.jp/Linux/fedora/epel/6/x86_64/epel-release-6-8.noarch.rpm
+</code></pre><h3 id="1-3-添加-hop5-repo地址"><a href="#1-3-添加-hop5-repo地址" class="headerlink" title="1.3 添加 hop5 repo地址"></a>1.3 添加 hop5 repo地址</h3><pre><code>cd /etc/yum.repos.d
+sudo wget http://www.hop5.in/yum/el6/hop5.repo
+</code></pre><h3 id="1-4-安装-docker-io"><a href="#1-4-安装-docker-io" class="headerlink" title="1.4 安装 docker-io"></a>1.4 安装 docker-io</h3><pre><code>sudo yum install docker-io
+</code></pre><p>会自动安装带aufs模块的3.10内核，以及docker-io包。</p>
+<h3 id="1-5-将-cgroup-文件系统添加到-etc-fstab-只有这样docker才能正常工作"><a href="#1-5-将-cgroup-文件系统添加到-etc-fstab-只有这样docker才能正常工作" class="headerlink" title="1.5 将 cgroup 文件系统添加到 /etc/fstab , 只有这样docker才能正常工作"></a>1.5 将 cgroup 文件系统添加到 <code>/etc/fstab</code> , 只有这样docker才能正常工作</h3><pre><code>sudo echo &quot;none                    /sys/fs/cgroup          cgroup  defaults        0 0&quot; &gt;&gt; /etc/fstab
+</code></pre><h3 id="1-6-修改grub引导顺序"><a href="#1-6-修改grub引导顺序" class="headerlink" title="1.6 修改grub引导顺序"></a>1.6 修改grub引导顺序</h3><pre><code>sudo vim /etc/grub.conf
+default=0
+</code></pre><p>设置default为新安装的内核的位置，一般是0</p>
+<h3 id="1-7-重启"><a href="#1-7-重启" class="headerlink" title="1.7 重启"></a>1.7 重启</h3><pre><code>sudo reboot
+</code></pre><h3 id="1-8-检查新内核是否引导成功"><a href="#1-8-检查新内核是否引导成功" class="headerlink" title="1.8 检查新内核是否引导成功"></a>1.8 检查新内核是否引导成功</h3><p>重启后，检查一下新内核是否引导起来了</p>
+<pre><code>uname -r
+3.10.5-3.el6.x86_64
+</code></pre><p>说明成功了</p>
+<p>看一下 aufs是否存在</p>
+<pre><code>grep aufs /proc/filesystems 
+nodev   aufs
+</code></pre><p>说明存在</p>
+<h3 id="1-9-启动-docker-daemon-进程"><a href="#1-9-启动-docker-daemon-进程" class="headerlink" title="1.9 启动 docker daemon 进程"></a>1.9 启动 docker daemon 进程</h3><pre><code>sudo docker -d &amp;
+</code></pre><p>如果你在公司，且公司内部都是通过代理上网，则可以把代理服务器告诉docker，用如下命令(参考<a href="https://github.com/dotcloud/docker/issues/402" target="_blank" rel="external">这里</a>)：</p>
+<pre><code>sudo HTTP_PROXY=http://xxx:port docker -d &amp;
+</code></pre><h3 id="1-10-下载-ubuntu-镜像"><a href="#1-10-下载-ubuntu-镜像" class="headerlink" title="1.10 下载 ubuntu 镜像"></a>1.10 下载 ubuntu 镜像</h3><pre><code>sudo docker pull ubuntu
+</code></pre><h3 id="1-11-运行-hello-world"><a href="#1-11-运行-hello-world" class="headerlink" title="1.11 运行 hello world"></a>1.11 运行 hello world</h3><a id="more"></a>
+<pre><code>sudo docker run ubuntu /bin/echo hello world
+hello world
+</code></pre><p>安装成功了！！</p>
+<h2 id="2-在-Ubuntu-上安装-docker"><a href="#2-在-Ubuntu-上安装-docker" class="headerlink" title="2 在 Ubuntu 上安装 docker"></a>2 在 Ubuntu 上安装 docker</h2><p>见官方文档，<a href="http://docs.docker.io/en/latest/installation/ubuntulinux/" target="_blank" rel="external">Ubuntu Linux</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2013-10-17-installing-spark-on-centos-cn/" rel="next" title="安装Spark 0.8 集群(在CentOS上)">
+                <i class="fa fa-chevron-left"></i> 安装Spark 0.8 集群(在CentOS上)
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2013-10-26-docker-tutorial/" rel="prev" title="docker 快速入门">
+                docker 快速入门 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2013-10-25-docker-installation/"
+           data-title="docker安装" data-url="http://cn.soulmachine.me/2013-10-25-docker-installation/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://tva2.sinaimg.cn/crop.4.536.2038.2038.180/632582bfgw1f31kbqdasbj21kw23uhdt.jpg"
+               alt="soulmachine" />
+          <p class="site-author-name" itemprop="name">soulmachine</p>
+          <p class="site-description motion-element" itemprop="description">一些技术笔记</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">56</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/soulmachine" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/soulmachine" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/soulmachine" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/soulmachine" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-block">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.liancheng.info/" title="连城" target="_blank">连城</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://yewen.us/" title="笨狗随手留下" target="_blank">笨狗随手留下</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.rational.so/" title="阎栋" target="_blank">阎栋</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.parallellabs.com/" title="并行实验室" target="_blank">并行实验室</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.javachen.com/" title="JavaChen" target="_blank">JavaChen</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://shenfeng.me/" title="沈峰" target="_blank">沈峰</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.lihaipeng.info/" title="李海鹏" target="_blank">李海鹏</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.chioka.in/" title="Eric" target="_blank">Eric</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/lgnlgn" title="梁兄的技术博客" target="_blank">梁兄的技术博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.doesbetter.com/" title="王孝舒的博客" target="_blank">王孝舒的博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.foreverlee.net/" title="ForeverLee" target="_blank">ForeverLee</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.cnblogs.com/yuzhangcmu/" title="CMU张宇" target="_blank">CMU张宇</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-在-CentOS-6-4-上安装-docker"><span class="nav-number">1.</span> <span class="nav-text">1 在 CentOS 6.4 上安装 docker</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-取消selinux，因为它会干扰lxc的正常功能"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 取消selinux，因为它会干扰lxc的正常功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-安装-Fedora-EPEL"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 安装 Fedora EPEL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-添加-hop5-repo地址"><span class="nav-number">1.3.</span> <span class="nav-text">1.3 添加 hop5 repo地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-安装-docker-io"><span class="nav-number">1.4.</span> <span class="nav-text">1.4 安装 docker-io</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-5-将-cgroup-文件系统添加到-etc-fstab-只有这样docker才能正常工作"><span class="nav-number">1.5.</span> <span class="nav-text">1.5 将 cgroup 文件系统添加到 /etc/fstab , 只有这样docker才能正常工作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-6-修改grub引导顺序"><span class="nav-number">1.6.</span> <span class="nav-text">1.6 修改grub引导顺序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-7-重启"><span class="nav-number">1.7.</span> <span class="nav-text">1.7 重启</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-8-检查新内核是否引导成功"><span class="nav-number">1.8.</span> <span class="nav-text">1.8 检查新内核是否引导成功</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-9-启动-docker-daemon-进程"><span class="nav-number">1.9.</span> <span class="nav-text">1.9 启动 docker daemon 进程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-10-下载-ubuntu-镜像"><span class="nav-number">1.10.</span> <span class="nav-text">1.10 下载 ubuntu 镜像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-11-运行-hello-world"><span class="nav-number">1.11.</span> <span class="nav-text">1.11 运行 hello world</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-在-Ubuntu-上安装-docker"><span class="nav-number">2.</span> <span class="nav-text">2 在 Ubuntu 上安装 docker</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">soulmachine</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"soulmachine"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+
+</body>
+</html>

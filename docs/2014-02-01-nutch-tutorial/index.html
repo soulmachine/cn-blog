@@ -1,0 +1,907 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="机器学习, 深度学习, 人工智能" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="本文主要参考Nutch 2.x Tutorial
+Nutch 2.x 与 Nutch 1.x 相比，剥离出了存储层，放到了gora中，可以使用多种数据库，例如HBase, Cassandra, MySql来存储数据了。Nutch 1.7 则是把数据直接存储在HDFS上。
+##1. 安装并运行HBase为了简单起见，使用Standalone模式，参考 HBase Quick start
+###1.1">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Nutch 快速入门(Nutch 2.2.1)">
+<meta property="og:url" content="http://cn.soulmachine.me/2014-02-01-nutch-tutorial/index.html">
+<meta property="og:site_name" content="灵魂机器">
+<meta property="og:description" content="本文主要参考Nutch 2.x Tutorial
+Nutch 2.x 与 Nutch 1.x 相比，剥离出了存储层，放到了gora中，可以使用多种数据库，例如HBase, Cassandra, MySql来存储数据了。Nutch 1.7 则是把数据直接存储在HDFS上。
+##1. 安装并运行HBase为了简单起见，使用Standalone模式，参考 HBase Quick start
+###1.1">
+<meta property="og:updated_time" content="2016-08-18T09:21:04.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Nutch 快速入门(Nutch 2.2.1)">
+<meta name="twitter:description" content="本文主要参考Nutch 2.x Tutorial
+Nutch 2.x 与 Nutch 1.x 相比，剥离出了存储层，放到了gora中，可以使用多种数据库，例如HBase, Cassandra, MySql来存储数据了。Nutch 1.7 则是把数据直接存储在HDFS上。
+##1. 安装并运行HBase为了简单起见，使用Standalone模式，参考 HBase Quick start
+###1.1">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> Nutch 快速入门(Nutch 2.2.1) | 灵魂机器 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?259b539fcd8cab18ad0a6deb98ac2046";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">灵魂机器</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">终有一天机器也有灵魂</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Nutch 快速入门(Nutch 2.2.1)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2014-02-01T04:11:00+00:00" content="2014-02-01">
+              2014-02-01
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Search-Engine/" itemprop="url" rel="index">
+                    <span itemprop="name">Search-Engine</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2014-02-01-nutch-tutorial/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014-02-01-nutch-tutorial/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本文主要参考<a href="http://wiki.apache.org/nutch/Nutch2Tutorial" target="_blank" rel="external">Nutch 2.x Tutorial</a></p>
+<p>Nutch 2.x 与 Nutch 1.x 相比，剥离出了存储层，放到了gora中，可以使用多种数据库，例如HBase, Cassandra, MySql来存储数据了。Nutch 1.7 则是把数据直接存储在HDFS上。</p>
+<p>##1. 安装并运行HBase<br>为了简单起见，使用Standalone模式，参考 <a href="http://hbase.apache.org/book/quickstart.html" target="_blank" rel="external">HBase Quick start</a></p>
+<p>###1.1 下载，解压</p>
+<pre><code>wget http://archive.apache.org/dist/hbase/hbase-0.90.4/hbase-0.90.4.tar.gz
+tar zxf hbase-0.90.4.tar.gz
+</code></pre><p>###1.2 修改 conf/hbase-site.xml<br>内容如下</p>
+<pre><code>&lt;configuration&gt;
+  &lt;property&gt;
+    &lt;name&gt;hbase.rootdir&lt;/name&gt;
+    &lt;value&gt;file:///DIRECTORY/hbase&lt;/value&gt;
+  &lt;/property&gt;
+  &lt;property&gt;
+    &lt;name&gt;hbase.zookeeper.property.dataDir&lt;/name&gt;
+    &lt;value&gt;/DIRECTORY/zookeeper&lt;/value&gt;
+  &lt;/property&gt;
+&lt;/configuration&gt;
+</code></pre><p><code>hbase.rootdir</code>目录是用来存放HBase的相关信息的，默认值是<code>/tmp/hbase-${user.name}/hbase</code>； <code>hbase.zookeeper.property.dataDir</code>目录是用来存放zookeeper（HBase内置了zookeeper）的相关信息的，默认值是<code>/tmp/hbase-${user.name}/zookeeper</code>。</p>
+<p>###1.3 启动</p>
+<pre><code>$ ./bin/start-hbase.sh
+starting Master, logging to logs/hbase-user-master-example.org.out
+</code></pre><a id="more"></a>
+<p>###1.4 试用一下shell<br>$ ./bin/hbase shell<br>HBase Shell; enter ‘help<return>‘ for list of supported commands.<br>Type “exit<return>“ to leave the HBase Shell<br>Version 0.90.4, r1150278, Sun Jul 24 15:53:29 PDT 2011</return></return></p>
+<p>hbase(main):001:0&gt;</p>
+<p>创建一张名字为<code>test</code>的表，只有一个列，名为<code>cf</code>。为了验证创建是否成功，用<code>list</code>命令查看所有的table，并用<code>put</code>命令插入一些值。</p>
+<pre><code>hbase(main):003:0&gt; create &apos;test&apos;, &apos;cf&apos;
+0 row(s) in 1.2200 seconds
+hbase(main):003:0&gt; list &apos;test&apos;
+..
+1 row(s) in 0.0550 seconds
+hbase(main):004:0&gt; put &apos;test&apos;, &apos;row1&apos;, &apos;cf:a&apos;, &apos;value1&apos;
+0 row(s) in 0.0560 seconds
+hbase(main):005:0&gt; put &apos;test&apos;, &apos;row2&apos;, &apos;cf:b&apos;, &apos;value2&apos;
+0 row(s) in 0.0370 seconds
+hbase(main):006:0&gt; put &apos;test&apos;, &apos;row3&apos;, &apos;cf:c&apos;, &apos;value3&apos;
+0 row(s) in 0.0450 seconds
+</code></pre><p>用<code>scan</code>命令扫描table，验证一下刚才的插入是否成功。</p>
+<pre><code>hbase(main):007:0&gt; scan &apos;test&apos;
+ROW        COLUMN+CELL
+row1       column=cf:a, timestamp=1288380727188, value=value1
+row2       column=cf:b, timestamp=1288380738440, value=value2
+row3       column=cf:c, timestamp=1288380747365, value=value3
+3 row(s) in 0.0590 seconds
+</code></pre><p>现在，disable并drop掉你的表，这会把上面的所有操作清零。</p>
+<pre><code>hbase(main):012:0&gt; disable &apos;test&apos;
+0 row(s) in 1.0930 seconds
+hbase(main):013:0&gt; drop &apos;test&apos;
+0 row(s) in 0.0770 seconds 
+</code></pre><p>退出shell，</p>
+<pre><code>hbase(main):014:0&gt; exit
+</code></pre><p>###1.5 停止</p>
+<pre><code>$ ./bin/stop-hbase.sh
+stopping hbase...............
+</code></pre><p>###1.6 再次启动<br>后面运行Nutch，需要把数据存储到HBase，因此需要启动HBase。</p>
+<pre><code>$ ./bin/start-hbase.sh
+starting Master, logging to logs/hbase-user-master-example.org.out
+</code></pre><p>##2 编译Nutch 2.2.1</p>
+<p>###2.1 下载，解压<br>    wget <a href="http://www.apache.org/dyn/closer.cgi/nutch/2.2.1/apache-nutch-2.2.1-src.tar.gz" target="_blank" rel="external">http://www.apache.org/dyn/closer.cgi/nutch/2.2.1/apache-nutch-2.2.1-src.tar.gz</a><br>    tar zxf apache-nutch-2.2.1-src.tar.gz</p>
+<p>###2.2 修改配置文件<br>参考<a href="http://wiki.apache.org/nutch/Nutch2Tutorial" target="_blank" rel="external">Nutch 2.0 Tutorial</a></p>
+<p>修改 <code>conf/nutch-site.xml</code></p>
+<pre><code>&lt;property&gt;
+  &lt;name&gt;storage.data.store.class&lt;/name&gt;
+  &lt;value&gt;org.apache.gora.hbase.store.HBaseStore&lt;/value&gt;
+  &lt;description&gt;Default class for storing data&lt;/description&gt;
+&lt;/property&gt;
+</code></pre><p>修改<code>ivy/ivy.xml</code></p>
+<pre><code>&lt;!-- Uncomment this to use HBase as Gora backend. --&gt;
+&lt;dependency org=&quot;org.apache.gora&quot; name=&quot;gora-hbase&quot; rev=&quot;0.3&quot; conf=&quot;*-&gt;default&quot; /&gt;
+</code></pre><p>修改 <code>conf/gora.properties</code>，确保<code>HBaseStore</code>被设置为默认的存储，</p>
+<pre><code>gora.datastore.default=org.apache.gora.hbase.store.HBaseStore
+</code></pre><p>###2.3 编译</p>
+<pre><code>ant runtime
+</code></pre><p>刚开始会下载很多jar，需要等待一段时间。</p>
+<p>有可能你会得到如下错误：</p>
+<pre><code>Trying to override old definition of task javac
+  [taskdef] Could not load definitions from resource org/sonar/ant/antlib.xml. It could not be found.
+
+ivy-probe-antlib:
+
+ivy-download:
+  [taskdef] Could not load definitions from resource org/sonar/ant/antlib.xml. It could not be found.
+</code></pre><p>无所谓，不用管它。</p>
+<p>要等一会儿才能编译结束。编译完后，多出来了 build 和 runtime两个文件夹。</p>
+<p>第3、4、5、6步与另一篇博客<a href="">Nutch 快速入门(Nutch 1.7)</a>中的第3、4、5、6步骤一模一样。</p>
+<p>##3 添加种子URL</p>
+<pre><code>mkdir ~/urls
+vim ～/urls/seed.txt
+http://movie.douban.com/subject/5323968/
+</code></pre><p>##4 设置URL过滤规则<br>如果只想抓取某种类型的URL，可以在 <code>conf/regex-urlfilter.txt</code>设置正则表达式，于是，只有匹配这些正则表达式的URL才会被抓取。</p>
+<p>例如，我只想抓取豆瓣电影的数据，可以这样设置：</p>
+<pre><code>#注释掉这一行
+# skip URLs containing certain characters as probable queries, etc.
+#-[?*!@=]
+# accept anything else
+#注释掉这行
+#+.
++^http:\/\/movie\.douban\.com\/subject\/[0-9]+\/(\?.+)?$
+</code></pre><p>##5 设置agent名字</p>
+<p>conf/nutch-site.xml:</p>
+<pre><code>&lt;property&gt;
+  &lt;name&gt;http.agent.name&lt;/name&gt;
+  &lt;value&gt;My Nutch Spider&lt;/value&gt;
+&lt;/property&gt;
+</code></pre><p>这一步是从这本书上看到的，<a href="http://www.packtpub.com/web-crawling-and-data-mining-with-apache-nutch/book" target="_blank" rel="external">Web Crawling and Data Mining with Apache Nutch</a>，第14页。</p>
+<p>##6 安装Solr<br>由于建索引的时候需要使用Solr，因此我们需要安装并启动一个Solr服务器。</p>
+<p>参考<a href="http://wiki.apache.org/nutch/NutchTutorial" target="_blank" rel="external">Nutch Tutorial</a> 第4、5、6步，以及<a href="http://lucene.apache.org/solr/4_6_1/tutorial.html" target="_blank" rel="external">Solr Tutorial</a>。</p>
+<p>###6.1 下载，解压</p>
+<p>wget <a href="http://mirrors.cnnic.cn/apache/lucene/solr/4.6.1/solr-4.6.1.tgz" target="_blank" rel="external">http://mirrors.cnnic.cn/apache/lucene/solr/4.6.1/solr-4.6.1.tgz</a><br>tar -zxf solr-4.6.1.tgz</p>
+<p>###6.2 运行Solr</p>
+<pre><code>cd example
+java -jar start.jar
+</code></pre><p>验证是否启动成功</p>
+<p>用浏览器打开 <a href="http://localhost:8983/solr/admin/" target="_blank" rel="external">http://localhost:8983/solr/admin/</a>，如果能看到页面，说明启动成功。</p>
+<p>###6.3 将Nutch与Solr集成在一起</p>
+<p>将<code>NUTCH_DIR/conf/schema-solr4.xml</code>拷贝到<code>SOLR_DIR/solr/collection1/conf/</code>，重命名为schema.xml，并在<code>&lt;fields&gt;...&lt;/fields&gt;</code>最后添加一行(具体解释见<a href="http://stackoverflow.com/questions/15527380/solr-4-2-what-is-version-field" target="_blank" rel="external">Solr 4.2 - what is _version_field?</a>)，</p>
+<pre><code>&lt;field name=&quot;_version_&quot; type=&quot;long&quot; indexed=&quot;true&quot; stored=&quot;true&quot; multiValued=&quot;false&quot;/&gt;
+</code></pre><p>重启Solr，</p>
+<pre><code># Ctrl+C to stop Solr
+java -jar start.jar
+</code></pre><p>第7步和第8步也和Nutch 1.7那篇博客中的7、8步很类似。主要区别在于，Nutch 2.x的所有数据，不再以文件和目录的形式存放在硬盘上，而是存放到HBase里。</p>
+<p>##7 一步一步使用单个命令抓取网页<br>TODO</p>
+<p>##8 使用crawl脚本一键抓取<br>刚才我们是手工敲入多个命令，一个一个步骤，来完成抓取的，其实Nutch自带了一个脚本，<code>./bin/crawl</code>，把抓取的各个步骤合并成一个命令，看一下它的用法</p>
+<pre><code>$ ./bin/crawl 
+Missing seedDir : crawl &lt;seedDir&gt; &lt;crawlID&gt; &lt;solrURL&gt; &lt;numberOfRounds&gt;
+</code></pre><p><strong>注意</strong>，这里是<code>crawlId</code>，不再是<code>crawlDir</code>。</p>
+<p>先删除第7节产生的数据，使用HBase shell，用<code>disable</code>删除表。</p>
+<p>###8.1 抓取网页</p>
+<pre><code>$ ./bin/crawl ~/urls/ TestCrawl http://localhost:8983/solr/ 2
+</code></pre><ul>
+<li><code>～/urls</code> 是存放了种子url的目录</li>
+<li>TestCrawl 是crawlId，这会在HBase中创建一张以crawlId为前缀的表，例如TestCrawl_Webpage。</li>
+<li><a href="http://localhost:8983/solr/" target="_blank" rel="external">http://localhost:8983/solr/</a> , 这是Solr服务器</li>
+<li>2，numberOfRounds，迭代的次数</li>
+</ul>
+<p>过了一会儿，屏幕上出现了一大堆url，可以看到爬虫正在抓取！</p>
+<pre><code>fetching http://music.douban.com/subject/25811077/ (queue crawl delay=5000ms)
+fetching http://read.douban.com/ebook/1919781 (queue crawl delay=5000ms)
+fetching http://www.douban.com/online/11670861/ (queue crawl delay=5000ms)
+fetching http://book.douban.com/tag/绘本 (queue crawl delay=5000ms)
+fetching http://movie.douban.com/tag/科幻 (queue crawl delay=5000ms)
+49/50 spinwaiting/active, 56 pages, 0 errors, 0.9 1 pages/s, 332 245 kb/s, 131 URLs in 5 queues
+fetching http://music.douban.com/subject/25762454/ (queue crawl delay=5000ms)
+fetching http://read.douban.com/reader/ebook/1951242/ (queue crawl delay=5000ms)
+fetching http://www.douban.com/mobile/read-notes (queue crawl delay=5000ms)
+fetching http://book.douban.com/tag/诗歌 (queue crawl delay=5000ms)
+50/50 spinwaiting/active, 61 pages, 0 errors, 0.9 1 pages/s, 334 366 kb/s, 127 URLs in 5 queues
+</code></pre><p>###8.2 查看结果</p>
+<pre><code>./bin/nutch readdb -crawlId TestCrawl -stats
+</code></pre><p>也可以进HBase shell 查看，</p>
+<pre><code>cd ~/hbase-0.90.4
+./bin/hbase shell
+hbase(main):001:0&gt; scan &apos;TestCrawl_webpage&apos;
+</code></pre><p>屏幕开始不断输出内容，可以用Ctrl+C 结束。</p>
+<p>在运行scan查看表中内容时，对于列的含义不确定时可以查看<code>conf/gora-hbase-mapping.xml</code>文件，该文件定义了列族及列的含义。</p>
+<p>##相关文章<br><a href="http://www.yanjiuyanjiu.com/blog/20140121/" target="_blank" rel="external">Nutch 快速入门(Nutch 1.7)</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2014-01-31-install-uek-for-centos/" rel="next" title="给CentOS安装UEK内核">
+                <i class="fa fa-chevron-left"></i> 给CentOS安装UEK内核
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2014-02-02-hadoop-installatioin-on-centos/" rel="prev" title="在CentOS上安装Hadoop集群">
+                在CentOS上安装Hadoop集群 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2014-02-01-nutch-tutorial/"
+           data-title="Nutch 快速入门(Nutch 2.2.1)" data-url="http://cn.soulmachine.me/2014-02-01-nutch-tutorial/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://tva2.sinaimg.cn/crop.4.536.2038.2038.180/632582bfgw1f31kbqdasbj21kw23uhdt.jpg"
+               alt="soulmachine" />
+          <p class="site-author-name" itemprop="name">soulmachine</p>
+          <p class="site-description motion-element" itemprop="description">一些技术笔记</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">56</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/soulmachine" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/soulmachine" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/soulmachine" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/soulmachine" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-block">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.liancheng.info/" title="连城" target="_blank">连城</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://yewen.us/" title="笨狗随手留下" target="_blank">笨狗随手留下</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.rational.so/" title="阎栋" target="_blank">阎栋</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.parallellabs.com/" title="并行实验室" target="_blank">并行实验室</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.javachen.com/" title="JavaChen" target="_blank">JavaChen</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://shenfeng.me/" title="沈峰" target="_blank">沈峰</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.lihaipeng.info/" title="李海鹏" target="_blank">李海鹏</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.chioka.in/" title="Eric" target="_blank">Eric</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/lgnlgn" title="梁兄的技术博客" target="_blank">梁兄的技术博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.doesbetter.com/" title="王孝舒的博客" target="_blank">王孝舒的博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.foreverlee.net/" title="ForeverLee" target="_blank">ForeverLee</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.cnblogs.com/yuzhangcmu/" title="CMU张宇" target="_blank">CMU张宇</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">soulmachine</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"soulmachine"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+
+</body>
+</html>

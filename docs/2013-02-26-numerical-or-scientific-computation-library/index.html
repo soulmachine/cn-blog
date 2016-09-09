@@ -1,0 +1,786 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="机器学习, 深度学习, 人工智能" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="##BLAS 接口BLAS, LAPACK, ATLAS 这些数值计算库的名字很类似，他们之间有什么关系呢？BLAS是一组线性代数运算接口，目前是事实上的标准，很多数值计算/科学计算都实现了这套接口。
+BLAS定义了那些函数呢？可以查看官方文档。
+LAPACK是BLAS的第一个实现，是最老牌的数值计算库，用FORTRAN 77语言写的。LAPACK实现了BLAS接口，并扩充了一些功能。很多数值计算">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数值计算库与科学计算库">
+<meta property="og:url" content="http://cn.soulmachine.me/2013-02-26-numerical-or-scientific-computation-library/index.html">
+<meta property="og:site_name" content="灵魂机器">
+<meta property="og:description" content="##BLAS 接口BLAS, LAPACK, ATLAS 这些数值计算库的名字很类似，他们之间有什么关系呢？BLAS是一组线性代数运算接口，目前是事实上的标准，很多数值计算/科学计算都实现了这套接口。
+BLAS定义了那些函数呢？可以查看官方文档。
+LAPACK是BLAS的第一个实现，是最老牌的数值计算库，用FORTRAN 77语言写的。LAPACK实现了BLAS接口，并扩充了一些功能。很多数值计算">
+<meta property="og:updated_time" content="2016-08-18T09:21:04.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="数值计算库与科学计算库">
+<meta name="twitter:description" content="##BLAS 接口BLAS, LAPACK, ATLAS 这些数值计算库的名字很类似，他们之间有什么关系呢？BLAS是一组线性代数运算接口，目前是事实上的标准，很多数值计算/科学计算都实现了这套接口。
+BLAS定义了那些函数呢？可以查看官方文档。
+LAPACK是BLAS的第一个实现，是最老牌的数值计算库，用FORTRAN 77语言写的。LAPACK实现了BLAS接口，并扩充了一些功能。很多数值计算">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 数值计算库与科学计算库 | 灵魂机器 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?259b539fcd8cab18ad0a6deb98ac2046";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">灵魂机器</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">终有一天机器也有灵魂</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                数值计算库与科学计算库
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2013-02-26T23:15:00+00:00" content="2013-02-26">
+              2013-02-26
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Machine-Learning/" itemprop="url" rel="index">
+                    <span itemprop="name">Machine-Learning</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2013-02-26-numerical-or-scientific-computation-library/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2013-02-26-numerical-or-scientific-computation-library/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>##BLAS 接口<br><a href="http://www.netlib.org/blas/" target="_blank" rel="external">BLAS</a>, <a href="http://www.netlib.org/lapack/" target="_blank" rel="external">LAPACK</a>, <a href="http://math-atlas.sourceforge.net/" target="_blank" rel="external">ATLAS</a> 这些数值计算库的名字很类似，他们之间有什么关系呢？BLAS是一组线性代数运算接口，目前是事实上的标准，很多数值计算/科学计算都实现了这套接口。</p>
+<p>BLAS定义了那些函数呢？可以查看<a href="http://www.netlib.org/blas/" target="_blank" rel="external">官方文档</a>。</p>
+<p>LAPACK是BLAS的第一个实现，是最老牌的数值计算库，用FORTRAN 77语言写的。LAPACK实现了BLAS接口，并扩充了一些功能。很多数值计算库/科学计算库底层调用了LAPACK。</p>
+<p>很多硬件厂商都实现BLAS接口，例如<a href="http://software.intel.com/en-us/intel-mkl" target="_blank" rel="external">Intel MKL</a>(Math Kernel Library), <a href="http://developer.amd.com/tools/cpu-development/amd-core-math-library-acml/" target="_blank" rel="external">AMCL</a>(AMD Math Core Library)等。很多开源库也支持，例如ATLAS。</p>
+<p>还有非常多的库实现了BLAS接口，见<a href="http://en.wikipedia.org/wiki/Basic_Linear_Algebra_Subprograms" target="_blank" rel="external">Wikipedia BLAS</a> 的Implementations小节。</p>
+<p>下面介绍一些各种语言常用的数值计算/科学计算库。</p>
+<a id="more"></a>
+<p>##C/C++<br>首先是Intel 的MKL 和 AMD 的AMCL，性能一流，不过是商业软件，价格昂贵。</p>
+<p><a href="http://www.gnu.org/software/gsl/" target="_blank" rel="external">GSL - GNU Scientific Library</a>，GNU实现的库，质量很高，不过是用纯C写的，用起来比较繁琐。</p>
+<p><a href="http://arma.sourceforge.net/" target="_blank" rel="external">Armadillo</a>，最新版 2013-02-20 Version 3.6.3</p>
+<p><a href="http://itpp.sourceforge.net/" target="_blank" rel="external">IT++</a>，最后版本是4.2,2010-09-21。</p>
+<p>##Java<br>这个页面<a href="http://math.nist.gov/javanumerics/" target="_blank" rel="external">JavaNumerics page</a>专门收集了关于Java数值计算的库。</p>
+<p><a href="https://code.google.com/p/java-matrix-benchmark/" target="_blank" rel="external">java-matrix-benchmark</a>这个开源项目，比较了各类Java线性代数库的性能。</p>
+<p>Java的数值计算库主要分为两类：Pure Java和Natie Wrapper。Pure Java是指用纯Java编写的，Native Wrapper是指该库底层调用了C++或Fortan编写的第三方库，上面封装了一层，提供了更有好的接口。</p>
+<p>Pure Java的有：<a href="http://dsd.lbl.gov/~hoschek/colt/" target="_blank" rel="external">Colt</a>, <a href="http://commons.apache.org/proper/commons-math/" target="_blank" rel="external">Commons Math</a>, <a href="https://code.google.com/p/efficient-java-matrix-library/" target="_blank" rel="external">EJML</a>, <a href="http://math.nist.gov/javanumerics/jama/" target="_blank" rel="external">JAMA</a>, <a href="http://trove.starlight-systems.com/" target="_blank" rel="external">Trove</a></p>
+<p>Native Wrapper有：<a href="http://jblas.org" target="_blank" rel="external">jblas</a>，<a href="https://github.com/fommil/matrix-toolkits-java" target="_blank" rel="external">Matrix Toolkit Java</a></p>
+<p>下面介绍一些影响力较大的java数值计算/科学计算库。</p>
+<p><a href="http://commons.apache.org/proper/commons-math/" target="_blank" rel="external">Commons Math</a>, 最新版本是3.1.1,2013年1月9号发布。这个库提供一些基本的数学运算，没有high-level的东西，例如矩阵，向量等，用起来会比较繁琐。</p>
+<p><a href="http://math.nist.gov/javanumerics/jama/" target="_blank" rel="external">JAMA</a>, 最新版是Version 1.0.3 (November 9, 2012)。</p>
+<p><a href="http://acs.lbl.gov/software/colt/" target="_blank" rel="external">Colt</a>，已经不更新了，最后版本是1.2.0，2004年9月发布的。</p>
+<p>Apache Mahout使用了Colt作为high performance collections，见官方<a href="https://cwiki.apache.org/MAHOUT/mahout-collections.html" target="_blank" rel="external">这个页面</a>，说“The implementation of Mahout Collections is derived from Cern Colt”，以及quora 这个帖子<a href="http://www.quora.com/Distributed-Algorithms/What-are-the-best-resources-for-distributed-numerical-analysis-matrix-algorithms" target="_blank" rel="external">What are the best resources for distributed numerical analysis/matrix algorithms</a>。</p>
+<p>##Python<br>目前最有影响力的莫过于<a href="http://www.numpy.org/" target="_blank" rel="external">NumPy</a>和<a href="http://www.scipy.org/" target="_blank" rel="external">SciPy</a>。Amazon.com上可以搜到专门讲它们的书。</p>
+<p>SciPy依赖NumPy，主要是在数值计算方面调用了NumPy。</p>
+<p>##Ruby<br><a href="http://sciruby.com/" target="_blank" rel="external">SciRuby</a>, 是SciPy和NumPy的克隆，目前还在开发中。</p>
+<p>##R<br>R刚开始时是统计学家开发的语言，专门用于数理统计，现在功能不断增强，内置了很多数值计算和科学计算的功能。R在数据分析领域比较火。</p>
+<p>##Scala<br>目前用google搜索 “scala numerical computing”，能找得到的就是<a href="http://code.google.com/p/scalalab/" target="_blank" rel="external">ScalaLab</a>了。</p>
+<p>##Matlab<br>最后，别忘了Matlab是支持多语言调用的。</p>
+<p>可以用Matlab生成DLL，给C/C++语言调用。其实，凡是能调用DLL的语言，都可以使用这个DLL，例如Python, Ruby等。</p>
+<p>可以用<a href="http://www.mathworks.cn/products/javabuilder/" target="_blank" rel="external">Matlab JavaBuilder</a>将m文件转换为jar文件，然后在java代码中就可以调用了。</p>
+<p>##如何选择<br>本文的重点在于选择一个高性能，同时又比较易用的库，即被让我们调用，用来写程序的库，不是一个集成环境或REPL环境。因此R和Matlab不在讨论范围内。R和Matlab用来做原型或前期Data Exploration比较适合。</p>
+<p>选择一个工具（语言，框架，库等），要看其是否成熟。我个人的一些判断指标，主要有</p>
+<ol>
+<li>有没有大厂商的支持（作为vendor之类的）；</li>
+<li>amazon.com上能否搜到书。</li>
+</ol>
+<p>从厂商的支持来看，几个主要的大厂商如 Intel，AMD和Apple都开发了自己的数学库。Python则有很成熟的NumPy，在Amazon上能搜到书，例如“SciPy and NumPy”， “NumPy Cookbook”。 因此，目前来看，C++和Python是比较成熟的方案。</p>
+<p>##参考资料<br><a href="http://en.wikipedia.org/wiki/Basic_Linear_Algebra_Subprograms" target="_blank" rel="external">Wikipedia BLAS</a><br><a href="http://en.wikipedia.org/wiki/LAPACK" target="_blank" rel="external">Wikipedia LAPACK</a><br><a href="http://blog.henix.info/blog/blas-lapack-do-matrix-operation.html" target="_blank" rel="external">用 BLAS/LAPACK 编写矩阵运算程序</a><br><a href="https://wikis.utexas.edu/display/~cdupree/BLAS,+LAPACK,+ATLAS" target="_blank" rel="external">BLAS, LAPACK, ATLAS</a><br><a href="http://hi.baidu.com/luckykele2012/item/6a3b25423018c40d6dc2f090" target="_blank" rel="external">BLAS 和 LAPACK ，以及其他常用数值计算库</a><br><a href="http://fdatamining.blogspot.com/2011/10/any-numerical-computing-environment-on.html" target="_blank" rel="external">Any numerical computing environment on Java platform</a><br><a href="http://www.myoutsourcedbrain.com/2009/04/c-libraries-for-numerical-processing.html" target="_blank" rel="external">C++ Libraries for Scientific Computing</a><br><a href="http://stackoverflow.com/questions/3121139/scientific-library-options-for-c-or-c" target="_blank" rel="external">Scientific Library Options for C or C++</a><br><a href="http://programmers.stackexchange.com/questions/138643/why-is-python-used-for-high-performance-scientific-computing-but-ruby-isnt" target="_blank" rel="external">Why is Python used for high-performance/scientific computing (but Ruby isn’t)?</a>  </p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2013-02-25-differences-between-knn-and-kmeans/" rel="next" title="KNN与K-Means的区别">
+                <i class="fa fa-chevron-left"></i> KNN与K-Means的区别
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2013-03-22-some-popular-programming-contest-websites/" rel="prev" title="一些主流的编程竞赛网站">
+                一些主流的编程竞赛网站 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2013-02-26-numerical-or-scientific-computation-library/"
+           data-title="数值计算库与科学计算库" data-url="http://cn.soulmachine.me/2013-02-26-numerical-or-scientific-computation-library/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://tva2.sinaimg.cn/crop.4.536.2038.2038.180/632582bfgw1f31kbqdasbj21kw23uhdt.jpg"
+               alt="soulmachine" />
+          <p class="site-author-name" itemprop="name">soulmachine</p>
+          <p class="site-description motion-element" itemprop="description">一些技术笔记</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">56</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/soulmachine" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/soulmachine" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/soulmachine" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/soulmachine" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-block">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.liancheng.info/" title="连城" target="_blank">连城</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://yewen.us/" title="笨狗随手留下" target="_blank">笨狗随手留下</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.rational.so/" title="阎栋" target="_blank">阎栋</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.parallellabs.com/" title="并行实验室" target="_blank">并行实验室</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.javachen.com/" title="JavaChen" target="_blank">JavaChen</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://shenfeng.me/" title="沈峰" target="_blank">沈峰</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.lihaipeng.info/" title="李海鹏" target="_blank">李海鹏</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.chioka.in/" title="Eric" target="_blank">Eric</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/lgnlgn" title="梁兄的技术博客" target="_blank">梁兄的技术博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.doesbetter.com/" title="王孝舒的博客" target="_blank">王孝舒的博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.foreverlee.net/" title="ForeverLee" target="_blank">ForeverLee</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.cnblogs.com/yuzhangcmu/" title="CMU张宇" target="_blank">CMU张宇</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">soulmachine</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"soulmachine"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+
+</body>
+</html>

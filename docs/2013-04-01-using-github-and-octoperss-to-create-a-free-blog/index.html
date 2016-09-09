@@ -1,0 +1,793 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="机器学习, 深度学习, 人工智能" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="前提条件注册一个github账号。
+任何资料，都不如Octopress 和Github Pages的官方文档，建议首先阅读官方文档。
+GitHub Pages快速体验在GitHub网站上，点击右上角的+号图标，创建一个新的Repo，Repository 的名字必须为 username.github.com。然后点击Settings进入该Repo的设置页面。看到”Automatic Page Gen">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用github + Octopress 搭建免费博客">
+<meta property="og:url" content="http://cn.soulmachine.me/2013-04-01-using-github-and-octoperss-to-create-a-free-blog/index.html">
+<meta property="og:site_name" content="灵魂机器">
+<meta property="og:description" content="前提条件注册一个github账号。
+任何资料，都不如Octopress 和Github Pages的官方文档，建议首先阅读官方文档。
+GitHub Pages快速体验在GitHub网站上，点击右上角的+号图标，创建一个新的Repo，Repository 的名字必须为 username.github.com。然后点击Settings进入该Repo的设置页面。看到”Automatic Page Gen">
+<meta property="og:updated_time" content="2016-08-18T09:21:04.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用github + Octopress 搭建免费博客">
+<meta name="twitter:description" content="前提条件注册一个github账号。
+任何资料，都不如Octopress 和Github Pages的官方文档，建议首先阅读官方文档。
+GitHub Pages快速体验在GitHub网站上，点击右上角的+号图标，创建一个新的Repo，Repository 的名字必须为 username.github.com。然后点击Settings进入该Repo的设置页面。看到”Automatic Page Gen">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 使用github + Octopress 搭建免费博客 | 灵魂机器 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?259b539fcd8cab18ad0a6deb98ac2046";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">灵魂机器</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">终有一天机器也有灵魂</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                使用github + Octopress 搭建免费博客
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2013-04-01T15:14:00+00:00" content="2013-04-01">
+              2013-04-01
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Tools/" itemprop="url" rel="index">
+                    <span itemprop="name">Tools</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2013-04-01-using-github-and-octoperss-to-create-a-free-blog/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2013-04-01-using-github-and-octoperss-to-create-a-free-blog/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="前提条件"><a href="#前提条件" class="headerlink" title="前提条件"></a>前提条件</h3><p>注册一个github账号。</p>
+<p>任何资料，都不如<a href="http://octopress.org/docs/" target="_blank" rel="external">Octopress</a> 和<a href="https://help.github.com/categories/20/articles" target="_blank" rel="external">Github Pages</a>的官方文档，建议首先阅读官方文档。</p>
+<h3 id="GitHub-Pages快速体验"><a href="#GitHub-Pages快速体验" class="headerlink" title="GitHub Pages快速体验"></a>GitHub Pages快速体验</h3><p>在GitHub网站上，点击右上角的+号图标，创建一个新的Repo，Repository 的名字必须为 username.github.com。然后点击Settings进入该Repo的设置页面。看到”Automatic Page Generator”，说明这个Repo已经启用了GitHub Page。点击按钮进入设置。</p>
+<p>在”Create a GitHub User Page”填写一些基本信息，点击右下角的”Continue to Layout”。布局就用默认的，点击绿色的”Publish”按钮。</p>
+<p>大功告成，输入”username.github.com”，看到一个页面没？这就是你刚刚创建的一个页面。</p>
+<a id="more"></a>
+<p>GitHub Pages分为两种类型，一种是”User and Org Pages”，一种是”Project Pages”。前者是用户的主页，一个用户仅有一个。后者是每个项目的主页。见github page官方的文档 <a href="https://help.github.com/articles/user-organization-and-project-pages" target="_blank" rel="external">Creating Pages with the automatic generator</a>。</p>
+<p>本文创建的是第一种类型。</p>
+<p>这篇博客 <a href="http://www.ruanyifeng.com/blog/2012/08/blogging_with_jekyll.html" target="_blank" rel="external">搭建一个免费的，无限流量的Blog—-github Pages和Jekyll入门 - 阮一峰的网络日志</a>  很通俗易懂，不过它创建的是第二种类型，在一个Repo上新建了一个branch，并命名为gh-pages。</p>
+<p>下面正式开始折腾。</p>
+<h3 id="安装-msysgit并配置"><a href="#安装-msysgit并配置" class="headerlink" title="安装 msysgit并配置"></a>安装 msysgit并配置</h3><ul>
+<li>下载<a href="http://msysgit.github.com/" target="_blank" rel="external">msysgit</a>, 然后双击exe文件开始安装。</li>
+<li>双击桌面图标Git Bash，启动一个shell，输入如下命令进行配置：</li>
+</ul>
+<p>产生公钥ssh key，默认全部回车</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh-keygen -C github-account-email -t rsa</div></pre></td></tr></table></figure>
+<p>Note: username@email.com需要更换成你自己的在Github上注册的Email地址。<br>这样会在用户目录(C:\Documents and Settings\UserName)下产生一个.ssh文件夹，里面为对应的SSH Keys，其中id_rsa.pub是Github需要的SSH公钥文件。</p>
+<p>在Github的Account Settings里选择SSH Keys，在其中将id_rsa.pub文件里内容拷贝至 其中的Key里。</p>
+<p>这样以后就可以直接使用Git和GitHub了。  </p>
+<p>测试一下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">ssh -T git@github.com</div><div class="line">```  </div><div class="line"></div><div class="line">如果出现 hi xxx! You<span class="string">'ve successfully authenticated, bug GitHub does not povide shell access。说明SSH链接成功。</span></div><div class="line"></div><div class="line">接下来配置其他信息。</div><div class="line"></div><div class="line">``` bash  </div><div class="line">	git config --global user.name github-username  </div><div class="line">	git config --global user.email github-account-email  </div><div class="line">	git config --global github.user github-username  </div><div class="line">	git config --global credential.helper cache  </div><div class="line">	git config --global credential.helper 'cache --timeout=3600<span class="string">'</span></div></pre></td></tr></table></figure>
+<p>本节参考了 <a href="http://www.cnblogs.com/kysnail/archive/2012/03/16/2399589.html" target="_blank" rel="external">msysGit 安装后的配置</a>。</p>
+<h3 id="安装Octopress"><a href="#安装Octopress" class="headerlink" title="安装Octopress"></a>安装Octopress</h3><p>参考官方文档<a href="http://octopress.org/docs/setup/" target="_blank" rel="external">setup</a>.<br><strong>安装Ruby</strong><br>Octopress 2.0 需要 Ruby 1.9.3，安装其他版本的Ruby可能会行不通。</p>
+<p>如果是Linux，使用RVM来安装Ruby，如果是Windows，则使用<a href="http://rubyinstaller.org/downloads/" target="_blank" rel="external">RubyInstaller</a>。在这个<a href="http://rubyinstaller.org/downloads/" target="_blank" rel="external">下载页面</a>下载Ruby 1.9.3-p392和DevKit(DevKit-tdm-32-4.5.2-20111229-1559-sfx.exe)，双击exe文件进行安装。<br><strong>安装DevKit</strong><br>双击DevKit的exe文件，解压到C:\DevKit，在CMD下执行如下命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> C:\DevKit</div><div class="line">ruby dk.rb init</div><div class="line">ruby dk.rb install</div><div class="line">gem install rdiscount --platform=ruby</div></pre></td></tr></table></figure>
+<p><strong>安装Octopress</strong><br>下载Octopress。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> d:\github  </div><div class="line">git <span class="built_in">clone</span> git://github.com/imathis/octopress.git octopress  </div><div class="line"><span class="built_in">cd</span> octopress  </div><div class="line">ruby --version  <span class="comment"># Should report Ruby 1.9.3</span></div><div class="line">rbenv <span class="built_in">rehash</span>  <span class="comment"># 可选，如果安装了rbenv，就需要执行这一步</span></div><div class="line">```  </div><div class="line"></div><div class="line">**注意**: rubygems.org在中国的下载速度很慢，会导致bundle install这一步下载gems的速度很慢，可能需要等待几个小时。因此需要事先切换到国内的镜像源。</div><div class="line"></div><div class="line">用记事本打开octopress目录下的Gemfile，将第一行修改为</div><div class="line"></div><div class="line">&gt; <span class="built_in">source</span> <span class="string">"http://ruby.taobao.org"</span></div><div class="line"></div><div class="line">然后可以开始安装依赖的gems了。</div><div class="line"></div><div class="line">``` bash  </div><div class="line">bundle install</div><div class="line">```  </div><div class="line">正常的话应该可以看到一行行的Installing xxx，表示正在安装所需要的gem。</div><div class="line"></div><div class="line">安装默认的Octopress主题。</div><div class="line"></div><div class="line">``` bash  </div><div class="line">rake install</div><div class="line">```  </div><div class="line">如果这一步出现问题，则试一下 bundle update再执行 rake install。</div><div class="line"></div><div class="line"><span class="comment">### 部署到GitHub</span></div><div class="line">将Octopress和自己的Repo关联起来</div><div class="line"></div><div class="line">``` bash  </div><div class="line">rake setup_github_pages</div><div class="line">```  </div><div class="line">编译生成JeKyll所需要的静态文件</div><div class="line"></div><div class="line">``` bash  </div><div class="line">rake generate</div><div class="line">```  </div><div class="line">这个命令主要是根据<span class="built_in">source</span>目录的内容，编译生成JeKyll所需要的静态文件，存放到public目录下。<span class="built_in">source</span> 目录对应着git上的<span class="built_in">source</span>分支。</div><div class="line"></div><div class="line">**UTF-8 编码**  </div><div class="line">Windows预设是Big5编码,所以要想’rake generate’的时候不报编码错误,我们需要设置一下编码! 方法有两个,一个是直接在Git Bash中设置环境:</div><div class="line"></div><div class="line">``` bash  </div><div class="line"><span class="built_in">set</span> LANG=zh_CN.UTF-8  </div><div class="line"><span class="built_in">set</span> LC_ALL=zh_CN.UTF-8</div><div class="line">```  </div><div class="line">还有一个是在环境变量中加入这两个变量: 右击电脑-&gt;属性，新添加LANG和LC\_ALL两个环境变量，值为为zh_CN.UTF-8.</div><div class="line"></div><div class="line">然后在Git Bash中做如下设置:</div><div class="line"></div><div class="line">``` bash  </div><div class="line"><span class="built_in">echo</span> <span class="string">"export LANG LC_ALL"</span> &gt; ~/.bash_profile</div></pre></td></tr></table></figure>
+<p>预览</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rake preview</div></pre></td></tr></table></figure>
+<p>用浏览器打开 <a href="http://localhost:4000/" target="_blank" rel="external">http://localhost:4000/</a>，就可以看到效果了。</p>
+<p>部署到github</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">rake deploy</div><div class="line">```  </div><div class="line">该命令首先清空\_deploy目录，然后将public目录整个拷贝过来，然后commit到github。\_deploy 目录对应着master分支。</div><div class="line"></div><div class="line">备份<span class="built_in">source</span>到github</div></pre></td></tr></table></figure>
+<p>git add .<br>git commit -m ‘your message’<br>git push origin source<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">source 目录下保存了所有的markdown源文件，是博客的原始数据，以及一些模板文件。因此很有必要备份。用上述命令提交到github，这样就用git管理起来了，再也不用担心数据丢失了。</div><div class="line"></div><div class="line">**终止预览**  </div><div class="line">启用`rake preview`后，直接按`ctrl+c`无法正常终止该进程，老提示`终止批处理操作吗（Y/N）？`，这时候可以另开一个Git Bash窗口，使用`ps aux | grep ruby`命令找出`pid(第一个数值)`，然后执行`kill &lt;pid&gt;`来停止该进程(参考[octopress on heroku (二)](http://linuxabc.heroku.com/blog/octopress-on-heroku-2))。  </div><div class="line"></div><div class="line">  </div><div class="line">### 绑定域名</div><div class="line">参考官方文档[Setting up a custom domain with Pages](https://help.github.com/articles/setting-up-a-custom-domain-with-pages)。</div><div class="line"></div><div class="line">非常简单，在`source`目录下，添加一个文本文件，名字为CNAME，里面的内容就是要绑定的域名，例如本博客CNAME文件的内容是：</div><div class="line"></div><div class="line">&gt; www.yanjiuyanjiu.com</div><div class="line"></div><div class="line">然后去DNSPod，添加一条CNAME，指向 username.github.com。例如我的为：</div></pre></td></tr></table></figure></p>
+<p>www    CNAME    默认    soulmachine.github.com.        -    600<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">很多人喜欢去掉www，用xxx.com的形式来访问，不过大家去试一下，在浏览器输入qq.com, douban.com, baidu.com，发现都会自动跳转到www，也就是说这些大网站，目前也是用www.example.com的域名为主，因此建议大家也这样做。</div><div class="line"></div><div class="line">用www, blog之类的二级域名，还有个好处是方便升级，比如新版本用www1指向，等测试完成后，改成www指向，无缝切换。</div><div class="line"></div><div class="line">如何让example.com 自动变成www.example.com呢？需要用 301重定向，在DNSPod上非常简单，添加一条显性URL即可，例如我的是：</div></pre></td></tr></table></figure></p>
+<p>@    显性URL    默认    <a href="http://www.yanjiuyanjiu.com" target="_blank" rel="external">http://www.yanjiuyanjiu.com</a>    -    600<br>```</p>
+<p>在使用Octopress的时候，每次<code>rake generate</code>, <code>rake deploy</code>后，master分支下面的CNAME文件消失了。正确的做法是，把CNAME文件放到在 source 目录下，其余的都删掉，<code>rake generate</code> 会自动拷贝到public目录下，<code>rake deploy</code>再拷贝public目录内容到_deploy目录，并提交到master分支。</p>
+<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><ol>
+<li><a href="http://corey600.github.com/blog/2013/02/28/use-github-and-octopress-create-blog/" target="_blank" rel="external">【原创】用Github和Octopress搭建博客</a></li>
+<li><a href="http://www.blogjava.net/lishunli/archive/2012/03/18/372115.html" target="_blank" rel="external">试用Octopress</a></li>
+<li><a href="http://rubyer.me/blog/134/" target="_blank" rel="external">windows下安装DevKit</a></li>
+<li><a href="http://blog.sprabbit.com/blog/2012/12/21/recover-octopress/" target="_blank" rel="external">在新Windows系统中重新部署Octopress</a></li>
+<li><a href="http://hivan.me/octopress-install-to-windows8/" target="_blank" rel="external">Windows 8安装Octopress记录</a></li>
+<li><a href="http://blog.sprabbit.com/blog/2012/03/23/octopress/" target="_blank" rel="external">关于在64位 Windows 7 中部署中文化的Octopress</a></li>
+</ol>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2013-03-27-some-classical-machine-learning-tutorials/" rel="next" title="机器学习的一些通俗易懂的tutorial">
+                <i class="fa fa-chevron-left"></i> 机器学习的一些通俗易懂的tutorial
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2013-04-02-my-octopress-configuration/" rel="prev" title="我的Octopress配置">
+                我的Octopress配置 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2013-04-01-using-github-and-octoperss-to-create-a-free-blog/"
+           data-title="使用github + Octopress 搭建免费博客" data-url="http://cn.soulmachine.me/2013-04-01-using-github-and-octoperss-to-create-a-free-blog/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://tva2.sinaimg.cn/crop.4.536.2038.2038.180/632582bfgw1f31kbqdasbj21kw23uhdt.jpg"
+               alt="soulmachine" />
+          <p class="site-author-name" itemprop="name">soulmachine</p>
+          <p class="site-description motion-element" itemprop="description">一些技术笔记</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">56</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/soulmachine" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/soulmachine" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/soulmachine" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/soulmachine" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-block">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.liancheng.info/" title="连城" target="_blank">连城</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://yewen.us/" title="笨狗随手留下" target="_blank">笨狗随手留下</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.rational.so/" title="阎栋" target="_blank">阎栋</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.parallellabs.com/" title="并行实验室" target="_blank">并行实验室</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.javachen.com/" title="JavaChen" target="_blank">JavaChen</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://shenfeng.me/" title="沈峰" target="_blank">沈峰</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.lihaipeng.info/" title="李海鹏" target="_blank">李海鹏</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.chioka.in/" title="Eric" target="_blank">Eric</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/lgnlgn" title="梁兄的技术博客" target="_blank">梁兄的技术博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.doesbetter.com/" title="王孝舒的博客" target="_blank">王孝舒的博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.foreverlee.net/" title="ForeverLee" target="_blank">ForeverLee</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.cnblogs.com/yuzhangcmu/" title="CMU张宇" target="_blank">CMU张宇</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#前提条件"><span class="nav-number">1.</span> <span class="nav-text">前提条件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GitHub-Pages快速体验"><span class="nav-number">2.</span> <span class="nav-text">GitHub Pages快速体验</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装-msysgit并配置"><span class="nav-number">3.</span> <span class="nav-text">安装 msysgit并配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装Octopress"><span class="nav-number">4.</span> <span class="nav-text">安装Octopress</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考资料"><span class="nav-number">5.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">soulmachine</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"soulmachine"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+
+</body>
+</html>

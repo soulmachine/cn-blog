@@ -1,0 +1,814 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="深度学习," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="本文是上一篇文章我的深度学习工作站攒机过程记录的续集。
+前提条件
+主板BIOS是 UEFI 模式
+ 首先确认下你的主板的BIOS是UEFI模式，例如 Asus X99-E WS/USB 3.1 主板的BIOS默认就是UEFI模式。
+
+两个U盘，一个是可启动的Ubuntu 16.04.1 安装盘，一个是Windows 10 1607 x64 安装盘
+ 制作可启动安装盘很简单，下载 cn_window">
+<meta property="og:type" content="article">
+<meta property="og:title" content="安装 Windows 10 和 Ubuntu 16.04 双系统">
+<meta property="og:url" content="http://cn.soulmachine.me/2016-08-14-dual-install-windows-ubuntu/index.html">
+<meta property="og:site_name" content="灵魂机器">
+<meta property="og:description" content="本文是上一篇文章我的深度学习工作站攒机过程记录的续集。
+前提条件
+主板BIOS是 UEFI 模式
+ 首先确认下你的主板的BIOS是UEFI模式，例如 Asus X99-E WS/USB 3.1 主板的BIOS默认就是UEFI模式。
+
+两个U盘，一个是可启动的Ubuntu 16.04.1 安装盘，一个是Windows 10 1607 x64 安装盘
+ 制作可启动安装盘很简单，下载 cn_window">
+<meta property="og:updated_time" content="2016-08-18T10:19:17.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="安装 Windows 10 和 Ubuntu 16.04 双系统">
+<meta name="twitter:description" content="本文是上一篇文章我的深度学习工作站攒机过程记录的续集。
+前提条件
+主板BIOS是 UEFI 模式
+ 首先确认下你的主板的BIOS是UEFI模式，例如 Asus X99-E WS/USB 3.1 主板的BIOS默认就是UEFI模式。
+
+两个U盘，一个是可启动的Ubuntu 16.04.1 安装盘，一个是Windows 10 1607 x64 安装盘
+ 制作可启动安装盘很简单，下载 cn_window">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 安装 Windows 10 和 Ubuntu 16.04 双系统 | 灵魂机器 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?259b539fcd8cab18ad0a6deb98ac2046";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">灵魂机器</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">终有一天机器也有灵魂</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                安装 Windows 10 和 Ubuntu 16.04 双系统
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-14T22:23:11+00:00" content="2016-08-14">
+              2016-08-14
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/深度学习/" itemprop="url" rel="index">
+                    <span itemprop="name">深度学习</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016-08-14-dual-install-windows-ubuntu/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016-08-14-dual-install-windows-ubuntu/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本文是上一篇文章<a href="http://cn.soulmachine.me/2016-08-13-my-deep-learning-workstation-assemble-process-note/">我的深度学习工作站攒机过程记录</a>的续集。</p>
+<h2 id="前提条件"><a href="#前提条件" class="headerlink" title="前提条件"></a>前提条件</h2><ol>
+<li><p>主板BIOS是 UEFI 模式</p>
+<p> 首先确认下你的主板的BIOS是UEFI模式，例如 Asus X99-E WS/USB 3.1 主板的BIOS默认就是UEFI模式。</p>
+</li>
+<li><p>两个U盘，一个是可启动的Ubuntu 16.04.1 安装盘，一个是Windows 10 1607 x64 安装盘</p>
+<p> 制作可启动安装盘很简单，下载 <code>cn_windows_10_multiple_editions_version_1511_updated_apr_2016_x64_dvd_8712460.iso</code> 和 <code>ubuntu-16.04.1-desktop-amd64.iso</code> ，找一台 Windows 电脑，安装 UltraISO这个小软件，启动软件，点击 <code>打开</code>，打开操作系统的ISO文件，点击菜单<code>启动-&gt;写入硬盘映像</code>，即可开始刻录U盘。</p>
+<p> 如果你只有一个U盘，有没问题，先刻录Windows，装完了Windows后，格式化U盘，再刻录一个Ubuntu 进去。</p>
+</li>
+<li><p>关闭主板的 Fast Startup</p>
+<p> 进入 UEFI BIOS 界面，点击 Boot 菜单，找打 Fast Boot, 改为 <code>Disabled</code></p>
+</li>
+<li><p>关闭主板的 SRT（Intel Smart Response Technology)</p>
+<p> 进入 UEFI BIOS 界面，点击 Advanced菜单，找到 Intel Rapid Storage Technology, 点击进去，如果你没有RAID模式的磁盘，这个RST一般是灰色的，没有启用。</p>
+</li>
+<li><p>禁用主板的 Secure Boot</p>
+<p> 如果你想要装Windows和 Linux 双操作系统，那么必须要禁用主板的 Secure Boot ，因为主板内置的公钥只有一个，就是微软的，因为微软影响力大。更具体信息请参考 <a href="http://www.ruanyifeng.com/blog/2013/01/secure_boot.html" target="_blank" rel="external">反Secure Boot垄断：兼谈如何在Windows 8电脑上安装Linux - 阮一峰</a></p>
+<p> Ubuntu 已经买了这个证书，所以微软的这个公钥，也能允许Ubuntu安装在主板上。看到这里，你会问，那岂不是不用禁用 Secure Boot 了？</p>
+<p> 不尽然，在Ubuntu 下安装 GTX 1080 的 Nvidia 驱动的时候，会警告 <code>UEFI Secure Boot is not compatible with the use of third-party drivers.</code> 如果没有禁用Secure Boot, 安装了显卡驱动后，开机，输入密码时，会进不去系统，屏幕会闪一下，有回到了登录界面，死循环 。。。</p>
+<p> 具体步骤请参考 <a href="http://www.technorms.com/45538/disable-enable-secure-boot-asus-motherboard-uefi-bios-utility" target="_blank" rel="external">How to Disable or Enable Secure Boot on Your Computer via ASUS UEFI BIOS Utility</a> ：</p>
+<ul>
+<li>进入 UEFI BIOS界面，选择 <code>Boot-&gt;Secure Boot-&gt; Key Management -&gt; Save Secure Boot Keys</code>，插入U盘，备份key到这个U盘，会有四个文件,  <code>PK</code>, <code>KEK</code>, <code>DB</code> 和 <code>DBX</code> 写入到U盘。</li>
+<li>删除 Platform Key. 选择 <code>Delete PK</code>，点击OK确认删除。删除后回到上一级菜单，可以看到 Secure Boot 已经变成 disabled 了。</li>
+</ul>
+</li>
+<li><p>顺序上，最好是先安装 Windows 再安装 Ubuntu，本文的方法1和方法2都是这个顺序</p>
+</li>
+<li><p>安装了Wiondows后，必须要关闭Windows的 Fast Startup。</p>
+<p> 进入<code>控制面板-&gt;电源</code>，找到 Fast Startup，禁用掉。</p>
+</li>
+</ol>
+<h2 id="Windows-和-Ubuntu-安装在同一块硬盘上"><a href="#Windows-和-Ubuntu-安装在同一块硬盘上" class="headerlink" title="Windows 和 Ubuntu 安装在同一块硬盘上"></a>Windows 和 Ubuntu 安装在同一块硬盘上</h2><p>开机，按住 DEL 键进入BIOS，点击Boot Menu(F8)菜单，选择从U盘启动，且注意要选择UEFI模式的U盘</p>
+<a id="more"></a>
+<p>开始安装Windows, 安装完后，重启，进入Windows 后，关闭Windows的 Fast Startup，即进入<code>控制面板-&gt;电源</code>，找到 Fast Startup，禁用掉。</p>
+<p>把 Ubuntu U盘启动盘插上，开机，按DEL键进入BIOS，选择从这个U盘启动，要选择UEFI模式的U盘，开始安装，记得选择 <code>Install Ubuntu alongside Windows Boot Manager</code></p>
+<h2 id="Windows-和-Ubuntu-分别安装不同的硬盘上"><a href="#Windows-和-Ubuntu-分别安装不同的硬盘上" class="headerlink" title="Windows 和 Ubuntu 分别安装不同的硬盘上"></a>Windows 和 Ubuntu 分别安装不同的硬盘上</h2><p>先按照方法一中的步骤，安装好Windows，然后关机，把这块硬盘拆下来，当做它不存在。</p>
+<p>开始安装Ubuntu，安装到另一块硬盘上。选择 <code>Erase disk and install Ubuntu</code>，接下来选择安装到 SM951 NVMe SSD 这块磁盘上。</p>
+<p>把 Windows 那块硬盘在接入主板。</p>
+<p>这样，两块硬盘就分别安装了独立的操作系统，具体进入哪个，由UEFI BIOS里的启动优先级来决定。你想默认启动Windows，那就把Windows那块硬盘拖动到第一的位置，如果你想默认启动Ubuntu，那就把Ubuntu那块硬盘拖动到第一的位置。</p>
+<p>【可选项】如果你不想通过UEFI BIOS来切换操作系统，你还可以把Windows加入 Ubuntu的 grub 菜单，开机进入Ubuntu后，执行</p>
+<pre><code>sudo update-grub
+</code></pre><p>这个命令会自动扫描其他硬盘上的操作系统，并加入grub 开机启动菜单。</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><a href="https://help.ubuntu.com/community/UEFI" target="_blank" rel="external">UEFI - Ubuntu</a></li>
+<li><a href="http://forum.ubuntu.org.cn/viewtopic.php?t=467746" target="_blank" rel="external">在Win8基础上加装Ubuntu，得先搞清楚Win8是以何种方式安装的</a></li>
+<li><a href="http://linuxbsdos.com/2015/10/31/how-to-dual-boot-windows-10-and-ubuntu-15-10-on-two-hard-drives/" target="_blank" rel="external">How to dual-boot Windows 10 and Ubuntu 15.10 on two hard drives</a></li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/深度学习/" rel="tag">#深度学习</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016-08-13-my-deep-learning-workstation-assemble-process-note/" rel="next" title="我的深度学习工作站攒机过程记录">
+                <i class="fa fa-chevron-left"></i> 我的深度学习工作站攒机过程记录
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016-08-17-deep-learning-cuda-development-environment/" rel="prev" title="深度学习开发环境配置：Ubuntu1 6.04+Nvidia GTX 1080+CUDA 8.0">
+                深度学习开发环境配置：Ubuntu1 6.04+Nvidia GTX 1080+CUDA 8.0 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016-08-14-dual-install-windows-ubuntu/"
+           data-title="安装 Windows 10 和 Ubuntu 16.04 双系统" data-url="http://cn.soulmachine.me/2016-08-14-dual-install-windows-ubuntu/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://tva2.sinaimg.cn/crop.4.536.2038.2038.180/632582bfgw1f31kbqdasbj21kw23uhdt.jpg"
+               alt="soulmachine" />
+          <p class="site-author-name" itemprop="name">soulmachine</p>
+          <p class="site-description motion-element" itemprop="description">一些技术笔记</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">56</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/soulmachine" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/soulmachine" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/soulmachine" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/soulmachine" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-block">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.liancheng.info/" title="连城" target="_blank">连城</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://yewen.us/" title="笨狗随手留下" target="_blank">笨狗随手留下</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.rational.so/" title="阎栋" target="_blank">阎栋</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.parallellabs.com/" title="并行实验室" target="_blank">并行实验室</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.javachen.com/" title="JavaChen" target="_blank">JavaChen</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://shenfeng.me/" title="沈峰" target="_blank">沈峰</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.lihaipeng.info/" title="李海鹏" target="_blank">李海鹏</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.chioka.in/" title="Eric" target="_blank">Eric</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/lgnlgn" title="梁兄的技术博客" target="_blank">梁兄的技术博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.doesbetter.com/" title="王孝舒的博客" target="_blank">王孝舒的博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.foreverlee.net/" title="ForeverLee" target="_blank">ForeverLee</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.cnblogs.com/yuzhangcmu/" title="CMU张宇" target="_blank">CMU张宇</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前提条件"><span class="nav-number">1.</span> <span class="nav-text">前提条件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Windows-和-Ubuntu-安装在同一块硬盘上"><span class="nav-number">2.</span> <span class="nav-text">Windows 和 Ubuntu 安装在同一块硬盘上</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Windows-和-Ubuntu-分别安装不同的硬盘上"><span class="nav-number">3.</span> <span class="nav-text">Windows 和 Ubuntu 分别安装不同的硬盘上</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">4.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">soulmachine</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"soulmachine"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+
+</body>
+</html>

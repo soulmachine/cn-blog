@@ -1,0 +1,785 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="深度学习," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="前提条件，已经安装好了 Ubuntu 16.04 操作系统， 见安装 Windows 10 和 Ubuntu 16.04 双系统
+1. 安装 Nvidia 驱动123456sudo add-apt-repository -qy ppa:graphics-drivers/ppasudo apt-get -qy updatesudo apt-get -qy install nvidia-370sudo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="深度学习开发环境配置：Ubuntu1 6.04+Nvidia GTX 1080+CUDA 8.0">
+<meta property="og:url" content="http://cn.soulmachine.me/2016-08-17-deep-learning-cuda-development-environment/index.html">
+<meta property="og:site_name" content="灵魂机器">
+<meta property="og:description" content="前提条件，已经安装好了 Ubuntu 16.04 操作系统， 见安装 Windows 10 和 Ubuntu 16.04 双系统
+1. 安装 Nvidia 驱动123456sudo add-apt-repository -qy ppa:graphics-drivers/ppasudo apt-get -qy updatesudo apt-get -qy install nvidia-370sudo">
+<meta property="og:updated_time" content="2016-08-18T10:23:42.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="深度学习开发环境配置：Ubuntu1 6.04+Nvidia GTX 1080+CUDA 8.0">
+<meta name="twitter:description" content="前提条件，已经安装好了 Ubuntu 16.04 操作系统， 见安装 Windows 10 和 Ubuntu 16.04 双系统
+1. 安装 Nvidia 驱动123456sudo add-apt-repository -qy ppa:graphics-drivers/ppasudo apt-get -qy updatesudo apt-get -qy install nvidia-370sudo">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 深度学习开发环境配置：Ubuntu1 6.04+Nvidia GTX 1080+CUDA 8.0 | 灵魂机器 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?259b539fcd8cab18ad0a6deb98ac2046";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">灵魂机器</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">终有一天机器也有灵魂</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                深度学习开发环境配置：Ubuntu1 6.04+Nvidia GTX 1080+CUDA 8.0
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-17T23:59:11+00:00" content="2016-08-17">
+              2016-08-17
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/深度学习/" itemprop="url" rel="index">
+                    <span itemprop="name">深度学习</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016-08-17-deep-learning-cuda-development-environment/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016-08-17-deep-learning-cuda-development-environment/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>前提条件，已经安装好了 Ubuntu 16.04 操作系统， 见<a href="http://cn.soulmachine.me/2016-08-14-dual-install-windows-ubuntu/">安装 Windows 10 和 Ubuntu 16.04 双系统</a></p>
+<h2 id="1-安装-Nvidia-驱动"><a href="#1-安装-Nvidia-驱动" class="headerlink" title="1. 安装 Nvidia 驱动"></a>1. 安装 Nvidia 驱动</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">sudo add-apt-repository -qy ppa:graphics-drivers/ppa</div><div class="line">sudo apt-get -qy update</div><div class="line">sudo apt-get -qy install nvidia-370</div><div class="line">sudo apt-get -qy install mesa-common-dev</div><div class="line">sudo apt-get -qy install freeglut3-dev</div><div class="line">sudo reboot</div></pre></td></tr></table></figure>
+<p>注意，一般比较新的主板，默认是UEFI BIOS，默认启用了 Secure Boot，否则开机后登陆不进去。老主板没有这个问题。</p>
+<h2 id="2-安装-CUDA-8-x"><a href="#2-安装-CUDA-8-x" class="headerlink" title="2. 安装 CUDA 8.x"></a>2. 安装 CUDA 8.x</h2><p>去 <a href="https://developer.nvidia.com/cuda-release-candidate-download" target="_blank" rel="external">CUDA 8.x 下载页面</a>，一定要下载 runfile 安装方式的安装包，参考资料里的好几篇都是选择这种方式，貌似 deb包有坑？</p>
+<a id="more"></a>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">chmod u+x ./cuda_8.0.27_linux.run</div><div class="line">sudo ./cuda_8.0.27_linux.run --tmpdir=/tmp</div></pre></td></tr></table></figure>
+<p>执行后会有一系列提示让你确认，第一个就是问你是否安装显卡驱动，由于前一步已经安装了显卡驱动，所以这里就不需要了，况且 runfile 自带的驱动版本不是最新的。 因此 <code>Install NVIDIA Accelerated Graphics Driver for Linux-x86_64 361.77?</code> 这里选择 no。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">Do you accept the previously read EULA?</div><div class="line">accept/decline/quit: accept</div><div class="line"></div><div class="line">Install NVIDIA Accelerated Graphics Driver for Linux-x86_64 361.77?</div><div class="line">(y)es/(n)o/(q)uit: n</div><div class="line"></div><div class="line">Install the CUDA 8.0 Toolkit?</div><div class="line">(y)es/(n)o/(q)uit: y</div><div class="line"></div><div class="line">Enter Toolkit Location</div><div class="line"> [ default is /usr/local/cuda-8.0 ]: </div><div class="line"></div><div class="line">Do you want to install a symbolic link at /usr/local/cuda?</div><div class="line">(y)es/(n)o/(q)uit: y</div><div class="line"></div><div class="line">Install the CUDA 8.0 Samples?</div><div class="line">(y)es/(n)o/(q)uit: y</div><div class="line"></div><div class="line">Enter CUDA Samples Location</div><div class="line"> [ default is /home/programmer ]:</div></pre></td></tr></table></figure>
+<p>你以为你会成功安装吗？并不是，你一定会碰到一个错误，<code>Installation Failed. Using unsupported Compiler.</code> ，这是因为 Ubuntu 16.04 默认的 GCC 5.4 对于 CUDA 8.x来说过于新了，CUDA 安装脚本还不能识别新版本的 GCC。</p>
+<p>看了一下安装日志，解决方案也很简单，加一个 <code>--override</code> 选项，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo ./cuda_8.0.27_linux.run --tmpdir=/tmp --override</div></pre></td></tr></table></figure>
+<p>这次可以成功了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">===========</div><div class="line">= Summary =</div><div class="line">===========</div><div class="line"></div><div class="line">Driver:   Not Selected</div><div class="line">Toolkit:  Installed in /usr/local/cuda-8.0</div><div class="line">Samples:  Installed in /home/programmer, but missing recommended libraries</div><div class="line"></div><div class="line">Please make sure that</div><div class="line"> -   PATH includes /usr/local/cuda-8.0/bin</div><div class="line"> -   LD_LIBRARY_PATH includes /usr/local/cuda-8.0/lib64, or, add /usr/local/cuda-8.0/lib64 to /etc/ld.so.conf and run ldconfig as root</div><div class="line"></div><div class="line">To uninstall the CUDA Toolkit, run the uninstall script in /usr/local/cuda-8.0/bin</div><div class="line"></div><div class="line">Please see CUDA_Installation_Guide_Linux.pdf in /usr/local/cuda-8.0/doc/pdf for detailed information on setting up CUDA.</div><div class="line"></div><div class="line">***WARNING: Incomplete installation! This installation did not install the CUDA Driver. A driver of version at least 361.00 is required for CUDA 8.0 functionality to work.</div><div class="line"></div><div class="line">To install the driver using this installer, run the following command, replacing &lt;CudaInstaller&gt; with the name of this run file:</div><div class="line"></div><div class="line">    sudo &lt;CudaInstaller&gt;.run -silent -driver</div><div class="line"></div><div class="line">Logfile is /tmp/cuda_install_6794.log</div><div class="line"></div><div class="line">Signal caught, cleaning up</div></pre></td></tr></table></figure>
+<p>把以下两行加入到 <code>.bashrc</code>，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">export PATH=/usr/local/cuda-8.0/bin$&#123;PATH:+:$&#123;PATH&#125;&#125;</div><div class="line">export LD_LIBRARY_PATH=/usr/local/cuda-8.0/lib64$&#123;LD_LIBRARY_PATH:+:$&#123;LD_LIBRARY_PATH&#125;&#125;</div></pre></td></tr></table></figure>
+<h2 id="安装补丁"><a href="#安装补丁" class="headerlink" title="安装补丁"></a>安装补丁</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">chmod u+x ./cuda_8.0.27.1_linux.run</div><div class="line">sudo ./cuda_8.0.27.1_linux.run</div></pre></td></tr></table></figure>
+<h2 id="测试是否安装成功"><a href="#测试是否安装成功" class="headerlink" title="测试是否安装成功"></a>测试是否安装成功</h2><p>最后再来测试一下CUDA，运行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nvidia-smi</div></pre></td></tr></table></figure>
+<p>结果如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">+-----------------------------------------------------------------------------+</div><div class="line">| NVIDIA-SMI 370.23                 Driver Version: 370.23                    |</div><div class="line">|-------------------------------+----------------------+----------------------+</div><div class="line">| GPU  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |</div><div class="line">| Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |</div><div class="line">|===============================+======================+======================|</div><div class="line">|   0  GeForce GTX 1080    Off  | 0000:05:00.0      On |                  N/A |</div><div class="line">| 27%   29C    P8     9W / 180W |    515MiB /  8110MiB |      4%      Default |</div><div class="line">+-------------------------------+----------------------+----------------------+</div><div class="line"></div><div class="line">+-----------------------------------------------------------------------------+</div><div class="line">| Processes:                                                       GPU Memory |</div><div class="line">|  GPU       PID  Type  Process name                               Usage      |</div><div class="line">|=============================================================================|</div><div class="line">|    0      4761    G   /usr/lib/xorg/Xorg                             259MiB |</div><div class="line">|    0      5224    G   compiz                                         253MiB |</div><div class="line">+-----------------------------------------------------------------------------+</div></pre></td></tr></table></figure>
+<p>再来试几个CUDA例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd ~/NVIDIA_CUDA-8.0_Samples/1_Utilities/deviceQuery</div><div class="line">make</div></pre></td></tr></table></figure>
+<p>执行 <code>./deviceQuery</code>，得到：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line">CUDA Device Query (Runtime API) version (CUDART static linking)</div><div class="line"></div><div class="line">Detected 1 CUDA Capable device(s)</div><div class="line"></div><div class="line">Device 0: &quot;GeForce GTX 1080&quot;</div><div class="line">  CUDA Driver Version / Runtime Version          8.0 / 8.0</div><div class="line">  CUDA Capability Major/Minor version number:    6.1</div><div class="line">  Total amount of global memory:                 8110 MBytes (8504279040 bytes)</div><div class="line">  (20) Multiprocessors, (128) CUDA Cores/MP:     2560 CUDA Cores</div><div class="line">  GPU Max Clock rate:                            1734 MHz (1.73 GHz)</div><div class="line">  Memory Clock rate:                             5005 Mhz</div><div class="line">  Memory Bus Width:                              256-bit</div><div class="line">  L2 Cache Size:                                 2097152 bytes</div><div class="line">  Maximum Texture Dimension Size (x,y,z)         1D=(131072), 2D=(131072, 65536), 3D=(16384, 16384, 16384)</div><div class="line">  Maximum Layered 1D Texture Size, (num) layers  1D=(32768), 2048 layers</div><div class="line">  Maximum Layered 2D Texture Size, (num) layers  2D=(32768, 32768), 2048 layers</div><div class="line">  Total amount of constant memory:               65536 bytes</div><div class="line">  Total amount of shared memory per block:       49152 bytes</div><div class="line">  Total number of registers available per block: 65536</div><div class="line">  Warp size:                                     32</div><div class="line">  Maximum number of threads per multiprocessor:  2048</div><div class="line">  Maximum number of threads per block:           1024</div><div class="line">  Max dimension size of a thread block (x,y,z): (1024, 1024, 64)</div><div class="line">  Max dimension size of a grid size    (x,y,z): (2147483647, 65535, 65535)</div><div class="line">  Maximum memory pitch:                          2147483647 bytes</div><div class="line">  Texture alignment:                             512 bytes</div><div class="line">  Concurrent copy and kernel execution:          Yes with 2 copy engine(s)</div><div class="line">  Run time limit on kernels:                     Yes</div><div class="line">  Integrated GPU sharing Host Memory:            No</div><div class="line">  Support host page-locked memory mapping:       Yes</div><div class="line">  Alignment requirement for Surfaces:            Yes</div><div class="line">  Device has ECC support:                        Disabled</div><div class="line">  Device supports Unified Addressing (UVA):      Yes</div><div class="line">  Device PCI Domain ID / Bus ID / location ID:   0 / 5 / 0</div><div class="line"></div><div class="line">  Compute Mode:</div><div class="line">     &lt; Default (multiple host threads can use ::cudaSetDevice() with device simultaneously) &gt;</div><div class="line"></div><div class="line">deviceQuery, CUDA Driver = CUDART, CUDA Driver Version = 8.0, CUDA Runtime Version = 8.0, NumDevs = 1, Device0 = GeForce GTX 1080</div><div class="line">Result = PASS</div></pre></td></tr></table></figure>
+<p>再测试试一下nobody：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd ~/NVIDIA_CUDA-8.0_Samples/5_Simulations/nbody/</div><div class="line">make</div></pre></td></tr></table></figure>
+<p>执行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./nbody -benchmark -numbodies=256000 -device=0</div></pre></td></tr></table></figure>
+<p>得到：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&gt; Windowed mode</div><div class="line">&gt; Simulation data stored in video memory</div><div class="line">&gt; Single precision floating point simulation</div><div class="line">&gt; 1 Devices used for simulation</div><div class="line">gpuDeviceInit() CUDA Device [0]: &quot;GeForce GTX 1080</div><div class="line">&gt; Compute 6.1 CUDA device: [GeForce GTX 1080]</div><div class="line">number of bodies = 256000</div><div class="line">256000 bodies, total time for 10 iterations: 2364.286 ms</div><div class="line">= 277.192 billion interactions per second</div><div class="line">= 5543.830 single-precision GFLOP/s at 20 flops per interaction</div></pre></td></tr></table></figure>
+<p>至此，说明 CUDA 8.x 安装成功了。</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><a href="http://www.52nlp.cn/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E4%B8%BB%E6%9C%BA%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE-ubuntu-16-04-nvidia-gtx-1080-cuda-8" target="_blank" rel="external">深度学习主机环境配置: Ubuntu16.04+Nvidia GTX 1080+CUDA8.0</a></li>
+<li><a href="http://yangcha.github.io/GTX-1080/" target="_blank" rel="external">Nvidia GTX 1080 on Ubuntu 16.04 for Deep Learning - Changjiang</a></li>
+<li><a href="http://guanghan.info/blog/en/my-works/building-our-personal-deep-learning-rig-gtx-1080-ubuntu-16-04-cuda-8-0rc-cudnn-7-tensorflowmxnetcaffedarknet/" target="_blank" rel="external">Build Personal Deep Learning Rig: GTX 1080 + Ubuntu 16.04 + CUDA 8.0RC + CuDnn 7 + Tensorflow/Mxnet/Caffe/Darknet - by Guanghan Ning</a></li>
+<li><a href="https://github.com/BVLC/caffe/wiki/GeForce-GTX-1080,---CUDA-8.0,---Ubuntu-16.04,---Caffe" target="_blank" rel="external">GeForce GTX 1080, CUDA 8.0, Ubuntu 16.04, Caffe</a></li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/深度学习/" rel="tag">#深度学习</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016-08-14-dual-install-windows-ubuntu/" rel="next" title="安装 Windows 10 和 Ubuntu 16.04 双系统">
+                <i class="fa fa-chevron-left"></i> 安装 Windows 10 和 Ubuntu 16.04 双系统
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016-08-17-deep-learning-cuda-development-environment/"
+           data-title="深度学习开发环境配置：Ubuntu1 6.04+Nvidia GTX 1080+CUDA 8.0" data-url="http://cn.soulmachine.me/2016-08-17-deep-learning-cuda-development-environment/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://tva2.sinaimg.cn/crop.4.536.2038.2038.180/632582bfgw1f31kbqdasbj21kw23uhdt.jpg"
+               alt="soulmachine" />
+          <p class="site-author-name" itemprop="name">soulmachine</p>
+          <p class="site-description motion-element" itemprop="description">一些技术笔记</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">56</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/soulmachine" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/soulmachine" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/soulmachine" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/soulmachine" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-block">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.liancheng.info/" title="连城" target="_blank">连城</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://yewen.us/" title="笨狗随手留下" target="_blank">笨狗随手留下</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.rational.so/" title="阎栋" target="_blank">阎栋</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.parallellabs.com/" title="并行实验室" target="_blank">并行实验室</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.javachen.com/" title="JavaChen" target="_blank">JavaChen</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://shenfeng.me/" title="沈峰" target="_blank">沈峰</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.lihaipeng.info/" title="李海鹏" target="_blank">李海鹏</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.chioka.in/" title="Eric" target="_blank">Eric</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/lgnlgn" title="梁兄的技术博客" target="_blank">梁兄的技术博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.doesbetter.com/" title="王孝舒的博客" target="_blank">王孝舒的博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.foreverlee.net/" title="ForeverLee" target="_blank">ForeverLee</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.cnblogs.com/yuzhangcmu/" title="CMU张宇" target="_blank">CMU张宇</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-安装-Nvidia-驱动"><span class="nav-number">1.</span> <span class="nav-text">1. 安装 Nvidia 驱动</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-安装-CUDA-8-x"><span class="nav-number">2.</span> <span class="nav-text">2. 安装 CUDA 8.x</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装补丁"><span class="nav-number">3.</span> <span class="nav-text">安装补丁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试是否安装成功"><span class="nav-number">4.</span> <span class="nav-text">测试是否安装成功</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">5.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">soulmachine</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"soulmachine"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+
+</body>
+</html>

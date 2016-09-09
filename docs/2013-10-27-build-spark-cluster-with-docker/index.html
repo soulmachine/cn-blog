@@ -1,0 +1,808 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="机器学习, 深度学习, 人工智能" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="前提条件：安装好了docker，见我的另一篇博客，Docker安装
+有两种方式，
+
+Spark官方repo里，docker文件夹下的脚本。官方的这个脚本封装很薄，尽可能把必要的信息展示出来。
+AMPLab开源的这个独立小项目，来打造一个spark集群。这个脚本封装很深，自带了一个DNS服务器，还有hadoop，非常自动化，缺点是很多信息看不到了。
+
+1. 第1种方式git clone 源码首先要把">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用docker打造spark集群">
+<meta property="og:url" content="http://cn.soulmachine.me/2013-10-27-build-spark-cluster-with-docker/index.html">
+<meta property="og:site_name" content="灵魂机器">
+<meta property="og:description" content="前提条件：安装好了docker，见我的另一篇博客，Docker安装
+有两种方式，
+
+Spark官方repo里，docker文件夹下的脚本。官方的这个脚本封装很薄，尽可能把必要的信息展示出来。
+AMPLab开源的这个独立小项目，来打造一个spark集群。这个脚本封装很深，自带了一个DNS服务器，还有hadoop，非常自动化，缺点是很多信息看不到了。
+
+1. 第1种方式git clone 源码首先要把">
+<meta property="og:updated_time" content="2016-08-18T09:21:04.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用docker打造spark集群">
+<meta name="twitter:description" content="前提条件：安装好了docker，见我的另一篇博客，Docker安装
+有两种方式，
+
+Spark官方repo里，docker文件夹下的脚本。官方的这个脚本封装很薄，尽可能把必要的信息展示出来。
+AMPLab开源的这个独立小项目，来打造一个spark集群。这个脚本封装很深，自带了一个DNS服务器，还有hadoop，非常自动化，缺点是很多信息看不到了。
+
+1. 第1种方式git clone 源码首先要把">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 使用docker打造spark集群 | 灵魂机器 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?259b539fcd8cab18ad0a6deb98ac2046";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">灵魂机器</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">终有一天机器也有灵魂</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                使用docker打造spark集群
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2013-10-27T20:30:00+00:00" content="2013-10-27">
+              2013-10-27
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Spark/" itemprop="url" rel="index">
+                    <span itemprop="name">Spark</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2013-10-27-build-spark-cluster-with-docker/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2013-10-27-build-spark-cluster-with-docker/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><strong>前提条件：</strong>安装好了docker，见我的另一篇博客，<a href="http://www.yanjiuyanjiu.com/blog/20131025" target="_blank" rel="external">Docker安装</a></p>
+<p>有两种方式，</p>
+<ul>
+<li><a href="https://github.com/apache/incubator-spark" target="_blank" rel="external">Spark官方repo</a>里，docker文件夹下的脚本。官方的这个脚本封装很薄，尽可能把必要的信息展示出来。</li>
+<li><a href="https://github.com/amplab/docker-scripts" target="_blank" rel="external">AMPLab开源的这个独立小项目</a>，来打造一个spark集群。这个脚本封装很深，自带了一个DNS服务器，还有hadoop，非常自动化，缺点是很多信息看不到了。</li>
+</ul>
+<h1 id="1-第1种方式"><a href="#1-第1种方式" class="headerlink" title="1. 第1种方式"></a>1. 第1种方式</h1><h2 id="git-clone-源码"><a href="#git-clone-源码" class="headerlink" title="git clone 源码"></a>git clone 源码</h2><p>首先要把官方repo的代码下载下来</p>
+<pre><code>git clone git@github.com:apache/incubator-spark.git
+</code></pre><h2 id="（可选）修改apt源"><a href="#（可选）修改apt源" class="headerlink" title="（可选）修改apt源"></a>（可选）修改apt源</h2><p>在国内，将apt源修改国内源，例如163的源，速度会快很多。将<code>base/Dockerfile</code>里的</p>
+<pre><code>RUN echo &quot;deb http://archive.ubuntu.com/ubuntu precise main universe&quot; &gt; /etc/apt/sources.list
+</code></pre><p>替换为</p>
+<pre><code>RUN echo &quot;deb http://mirrors.163.com/ubuntu/ precise main restricted universe multiverse&quot; &gt; /etc/apt/sources.list
+RUN echo &quot;deb http://mirrors.163.com/ubuntu/ precise-security main restricted universe multiverse&quot; &gt;&gt; /etc/apt/sources.list
+RUN echo &quot;deb http://mirrors.163.com/ubuntu/ precise-updates main restricted universe multiverse&quot; &gt;&gt; /etc/apt/sources.list
+RUN echo &quot;deb http://mirrors.163.com/ubuntu/ precise-proposed main restricted universe multiverse&quot; &gt;&gt; /etc/apt/sources.list
+RUN echo &quot;deb http://mirrors.163.com/ubuntu/ precise-backports main restricted universe multiverse&quot; &gt;&gt; /etc/apt/sources.list
+RUN echo &quot;deb-src http://mirrors.163.com/ubuntu/ precise main restricted universe multiverse&quot; &gt;&gt; /etc/apt/sources.list
+RUN echo &quot;deb-src http://mirrors.163.com/ubuntu/ precise-security main restricted universe multiverse&quot; &gt;&gt; /etc/apt/sources.list
+RUN echo &quot;deb-src http://mirrors.163.com/ubuntu/ precise-updates main restricted universe multiverse&quot; &gt;&gt; /etc/apt/sources.list
+RUN echo &quot;deb-src http://mirrors.163.com/ubuntu/ precise-proposed main restricted universe multiverse&quot; &gt;&gt; /etc/apt/sources.list
+RUN echo &quot;deb-src http://mirrors.163.com/ubuntu/ precise-backports main restricted universe multiverse&quot; &gt;&gt; /etc/apt/sources.list
+</code></pre><h2 id="build镜像"><a href="#build镜像" class="headerlink" title="build镜像"></a>build镜像</h2><p>将<code>build</code>和<code>spark-test/build</code>里的<code>docker</code>命令前，添加<code>sudo</code>，然后执行<code>docker</code>下的<code>build</code></p>
+<pre><code>cd docker
+./build
+</code></pre><h2 id="启动master"><a href="#启动master" class="headerlink" title="启动master"></a>启动master</h2><pre><code>sudo docker run -v $SPARK_HOME:/opt/spark spark-test-master
+</code></pre><h2 id="启动worker"><a href="#启动worker" class="headerlink" title="启动worker"></a>启动worker</h2><p>新开一个终端窗口（强烈推荐tmux），启动一个worker</p>
+<pre><code>sudo docker run -v $SPARK_HOME:/opt/spark spark-test-worker &lt;master_ip&gt;
+</code></pre><p>可以在master终端窗口看到worker注册上来了。</p>
+<p>可以再开多个终端窗口，启动多个worker。</p>
+<h1 id="2-第2种方式"><a href="#2-第2种方式" class="headerlink" title="2. 第2种方式"></a>2. 第2种方式</h1><h2 id="升级wget"><a href="#升级wget" class="headerlink" title="升级wget"></a>升级wget</h2><p>如果发现wget不识别<code>--no-proxy</code>选项，需要升级wget。</p>
+<h2 id="下载镜像"><a href="#下载镜像" class="headerlink" title="下载镜像"></a>下载镜像</h2><p>为了让脚本第一次执行的时候更快，还是手动下载所有的镜像吧，amplab在index.docker.io上有一个官方账号，把这个账号有关spark的repo都pull下来。</p>
+<pre><code>sudo docker pull amplab/apache-hadoop-hdfs-precise
+sudo docker pull amplab/dnsmasq-precise
+sudo docker pull amplab/spark-worker
+sudo docker pull amplab/spark-master
+sudo docker pull amplab/spark-shell
+</code></pre><h2 id="git-clone-脚本"><a href="#git-clone-脚本" class="headerlink" title="git clone 脚本"></a>git clone 脚本</h2><pre><code>git@github.com:amplab/docker-scripts.git
+</code></pre><p>这个脚本可以一键启动集群，爽啊哈哈哈！</p>
+<h2 id="一键启动spark集群"><a href="#一键启动spark集群" class="headerlink" title="一键启动spark集群"></a>一键启动spark集群</h2><pre><code>sudo ./deploy/deploy.sh -i amplab/spark:0.8.0 -w 3 
+</code></pre><h2 id="启动-Spark-shell"><a href="#启动-Spark-shell" class="headerlink" title="启动 Spark shell"></a>启动 Spark shell</h2><p>启动一个交互式shell吧，IP为上一步输出的Master的IP</p>
+<pre><code>sudo docker run -i -t -dns 172.17.0.90 amplab/spark-shell:0.8.0
+</code></pre><h2 id="运行一个简单的的例子"><a href="#运行一个简单的的例子" class="headerlink" title="运行一个简单的的例子"></a>运行一个简单的的例子</h2><pre><code>scala&gt; val textFile = sc.textFile(&quot;hdfs://master:9000/user/hdfs/test.txt&quot;)
+scala&gt; textFile.count()
+scala&gt; textFile.map({line =&gt; line}).collect()
+</code></pre><h2 id="关闭集群"><a href="#关闭集群" class="headerlink" title="关闭集群"></a>关闭集群</h2><pre><code>$ sudo ./deploy/kill_all.sh spark
+$ sudo ./deploy/kill_all.sh nameserver
+</code></pre><h2 id="更多详情请参考项目主页的文档"><a href="#更多详情请参考项目主页的文档" class="headerlink" title="更多详情请参考项目主页的文档"></a>更多详情请参考项目主页的文档</h2><p><a href="https://github.com/amplab/docker-scripts" target="_blank" rel="external">https://github.com/amplab/docker-scripts</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2013-10-26-docker-tutorial/" rel="next" title="docker 快速入门">
+                <i class="fa fa-chevron-left"></i> docker 快速入门
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2013-12-23-run-mahout-nbc/" rel="prev" title="运行mahout的朴素贝叶斯分类器">
+                运行mahout的朴素贝叶斯分类器 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2013-10-27-build-spark-cluster-with-docker/"
+           data-title="使用docker打造spark集群" data-url="http://cn.soulmachine.me/2013-10-27-build-spark-cluster-with-docker/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://tva2.sinaimg.cn/crop.4.536.2038.2038.180/632582bfgw1f31kbqdasbj21kw23uhdt.jpg"
+               alt="soulmachine" />
+          <p class="site-author-name" itemprop="name">soulmachine</p>
+          <p class="site-description motion-element" itemprop="description">一些技术笔记</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">56</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/soulmachine" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/soulmachine" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/soulmachine" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/soulmachine" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-block">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.liancheng.info/" title="连城" target="_blank">连城</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://yewen.us/" title="笨狗随手留下" target="_blank">笨狗随手留下</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.rational.so/" title="阎栋" target="_blank">阎栋</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.parallellabs.com/" title="并行实验室" target="_blank">并行实验室</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.javachen.com/" title="JavaChen" target="_blank">JavaChen</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://shenfeng.me/" title="沈峰" target="_blank">沈峰</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.lihaipeng.info/" title="李海鹏" target="_blank">李海鹏</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.chioka.in/" title="Eric" target="_blank">Eric</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/lgnlgn" title="梁兄的技术博客" target="_blank">梁兄的技术博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.doesbetter.com/" title="王孝舒的博客" target="_blank">王孝舒的博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.foreverlee.net/" title="ForeverLee" target="_blank">ForeverLee</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.cnblogs.com/yuzhangcmu/" title="CMU张宇" target="_blank">CMU张宇</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-第1种方式"><span class="nav-number">1.</span> <span class="nav-text">1. 第1种方式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#git-clone-源码"><span class="nav-number">1.1.</span> <span class="nav-text">git clone 源码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#（可选）修改apt源"><span class="nav-number">1.2.</span> <span class="nav-text">（可选）修改apt源</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#build镜像"><span class="nav-number">1.3.</span> <span class="nav-text">build镜像</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#启动master"><span class="nav-number">1.4.</span> <span class="nav-text">启动master</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#启动worker"><span class="nav-number">1.5.</span> <span class="nav-text">启动worker</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-第2种方式"><span class="nav-number">2.</span> <span class="nav-text">2. 第2种方式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#升级wget"><span class="nav-number">2.1.</span> <span class="nav-text">升级wget</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#下载镜像"><span class="nav-number">2.2.</span> <span class="nav-text">下载镜像</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#git-clone-脚本"><span class="nav-number">2.3.</span> <span class="nav-text">git clone 脚本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一键启动spark集群"><span class="nav-number">2.4.</span> <span class="nav-text">一键启动spark集群</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#启动-Spark-shell"><span class="nav-number">2.5.</span> <span class="nav-text">启动 Spark shell</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运行一个简单的的例子"><span class="nav-number">2.6.</span> <span class="nav-text">运行一个简单的的例子</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关闭集群"><span class="nav-number">2.7.</span> <span class="nav-text">关闭集群</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更多详情请参考项目主页的文档"><span class="nav-number">2.8.</span> <span class="nav-text">更多详情请参考项目主页的文档</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">soulmachine</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"soulmachine"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+
+</body>
+</html>

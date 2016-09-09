@@ -1,0 +1,900 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="深度学习," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="一年前就有攒一台深度学习工作站的想法了，今年 6月29号在Amazon 上抢到了一块 GTX 1080后，正式开始了攒机，经过了漫长了的一个半月，到今天8约13号，终于凑齐了所有零件并开机点亮了。为甚么这么漫长？因为本屌为了省钱几乎所有零件都是在 eBay和Amazon 上买的二手（除了GTX 1080太新没二手货）。
+硬件配置单结论懒人不想看过程的话，可以先看结论。
+以下是我的配置单：
+
+
+
+配">
+<meta property="og:type" content="article">
+<meta property="og:title" content="我的深度学习工作站攒机过程记录">
+<meta property="og:url" content="http://cn.soulmachine.me/2016-08-13-my-deep-learning-workstation-assemble-process-note/index.html">
+<meta property="og:site_name" content="灵魂机器">
+<meta property="og:description" content="一年前就有攒一台深度学习工作站的想法了，今年 6月29号在Amazon 上抢到了一块 GTX 1080后，正式开始了攒机，经过了漫长了的一个半月，到今天8约13号，终于凑齐了所有零件并开机点亮了。为甚么这么漫长？因为本屌为了省钱几乎所有零件都是在 eBay和Amazon 上买的二手（除了GTX 1080太新没二手货）。
+硬件配置单结论懒人不想看过程的话，可以先看结论。
+以下是我的配置单：
+
+
+
+配">
+<meta property="og:image" content="http://cn.soulmachine.me/images/weibo-which-motherboard.png">
+<meta property="og:image" content="http://cn.soulmachine.me/images/weibo-cannot-boot.png">
+<meta property="og:updated_time" content="2016-08-18T10:36:03.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="我的深度学习工作站攒机过程记录">
+<meta name="twitter:description" content="一年前就有攒一台深度学习工作站的想法了，今年 6月29号在Amazon 上抢到了一块 GTX 1080后，正式开始了攒机，经过了漫长了的一个半月，到今天8约13号，终于凑齐了所有零件并开机点亮了。为甚么这么漫长？因为本屌为了省钱几乎所有零件都是在 eBay和Amazon 上买的二手（除了GTX 1080太新没二手货）。
+硬件配置单结论懒人不想看过程的话，可以先看结论。
+以下是我的配置单：
+
+
+
+配">
+<meta name="twitter:image" content="http://cn.soulmachine.me/images/weibo-which-motherboard.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 我的深度学习工作站攒机过程记录 | 灵魂机器 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?259b539fcd8cab18ad0a6deb98ac2046";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">灵魂机器</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">终有一天机器也有灵魂</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                我的深度学习工作站攒机过程记录
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-13T09:26:11+00:00" content="2016-08-13">
+              2016-08-13
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/深度学习/" itemprop="url" rel="index">
+                    <span itemprop="name">深度学习</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016-08-13-my-deep-learning-workstation-assemble-process-note/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016-08-13-my-deep-learning-workstation-assemble-process-note/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>一年前就有攒一台深度学习工作站的想法了，今年 6月29号在Amazon 上抢到了一块 GTX 1080后，正式开始了攒机，经过了漫长了的一个半月，到今天8约13号，终于凑齐了所有零件并开机点亮了。为甚么这么漫长？因为本屌为了省钱几乎所有零件都是在 eBay和Amazon 上买的二手（除了GTX 1080太新没二手货）。</p>
+<h2 id="硬件配置单"><a href="#硬件配置单" class="headerlink" title="硬件配置单"></a>硬件配置单</h2><h3 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h3><p>懒人不想看过程的话，可以先看结论。</p>
+<p>以下是我的配置单：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">配件名</th>
+<th style="text-align:center">品牌型号</th>
+<th style="text-align:center">数量</th>
+<th style="text-align:center">价格</th>
+<th style="text-align:center">哪里买的</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">机箱</td>
+<td style="text-align:center">Corsair Carbide Air 540</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">$130.57</td>
+<td style="text-align:center">Amazon 二手</td>
+</tr>
+<tr>
+<td style="text-align:center">主板</td>
+<td style="text-align:center">Asus X99-E WS/USB3.1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">$563.84</td>
+<td style="text-align:center">Amazon 新</td>
+</tr>
+<tr>
+<td style="text-align:center">CPU</td>
+<td style="text-align:center">Intel I7-5930K</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">$467.45</td>
+<td style="text-align:center">eBay 二手</td>
+</tr>
+<tr>
+<td style="text-align:center">CPU 水冷头</td>
+<td style="text-align:center">Corsair H60 Cooler</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">$65.24</td>
+<td style="text-align:center">Amazon 新</td>
+</tr>
+<tr>
+<td style="text-align:center">DDR4内存</td>
+<td style="text-align:center">Kingston 32GB HX421C14FB2K4/32</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">$139.19</td>
+<td style="text-align:center">Amazon新</td>
+</tr>
+<tr>
+<td style="text-align:center">显卡</td>
+<td style="text-align:center">Zotac GTX 1080 Founders Edition</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">$761.24</td>
+<td style="text-align:center">Amazon 新</td>
+</tr>
+<tr>
+<td style="text-align:center">电源</td>
+<td style="text-align:center">EVGA 1600W 80+ Gold 120-G2-1600-X1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">$241.74</td>
+<td style="text-align:center">eBay二手</td>
+</tr>
+<tr>
+<td style="text-align:center">SSD</td>
+<td style="text-align:center">Samsung SM951 256GB M.2 NVMe MZVPV256HDGL</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">$129.5</td>
+<td style="text-align:center">eBay二手</td>
+</tr>
+<tr>
+<td style="text-align:center">机械硬盘</td>
+<td style="text-align:center">WD Green 4TB</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">$162.36</td>
+<td style="text-align:center">Amazon新</td>
+</tr>
+</tbody>
+</table>
+<p>总计：$2661.13</p>
+<p>以上价格已经包含了税。</p>
+<p>这个配置单基本齐全了，唯一还没有到位的是GPU显卡了，目前只有一块 GTX 1080。我打算等一年后 GTX 1080 有二手货了，再收3块二手的，这样就全了。</p>
+<p>接下来一项一项详细说明我为什么这么选择，展示我的决策过程。</p>
+<a id="more"></a>
+<h3 id="机箱"><a href="#机箱" class="headerlink" title="机箱"></a>机箱</h3><p>直接选跟 Nvidia DevBox 同款的机箱，即 Corsair Carbide Air 540</p>
+<h3 id="主板"><a href="#主板" class="headerlink" title="主板"></a>主板</h3><p>硬性要求：</p>
+<ol>
+<li>X99平台</li>
+<li>四个 PCI-E Gen3 x16 接口</li>
+</ol>
+<p>众所周知单机多卡进行训练时，总线带宽是瓶颈，所以主板有越多的PCI-e 3.0 接口越好，可以尽可能把显卡的性能发挥出来。计划上四块 GTX 1080，那么至少需要四路 PCI-e 3.0 的 x16 接口。</p>
+<p>Nvidia DevBox 用的是 Asus X99-E WS 工作站主板，那我也在X99 主板里选了很久，</p>
+<p>这三块板子都有 4路 PCI-e 3.0 x16 接口，</p>
+<ul>
+<li>Asus X99-E WS</li>
+<li>Asus X99-E WS/USB 3.1</li>
+<li>技嘉 GA-X99P-SLI</li>
+</ul>
+<p>当时我还请教了一下 <a href="http://weibo.com/1775948951/DESoMxdRf" target="_blank" rel="external">@硬哥</a> ，问上四块 GTX 1080 显卡的话，用哪个主板好，</p>
+<p><img src="/images/weibo-which-motherboard.png" alt=""></p>
+<p>华硕 X99-E WS/USB 3.1 是 Asus X99-E WS 的新版，本着买新不买旧的原则，那就买  Asus  X99-E WS/USB 3.1 吧。</p>
+<h3 id="CPU"><a href="#CPU" class="headerlink" title="CPU"></a>CPU</h3><p>众所周知单机多卡进行训练时，总线带宽是瓶颈，所以 CPU 的 PCI-e  lane 越多越好，一般消费级的CPU，PCI-e总线根数是 16, 28 或 40，最大就是40，再大就需要上服务器CPU或者双路CPU了。选40， 这个条件下，有两款 CPU 入围，I7-5930K和 I7-5960X, 5860X太贵了，一般机器学习训练中CPU不是瓶颈，所以选 5930K就可以了，这也是 Nvidia 官方推出的 DevBox 工作站所使用的CPU。</p>
+<p>在知乎上看到不少人用 I7-5820K，这个CPU虽然很不错，可是只有 28条 PCI-e总线，所以还是加几百块钱上 5930k比较好。</p>
+<h3 id="CPU水冷头"><a href="#CPU水冷头" class="headerlink" title="CPU水冷头"></a>CPU水冷头</h3><p>其实普通的风扇就可以了，不过水冷更加安静些，所以我选择了一个便宜的 Corsair H60 Cooler ，够用了。</p>
+<h3 id="内存"><a href="#内存" class="headerlink" title="内存"></a>内存</h3><p>DDR4 64G</p>
+<p>再大就没必要了，李沐的这篇博客<a href="http://mli.github.io/gpu/2016/01/17/build-gpu-clusters/" target="_blank" rel="external">GPU集群折腾手记</a>  末尾有说到过，单机4卡的机器，64G内存绰绰有余了。</p>
+<p>况且消费级的I7 CPU，最大支持内存就是 64G。</p>
+<h3 id="显卡"><a href="#显卡" class="headerlink" title="显卡"></a>显卡</h3><p>这个最好选，GTX 1080</p>
+<p>最新出来的 GTX 1080 吊打 Maxwell 架构的 Titan , 价钱又便宜很多，所以显卡最好选。</p>
+<h3 id="电源"><a href="#电源" class="headerlink" title="电源"></a>电源</h3><p>一般 Nvidia 的旗舰显卡，功耗都是压着 300W的线的，四卡就 1200W了，加上主板，CPU等耗电，选一个 1600W的电源吧。</p>
+<p>Nvidia DevBox 用的是 EVGA 1600W 80+ Gold 120-G2-1600-X1 ，那我也用它吧。</p>
+<h3 id="SSD"><a href="#SSD" class="headerlink" title="SSD"></a>SSD</h3><p>起码需要一块SSD作为系统盘。</p>
+<p>当前 SATA III 接口的SSD最普遍也最便宜，不过由于 Asus X99-E WS/USB 3.1 恰好有一个 M.2 接口，我决定买一个 M.2 NVMe 的SSD，不用就浪费了主板的这个接口了。在 eBay 上买了一块二手的 Samsung SM951 256GB M.2 NVMe MZVPV256HDGL 。</p>
+<h3 id="机械硬盘"><a href="#机械硬盘" class="headerlink" title="机械硬盘"></a>机械硬盘</h3><p>随便选，我选择最便宜的绿盘。</p>
+<h3 id="一些波折"><a href="#一些波折" class="headerlink" title="一些波折"></a>一些波折</h3><p>等了一个月终于凑齐了所有配件后，兴奋的开始装机，装完了后发现死活点不亮，<a href="http://weibo.com/1663402687/E1vrO4VFn" target="_blank" rel="external">http://weibo.com/1663402687/E1vrO4VFn</a></p>
+<p><img src="/images/weibo-cannot-boot.png" alt=""></p>
+<p>尼玛，浪费了我2天时间在各种诊断，甚至一度怀疑自己的装机能力一直到怀疑人生。。。</p>
+<p>只好把主板和CPU退货了，又在 eBay上竞拍了一个二手 I7-5930K，这是 eBay 上的 Asus X99-E WS/USB 3.1 竟然没有二手货了，Amazon 也没有二手货，只有一个 refurbishment , 不敢买，只要在 Amazon 买了个全新的主板。</p>
+<p>等了一周多，今天终于齐了，可以开机进入操作系统了。不过有个小问题，按机箱上的开机键，没有反应，必须打开机箱按主板上的那个开机键。当时我内心是崩溃的，不可能每次开机需要打开机箱吧，那多烦啊。于是开始诊断，先用一根金属棒让 POWSER_SW 的两根针脚短路，可以开机，说明主板的POWSER_SW的两根针脚是好的，那么唯一的原因，就是机箱上的开机键不灵了，我打开机箱，把开机键后面焊接的细线按了几下，再开机，机箱上的开机键起作用了。可能是接触不良吧，我也没有深究了，盖上了机箱盖。</p>
+<h2 id="一些配置和-tunning"><a href="#一些配置和-tunning" class="headerlink" title="一些配置和 tunning"></a>一些配置和 tunning</h2><p>打开了TPU，EPU,DR.POWER , EZ_XMP四个开关，TPU推到了中间的 TPU I， 没敢到最右边的 TPU II</p>
+<p>GTX 1080 要插到 PCIE 1,3,5,7的位置上，这几个插槽是X16模式的，其他是x8模式的</p>
+<p>后续：</p>
+<p><a href="http://cn.soulmachine.me/2016-08-14-dual-install-windows-ubuntu/">安装 Windows 10 和 Ubuntu 16.04 双系统</a><br><a href="http://cn.soulmachine.me/2016-08-17-deep-learning-cuda-development-environment/">深度学习开发环境配置：Ubuntu1 6.04+Nvidia GTX 1080+CUDA 8.0</a></p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ol>
+<li><a href="https://developer.nvidia.com/devbox" target="_blank" rel="external">Nvidia DevBox</a></li>
+<li><a href="https://hackaday.io/project/12070-32-tflop-deep-learning-gpu-box" target="_blank" rel="external">32-TFLOP Deep Learning GPU Box - hackaday</a></li>
+<li><a href="https://www.zhihu.com/question/33996159" target="_blank" rel="external">如何配置一台适用于深度学习的工作站？- 知乎</a></li>
+<li><a href="http://exxactcorp.com/deep-learning-workstations-servers.php" target="_blank" rel="external">Exxact Deep Learning Workstation</a></li>
+<li><a href="http://mli.github.io/gpu/2016/01/17/build-gpu-clusters/" target="_blank" rel="external">GPU集群折腾手记 - 李沐</a></li>
+</ol>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/深度学习/" rel="tag">#深度学习</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2014-08-06-install-scikit-learn-with-python3/" rel="next" title="安装基于Python3 的NumPy, SciPy和Scikit-Learn">
+                <i class="fa fa-chevron-left"></i> 安装基于Python3 的NumPy, SciPy和Scikit-Learn
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016-08-14-dual-install-windows-ubuntu/" rel="prev" title="安装 Windows 10 和 Ubuntu 16.04 双系统">
+                安装 Windows 10 和 Ubuntu 16.04 双系统 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016-08-13-my-deep-learning-workstation-assemble-process-note/"
+           data-title="我的深度学习工作站攒机过程记录" data-url="http://cn.soulmachine.me/2016-08-13-my-deep-learning-workstation-assemble-process-note/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://tva2.sinaimg.cn/crop.4.536.2038.2038.180/632582bfgw1f31kbqdasbj21kw23uhdt.jpg"
+               alt="soulmachine" />
+          <p class="site-author-name" itemprop="name">soulmachine</p>
+          <p class="site-description motion-element" itemprop="description">一些技术笔记</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">56</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/soulmachine" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/soulmachine" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/soulmachine" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/soulmachine" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-block">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.liancheng.info/" title="连城" target="_blank">连城</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://yewen.us/" title="笨狗随手留下" target="_blank">笨狗随手留下</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.rational.so/" title="阎栋" target="_blank">阎栋</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.parallellabs.com/" title="并行实验室" target="_blank">并行实验室</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.javachen.com/" title="JavaChen" target="_blank">JavaChen</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://shenfeng.me/" title="沈峰" target="_blank">沈峰</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.lihaipeng.info/" title="李海鹏" target="_blank">李海鹏</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.chioka.in/" title="Eric" target="_blank">Eric</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/lgnlgn" title="梁兄的技术博客" target="_blank">梁兄的技术博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.doesbetter.com/" title="王孝舒的博客" target="_blank">王孝舒的博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.foreverlee.net/" title="ForeverLee" target="_blank">ForeverLee</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.cnblogs.com/yuzhangcmu/" title="CMU张宇" target="_blank">CMU张宇</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#硬件配置单"><span class="nav-number">1.</span> <span class="nav-text">硬件配置单</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#结论"><span class="nav-number">1.1.</span> <span class="nav-text">结论</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#机箱"><span class="nav-number">1.2.</span> <span class="nav-text">机箱</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#主板"><span class="nav-number">1.3.</span> <span class="nav-text">主板</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CPU"><span class="nav-number">1.4.</span> <span class="nav-text">CPU</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CPU水冷头"><span class="nav-number">1.5.</span> <span class="nav-text">CPU水冷头</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内存"><span class="nav-number">1.6.</span> <span class="nav-text">内存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#显卡"><span class="nav-number">1.7.</span> <span class="nav-text">显卡</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#电源"><span class="nav-number">1.8.</span> <span class="nav-text">电源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SSD"><span class="nav-number">1.9.</span> <span class="nav-text">SSD</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#机械硬盘"><span class="nav-number">1.10.</span> <span class="nav-text">机械硬盘</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一些波折"><span class="nav-number">1.11.</span> <span class="nav-text">一些波折</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一些配置和-tunning"><span class="nav-number">2.</span> <span class="nav-text">一些配置和 tunning</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">3.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">soulmachine</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"soulmachine"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+
+</body>
+</html>

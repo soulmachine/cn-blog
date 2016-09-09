@@ -1,0 +1,783 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="机器学习, 深度学习, 人工智能" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="环境: Windows 7, VMware Workstation 10.0.2, Mac OS X 10.9 Mavericks
+本文主要参考了这篇英文博客，Working OS X 10.9 Mavericks VMware Image For Windows OS and Intel Processor
+前提条件：确保你的电脑支持VT-x技术，并在BIOS里启用它。
+##1. 下载别人做好的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在Windows上直接使用现成的 OS X 10.9 Mavericks VMware镜像">
+<meta property="og:url" content="http://cn.soulmachine.me/2014-04-24-working-os-x-10-dot-9-mavericks-vmware-image-for-windows-os/index.html">
+<meta property="og:site_name" content="灵魂机器">
+<meta property="og:description" content="环境: Windows 7, VMware Workstation 10.0.2, Mac OS X 10.9 Mavericks
+本文主要参考了这篇英文博客，Working OS X 10.9 Mavericks VMware Image For Windows OS and Intel Processor
+前提条件：确保你的电脑支持VT-x技术，并在BIOS里启用它。
+##1. 下载别人做好的">
+<meta property="og:image" content="http://cn.soulmachine.me/images/before-unlocker.png">
+<meta property="og:image" content="http://cn.soulmachine.me/images/after-unlocker.png">
+<meta property="og:image" content="http://cn.soulmachine.me/images/mount-vmware-tools.png">
+<meta property="og:updated_time" content="2016-08-18T09:21:04.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="在Windows上直接使用现成的 OS X 10.9 Mavericks VMware镜像">
+<meta name="twitter:description" content="环境: Windows 7, VMware Workstation 10.0.2, Mac OS X 10.9 Mavericks
+本文主要参考了这篇英文博客，Working OS X 10.9 Mavericks VMware Image For Windows OS and Intel Processor
+前提条件：确保你的电脑支持VT-x技术，并在BIOS里启用它。
+##1. 下载别人做好的">
+<meta name="twitter:image" content="http://cn.soulmachine.me/images/before-unlocker.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 在Windows上直接使用现成的 OS X 10.9 Mavericks VMware镜像 | 灵魂机器 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?259b539fcd8cab18ad0a6deb98ac2046";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">灵魂机器</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">终有一天机器也有灵魂</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                在Windows上直接使用现成的 OS X 10.9 Mavericks VMware镜像
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2014-04-24T21:58:00+00:00" content="2014-04-24">
+              2014-04-24
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/DevOps/" itemprop="url" rel="index">
+                    <span itemprop="name">DevOps</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2014-04-24-working-os-x-10-dot-9-mavericks-vmware-image-for-windows-os/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014-04-24-working-os-x-10-dot-9-mavericks-vmware-image-for-windows-os/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>环境: Windows 7, VMware Workstation 10.0.2, Mac OS X 10.9 Mavericks</p>
+<p>本文主要参考了这篇英文博客，<a href="http://www.sysprobs.com/working-os-x-10-9-mavericks-vmware-image-for-windows-os-intel-processor" target="_blank" rel="external">Working OS X 10.9 Mavericks VMware Image For Windows OS and Intel Processor</a></p>
+<p><strong>前提条件</strong>：确保你的电脑支持<code>VT-x</code>技术，并在BIOS里启用它。</p>
+<p>##1. 下载别人做好的镜像<br>由于版权原因，这篇英文博客的作者不再提供下载地址了，不过google一下 “OS X Mavericks 10.9 Retail VMware Image”，可以在海盗湾找到种子，<a href="http://thepiratebay.se/torrent/9012642/OS_X_Mavericks_10.9_Retail_VMware_Image" target="_blank" rel="external">这里</a>。用迅雷或BT客户端下载。还有一种用更快速的下载方法，用百度网盘的离线下载，把magnet链接复制粘贴到百度网盘，等百度网盘下载好了后，再用百度管家客户端下载下来。</p>
+<p>这个文件夹里，只有<code>OS X Mavericks 10.9 Retail VMware Image.7z</code>是有用的额，其他小工具可以分别去下载最新的版本。</p>
+<p>这个镜像就是别人制作好的“懒人版”，Google 搜索”OS X Mavericks VMware 懒人版”或”OS X Mavericks VMware 整合驱动版”，还可以搜到很多。</p>
+<p>##2. 给 VMware Workstation 打补丁<br>Windows上的VMware Workstation在安装操作系统时不支持 Mac OS X，但 VMware Fusin(VMware Workstation在Mac上的等价物，叫做 VMware Fusion)是支持了，这两个软件基本是统一软件在不同操作系统上的版本，按道理VMware Workstation也支持Mac OS X，事实上的确如此，只需要给VMware Workstation打一个补丁，就可以支持Mac OS X了。</p>
+<p>补丁名字叫做VMware Unlocker for OS X，在<a href="http://www.insanelymac.com/forum/files/file/20-vmware-unlocker-for-os-x/" target="_blank" rel="external">这里下载</a>。</p>
+<p>下载完后，解压，浏览到<code>windows</code>，以管理员权限执行 <code>install.cmd</code>，然后启动VMware Workstation，就可以看到变化了。</p>
+<a id="more"></a>
+<p>打补丁之前，</p>
+<p><img src="/images/before-unlocker.png" alt=""></p>
+<p>打补丁之后。</p>
+<p><img src="/images/after-unlocker.png" alt=""></p>
+<p>##3. 启动虚拟机<br>解压 <code>OS X Mavericks 10.9 Retail VMware Image.7z</code>，双击<code>.vmx</code>文件，就可以打开虚拟机了。</p>
+<p>在启动虚拟机之前，你可以修改一下虚拟机的设置，例如提高内存到4GB，设置CPU核数为2，视你的电脑硬件配置而定。</p>
+<p>启动虚拟机后，要做一些设置，例如键盘，icloud账户，设置密码等等。</p>
+<p>##4. 安装VMware Tools<br>VMware Tools for OS X最新版来自 <a href="http://softwareupdate.vmware.com/cds/vmw-desktop/fusion/" target="_blank" rel="external">http://softwareupdate.vmware.com/cds/vmw-desktop/fusion/</a> ，当前最新版是 6.0.3。下载<code>com.vmware.fusion.tools.darwin.zip.tar</code> ，解压出里面的 <code>darwin.iso</code> ，然后 mount 到 Mac OS X 虚拟机，一定要勾选”已连接”，然后 Mac OS X 虚拟机会自动弹出安装对话框。</p>
+<p><img src="/images/mount-vmware-tools.png" alt=""></p>
+<p>##5. 安装显卡驱动<br>点击全屏菜单，发现Mac OS X 虚拟机不能这是由于没有显卡驱动。去<a href="http://sourceforge.net/projects/vmsvga2/" target="_blank" rel="external">vmsvga2官网</a> 下载<code>VMsvga2_v1.2.5_OS_10.9.pkg</code>(显卡驱动)和<code>guestd_patches.pkg</code>(自动调整分辨率补丁)，然后安装，重启，再试试全屏，发现可以了。</p>
+<p>##6. 更新软件，关机并压缩打包<br>点击左上角的苹果图标，选择”Software update”，更新所有，就会从 10.9 更新到 10.9.2。然后关机，用7z将整个虚拟机文件夹压缩成一个压缩包。</p>
+<p>可以将这个压缩包共享给别人，也可以作为一个备份，一旦虚拟机装新软件或其它操作弄坏了，可以从这个压缩包解压，以这个镜像为起点，重新开始，而不用从零重新开始。</p>
+<p>##参考资料</p>
+<ol>
+<li><a href="http://www.sysprobs.com/working-os-x-10-9-mavericks-vmware-image-for-windows-os-intel-processor" target="_blank" rel="external">Working OS X 10.9 Mavericks VMware Image For Windows OS and Intel Processor</a></li>
+<li><a href="http://www.rshining.net/2013/10/%E8%B6%85%E8%AF%A6%E7%BB%86vmware-workstation-10%E5%AE%89%E8%A3%85os-x-mavericks/" target="_blank" rel="external">超详细VMware Workstation 10安装OS X Mavericks</a></li>
+</ol>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2014-04-03-caffe-installation/" rel="next" title="Caffe 安装配置(CentOS + 无GPU)">
+                <i class="fa fa-chevron-left"></i> Caffe 安装配置(CentOS + 无GPU)
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2014-08-06-install-scikit-learn-with-python3/" rel="prev" title="安装基于Python3 的NumPy, SciPy和Scikit-Learn">
+                安装基于Python3 的NumPy, SciPy和Scikit-Learn <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2014-04-24-working-os-x-10-dot-9-mavericks-vmware-image-for-windows-os/"
+           data-title="在Windows上直接使用现成的 OS X 10.9 Mavericks VMware镜像" data-url="http://cn.soulmachine.me/2014-04-24-working-os-x-10-dot-9-mavericks-vmware-image-for-windows-os/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://tva2.sinaimg.cn/crop.4.536.2038.2038.180/632582bfgw1f31kbqdasbj21kw23uhdt.jpg"
+               alt="soulmachine" />
+          <p class="site-author-name" itemprop="name">soulmachine</p>
+          <p class="site-description motion-element" itemprop="description">一些技术笔记</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">56</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/soulmachine" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/soulmachine" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/soulmachine" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/soulmachine" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-block">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.liancheng.info/" title="连城" target="_blank">连城</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://yewen.us/" title="笨狗随手留下" target="_blank">笨狗随手留下</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.rational.so/" title="阎栋" target="_blank">阎栋</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.parallellabs.com/" title="并行实验室" target="_blank">并行实验室</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.javachen.com/" title="JavaChen" target="_blank">JavaChen</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://shenfeng.me/" title="沈峰" target="_blank">沈峰</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.lihaipeng.info/" title="李海鹏" target="_blank">李海鹏</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.chioka.in/" title="Eric" target="_blank">Eric</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/lgnlgn" title="梁兄的技术博客" target="_blank">梁兄的技术博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.doesbetter.com/" title="王孝舒的博客" target="_blank">王孝舒的博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.foreverlee.net/" title="ForeverLee" target="_blank">ForeverLee</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.cnblogs.com/yuzhangcmu/" title="CMU张宇" target="_blank">CMU张宇</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">soulmachine</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"soulmachine"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+
+</body>
+</html>

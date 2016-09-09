@@ -1,0 +1,2116 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="机器学习, 深度学习, 人工智能" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="一些技术笔记">
+<meta property="og:type" content="website">
+<meta property="og:title" content="灵魂机器">
+<meta property="og:url" content="http://cn.soulmachine.me/page/2/index.html">
+<meta property="og:site_name" content="灵魂机器">
+<meta property="og:description" content="一些技术笔记">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="灵魂机器">
+<meta name="twitter:description" content="一些技术笔记">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 灵魂机器 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?259b539fcd8cab18ad0a6deb98ac2046";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left 
+   page-home 
+ ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">灵魂机器</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">终有一天机器也有灵魂</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+  <section id="posts" class="posts-expand">
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2014-02-06-hadoop-multiple-users/" itemprop="url">
+                  Hadoop多用户的配置(Hadoop 2.x)
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2014-02-06T10:05:00Z" content="2014-02-06">
+              2014-02-06
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Hadoop/" itemprop="url" rel="index">
+                    <span itemprop="name">Hadoop</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2014-02-06-hadoop-multiple-users/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014-02-06-hadoop-multiple-users/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>假设我们以名为hadoop的用户，建好了集群，见<a href="http://www.yanjiuyanjiu.com/blog/20140205/">在CentOS上安装Hadoop 2.x 集群</a>。通常，我们会把这个集群共享给多个用户，而不是让大家都登录为hadoop，这样做有几个好处：</p>
+<ul>
+<li>一个用户不能修改另一个用户的的文件</li>
+<li>在hadoop web管理页面，可以很方便的看到不同的用户的job</li>
+</ul>
+<p>现在集群中有一台机器，上面有一个用户名为 hbase 的用户，他想要使用hadoop集群，怎么配置呢？</p>
+<p>##1. 安装hadoop客户端</p>
+<p>###1.1 下载，解压<br>下载跟hadoop集群一样的hadoop软件包，并解压，</p>
+<pre><code>$ wget http://mirrors.hust.edu.cn/apache/hadoop/common/hadoop-2.2.0/hadoop-2.2.0.tar.gz
+$ tar -zxf hadoop-2.2.0.tar.gz -C ~/local/opt
+$ cd ~/local/opt/hadoop-2.2.0
+</code></pre><p>###1.2 拷贝Hadoop集群的配置文件<br>将Hadoop集群的配置文件全部拷贝到客户端，相当与把集群的信息告诉客户端。</p>
+<pre><code>$ scp -r hadoop@localhost:~/local/opt/hadoop-2.2.0/etc/hadoop ./etc/
+</code></pre><p>修改conf/mapred-site.xml中的<code>mapreduce.cluster.local.dir</code>，改为本机上的某个目录，确保这个目录存在且有写权限。因为这个目录是本地目录，每台机器都可以不同。例如我的是：</p>
+<pre><code>&lt;property&gt;
+  &lt;name&gt;mapreduce.cluster.local.dir&lt;/name&gt;
+  &lt;value&gt;/home/soulmachine/local/var/hadoop/mapred/local&lt;/value&gt;
+&lt;/property&gt;
+</code></pre><p>确保这个目录存在，</p>
+<pre><code>$ mkdir -p ~/local/var/hadoop/mapred/local
+</code></pre>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2014-02-06-hadoop-multiple-users/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2014-02-05-hadoop-2-installatioin-on-centos/" itemprop="url">
+                  在CentOS上安装Hadoop 2.x 集群
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2014-02-05T12:39:00Z" content="2014-02-05">
+              2014-02-05
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Hadoop/" itemprop="url" rel="index">
+                    <span itemprop="name">Hadoop</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2014-02-05-hadoop-2-installatioin-on-centos/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014-02-05-hadoop-2-installatioin-on-centos/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p><strong>环境</strong>：CentOS 6.5, OPenJDK 1.7, Hadoop 2.2.0</p>
+<p>本文主要参考官网的文档，<a href="http://hadoop.apache.org/docs/r2.2.0/hadoop-project-dist/hadoop-common/SingleCluster.html">Hadoop 2.2.0 Single Node Setup</a>， <a href="http://hadoop.apache.org/docs/r2.2.0/hadoop-project-dist/hadoop-common/ClusterSetup.html">Hadoop 2.2.0  Cluster Setup</a></p>
+<p>##（可选）创建新用户<br>一般我倾向于把需要启动daemon进程，对外提供服务的程序，简单的说，就是服务器类程序，安装在单独的用户下面。这样可以做到隔离，运维方面，安全性也提高了。</p>
+<p>创建一个新的group,</p>
+<pre><code>$ sudo groupadd hadoop
+</code></pre><p>创建一个新的用户，并加入group,</p>
+<pre><code>$ sudo useradd -g hadoop hadoop
+</code></pre><p>给新用户设置密码，</p>
+<pre><code>$ sudo passwd hadoop
+</code></pre><p>##1 伪分布式模式(Pseudo-Distributed Mode)<br>Hadoop能在单台机器上以伪分布式模式运行，即每个Hadoop模块运行在单独的java进程里。</p>
+<p>###1.1 设置SSH无密码登录localhost<br>先检查一下是能够无密码登录本机，</p>
+<pre><code>ssh localhost
+</code></pre><p>如果提示输入密码，说明不能，按如下步骤设置。</p>
+<pre><code>$ ssh-keygen -t dsa -P &apos;&apos; -f ~/.ssh/id_dsa 
+$ cat ~/.ssh/id_dsa.pub &gt;&gt; ~/.ssh/authorized_keys
+</code></pre><p>###1.2 下载已经编译好的二进制包，解压<br>用浏览器下载或wget,</p>
+<pre><code>$ wget http://mirrors.hust.edu.cn/apache/hadoop/common/hadoop-2.2.0/hadoop-2.2.0.tar.gz
+$ tar -zxf hadoop-2.2.0.tar.gz -C ~/local/opt
+$ cd ~/local/opt/hadoop-2.2.0
+</code></pre><p>###1.3 设置环境变量</p>
+<pre><code>$ vim ~/.bashrc
+export HADOOP_PREFIX=$HOME/local/opt/hadoop-2.2.0
+export HADOOP_COMMON_HOME=$HADOOP_PREFIX
+export HADOOP_HDFS_HOME=$HADOOP_PREFIX
+export HADOOP_MAPRED_HOME=$HADOOP_PREFIX
+export HADOOP_YARN_HOME=$HADOOP_PREFIX
+export HADOOP_CONF_DIR=$HADOOP_PREFIX/etc/hadoop
+export PATH=$PATH:$HADOOP_PREFIX/bin:$HADOOP_PREFIX/sbin
+</code></pre>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2014-02-05-hadoop-2-installatioin-on-centos/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2014-02-04-running-nutch-on-hadoop-cluster/" itemprop="url">
+                  把Nutch爬虫部署到Hadoop集群上
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2014-02-04T22:36:00Z" content="2014-02-04">
+              2014-02-04
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Search-Engine/" itemprop="url" rel="index">
+                    <span itemprop="name">Search-Engine</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2014-02-04-running-nutch-on-hadoop-cluster/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014-02-04-running-nutch-on-hadoop-cluster/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>软件版本：Nutch 1.7, Hadoop 1.2.1, CentOS 6.5, JDK 1.7</p>
+<p>前面的3篇文章中，<a href="http://www.yanjiuyanjiu.com/blog/20140121">Nutch 快速入门(Nutch 1.7)</a>，<a href="http://www.yanjiuyanjiu.com/blog/20140201">Nutch 快速入门(Nutch 2.2.1)</a>，<a href="http://www.yanjiuyanjiu.com/blog/20140120">在Eclipse里运行Nutch</a>，Nutch都是跑在单机上，本文把Nutch部署到Hadoop集群上，在真正的分布式Hadoop集群上跑。</p>
+<p>##前提</p>
+<ul>
+<li>学会了搭建一个分布式Hadoop集群，见<a href="http://www.yanjiuyanjiu.com/blog/20140202">在CentOS上安装Hadoop集群</a></li>
+<li>学会了单机跑Nutch，见<a href="http://www.yanjiuyanjiu.com/blog/20140121">Nutch 快速入门(Nutch 1.7)</a></li>
+</ul>
+<p>##1 启动Hadoop集群<br>伪分布式或真分布式的Hadoop集群都可以，无所谓。</p>
+<p>选择一台配置好了的Hadoop客户端的机器（见<a href="http://www.yanjiuyanjiu.com/blog/20140203">Hadoop多用户的配置</a>），作为客户机，以下操作均在这台客户机上进行。</p>
+<p>##2 下载Nutch源码<br>有两种方法，</p>
+<ol>
+<li>去官网首页下载apache-nutch-1.7-src.tar.gz</li>
+<li><p>用svn checkout</p>
+<pre><code>$ svn co https://svn.apache.org/repos/asf/nutch/tags/release-1.7
+</code></pre></li>
+</ol>
+<p>##3 把Hadoop的6个配置文件拷贝到Nutch的conf/目录<br>将Hadoop的六个配置文件，拷贝到Nutch的conf/目录，相当于把Hadoop集群的配置信息告诉Nutch，</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2014-02-04-running-nutch-on-hadoop-cluster/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2014-02-03-hadoop-multiple-users/" itemprop="url">
+                  Hadoop多用户的配置(Hadoop 1.x)
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2014-02-03T10:05:00Z" content="2014-02-03">
+              2014-02-03
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Hadoop/" itemprop="url" rel="index">
+                    <span itemprop="name">Hadoop</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2014-02-03-hadoop-multiple-users/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014-02-03-hadoop-multiple-users/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>假设我们以名为hadoop的用户，建好了集群，见<a href="http://www.yanjiuyanjiu.com/blog/20140202">在CentOS上安装Hadoop集群</a>。通常，我们会把这个集群共享给多个用户，而不是让大家都登录为hadoop，这样做有几个好处：</p>
+<ul>
+<li>一个用户不能修改另一个用户的的文件</li>
+<li>在hadoop web管理页面，可以很方便的看到不同的用户的job</li>
+</ul>
+<p>现在集群中有一台机器，上面有一个用户名为 hbase 的用户，他想要使用hadoop集群，怎么配置呢？</p>
+<p>##1. 安装hadoop客户端</p>
+<p>###1.1 下载，解压<br>下载跟hadoop集群一样的hadoop软件包，并解压，</p>
+<pre><code>$ wget http://mirror.olnevhost.net/pub/apache/hadoop/common/stable1/hadoop-1.2.1-bin.tar.gz
+$ tar -zxf hadoop-1.2.1-bin.tar.gz -C ~/local/opt
+$ cd ~/local/opt/hadoop-1.2.1
+</code></pre><p>###1.2 配置<br>在客户端只需配置集群namenode 和 jobtracker 的相关信息, 把namenode和jobtracker的信息告诉客户端即可。</p>
+<p>把hadoop用户下的<code>conf/core-site.xml</code>和<code>conf/mapred-site.xml</code>拷贝到本用户的conf/目录下</p>
+<pre><code>$ scp hadoop@localhost:~/local/opt/hadoop-1.2.1/conf/core-site.xml ./conf/
+$ scp hadoop@localhost:~/local/opt/hadoop-1.2.1/conf/mapred-site.xml ./conf/
+</code></pre><p>修改conf/mapred-site.xml中的<code>mapred.local.dir</code>，改为本机上的某个目录，确保这个目录存在且有写入。因为这个目录是本地目录，每台机器都可以不同。例如我的是：</p>
+<pre><code>&lt;property&gt;
+  &lt;name&gt;mapred.local.dir&lt;/name&gt;
+  &lt;value&gt;/home/soulmachine/local/var/hadoop/mapred/local&lt;/value&gt;
+&lt;/property&gt;
+</code></pre><p>确保这个目录存在，</p>
+<pre><code>$ mkdir -p ~/local/var/hadoop/mapred/local
+</code></pre>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2014-02-03-hadoop-multiple-users/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2014-02-02-hadoop-installatioin-on-centos/" itemprop="url">
+                  在CentOS上安装Hadoop集群
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2014-02-02T12:39:00Z" content="2014-02-02">
+              2014-02-02
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Hadoop/" itemprop="url" rel="index">
+                    <span itemprop="name">Hadoop</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2014-02-02-hadoop-installatioin-on-centos/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014-02-02-hadoop-installatioin-on-centos/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>Ubuntu上安装，请参考我的另一篇博客，<a href="http://www.yanjiuyanjiu.com/blog/20120103/">在Ubuntu上安装Hadoop</a>。</p>
+<p><strong>环境</strong>：CentOS 6.5, OPenJDK 1.7, Hadoop 1.2.1</p>
+<p>本文主要参考官网的文档，<a href="http://hadoop.apache.org/docs/r1.2.1/#Getting+Started">Hadoop 1.2.1 Getting Started</a></p>
+<p>##1 单机模式(Standalone Mode)<br>为了能顺利安装成功，我们先练习在单台机器上安装Hadoop。在单台机器上，可以配置成单机模式(Standalone Mode)和伪分布式模式(Pseudo-Distributed Mode)，参考官方文档<a href="http://hadoop.apache.org/docs/r1.2.1/single_node_setup.html">Single Node Setup</a>。</p>
+<p>###1.1 下载Hadoop 1.2.1，解压<br>用浏览器下载或wget,</p>
+<pre><code>$ wget http://mirror.olnevhost.net/pub/apache/hadoop/common/stable1/hadoop-1.2.1-bin.tar.gz
+$ tar -zxf hadoop-1.2.1-bin.tar.gz -C ~/local/opt
+$ cd ~/local/opt/hadoop-1.2.1
+</code></pre><p>###1.2 编辑 conf/hadoop-env.sh，设置 <code>JAVA_HOME</code></p>
+<pre><code>$ echo $JAVA_HOME
+/usr/lib/jvm/java
+$ vim conf/hadoop-env.sh
+</code></pre><p>取消<code>JAVA_HOME</code>那一行的注释，设置正确的JDK位置</p>
+<pre><code>export JAVA_HOME=/usr/lib/jvm/java
+</code></pre><p>###1.3 运行一个job<br>默认情况下，Hadoop就被配置为Standalone模式了，此时Hadoop的所有模块都运行在一个java进程里。</p>
+<p>我们运行一个例子测试一下。下面的几行命令，把 <code>conf</code>下的所有xml文件作为输入，在文件中查找指定的正则表达式，把匹配的结果输出到<code>output</code>目录。</p>
+<pre><code>$ mkdir input 
+$ cp conf/*.xml input 
+$ bin/hadoop jar hadoop-examples-*.jar grep input output &apos;dfs[a-z.]+&apos; 
+$ cat output/*
+</code></pre><p>可以看到正常的结果，说明单机模式运行成功了，下面开始配置伪分布式模式。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2014-02-02-hadoop-installatioin-on-centos/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2014-02-01-nutch-tutorial/" itemprop="url">
+                  Nutch 快速入门(Nutch 2.2.1)
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2014-02-01T04:11:00Z" content="2014-02-01">
+              2014-02-01
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Search-Engine/" itemprop="url" rel="index">
+                    <span itemprop="name">Search-Engine</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2014-02-01-nutch-tutorial/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014-02-01-nutch-tutorial/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>本文主要参考<a href="http://wiki.apache.org/nutch/Nutch2Tutorial">Nutch 2.x Tutorial</a></p>
+<p>Nutch 2.x 与 Nutch 1.x 相比，剥离出了存储层，放到了gora中，可以使用多种数据库，例如HBase, Cassandra, MySql来存储数据了。Nutch 1.7 则是把数据直接存储在HDFS上。</p>
+<p>##1. 安装并运行HBase<br>为了简单起见，使用Standalone模式，参考 <a href="http://hbase.apache.org/book/quickstart.html">HBase Quick start</a></p>
+<p>###1.1 下载，解压</p>
+<pre><code>wget http://archive.apache.org/dist/hbase/hbase-0.90.4/hbase-0.90.4.tar.gz
+tar zxf hbase-0.90.4.tar.gz
+</code></pre><p>###1.2 修改 conf/hbase-site.xml<br>内容如下</p>
+<pre><code>&lt;configuration&gt;
+  &lt;property&gt;
+    &lt;name&gt;hbase.rootdir&lt;/name&gt;
+    &lt;value&gt;file:///DIRECTORY/hbase&lt;/value&gt;
+  &lt;/property&gt;
+  &lt;property&gt;
+    &lt;name&gt;hbase.zookeeper.property.dataDir&lt;/name&gt;
+    &lt;value&gt;/DIRECTORY/zookeeper&lt;/value&gt;
+  &lt;/property&gt;
+&lt;/configuration&gt;
+</code></pre><p><code>hbase.rootdir</code>目录是用来存放HBase的相关信息的，默认值是<code>/tmp/hbase-${user.name}/hbase</code>； <code>hbase.zookeeper.property.dataDir</code>目录是用来存放zookeeper（HBase内置了zookeeper）的相关信息的，默认值是<code>/tmp/hbase-${user.name}/zookeeper</code>。</p>
+<p>###1.3 启动</p>
+<pre><code>$ ./bin/start-hbase.sh
+starting Master, logging to logs/hbase-user-master-example.org.out
+</code></pre>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2014-02-01-nutch-tutorial/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2014-01-31-install-uek-for-centos/" itemprop="url">
+                  给CentOS安装UEK内核
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2014-01-31T22:05:00Z" content="2014-01-31">
+              2014-01-31
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/DevOps/" itemprop="url" rel="index">
+                    <span itemprop="name">DevOps</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2014-01-31-install-uek-for-centos/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014-01-31-install-uek-for-centos/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>最近给CentOS 6.5 安装了docker，不过每次运行都会报警：</p>
+<blockquote>
+<p>WARNING: You are running linux kernel version 2.6.32-431.3.1.el6.x86_64, which might be unstable running docker. Please upgrade your kernel to 3.8.0.</p>
+</blockquote>
+<p>给CentOS 升级内核，有三种途径，一种是yum官方源里有更新的版本，一种途径是自己编译，另一种途径是使用别人编译好了的内核。</p>
+<p>CentOS yum源是出了名的更新慢，目前没有 3.8版内核，第二种途径很麻烦，工作量很大，因此本文用第三种。例如UEK，Oracle提供了一个公共的yum源，<a href="http://public-yum.oracle.com/">http://public-yum.oracle.com/</a></p>
+<p>##添加yum源</p>
+<p>UEK的稳定版还是 2.6 内核的，beta版的内核是3.8的，所以我们使用beta源</p>
+<pre><code>sudo wget http://public-yum.oracle.com/beta/public-yum-ol6-beta.repo -P /etc/yum.repos.d
+</code></pre><p>由于UEK3还没有加入到正式版本中，还目前属于测试阶段，，需要手工将 <code>enabled=0</code>改为 <code>enabled=1</code></p>
+<pre><code>sudo vim /etc/yum.repos.d/public-yum-ol6-beta.repo
+</code></pre><p>##添加GPG key</p>
+<pre><code>sudo wget http://public-yum.oracle.com/RPM-GPG-KEY-oracle-ol6 -O /etc/pki/rpm-gpg/RPM-GPG-KEY-oracle
+gpg --quiet --with-fingerprint /etc/pki/rpm-gpg/RPM-GPG-KEY-oracle
+</code></pre><p>##更新yum源</p>
+<pre><code>sudo yum update
+</code></pre><p>##列出所有的kernel</p>
+<pre><code>yum list kernel*
+</code></pre>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2014-01-31-install-uek-for-centos/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2014-01-30-spark-development-environment/" itemprop="url">
+                  Spark开发环境的配置
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2014-01-30T16:36:00Z" content="2014-01-30">
+              2014-01-30
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Spark/" itemprop="url" rel="index">
+                    <span itemprop="name">Spark</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2014-01-30-spark-development-environment/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014-01-30-spark-development-environment/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p><strong>软件版本</strong>：Spark 0.9</p>
+<p>配置Spark开发环境，其实分为三个层次，一种是针对运维人员，把Spark安装部署到集群；一种是针对普通开发者，引入Spark的jar包，调用Spark提供的接口，编写分布式程序，写好后编译成jar，就可以提交到Spark集群去运行了；第三种是针对Spark开发者，为了给Spark贡献代码，需要git clone Spark的代码，然后导入IDE，为Spark开发代码。</p>
+<p>##1 部署Spark集群<br>这种是运维人员在生产环境下，搭建起一个Spark集群。</p>
+<p>###（可选）创建新用户 Spark<br>一般我倾向于把需要启动daemon进程，对外提供服务的程序，即服务器类的程序，安装在单独的用户下面。这样可以做到隔离，运维方面，安全性也提高了。</p>
+<p>创建一个新的group,</p>
+<pre><code>$ sudo groupadd spark
+</code></pre><p>创建一个新的用户，并加入group,</p>
+<pre><code>$ sudo useradd -g spark spark
+</code></pre><p>给新用户设置密码，</p>
+<pre><code>$ sudo passwd spark
+</code></pre><p>在每台机器上创建 spark 新用户，并配置好SSH无密码，参考我的另一篇博客，<a href="http://www.yanjiuyanjiu.com/blog/20120102/">SSH无密码登录的配置</a></p>
+<p>假设有三台机器，hostname分别是 master, worker01, worker02。</p>
+<p>###1.1 下载 Spark 预编译好的二进制包<br>如果你需要用到HDFS，则要针对Hadoop 1.x 和Hadoop 2.x 选择不同的版本。这里我选择 Hadoop 2.x 版。</p>
+<pre><code>spark@master $ wget http://d3kbcqa49mib13.cloudfront.net/spark-0.9.0-incubating-bin-hadoop1.tgz
+spark@master $ tar zxf spark-0.9.0-incubating-bin-hadoop1.tgz -C ~/local/opt
+</code></pre><p>###1.2 将tgz压缩包scp到所有机器，解压到相同的路径</p>
+<pre><code>spark@master $ scp spark-0.9.0-incubating-bin-hadoop1.tgz spark@worker01:~
+spark@master $ ssh worker01
+spark@worker01 $ tar zxf spark-0.9.0-incubating-bin-hadoop1.tgz -C ~/local/opt
+spark@worker01 $ exit
+spark@master $ scp spark-0.9.0-incubating-bin-hadoop1.tgz spark@worker02:~
+spark@master $ ssh worker02
+spark@worker02 $ tar zxf spark-0.9.0-incubating-bin-hadoop1.tgz -C ~/local/opt
+spark@worker02 $ exit
+</code></pre><p>###1.3 修改配置文件<br>Spark 0.9 以后，配置文件简单多了，只有一个必须要配置，就是 <code>conf/slaves</code> 这个文件。在这个文件里添加slave的hostname。</p>
+<p>###1.4 拷贝配置文件到所有slave</p>
+<pre><code>spark@master $ spark@master $ scp ./conf/slaves spark@worker01:~/local/opt/spark-0.9.0-incubating-bin-hadoop1/conf
+spark@master $ spark@master $ scp ./conf/slaves spark@worker02:~/local/opt/spark-0.9.0-incubating-bin-hadoop1/conf
+</code></pre><p>###1.5 启动Spark集群</p>
+<pre><code>spark@master $ ./sbin/start-all.sh
+</code></pre>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2014-01-30-spark-development-environment/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2014-01-29-my-ansible-playbook/" itemprop="url">
+                  我的Ansible playbook
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2014-01-29T22:08:00Z" content="2014-01-29">
+              2014-01-29
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/DevOps/" itemprop="url" rel="index">
+                    <span itemprop="name">DevOps</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2014-01-29-my-ansible-playbook/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014-01-29-my-ansible-playbook/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><strong>前提</strong>，安装好Ansible，参考我的上一篇博客，<a href="http://www.yanjiuyanjiu.com/blog/20140127" target="_blank" rel="external">Ansible 快速入门</a></p>
+<pre><code>---
+- hosts: all
+  sudo: True
+  remote_user: work
+  vars:
+    ant_version: 1.9.3
+    maven_version: 3.1.1
+    scala_version: 2.10.3
+    sbt_version: 0.12.4
+
+  tasks:
+  ########## for CentOS and RedHat ##########
+    - name: Install the libselinux-python package  # because ansible needs it
+      yum: name=libselinux-python state=installed
+      when: ansible_distribution == &apos;CentOS&apos; or ansible_distribution == &apos;Red Hat Enterprise Linux&apos;
+
+    - name: Disable SELinux in conf file
+      selinux: state=disabled
+      when: ansible_distribution == &apos;CentOS&apos; or ansible_distribution == &apos;Red Hat Enterprise Linux&apos;
+
+    - name: update YUM repositories
+      shell: &apos;yum -y update&apos;
+      when: ansible_distribution == &apos;CentOS&apos; or ansible_distribution == &apos;Red Hat Enterprise Linux&apos;
+
+    - name: Install OpenJDK
+      yum: name=java-1.7.0-openjdk-devel state=present
+      when: ansible_distribution == &apos;CentOS&apos; or ansible_distribution == &apos;Red Hat Enterprise Linux&apos;
+
+    - name: Set JAVA_HOME environment variable
+      lineinfile: dest=&apos;/etc/profile&apos; regexp=&apos;^#?\s*export JAVA_HOME=(.*)$&apos; line=&apos;export JAVA_HOME=/usr/lib/jvm/java&apos; state=present
+      when: ansible_distribution == &apos;CentOS&apos; or ansible_distribution == &apos;Red Hat Enterprise Linux&apos;
+
+    - name: install the &apos;Development tools&apos; package group
+      yum: name=&quot;@Development tools&quot; state=present
+      when: ansible_distribution == &apos;CentOS&apos; or ansible_distribution == &apos;Red Hat Enterprise Linux&apos;
+
+    - name: upgrade all packages
+      shell: &apos;yum -y upgrade&apos;
+      when: ansible_distribution == &apos;CentOS&apos; or ansible_distribution == &apos;Red Hat Enterprise Linux&apos;
+
+
+  ########## for Ubuntu and Debian ##########
+    - name: Run &quot;apt-get update&quot; to update the source list
+      apt: update_cache=yes
+      when: ansible_distribution == &apos;Debian&apos; or ansible_distribution == &apos;Ubuntu&apos;
+
+    - name: Install OpenJDK
+      apt: pkg=openjdk-7-jdk state=present
+      when: ansible_distribution == &apos;Debian&apos; or ansible_distribution == &apos;Ubuntu&apos;
+
+    - name: Set JAVA_HOME environment variable
+      lineinfile: dest=&apos;/etc/profile&apos; regexp=&apos;^#?\s*export JAVA_HOME=(.*)$&apos; line=&apos;export JAVA_HOME=/usr/lib/jvm/java-1.7.0-openjdk-amd64&apos; state=present
+      when: ansible_distribution == &apos;Debian&apos; or ansible_distribution == &apos;Ubuntu&apos;
+
+    - name: Install build-essential
+      apt: pkg=build-essential state=present
+      when: ansible_distribution == &apos;Debian&apos; or ansible_distribution == &apos;Ubuntu&apos;
+
+    - name: Update all packages to the latest version
+      apt: upgrade=dist
+      when: ansible_distribution == &apos;Debian&apos; or ansible_distribution == &apos;Ubuntu&apos;
+
+
+  ########## Common opreations for all OS ##########
+    # Create local directories
+    - file: path=~/local/bin state=directory
+      sudo: no
+    - file: path=~/local/sbin state=directory
+      sudo: no
+    - file: path=~/local/src state=directory
+      sudo: no
+    - file: path=~/local/opt state=directory
+      sudo: no
+    - file: path=~/local/var state=directory
+      sudo: no
+    - lineinfile: dest=~/.bashrc regexp=&apos;^#?\s*export PATH=(.*)/local/bin(.*)$&apos; line=&quot;export PATH=$PATH:$HOME/local/bin&quot; state=present
+      sudo: no
+    - lineinfile: dest=~/.bashrc regexp=&apos;^#?\s*export PATH=(.*)/local/sbin(.*)$&apos; line=&quot;export PATH=$PATH:$HOME/local/sbin&quot; state=present
+      sudo: no
+
+    - name: Set CLASSPATH and PATH environment variables
+      lineinfile: $item
+      with_items:
+        - dest=&apos;/etc/profile&apos; regexp=&apos;^#?\s*export CLASSPATH=(.*)$&apos; line=&apos;export CLASSPATH=.:$JAVA_HOME/lib/*.jar:$JAVA_HOME/jre/lib/*.jar&apos; state=present
+        - dest=&apos;/etc/profile&apos; regexp=&apos;^#?\s*export PATH=(.*)JAVA_HOME(.*)$&apos; line=&quot;export PATH=$PATH:$JAVA_HOME/bin&quot; state=present
+
+    ###### Since Ant in yum and apt is too old, download the .tar.bz2 file and install it
+    # Install Apache Ant
+    - name: Download Apache Ant
+      get_url: url=http://mirror.cc.columbia.edu/pub/software/apache//ant/binaries/apache-ant-{{ant_version}}-bin.tar.bz2 dest=/tmp/apache-ant-{{ant_version}}-bin.tar.bz2
+    - name: Untar Ant
+      shell: chdir=/tmp creates=/opt/apache-ant-{{ant_version}} tar -jxf apache-ant-{{ant_version}}-bin.tar.bz2 -C /opt
+    - lineinfile: dest=/etc/profile regexp=&apos;^#?\s*export ANT_HOME=(.*)$&apos; line=&apos;export ANT_HOME=/opt/apache-ant-{{ant_version}}&apos; state=present
+    - lineinfile: dest=/etc/profile regexp=&apos;^#?\s*export PATH=(.*)ANT_HOME(.*)$&apos; line=&quot;export PATH=$PATH:$ANT_HOME/bin&quot; state=present
+
+    # Install Apache Maven, since there is no Maven package in yum and apt repo
+    - name: Download Apache Maven
+      get_url: url=http://apache.claz.org/maven/maven-3/3.1.1/binaries/apache-maven-{{maven_version}}-bin.tar.gz dest=/tmp/apache-maven-{{maven_version}}-bin.tar.gz
+    - name: Untar Maven
+      shell: chdir=/tmp creates=/opt/apache-maven-{{maven_version}} tar -zxf apache-maven-{{maven_version}}-bin.tar.gz -C /opt
+    - lineinfile: dest=/etc/profile regexp=&apos;^#?\s*export MAVEN_HOME=(.*)$&apos; line=&apos;export MAVEN_HOME=/opt/apache-maven-{{maven_version}}&apos; state=present
+    - lineinfile: dest=/etc/profile regexp=&apos;^#?\s*export PATH=(.*)MAVEN_HOME(.*)$&apos; line=&quot;export PATH=$PATH:$MAVEN_HOME/bin&quot; state=present
+
+    # Install the scala compiler, because the scala compiler in yum and apt repo is too old
+    - name: Download Scala
+      get_url: url=http://www.scala-lang.org/files/archive/scala-{{scala_version}}.tgz dest=/tmp/scala-{{scala_version}}.tgz
+    - name: Untar Scala
+      shell: chdir=/tmp creates=/opt/scala-{{scala_version}} tar -zxf scala-{{scala_version}}.tgz -C /opt
+    - lineinfile: dest=/etc/profile regexp=&apos;^#?\s*export SCALA_HOME=(.*)$&apos; line=&apos;export SCALA_HOME=/opt/scala-{{scala_version}}&apos; state=present
+    - lineinfile: dest=/etc/profile regexp=&apos;^#?\s*export PATH=(.*)SCALA_HOME(.*)$&apos; line=&quot;export PATH=$PATH:$SCALA_HOME/bin&quot; state=present
+
+    # Install sbt
+    - name: Download sbt
+      get_url: url=http://repo.scala-sbt.org/scalasbt/sbt-native-packages/org/scala-sbt/sbt//{{sbt_version}}/sbt.tgz dest=/tmp/sbt-{{sbt_version}}.tgz
+    - name: Untar sbt
+      shell: chdir=/tmp creates=/opt/sbt-{{sbt_version}} tar -zxf sbt-{{sbt_version}}.tgz -C /opt
+    - name: Rename sbt directory
+      shell: chdir=/opt creates=/opt/sbt-{{sbt_version}} mv sbt/ sbt-{{sbt_version}}/
+    - lineinfile: dest=/etc/profile regexp=&apos;^#?\s*export SBT_HOME=(.*)$&apos; line=&apos;export SBT_HOME=/opt/sbt-{{sbt_version}}&apos; state=present
+    - lineinfile: dest=/etc/profile regexp=&apos;^#?\s*export PATH=(.*)SBT_HOME(.*)$&apos; line=&quot;export PATH=$PATH:$SBT_HOME/bin&quot; state=present
+
+    # Install Go
+    - name: Download Go
+      get_url: url=https://go.googlecode.com/files/go1.2.linux-amd64.tar.gz dest=/tmp/go1.2.linux-amd64.tar.gz
+    - name: Untar Go
+      shell: chdir=/tmp creates=/opt/go tar -zxf go1.2.linux-amd64.tar.gz -C /opt
+    - lineinfile: dest=/etc/profile regexp=&apos;^#?\s*export GOROOT=(.*)$&apos; line=&apos;export GOROOT=/opt/go&apos; state=present
+    - lineinfile: dest=/etc/profile regexp=&apos;^#?\s*export PATH=(.*)GOROOT(.*)$&apos; line=&quot;export PATH=$PATH:$GOROOT/bin&quot; state=present
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2014-01-28-restore-octopress-at-a-new-computer/" itemprop="url">
+                  Restore Octopress at a new computer
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2014-01-28T00:04:00Z" content="2014-01-28">
+              2014-01-28
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Tools/" itemprop="url" rel="index">
+                    <span itemprop="name">Tools</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2014-01-28-restore-octopress-at-a-new-computer/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014-01-28-restore-octopress-at-a-new-computer/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>OS: Ubuntu 12.04 64-bit</p>
+<p>##1. Install ruby</p>
+<p>###1.1 Install ruby via RVM</p>
+<pre><code>$ \curl -sSL https://get.rvm.io | bash -s stable --ruby
+</code></pre><p>###1.2 <a href="https://rvm.io/integration/gnome-terminal">Integrating RVM with gnome-terminal</a><br><code>/etc/profile</code>, <code>~/.bash_profile</code> are for login shell, and <code>~/.bashrc</code> is for interactive shell, and RVM’s path is added to <code>~/.bash_profile</code>, so you need to set the shell as a login shell.</p>
+<p>###1.3 Give it a try<br>Exit current shell, and open a new shell,</p>
+<pre><code>ruby -v
+</code></pre><p>You have successfully installed ruby.</p>
+<p>##2. Install Python</p>
+<pre><code>$ sudo apt-get install -y python
+</code></pre><p>Because <a href="http://pygments.org/">Pygments</a> syntax highlighting needs Python.</p>
+<p>##3. Clone your blog to the new machine<br>First you need to clone the <code>source</code> branch to the local octopress folder.</p>
+<pre><code>$ git clone -b source git@github.com:username/username.github.com.git octopress
+</code></pre>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2014-01-28-restore-octopress-at-a-new-computer/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+  </section>
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+
+          
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://tva2.sinaimg.cn/crop.4.536.2038.2038.180/632582bfgw1f31kbqdasbj21kw23uhdt.jpg"
+               alt="soulmachine" />
+          <p class="site-author-name" itemprop="name">soulmachine</p>
+          <p class="site-description motion-element" itemprop="description">一些技术笔记</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">56</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/soulmachine" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/soulmachine" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/soulmachine" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/soulmachine" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-block">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.liancheng.info/" title="连城" target="_blank">连城</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://yewen.us/" title="笨狗随手留下" target="_blank">笨狗随手留下</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.rational.so/" title="阎栋" target="_blank">阎栋</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.parallellabs.com/" title="并行实验室" target="_blank">并行实验室</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.javachen.com/" title="JavaChen" target="_blank">JavaChen</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://shenfeng.me/" title="沈峰" target="_blank">沈峰</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.lihaipeng.info/" title="李海鹏" target="_blank">李海鹏</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.chioka.in/" title="Eric" target="_blank">Eric</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/lgnlgn" title="梁兄的技术博客" target="_blank">梁兄的技术博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.doesbetter.com/" title="王孝舒的博客" target="_blank">王孝舒的博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.foreverlee.net/" title="ForeverLee" target="_blank">ForeverLee</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.cnblogs.com/yuzhangcmu/" title="CMU张宇" target="_blank">CMU张宇</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">soulmachine</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"soulmachine"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+
+</body>
+</html>

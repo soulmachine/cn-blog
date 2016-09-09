@@ -1,0 +1,917 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="机器学习, 深度学习, 人工智能" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="环境：CentOS 6.5, jdk 1.7, HBase 0.96.1.1
+##（可选）创建新用户，并配置好SSH无密码登录一般我倾向于把需要启动daemon进程，对外提供服务的程序，即服务器类的程序，安装在单独的用户下面。这样可以做到隔离，运维方面，安全性也提高了。
+创建一个新的group,
+$ sudo groupadd hbase
+创建一个新的用户，并加入group,
+$ sudo use">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在CentOS上安装HBase 0.96">
+<meta property="og:url" content="http://cn.soulmachine.me/2014-02-08-install-hbase-on-centos/index.html">
+<meta property="og:site_name" content="灵魂机器">
+<meta property="og:description" content="环境：CentOS 6.5, jdk 1.7, HBase 0.96.1.1
+##（可选）创建新用户，并配置好SSH无密码登录一般我倾向于把需要启动daemon进程，对外提供服务的程序，即服务器类的程序，安装在单独的用户下面。这样可以做到隔离，运维方面，安全性也提高了。
+创建一个新的group,
+$ sudo groupadd hbase
+创建一个新的用户，并加入group,
+$ sudo use">
+<meta property="og:updated_time" content="2016-08-18T09:21:04.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="在CentOS上安装HBase 0.96">
+<meta name="twitter:description" content="环境：CentOS 6.5, jdk 1.7, HBase 0.96.1.1
+##（可选）创建新用户，并配置好SSH无密码登录一般我倾向于把需要启动daemon进程，对外提供服务的程序，即服务器类的程序，安装在单独的用户下面。这样可以做到隔离，运维方面，安全性也提高了。
+创建一个新的group,
+$ sudo groupadd hbase
+创建一个新的用户，并加入group,
+$ sudo use">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 在CentOS上安装HBase 0.96 | 灵魂机器 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?259b539fcd8cab18ad0a6deb98ac2046";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">灵魂机器</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">终有一天机器也有灵魂</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                在CentOS上安装HBase 0.96
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2014-02-08T16:42:00+00:00" content="2014-02-08">
+              2014-02-08
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Hadoop/" itemprop="url" rel="index">
+                    <span itemprop="name">Hadoop</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2014-02-08-install-hbase-on-centos/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014-02-08-install-hbase-on-centos/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>环境：CentOS 6.5, jdk 1.7, HBase 0.96.1.1</p>
+<p>##（可选）创建新用户，并配置好SSH无密码登录<br>一般我倾向于把需要启动daemon进程，对外提供服务的程序，即服务器类的程序，安装在单独的用户下面。这样可以做到隔离，运维方面，安全性也提高了。</p>
+<p>创建一个新的group,</p>
+<pre><code>$ sudo groupadd hbase
+</code></pre><p>创建一个新的用户，并加入group,</p>
+<pre><code>$ sudo useradd -g hbase hbase
+</code></pre><p>给新用户设置密码，</p>
+<pre><code>$ sudo passwd hbase
+</code></pre><p>在每台机器上创建hbase新用户，并配置好SSH无密码，参考我的另一篇博客，<a href="http://www.yanjiuyanjiu.com/blog/20120102/" target="_blank" rel="external">SSH无密码登录的配置</a></p>
+<p>##1. 单机模式(Standalone mode)</p>
+<p>###1.1 下载，解压</p>
+<pre><code>$ wget wget http://mirror.esocc.com/apache/hbase/hbase-0.96.1.1/hbase-0.96.1.1-hadoop2-bin.tar.gz
+$ tar zxf hbase-0.96.1.1-hadoop2-bin.tar.gz -C ~/local/opt
+</code></pre><p>###1.2 hbase-env.sh<br>在这个文件中要指明JDK 安装在了哪里</p>
+<pre><code>$ echo $JAVA_HOME
+/usr/lib/jvm/java
+$ vim conf/hbase-env.sh
+</code></pre><p>取消<code>JAVA_HOME</code>那一行的注释，设置正确的JDK位置</p>
+<pre><code>export JAVA_HOME=/usr/lib/jvm/java
+</code></pre><p>###1.3 修改 conf/hbase-site.xml<br>内容如下</p>
+<pre><code>&lt;configuration&gt;
+  &lt;property&gt;
+    &lt;name&gt;hbase.rootdir&lt;/name&gt;
+    &lt;value&gt;/home/hbase/local/var/hbase&lt;/value&gt;
+  &lt;/property&gt;
+  &lt;property&gt;
+    &lt;name&gt;hbase.zookeeper.property.dataDir&lt;/name&gt;
+    &lt;value&gt;/home/hbase/local/var/zookeeper&lt;/value&gt;
+  &lt;/property&gt;
+&lt;/configuration&gt;
+</code></pre><p><code>hbase.rootdir</code>目录是用来存放HBase的相关信息的，默认值是<code>/tmp/hbase-${user.name}/hbase</code>； <code>hbase.zookeeper.property.dataDir</code>目录是用来存放zookeeper（HBase内置了zookeeper）的相关信息的，默认值是<code>/tmp/hbase-${user.name}/zookeeper</code>。</p>
+<p>###1.4 启动</p>
+<pre><code>$ ./bin/start-hbase.sh
+starting Master, logging to logs/hbase-user-master-example.org.out
+</code></pre><a id="more"></a>
+<p>###1.5 试用一下HBase shell<br>$ ./bin/hbase shell<br>    2014-02-09 23:56:28,637 INFO  [main] Configuration.deprecation: hadoop.native.lib is deprecated. Instead, use io.native.lib.available<br>    HBase Shell; enter ‘help<return>‘ for list of supported commands.<br>    Type “exit<return>“ to leave the HBase Shell<br>    Version 0.96.1.1-hadoop2, rUnknown, Tue Dec 17 12:22:12 PST 2013</return></return></p>
+<pre><code>hbase(main):001:0&gt;
+</code></pre><p>创建一张名字为<code>test</code>的表，只有一个列，名为<code>cf</code>。为了验证创建是否成功，用<code>list</code>命令查看所有的table，并用<code>put</code>命令插入一些值。</p>
+<pre><code>hbase(main):003:0&gt; create &apos;test&apos;, &apos;cf&apos;
+0 row(s) in 1.2200 seconds
+hbase(main):003:0&gt; list &apos;test&apos;
+..
+1 row(s) in 0.0550 seconds
+hbase(main):004:0&gt; put &apos;test&apos;, &apos;row1&apos;, &apos;cf:a&apos;, &apos;value1&apos;
+0 row(s) in 0.0560 seconds
+hbase(main):005:0&gt; put &apos;test&apos;, &apos;row2&apos;, &apos;cf:b&apos;, &apos;value2&apos;
+0 row(s) in 0.0370 seconds
+hbase(main):006:0&gt; put &apos;test&apos;, &apos;row3&apos;, &apos;cf:c&apos;, &apos;value3&apos;
+0 row(s) in 0.0450 seconds
+</code></pre><p>用<code>scan</code>命令扫描table，验证一下刚才的插入是否成功。</p>
+<pre><code>hbase(main):007:0&gt; scan &apos;test&apos;
+ROW        COLUMN+CELL
+row1       column=cf:a, timestamp=1288380727188, value=value1
+row2       column=cf:b, timestamp=1288380738440, value=value2
+row3       column=cf:c, timestamp=1288380747365, value=value3
+3 row(s) in 0.0590 seconds
+</code></pre><p>现在，disable并drop掉你的表，这会把上面的所有操作清零。</p>
+<pre><code>hbase(main):012:0&gt; disable &apos;test&apos;
+0 row(s) in 1.0930 seconds
+hbase(main):013:0&gt; drop &apos;test&apos;
+0 row(s) in 0.0770 seconds 
+</code></pre><p>退出shell，</p>
+<pre><code>hbase(main):014:0&gt; exit
+</code></pre><p>###1.6 停止</p>
+<pre><code>$ ./bin/stop-hbase.sh
+stopping hbase...............
+</code></pre><p>##2 伪分布式模式(Pseudo-distributed mode)</p>
+<p>###前提</p>
+<p>HBase集群需要一个正在运行的zookeeper集群，要么用自带的，要么用外部的。</p>
+<p>用自带的很方便，不需要任何其他操作。</p>
+<p>如果用外部的，要先安装并启动一个ZK集群，参考我的这篇博客，<a href="http://www.yanjiuyanjiu.com/blog/20140207" target="_blank" rel="external">在CentOS上安装ZooKeeper集群</a>。并在 conf/hbase-env.sh 里，设置<code>HBASE_MANAGES_ZK=false</code>。这个值默认为true，HBase自带了一个zk，启动HBase的时候也会先启动zk，如果把这个值设置为false，那么HBase就不会自己管理zk集群了。</p>
+<p>一般用外部的zk。因为一般情况下，公司会在集群上安装好zookeeper集群，然后多个项目共用一个zk集群，有利于提高资源利用率。</p>
+<p>HBase还需要一个正在运行的HDFS集群，如何搭建请参考我的这篇博客，<a href="http://www.yanjiuyanjiu.com/blog/20140205" target="_blank" rel="external">在CentOS上安装Hadoop 2.x 集群</a>。</p>
+<p>###2.1 设置SSH无密码登录localhost<br>先检查一下是能够无密码登录本机，</p>
+<pre><code>ssh localhost
+</code></pre><p>如果提示输入密码，说明不能，按如下步骤设置。</p>
+<pre><code>$ ssh-keygen -t dsa -P &apos;&apos; -f ~/.ssh/id_dsa 
+$ cat ~/.ssh/id_dsa.pub &gt;&gt; ~/.ssh/authorized_keys
+</code></pre><p>###2.2 下载，解压</p>
+<pre><code>$ wget wget http://mirror.esocc.com/apache/hbase/hbase-0.96.1.1/hbase-0.96.1.1-hadoop2-bin.tar.gz
+$ tar zxf hbase-0.96.1.1-hadoop2-bin.tar.gz -C ~/local/opt
+</code></pre><p>###2.3 hbase-env.sh<br>在这个文件中要指明JDK 安装在了哪里</p>
+<pre><code>$ echo $JAVA_HOME
+/usr/lib/jvm/java
+$ vim conf/hbase-env.sh
+</code></pre><p>取消<code>JAVA_HOME</code>那一行的注释，设置正确的JDK位置</p>
+<pre><code>export JAVA_HOME=/usr/lib/jvm/java
+</code></pre><p>###2.4 conf/hbase-site.xml<br>内容如下</p>
+<pre><code>&lt;configuration&gt;
+  &lt;property&gt;
+    &lt;name&gt;hbase.rootdir&lt;/name&gt;
+    &lt;value&gt;/home/hadoop/local/var/hadoop/hbase&lt;/value&gt;
+  &lt;/property&gt;
+  &lt;property&gt;
+    &lt;name&gt;hbase.cluster.distributed&lt;/name&gt;
+    &lt;value&gt;true&lt;/value&gt;
+  &lt;/property&gt;
+
+  &lt;property&gt;
+    &lt;name&gt;hbase.zookeeper.property.clientPort&lt;/name&gt;
+    &lt;value&gt;2181&lt;/value&gt;
+  &lt;/property&gt;
+  &lt;property&gt;
+    &lt;name&gt;hbase.zookeeper.quorum&lt;/name&gt;
+    &lt;value&gt;zk01, zk02, zk03&lt;/value&gt;
+  &lt;/property&gt;
+  &lt;property&gt;
+    &lt;name&gt;hbase.zookeeper.property.dataDir&lt;/name&gt;
+    &lt;value&gt;/home/zookeeper/local/var/zookeeper&lt;/value&gt;
+  &lt;/property&gt;
+&lt;/configuration&gt;
+</code></pre><p><code>hbase.rootdir</code>是HBase存放数据的目录，这个值应该从Hadoop集群的core-site.xml里的<code>fs.defaultFS</code>或<code>fs.default.name</code>拷贝过来。</p>
+<p>接下来关于ZooKeeper的三项配置都是从ZooKeeper集群的zoo.cfg里拷贝过来的。</p>
+<p>###2.5 启动</p>
+<pre><code>$ ./bin/start-hbase.sh
+starting Master, logging to logs/hbase-user-master-example.org.out
+</code></pre><p>查看一下进程，</p>
+<pre><code>$ jps
+26142 HMaster
+26255 HRegionServer
+26360 Jps
+</code></pre><p>启动了一个HMaster和一个HRegionServer。</p>
+<p>###2.6 试用一下HBase shell<br>见第1.5节。</p>
+<p>###2.7 停止</p>
+<pre><code>$ ./bin/stop-hbase.sh
+stopping hbase...............
+</code></pre><p>##3 完全分布式模式(Fully-distributed mode)</p>
+<p>###3.1 准备3台机器<br>跟这篇文章<a href="http://www.yanjiuyanjiu.com/blog/20140205/" target="_blank" rel="external">在CentOS上安装Hadoop 2.x 集群</a>的第2.1节很类似。</p>
+<p>设3台机器的hostname分别是master, slave01, slave02, master作为HMaster，而slave01,slave02作为HRegionServer。</p>
+<p>###3.2 配置 master 无密码登陆到所有机器（包括master自己登陆自己）<br>参考我的另一篇博客，<a href="http://www.yanjiuyanjiu.com/blog/20120102/" target="_blank" rel="external">SSH无密码登录的配置</a></p>
+<p>###3.3 把HBase压缩包上传到所有机器，并解压<br>将 hbase-0.96.1.1-hadoop2-bin.tar.gz 上传到所有机器，然后解压。<strong>注意，所有机器的hbase路径必须一致，因为master会登陆到slave上执行命令，master认为slave的hbase路径与自己一样。</strong></p>
+<p>下面开始配置，配置好了后，把<code>conf/</code>目录scp到所有其他机器。</p>
+<p>###3.4 修改配置文件<br>在第2节的基础上，增加下列修改。</p>
+<p>####3.4.1 conf/regionservers<br>在这个文件里面添加slave，一行一个。</p>
+<pre><code>slave01
+slave01
+</code></pre><p>####3.4.2 将conf/目录拷贝到所有slaves</p>
+<pre><code>$ scp -r conf/ hbase@slave01:$HBASE_HOME/
+$ scp -r conf/ hbase@slave02:$HBASE_HOME/
+</code></pre><p>###3.5 启动HBase集群</p>
+<p>####3.5.1 启动<br>在master上执行：</p>
+<pre><code>$ ./bin/start-hbase.sh
+</code></pre><p>####3.5.2 检查是否启动成功<br>用<code>jps</code>查看java进程。</p>
+<p>在master上，应该有一个HMaster进程，在每台slave上，应该有一个HRegionServer进程。</p>
+<p>####3.5.3 Web UI</p>
+<ul>
+<li>HMaster: <a href="http://master:60010" target="_blank" rel="external">http://master:60010</a></li>
+<li>HRegionServer: <a href="http://slave:60030" target="_blank" rel="external">http://slave:60030</a></li>
+</ul>
+<p>##4 客户端<br>想要在另一台机器，或者另一个用户下访问HBase，怎么办？把hbase的安装目录整个拷贝过来即可，不用任何配置（跟Hadoop想比简单多了）。</p>
+<p>运行<code>./bin/hbase shell</code>，就可以使用HBase集群了。</p>
+<p>##参考资料</p>
+<ol>
+<li><a href="http://hbase.apache.org/book/quickstart.html" target="_blank" rel="external">1.2. Quick Start</a></li>
+<li><a href="http://hbase.apache.org/book/standalone_dist.html" target="_blank" rel="external">2.2 HBase run modes: Standalone and Distributed</a></li>
+<li><a href="http://hbase.apache.org/book/example_config.html" target="_blank" rel="external">2.4. Example Configurations</a></li>
+<li><a href="http://hbase.apache.org/book/zookeeper.html" target="_blank" rel="external">Chapter 17. ZooKeeper</a></li>
+<li><a href="http://blog.csdn.net/iam333/article/details/16358087" target="_blank" rel="external">CentOS分布式环境安装HBase-0.96.0</a></li>
+</ol>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2014-02-07-install-zookeeper-on-centos/" rel="next" title="在CentOS上安装ZooKeeper集群">
+                <i class="fa fa-chevron-left"></i> 在CentOS上安装ZooKeeper集群
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2014-02-14-compile-hadoop-220-on-centos/" rel="prev" title="CentOS上编译 Hadoop 2.2.0">
+                CentOS上编译 Hadoop 2.2.0 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2014-02-08-install-hbase-on-centos/"
+           data-title="在CentOS上安装HBase 0.96" data-url="http://cn.soulmachine.me/2014-02-08-install-hbase-on-centos/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://tva2.sinaimg.cn/crop.4.536.2038.2038.180/632582bfgw1f31kbqdasbj21kw23uhdt.jpg"
+               alt="soulmachine" />
+          <p class="site-author-name" itemprop="name">soulmachine</p>
+          <p class="site-description motion-element" itemprop="description">一些技术笔记</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">56</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/soulmachine" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/soulmachine" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/soulmachine" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/soulmachine" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-block">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.liancheng.info/" title="连城" target="_blank">连城</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://yewen.us/" title="笨狗随手留下" target="_blank">笨狗随手留下</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.rational.so/" title="阎栋" target="_blank">阎栋</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.parallellabs.com/" title="并行实验室" target="_blank">并行实验室</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.javachen.com/" title="JavaChen" target="_blank">JavaChen</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://shenfeng.me/" title="沈峰" target="_blank">沈峰</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.lihaipeng.info/" title="李海鹏" target="_blank">李海鹏</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.chioka.in/" title="Eric" target="_blank">Eric</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/lgnlgn" title="梁兄的技术博客" target="_blank">梁兄的技术博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.doesbetter.com/" title="王孝舒的博客" target="_blank">王孝舒的博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.foreverlee.net/" title="ForeverLee" target="_blank">ForeverLee</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.cnblogs.com/yuzhangcmu/" title="CMU张宇" target="_blank">CMU张宇</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">soulmachine</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"soulmachine"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+
+</body>
+</html>

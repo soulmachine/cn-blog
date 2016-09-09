@@ -1,0 +1,834 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="机器学习, 深度学习, 人工智能" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="作者: 灵魂机器新浪博客：www.weibo.com/soulmachine作者博客：www.yanjiuyanjiu.com
+摘要：常用的文本分类方法有支持向量机、K-近邻算法和朴素贝叶斯。其中朴素贝叶斯具有容易实现，运行速度快的特点，被广泛使用。本文详细介绍了朴素贝叶斯的基本原理，讨论了两种常见模型：多项式模型（MM）和伯努利模型（BM），实现了可运行的代码，并进行了一些数据测试。
+关键字：朴">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于朴素贝叶斯的文本分类算法">
+<meta property="og:url" content="http://cn.soulmachine.me/2010-05-28-text-classification-algorithm-based-on-naive-bayes/index.html">
+<meta property="og:site_name" content="灵魂机器">
+<meta property="og:description" content="作者: 灵魂机器新浪博客：www.weibo.com/soulmachine作者博客：www.yanjiuyanjiu.com
+摘要：常用的文本分类方法有支持向量机、K-近邻算法和朴素贝叶斯。其中朴素贝叶斯具有容易实现，运行速度快的特点，被广泛使用。本文详细介绍了朴素贝叶斯的基本原理，讨论了两种常见模型：多项式模型（MM）和伯努利模型（BM），实现了可运行的代码，并进行了一些数据测试。
+关键字：朴">
+<meta property="og:updated_time" content="2016-08-18T09:21:04.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="基于朴素贝叶斯的文本分类算法">
+<meta name="twitter:description" content="作者: 灵魂机器新浪博客：www.weibo.com/soulmachine作者博客：www.yanjiuyanjiu.com
+摘要：常用的文本分类方法有支持向量机、K-近邻算法和朴素贝叶斯。其中朴素贝叶斯具有容易实现，运行速度快的特点，被广泛使用。本文详细介绍了朴素贝叶斯的基本原理，讨论了两种常见模型：多项式模型（MM）和伯努利模型（BM），实现了可运行的代码，并进行了一些数据测试。
+关键字：朴">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 基于朴素贝叶斯的文本分类算法 | 灵魂机器 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?259b539fcd8cab18ad0a6deb98ac2046";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">灵魂机器</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">终有一天机器也有灵魂</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                基于朴素贝叶斯的文本分类算法
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2010-05-28T17:15:00+00:00" content="2010-05-28">
+              2010-05-28
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Machine-Learning/" itemprop="url" rel="index">
+                    <span itemprop="name">Machine-Learning</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2010-05-28-text-classification-algorithm-based-on-naive-bayes/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2010-05-28-text-classification-algorithm-based-on-naive-bayes/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>作者: 灵魂机器<br>新浪博客：<a href="www.weibo.com/soulmachine">www.weibo.com/soulmachine</a><br>作者博客：<a href="www.yanjiuyanjiu.com">www.yanjiuyanjiu.com</a></p>
+<p><strong>摘要</strong>：常用的文本分类方法有支持向量机、K-近邻算法和朴素贝叶斯。其中朴素贝叶斯具有容易实现，运行速度快的特点，被广泛使用。本文详细介绍了朴素贝叶斯的基本原理，讨论了两种常见模型：多项式模型（MM）和伯努利模型（BM），实现了可运行的代码，并进行了一些数据测试。</p>
+<p><strong>关键字</strong>：朴素贝叶斯；文本分类</p>
+<p><strong>Text Classification Algorithm Based on Naive Bayes</strong><br><strong>Author</strong>: soulmachine<br><strong>Email</strong>：soulmachine@gmail.com<br><strong>Blog</strong>：<a href="www.yanjiuyanjiu.com">www.yanjiuyanjiu.com</a></p>
+<p><strong>Abstract</strong>:Usually there are three methods for text classification: SVM、KNN and Naïve Bayes. Naïve Bayes is easy to implement and fast, so it is widely used. This article introduced the theory of Naïve Bayes and discussed two popular models: multinomial model(MM) and Bernoulli model(BM) in details, implemented runnable code and performed some data tests.</p>
+<p><strong>Keywords</strong>: naïve bayes; text classification</p>
+<p>##1 贝叶斯原理</p>
+<p>###1.1 贝叶斯公式</p>
+<p>设A、B是两个事件，且P(A)&gt;0，称 $$P(Y \vert X)=\dfrac {P(XY)}{P(X)}$$ 为事件A发生的条件下事件B发生的<strong>条件概率</strong>。</p>
+<p><strong>乘法公式</strong> $$P(XYZ)=P(Z \vert XY)P(Y \vert X)P(X)$$<br><strong>全概率公式</strong>  $$P(X)=P(X \vert Y_1)+ P(X \vert Y_2)+…+ P(X \vert Y_n)$$<br><strong>贝叶斯公式</strong>  $$P(Y_i \vert X)=\dfrac{P(XY_i)}{P(X)}=\dfrac{P(X \vert Y_i)P(Y_i)}{P(X)}=\dfrac{P(X \vert Y_i)P(Y<em>i)}{\sum\limits </em>{j=1} ^{n} P(X \vert Y_j)}$$  </p>
+<p>在此处，贝叶斯公式，我们要用到的是 $$P(Y_i \vert X)=\dfrac{P(X \vert Y_i)P(Y_i)}{P(X)}$$</p>
+<p>以上公式，请读者参考<a href="http://book.douban.com/subject/1231189/" target="_blank" rel="external">《概率论与数理统计（第五版）》</a>的1.4节“条件概率”（这里将原书中的A换成了X，B换成了Y），获得更深的理解。</p>
+<a id="more"></a>
+<p>###1.2 贝叶斯定理在分类中的应用<br>在分类（classification）问题中，常常需要把一个事物分到某个类别。一个事物具有很多属性，把它的众多属性看做一个向量，即$$x=(x_1,x_2,x_3,…,x_n)$$，用x这个向量来代表这个事物。类别也是有很多种，用集合$$Y={y_1,y_2,…y_m}$$表示。如果x属于$$y_1$$类别，就可以给x打上$$y_1$$标签，意思是说x属于$$y_1$$类别。这就是所谓的<strong>分类(Classification)</strong>。</p>
+<p>x的集合记为X，称为属性集。一般X和Y的关系是不确定的，你只能在某种程度上说x有多大可能性属于类$$y_1$$，比如说x有80%的可能性属于类$$y_1$$，这时可以把X和Y看做是随机变量，$$P(Y \vert X)$$称为Y的<strong>后验概率</strong>（posterior probability），与之相对的，P(Y)称为Y的<strong>先验概率</strong>（prior probability）[^2]。</p>
+<p>在训练阶段，我们要根据从训练数据中收集的信息，<strong>对X和Y的每一种组合学习后验概率$$P(Y \vert X)$$。</strong>分类时，来了一个实例x，在刚才训练得到的一堆后验概率中找出所有的$$P(Y \vert x)$$， 其中最大的那个y，即为x所属分类。根据贝叶斯公式，后验概率为$$P(Y \vert X)=\dfrac{P(X \vert Y)P(Y)}{P(X)}$$</p>
+<p>在比较不同Y值的后验概率时，分母P(X)总是常数，<strong>因此可以忽略</strong>。先验概率P(Y)可以通过计算训练集中属于每一个类的训练样本所占的比例容易地估计。</p>
+<p>我们来举个简单的例子，让读者对上述思路有个形象的认识[^3]。<br>考虑一个医疗诊断问题，有两种可能的假设：（1）病人有癌症。（2）病人无癌症。样本数据来自某化验测试，它也有两种可能的结果：阳性和阴性。假设我们已经有先验知识：在所有人口中只有0.008的人患病。此外，化验测试对有病的患者有98%的可能返回阳性结果，对无病患者有97%的可能返回阴性结果。</p>
+<p>上面的数据可以用以下概率式子表示：<br>P(cancer)=0.008,P(无cancer)=0.992<br>P(阳性|cancer)=0.98,P(阴性|cancer)=0.02<br>P(阳性|无cancer)=0.03，P(阴性|无cancer)=0.97<br>假设现在有一个新病人，化验测试返回阳性，是否将病人断定为有癌症呢？</p>
+<p>在这里，Y={cancer，无cancer}，共两个类别，这个新病人是一个样本，他有一个属性阳性，可以令x=(阳性)。我们可以来计算各个类别的后验概率：<br>P(cancer | 阳性) = P(阳性 | cancer)p(cancer)=0.98* 0.008 = 0.0078<br>P(无cancer | 阳性) =P(阳性 | 无cancer)* p(无cancer)=0.03* 0.992 = 0.0298<br>因此，应该判断为无癌症。</p>
+<p>在这个例子中，类条件概率，P(cancer|阳性)和P(无cancer|阳性)直接告诉了我们。</p>
+<p>一般地，对<strong>类条件概率$$P(X \vert Y)$$</strong>的估计，有朴素贝叶斯分类器和贝叶斯信念网络两种方法，这里介绍朴素贝叶斯分类器。</p>
+<p>###1.3 朴素贝叶斯分类器<br><strong>1、条件独立性</strong><br>给定类标号y，朴素贝叶斯分类器在估计类条件概率时假设属性之间条件独立。条件独立假设可以形式化的表达如下：<br>$$<br>\prod\limits_{i=1}^{n} P(x_i  \vert Y=y)<br>$$<br>其中每个训练样本可用一个属性向量$$X=(x_1,x_2,x_3,…,x_n)$$表示，各个属性之间条件独立。</p>
+<p>比如，对于一篇文章，</p>
+<blockquote>
+<p>Good good study,Day day up.</p>
+</blockquote>
+<p>可以用一个文本特征向量来表示，<code>x=(Good, good, study, Day, day , up)</code>。一般各个词语之间肯定不是相互独立的，有一定的上下文联系。但在朴素贝叶斯文本分类时，我们假设个单词之间没有联系，可以用一个文本特征向量来表示这篇文章，这就是“朴素”的来历。</p>
+<p><strong>2、朴素贝叶斯如何工作</strong><br><strong>有了条件独立假设，就不必计算X和Y的每一种组合的类条件概率</strong>，只需对给定的Y，计算每个$$x_i$$的条件概率。后一种方法更实用，因为它不需要很大的训练集就能获得较好的概率估计。</p>
+<p><strong>3、估计分类属性的条件概率</strong><br>$$P(x_i \vert Y=y)$$怎么计算呢？它一般根据类别y下包含属性$$x_i$$的实例的比例来估计。以文本分类为例，xi表示一个单词，$$P(x_i \vert Y=y)=$$包含该类别下包含单词的xi的文章总数/ 该类别下的文章总数。</p>
+<p><strong>4、贝叶斯分类器举例</strong><br>假设给定了如下训练样本数据，我们学习的目标是根据给定的天气状况判断你对PlayTennis这个请求的回答是Yes还是No。</p>
+<table border="1" cellspacing="0" cellpadding="0"><br><tbody><br><tr><br><td valign="top" width="95">Day</td><br><td valign="top" width="95">Outlook</td><br><td valign="top" width="95">Temperature</td><br><td valign="top" width="95">Humidity</td><br><td valign="top" width="95">Wind</td><br><td valign="top" width="95">PlayTennis</td><br></tr><br><tr><br><td valign="top" width="95">D1</td><br><td valign="top" width="95">Sunny</td><br><td valign="top" width="95">Hot</td><br><td valign="top" width="95">High</td><br><td valign="top" width="95">Weak</td><br><td valign="top" width="95">No</td><br></tr><br><tr><br><td valign="top" width="95">D2</td><br><td valign="top" width="95">Sunny</td><br><td valign="top" width="95">Hot</td><br><td valign="top" width="95">High</td><br><td valign="top" width="95">Strong</td><br><td valign="top" width="95">No</td><br></tr><br><tr><br><td valign="top" width="95">D3</td><br><td valign="top" width="95">Overcast</td><br><td valign="top" width="95">Hot</td><br><td valign="top" width="95">High</td><br><td valign="top" width="95">Weak</td><br><td valign="top" width="95">Yes</td><br></tr><br><tr><br><td valign="top" width="95">D4</td><br><td valign="top" width="95">Rain</td><br><td valign="top" width="95">Mild</td><br><td valign="top" width="95">High</td><br><td valign="top" width="95">Weak</td><br><td valign="top" width="95">Yes</td><br></tr><br><tr><br><td valign="top" width="95">D5</td><br><td valign="top" width="95">Rain</td><br><td valign="top" width="95">Cool</td><br><td valign="top" width="95">Normal</td><br><td valign="top" width="95">Weak</td><br><td valign="top" width="95">Yes</td><br></tr><br><tr><br><td valign="top" width="95">D6</td><br><td valign="top" width="95">Rain</td><br><td valign="top" width="95">Cool</td><br><td valign="top" width="95">Normal</td><br><td valign="top" width="95">Strong</td><br><td valign="top" width="95">No</td><br></tr><br><tr><br><td valign="top" width="95">D7</td><br><td valign="top" width="95">Overcast</td><br><td valign="top" width="95">Cool</td><br><td valign="top" width="95">Normal</td><br><td valign="top" width="95">Strong</td><br><td valign="top" width="95">Yes</td><br></tr><br><tr><br><td valign="top" width="95">D8</td><br><td valign="top" width="95">Sunny</td><br><td valign="top" width="95">Mild</td><br><td valign="top" width="95">High</td><br><td valign="top" width="95">Weak</td><br><td valign="top" width="95">No</td><br></tr><br><tr><br><td valign="top" width="95">D9</td><br><td valign="top" width="95">Sunny</td><br><td valign="top" width="95">Cool</td><br><td valign="top" width="95">Normal</td><br><td valign="top" width="95">Weak</td><br><td valign="top" width="95">Yes</td><br></tr><br><tr><br><td valign="top" width="95">D10</td><br><td valign="top" width="95">Rain</td><br><td valign="top" width="95">Mild</td><br><td valign="top" width="95">Normal</td><br><td valign="top" width="95">Weak</td><br><td valign="top" width="95">Yes</td><br></tr><br><tr><br><td valign="top" width="95">D11</td><br><td valign="top" width="95">Sunny</td><br><td valign="top" width="95">Mild</td><br><td valign="top" width="95">Normal</td><br><td valign="top" width="95">Strong</td><br><td valign="top" width="95">Yes</td><br></tr><br><tr><br><td valign="top" width="95">D12</td><br><td valign="top" width="95">Overcast</td><br><td valign="top" width="95">Mild</td><br><td valign="top" width="95">High</td><br><td valign="top" width="95">Strong</td><br><td valign="top" width="95">Yes</td><br></tr><br><tr><br><td valign="top" width="95">D13</td><br><td valign="top" width="95">Overcast</td><br><td valign="top" width="95">Hot</td><br><td valign="top" width="95">Normal</td><br><td valign="top" width="95">Weak</td><br><td valign="top" width="95">Yes</td><br></tr><br><tr><br><td valign="top" width="95">D14</td><br><td valign="top" width="95">Rain</td><br><td valign="top" width="95">Mild</td><br><td valign="top" width="95">High</td><br><td valign="top" width="95">Strong</td><br><td valign="top" width="95">No</td><br></tr><br></tbody><br></table><br>可以看到这里样本数据集提供了14个训练样本，我们将使用此表的数据，并结合朴素贝叶斯分类器来分类下面的新实例：<br>x = (Outlook = Sunny,Temprature = Cool,Humidity = High,Wind = Strong)<br><br>在这个例子中，属性向量X=(Outlook, Temperature, Humidity, Wind)，类集合Y={Yes, No}。我们需要利用训练数据计算后验概率$$P(Yes \vert x)$$和$$P(No \vert x)$$，如果$$P(Yes \vert x)&gt;P(No \vert x)$$，那么新实例分类为Yes，否则为No。<br><br>为了计算后验概率，我们需要计算先验概率P(Yes)和P(No)和类条件概率$$P(x_i \vert Y)$$。<br><br>因为有9个样本属于Yes，5个样本属于No，所以$$P(Yes)=\dfrac{9}{14}$$, $$P(No)=\dfrac{5}{14}$$。类条件概率计算如下：<br>$$P(Outlook = Sunny \vert Yes)=\dfrac{2}{9}　　　P(Outlook = Sunny \vert No)=\dfrac{3}{5}$$<br>$$P(Temprature = Cool  \vert Yes) =\dfrac{3}{9}　　　P(Temprature = Cool  \vert No) =\dfrac{1}{5}$$<br>$$P(Humidity = High  \vert Yes) =\dfrac{3}{9}　　　P(Humidity = High  \vert No) =\dfrac{4}{5}$$<br>$$P(Wind = Strong  \vert Yes) =\dfrac{3}{9}　　　P(Wind = Strong  \vert No) =\dfrac{3}{5}$$<br><br>后验概率计算如下：<br>$$<br>\begin{aligned}<br>P(Yes  \vert  x) &amp; = P(Outlook = Sunny \vert Yes) \times P(Temprature = Cool  \vert Yes) \newline<br>&amp; \times P(Humidity = High  \vert Yes) \times P(Wind = Strong  \vert Yes) \times P(Yes) \newline<br>&amp; =\dfrac{2}{9} \times \dfrac{3}{9} \times \dfrac{3}{9} \times \dfrac{3}{9} \times \dfrac{3}{9} \times \dfrac{9}{14}=\dfrac{2}{243}=\dfrac{9}{1701} \approx 0.00529<br>\end{aligned}<br>$$<br>$$<br>\begin{aligned}<br>P(No  \vert  x)&amp;= P(Outlook = Sunny \vert No) \times P(Temprature = Cool  \vert No) \newline<br>&amp; \times P(Humidity = High  \vert No) \times P(Wind = Strong  \vert No) \times P(No) \newline<br>&amp; =\dfrac{3}{5}\times \dfrac{1}{5} \times \dfrac{4}{5} \times \dfrac{3}{5} \times  \dfrac{5}{14}=\dfrac{18}{875} \approx 0.02057<br>\end{aligned}<br>$$<br>通过计算得出$$P(No  \vert  x)&gt; P(Yes  \vert  x)$$，所以该样本分类为No[^3]。<br><br><strong>5、条件概率的m估计</strong><br>假设有来了一个新样本 $$x_1= (Outlook = Cloudy,Temprature = Cool,Humidity = High,Wind = Strong)$$，要求对其分类。我们来开始计算，<br>$$P(Outlook = Cloudy \vert Yes)=\dfrac{0}{9}=0  P(Outlook = Cloudy  \vert No)=\dfrac{0}{5}=0$$<br>计算到这里，大家就会意识到，这里出现了一个新的属性值，在训练样本中所没有的。如果有一个属性的类条件概率为0，则整个类的后验概率就等于0，我们可以直接得到后验概率$$P(Yes  \vert  x_1)= P(No  \vert  x_1)=0$$，这时二者相等，无法分类。<br><br>当训练样本不能覆盖那么多的属性值时，都会出现上述的窘境。简单的使用样本比例来估计类条件概率的方法太脆弱了，尤其是当训练样本少而属性数目又很大时。<br><br>解决方法是使用m估计(m-estimate)方法来估计条件概率：<br>$$<br>P(x_i \vert y_i)=\dfrac{n_c+mp}{n+m}<br>$$<br>n是类$$y_j$$中的样本总数，$$n_c$$是类$$y_j$$中取值$$x_i$$的样本数，m是称为等价样本大小的参数，而p是用户指定的参数。如果没有训练集（即n=0），则$$P(x_i \vert y_i)=p$$, 因此p可以看作是在类$$y_j$$的样本中观察属性值$$x_i$$的先验概率。等价样本大小决定先验概率和观测概率$$\dfrac{n_c}{n}$$之间的平衡[^2]。<br><br>##2 朴素贝叶斯文本分类算法<br>现在开始进入本文的主旨部分：如何将贝叶斯分类器应用到文本分类上来。<br><br>###2.1文本分类问题<br>在文本分类中，假设我们有一个文档d∈X，X是文档向量空间(document space)，和一个固定的类集合C={c1,c2,…,cj}，类别又称为标签。显然，文档向量空间是一个高维度空间。我们把一堆打了标签的文档集合<d,c>作为训练样本，<d,c>∈X×C。例如：<br><d,c>={Beijing joins the World Trade Organization, China}<br>对于这个只有一句话的文档，我们把它归类到 China，即打上china标签。<br><br>我们期望用某种训练算法，训练出一个函数γ，能够将文档映射到某一个类别：<br>γ:X→C<br><br>这种类型的学习方法叫做有监督学习，因为事先有一个监督者（我们事先给出了一堆打好标签的文档）像个老师一样监督着整个学习过程。<br><br>朴素贝叶斯分类器是一种有监督学习，常见有两种模型，多项式模型(multinomial model)和伯努利模型(Bernoulli model)<a href="洞庭散人，“[基于朴素贝叶斯分类器的文本分类算法（上）](http://www.cnblogs.com/phinecos/archive/2008/10/21/1315948.html)”，“[基于朴素贝叶斯分类器的文本分类算法（下）](http://www.cnblogs.com/phinecos/archive/2008/10/21/1316044.html)”，2008">^4</a>。<br><br>###2.2 多项式模型<br><br>####2.2.1 基本原理<br>在多项式模型中， 设某文档$$d=(t_1,t_2,…,t_k)$$，tk是该文档中出现过的单词，允许重复，则<br>先验概率$$P(c)=$$ 类c下单词总数/整个训练样本的单词总数<br>类条件概率$$P(t_k \vert c)=$$(类c下单词tk在各个文档中出现过的次数之和+1)/(类c下单词总数+|V|)<br><br>V是训练样本的单词表（即抽取单词，单词出现多次，只算一个），<code>|V|</code>则表示训练样本包含多少种单词。在这里，<code>m=|V|, p=1/|V|</code>。<br><br>$$P(t_k \vert c)=$$可以看作是单词tk在证明d属于类c上提供了多大的证据，而P(c)则可以认为是类别c在整体上占多大比例(有多大可能性)。<br><br>####2.2.2 伪代码[^1]<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//C，类别集合，D，用于训练的文本文件集合</span></div><div class="line">TrainMultiNomialNB(C,D) &#123;</div><div class="line">    <span class="comment">// 单词出现多次，只算一个</span></div><div class="line">    V←ExtractVocabulary(D)</div><div class="line">    <span class="comment">// 单词可重复计算</span></div><div class="line">    N←CountTokens(D)</div><div class="line">    <span class="keyword">for</span> each c∈C</div><div class="line">        <span class="comment">// 计算类别c下的单词总数</span></div><div class="line">        <span class="comment">// N和Nc的计算方法和Introduction to Information Retrieval上的不同，个人认为</span></div><div class="line">        <span class="comment">//该书是错误的，先验概率和类条件概率的计算方法应当保持一致</span></div><div class="line">        Nc←CountTokensInClass(D,c)</div><div class="line">        prior[c]←Nc/N</div><div class="line">        <span class="comment">// 将类别c下的文档连接成一个大字符串</span></div><div class="line">        textc←ConcatenateTextOfAllDocsInClass(D,c)</div><div class="line">        <span class="keyword">for</span> each t∈V</div><div class="line">            <span class="comment">// 计算类c下单词t的出现次数</span></div><div class="line">            Tct←CountTokensOfTerm(textc,t)</div><div class="line">        <span class="keyword">for</span> each t∈V</div><div class="line">            <span class="comment">//计算P(t|c)</span></div><div class="line">            condprob[t][c]← </div><div class="line">    <span class="keyword">return</span> V,prior,condprob</div><div class="line">&#125;</div><div class="line"></div><div class="line">ApplyMultiNomialNB(C,V,prior,condprob,d) &#123;</div><div class="line">    <span class="comment">// 将文档d中的单词抽取出来，允许重复，如果单词是全新的，在全局单词表V中都</span></div><div class="line">    <span class="comment">// 没出现过，则忽略掉</span></div><div class="line">    W←ExtractTokensFromDoc(V,d)</div><div class="line">    <span class="keyword">for</span> each c∈C</div><div class="line">        score[c]←prior[c]</div><div class="line">        <span class="keyword">for</span> each t∈W</div><div class="line">            <span class="keyword">if</span> t∈Vd</div><div class="line">                score[c] *= condprob[t][c]</div><div class="line">    <span class="keyword">return</span> max(score[c])</div><div class="line">&#125;</div></pre></td></tr></table></figure><br><br>####2.2.3 举例<br>给定一组分类好了的文本训练数据，如下：<br><br><table border="1" cellspacing="0" cellpadding="0"><br><tbody><br><tr><br><td valign="top" width="64">docId</td><br><td valign="top" width="236">doc</td><br><td valign="top" width="126">类别In c=China?</td><br></tr><br><tr><br><td valign="top" width="64">1</td><br><td valign="top" width="236">Chinese Beijing Chinese</td><br><td valign="top" width="126">yes</td><br></tr><br><tr><br><td valign="top" width="64">2</td><br><td valign="top" width="236">Chinese Chinese Shanghai</td><br><td valign="top" width="126">yes</td><br></tr><br><tr><br><td valign="top" width="64">3</td><br><td valign="top" width="236">Chinese Macao</td><br><td valign="top" width="126">yes</td><br></tr><br><tr><br><td valign="top" width="64">4</td><br><td valign="top" width="236">Tokyo Japan Chinese</td><br><td valign="top" width="126">no</td><br></tr><br></tbody><br></table>
+
+<p>给定一个新样本</p>
+<blockquote>
+<p>Chinese Chinese Chinese Tokyo Japan</p>
+</blockquote>
+<p>对其进行分类。该文本用属性向量表示为<code>d=(Chinese, Chinese, Chinese, Tokyo, Japan)</code>，类别集合为<code>Y={yes, no}</code>。</p>
+<p>类yes下总共有8个单词，类no下总共有3个单词，训练样本单词总数为11，因此$$P(yes)=\dfrac{8}{11}, P(no)=\dfrac{3}{11}$$。类条件概率计算如下：<br>$$P(Chinese  \vert  yes)=\dfrac{5+1}{8+6}=\dfrac{6}{14}=\dfrac{3}{7}$$<br>$$P(Japan  \vert  yes)=P(Tokyo  \vert  yes)= \dfrac{0+1}{8+6}=\dfrac{1}{14}$$<br>$$P(Chinese \vert no)=\dfrac{1+1}{3+6}=\dfrac{2}{9}$$<br>$$P(Japan \vert no)=P(Tokyo \vert  no) =\dfrac{1+1}{3+6}=\dfrac{2}{9}$$<br>分母中的8，是指yes类别下textc的长度，也即训练样本的单词总数，6是指训练样本有Chinese,Beijing,Shanghai, Macao, Tokyo, Japan 共6个单词，3是指no类下共有3个单词。</p>
+<p>有了以上类条件概率，开始计算后验概率，<br>$$P(yes  \vert  d)=\left(\dfrac{3}{7}\right)^3 \times \dfrac{1}{14} \times \dfrac{1}{14} \times \dfrac{8}{11}=\dfrac{108}{184877} \approx 0.00058417$$<br>$$P(no  \vert  d)= \left(\dfrac{2}{9}\right)^3 \times \dfrac{2}{9} \times \dfrac{2}{9} \times \dfrac{3}{11}=\dfrac{32}{216513} \approx 0.00014780$$<br>因此，这个文档属于类别china。</p>
+<p>###2.3 伯努利模型</p>
+<p>####2.3.1 基本原理<br>$$P(c)=$$ 类c下文件总数/整个训练样本的文件总数<br>$$P(t_k \vert c)=$$(类c下包含单词tk的文件数+1)/(类c下单词总数+2)<br>在这里，$$m=2, p=\dfrac{1}{2}$$。</p>
+<p>后验概率的计算，也有点变化，见下面的伪代码。</p>
+<p>####2.3.2 伪代码<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//C，类别集合，D，用于训练的文本文件集合</span></div><div class="line">TrainBernoulliNB(C, D) &#123;</div><div class="line">    <span class="comment">// 单词出现多次，只算一个</span></div><div class="line">V←ExtractVocabulary(D)</div><div class="line">    <span class="comment">// 计算文件总数</span></div><div class="line">    N←CountDocs(D)</div><div class="line">    <span class="keyword">for</span> each c∈C</div><div class="line">        <span class="comment">// 计算类别c下的文件总数</span></div><div class="line">        Nc←CountDocsInClass(D,c)</div><div class="line">        prior[c]←Nc/N</div><div class="line">        <span class="keyword">for</span> each t∈V</div><div class="line">            <span class="comment">// 计算类c下包含单词t的文件数</span></div><div class="line">            Nct←CountDocsInClassContainingTerm(D,c,t)</div><div class="line">            <span class="comment">//计算P(t|c)</span></div><div class="line">            condprob[t][c]←(Nct+<span class="number">1</span>)/(Nct+<span class="number">2</span>)</div><div class="line">    <span class="keyword">return</span> V,prior,condprob</div><div class="line">&#125;</div><div class="line"></div><div class="line">ApplyBernoulliNB(C,V,prior,condprob,d) &#123;</div><div class="line">    <span class="comment">// 将文档d中单词表抽取出来，如果单词是全新的，在全局单词表V中都没出现过，</span></div><div class="line">    <span class="comment">// 则舍弃</span></div><div class="line">    Vd←ExtractTermsFromDoc(V,d)</div><div class="line">    <span class="keyword">for</span> each c∈C</div><div class="line">        score[c]←prior[c]</div><div class="line">        <span class="keyword">for</span> each t∈V</div><div class="line">            <span class="keyword">if</span> t∈Vd</div><div class="line">                score[c] *= condprob[t][c]</div><div class="line">            <span class="keyword">else</span></div><div class="line">                score[c] *= (<span class="number">1</span>-condprob[t][c])</div><div class="line">    <span class="keyword">return</span> max(score[c])</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>####2.3.3 举例<br>还是使用前面例子中的数据，不过模型换成了使用伯努利模型。</p>
+<p>类yes下总共有3个文件，类no下有1个文件，训练样本文件总数为11，因此$$P(yes)=\dfrac{3}{4}, P(Chinese  \vert  yes)=\dfrac{3+1}{3+2}=\dfrac{4}{5}$$<br>$$P(Japan  \vert  yes)=P(Tokyo  \vert  yes)=\dfrac{0+1}{3+2}=\dfrac{1}{5}$$<br>$$P(Beijing  \vert  yes)= P(Macao \vert yes)= P(Shanghai  \vert yes)=\dfrac{1+1}{3+2}=\dfrac{2}{5}$$<br>$$P(Chinese \vert no)=\dfrac{1+1}{1+2}=\dfrac{2}{3}$$<br>$$P(Japan \vert no)=P(Tokyo \vert  no) =\dfrac{1+1}{1+2}=\dfrac{2}{3}$$<br>$$P(Beijing \vert  no)= P(Macao \vert  no)= P(Shanghai  \vert  no)=\dfrac{0+1}{1+2}=\dfrac{1}{3}$$  </p>
+<p>有了以上类条件概率，开始计算后验概率，<br>$$<br>\begin{aligned}<br>P(yes  \vert  d)&amp;=P(yes) \times P(Chinese \vert yes) \times P(Japan \vert yes) \times P(Tokyo \vert yes) \newline<br>&amp;\times (1-P(Beijing \vert yes)) \times (1-P(Shanghai \vert yes))\newline<br>&amp;\times (1-P(Macao \vert yes)) \newline<br>&amp;=\dfrac{3}{4} \times \dfrac{4}{5} \times \dfrac{1}{5} \times \dfrac{1}{5} \times (1-\dfrac{2}{5} \times (1-\dfrac{2}{5}) \times (1-\dfrac{2}{5})=\dfrac{81}{15625} \approx 0.005<br>\end{aligned}<br>$$<br>$$P(no   \vert   d)= \dfrac{1}{4} \times \dfrac{2}{3} \times \dfrac{2}{5} \times \dfrac{2}{5} \times (1-\dfrac{1}{3}) \times (1-\dfrac{1}{3}) \times (1-\dfrac{1}{3})=\dfrac{16}{729} \approx 0.022$$<br>因此，这个文档不属于类别china。</p>
+<p>###2.4 两个模型的区别<br>二者的计算粒度不一样，多项式模型以单词为粒度，伯努利模型以文件为粒度，因此二者的先验概率和类条件概率的计算方法都不同。</p>
+<p>计算后验概率时，对于一个文档d，多项式模型中，只有在d中出现过的单词，才会参与后验概率计算，伯努利模型中，没有在d中出现，但是在全局单词表中出现的单词，也会参与计算，不过是作为“反方”参与的。</p>
+<p>##3 代码详解<br>本文附带了一个eclipse工程，有完整的源代码，以及一个微型文本训练库。</p>
+<p>ChineseSpliter用于中文分词，StopWordsHandler用于判断一个单词是否是停止词，ClassifyResult用于保存结果，IntermediateData用于预处理文本语料库，TrainnedModel用于保存训练后得到的数据，NaiveBayesClassifier是基础类，包含了贝叶斯分类器的主要代码，MultiNomialNB是多项式模型，类似的，BernoulliNB是伯努利模型，二者都继承自NaiveBayesClassifier，都只重写了父类的计算先验概率，类条件概率和后验概率这3个函数。</p>
+<p>###3.1 中文分词<br>中文分词不是本文的重点，这里我们直接使用第三方工具，本源码使用的是<a href="http://www.jesoft.cn/" target="_blank" rel="external">极易中文分词组件</a>，你还可以使用<a href="http://chtsai.org/" target="_blank" rel="external">MMSEG</a>，中科院的<a href="http://ictclas.org/" target="_blank" rel="external">ICTCLAS</a>等等。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line">     * 对给定的文本进行中文分词.</div><div class="line">     * </div><div class="line">     * <span class="doctag">@param</span> text</div><div class="line">     *            给定的文本</div><div class="line">     * <span class="doctag">@param</span> splitToken</div><div class="line">     *            用于分割的标记,如"|"</div><div class="line">     * <span class="doctag">@return</span> 分词完毕的文本</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">split</span><span class="params">(<span class="keyword">final</span> String text, <span class="keyword">final</span> String splitToken)</span> </span>&#123;</div><div class="line">        String result = <span class="keyword">null</span>;</div><div class="line">        </div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            result = analyzer.segment(text, splitToken);</div><div class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> result;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>###3.2 停止词处理<br>停止词(Stop Word)是指那些无意义的字或词，如“的”、“在”等。去掉文档中的停止词也是必须的一项工作,这里简单的定义了一些常见的停止词，并根据这些常用停止词在分词时进行判断。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/** 常用停用词. */</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> String[] stopWordsList = &#123;</div><div class="line">            <span class="comment">// 来自 c:\Windows\System32\NOISE.CHS</span></div><div class="line">            <span class="string">"的"</span>, <span class="string">"一"</span>, <span class="string">"不"</span>, <span class="string">"在"</span>, <span class="string">"人"</span>, <span class="string">"有"</span>, <span class="string">"是"</span>, <span class="string">"为"</span>, <span class="string">"以"</span>, <span class="string">"于"</span>, <span class="string">"上"</span>, <span class="string">"他"</span>, <span class="string">"而"</span>,</div><div class="line">            <span class="string">"后"</span>, <span class="string">"之"</span>, <span class="string">"来"</span>, <span class="string">"及"</span>, <span class="string">"了"</span>, <span class="string">"因"</span>, <span class="string">"下"</span>, <span class="string">"可"</span>, <span class="string">"到"</span>, <span class="string">"由"</span>, <span class="string">"这"</span>, <span class="string">"与"</span>, <span class="string">"也"</span>,</div><div class="line">            <span class="string">"此"</span>, <span class="string">"但"</span>, <span class="string">"并"</span>, <span class="string">"个"</span>, <span class="string">"其"</span>, <span class="string">"已"</span>, <span class="string">"无"</span>, <span class="string">"小"</span>, <span class="string">"我"</span>, <span class="string">"们"</span>, <span class="string">"起"</span>, <span class="string">"最"</span>, <span class="string">"再"</span>,</div><div class="line">            <span class="string">"今"</span>, <span class="string">"去"</span>, <span class="string">"好"</span>, <span class="string">"只"</span>, <span class="string">"又"</span>, <span class="string">"或"</span>, <span class="string">"很"</span>, <span class="string">"亦"</span>, <span class="string">"某"</span>, <span class="string">"把"</span>, <span class="string">"那"</span>, <span class="string">"你"</span>, <span class="string">"乃"</span>,</div><div class="line">            <span class="string">"它"</span>,</div><div class="line">            <span class="comment">// 来自网络</span></div><div class="line">            <span class="string">"要"</span>, <span class="string">"将"</span>, <span class="string">"应"</span>, <span class="string">"位"</span>, <span class="string">"新"</span>, <span class="string">"两"</span>, <span class="string">"中"</span>, <span class="string">"更"</span>, <span class="string">"我们"</span>, <span class="string">"自己"</span>, <span class="string">"没有"</span>, <span class="string">"“"</span>, <span class="string">"”"</span>,</div><div class="line">            <span class="string">"，"</span>, <span class="string">"（"</span>, <span class="string">"）"</span>, <span class="string">""</span> &#125;;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 判断一个词是否是停止词.</div><div class="line">     * </div><div class="line">     * <span class="doctag">@param</span> word</div><div class="line">     *            要判断的词</div><div class="line">     * <span class="doctag">@return</span> 是停止词，返回true，否则返回false</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">isStopWord</span><span class="params">(<span class="keyword">final</span> String word)</span> </span>&#123;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; stopWordsList.length; ++i) &#123;</div><div class="line">            <span class="keyword">if</span> (word.equalsIgnoreCase(stopWordsList[i])) &#123;</div><div class="line">                <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<p>###3.3 预处理数据<br>我们这里使用<a href="http://www.sogou.com/labs/dl/c.html" target="_blank" rel="external">搜狗的文本分类语料库</a>作为训练样本，把SogouC.reduced.20061102.tar.gz解压到D盘，目录结构为</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">D:\Reduced</div><div class="line">         |-- C000008</div><div class="line">         |-- C000010</div><div class="line">         |-- C000013</div><div class="line">         |-- C000014</div><div class="line">         |-- C000016</div><div class="line">         |-- C000020</div><div class="line">         |-- C000022</div><div class="line">         |-- C000023</div><div class="line">         |-- C000024</div></pre></td></tr></table></figure>
+<p>IntermediateData.java主要用于处理文本数据，将所需要的信息计算好，存放到数据库文件中。</p>
+<p>中间数据文件主要保存了如下信息，</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/** 单词X在类别C下出现的总数. */</span></div><div class="line">	<span class="keyword">public</span> HashMap[] filesOfXC;</div><div class="line">	<span class="comment">/** 给定分类下的文件数目. */</span></div><div class="line">    <span class="keyword">public</span> <span class="keyword">int</span>[] filesOfC;</div><div class="line">    <span class="comment">/** 根目录下的文件总数. */</span></div><div class="line">    <span class="keyword">public</span> <span class="keyword">int</span> files;</div><div class="line">    </div><div class="line">	<span class="comment">/** 单词X在类别C下出现的总数 */</span></div><div class="line">	<span class="keyword">public</span> HashMap[] tokensOfXC;</div><div class="line">    <span class="comment">/** 类别C下所有单词的总数. */</span></div><div class="line">    <span class="keyword">public</span> <span class="keyword">int</span>[] tokensOfC;</div><div class="line">    <span class="comment">/** 整个语料库中单词的总数. */</span></div><div class="line">    <span class="keyword">public</span> <span class="keyword">int</span> tokens;</div><div class="line">    <span class="comment">/** 整个训练语料所出现的单词. */</span></div><div class="line">    <span class="keyword">public</span> HashSet&lt;String&gt; vocabulary;</div></pre></td></tr></table></figure>
+<p>我们使用命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">IntermediateData d:\Reduced\ gbk d:\reduced.db</div></pre></td></tr></table></figure>
+<p>将文本训练库的信息计算好，保存到中间文件中。以后的阶段，我们都不再需要文本语料库了，只需要reduced.db。</p>
+<p>###3.3 训练<br>基本的框架代码都在NaiveBayesClassifier中，MultiNomialNB和BernoulliNB都只是重新实现(override)了这三个函数。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/** 计算先验概率P(c). */</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">calculatePc</span><span class="params">()</span> </span>&#123;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="comment">/** 计算类条件概率P(x|c). */</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">calculatePxc</span><span class="params">()</span> </span>&#123;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    </div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 计算文本属性向量X在类Cj下的后验概率P(Cj|X).</div><div class="line">     * </div><div class="line">     * <span class="doctag">@param</span> x</div><div class="line">     *            文本属性向量</div><div class="line">     * <span class="doctag">@param</span> cj</div><div class="line">     *            给定的类别</div><div class="line">     * <span class="doctag">@return</span> 后验概率</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">double</span> <span class="title">calcProd</span><span class="params">(<span class="keyword">final</span> String[] x, <span class="keyword">final</span> <span class="keyword">int</span> cj)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<p>训练函数如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">public final void train(String intermediateData, String modelFile) &#123;</div><div class="line">    	// 加载中间数据文件</div><div class="line">    	loadData(intermediateData);</div><div class="line">    	</div><div class="line">    	model = new TrainnedModel(db.classifications.length);</div><div class="line">    	</div><div class="line">    	model.classifications = db.classifications;</div><div class="line">    	model.vocabulary = db.vocabulary;</div><div class="line">    	// 开始训练</div><div class="line">    	calculatePc();</div><div class="line">    	calculatePxc();</div><div class="line">    	db = null;</div><div class="line">    	</div><div class="line">    	try &#123;</div><div class="line">    		// 用序列化，将训练得到的结果存放到模型文件中</div><div class="line">            ObjectOutputStream out = new ObjectOutputStream(</div><div class="line">                    new FileOutputStream(modelFile));</div><div class="line">            out.writeObject(model);</div><div class="line">            out.close();</div><div class="line">        &#125; catch (IOException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>我们使用命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">MultiNomialNB –t d:\reduced.db d:\reduced.mdl</div></pre></td></tr></table></figure>
+<p>开始训练，得到的模型文件保存在reduced.mdl中。</p>
+<p>###3.4 分类<br>有了模型文件，就可以用它来进行分类了。</p>
+<p>可以使用命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">MultiNomialNB d:\reduced.mdl d:\temp.txt gbk</div></pre></td></tr></table></figure>
+<p>对文本文件temp.txt进行分类。</p>
+<p>还可以将当初训练出这个模型文件的文本库，进行分类，看看正确率有多少，即“吃自己的狗食”，命令行如下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">MultiNomialNB -r d:\reduced\ gbk d:\reduced.mdl</div></pre></td></tr></table></figure>
+<p>分类函数如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 对给定的文本进行分类.</div><div class="line"> * </div><div class="line"> * <span class="doctag">@param</span> text</div><div class="line"> *            给定的文本</div><div class="line"> * <span class="doctag">@return</span> 分类结果</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">final</span> String <span class="title">classify</span><span class="params">(<span class="keyword">final</span> String text)</span> </span>&#123;</div><div class="line">    String[] terms = <span class="keyword">null</span>;</div><div class="line">    <span class="comment">// 中文分词处理(分词后结果可能还包含有停用词）</span></div><div class="line">terms = textSpliter.split(text, <span class="string">" "</span>).split(<span class="string">" "</span>);</div><div class="line">    <span class="comment">// 去掉停用词，以免影响分类</span></div><div class="line">    terms = ChineseSpliter.dropStopWords(terms); </div><div class="line">        </div><div class="line"><span class="keyword">double</span> probility = <span class="number">0.0</span>;</div><div class="line">    <span class="comment">// 分类结果</span></div><div class="line">    List&lt;ClassifyResult&gt; crs = <span class="keyword">new</span> ArrayList&lt;ClassifyResult&gt;(); </div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; model.classifications.length; i++) &#123;</div><div class="line">        <span class="comment">// 计算给定的文本属性向量terms在给定的分类Ci中的分类条件概率</span></div><div class="line">        probility = calcProd(terms, i);</div><div class="line">        <span class="comment">// 保存分类结果</span></div><div class="line">        ClassifyResult cr = <span class="keyword">new</span> ClassifyResult();</div><div class="line">         cr.classification = model.classifications[i]; <span class="comment">// 分类</span></div><div class="line">        cr.probility = probility; <span class="comment">// 关键字在分类的条件概率</span></div><div class="line">        System.out.println(<span class="string">"In process...."</span>);</div><div class="line">        System.out.println(model.classifications[i] + <span class="string">"："</span> + probility);</div><div class="line">        crs.add(cr);</div><div class="line">    &#125;</div><div class="line">        </div><div class="line">    <span class="comment">// 找出最大的元素</span></div><div class="line">    ClassifyResult maxElem = (ClassifyResult) java.util.Collections.max(</div><div class="line">            crs, <span class="keyword">new</span> Comparator() &#123;</div><div class="line">                <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(<span class="keyword">final</span> Object o1, <span class="keyword">final</span> Object o2)</span> </span>&#123;</div><div class="line">                    <span class="keyword">final</span> ClassifyResult m1 = (ClassifyResult) o1;</div><div class="line">                    <span class="keyword">final</span> ClassifyResult m2 = (ClassifyResult) o2;</div><div class="line">                    <span class="keyword">final</span> <span class="keyword">double</span> ret = m1.probility - m2.probility;</div><div class="line">                    <span class="keyword">if</span> (ret &lt; <span class="number">0</span>) &#123;</div><div class="line">                        <span class="keyword">return</span> -<span class="number">1</span>;</div><div class="line">                    &#125; <span class="keyword">else</span> &#123;</div><div class="line">                        <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">            &#125;);</div><div class="line"></div><div class="line">    <span class="keyword">return</span> maxElem.classification;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>测试正确率的函数getCorrectRate()，核心代码就是对每个文本文件调用classify()，将得到的类别和原始的类别比较，经过统计后就可以得到百分比。</p>
+<p>更多细节请读者阅读<a href="http://yanjiuyanjiu-wordpress.stor.sinaapp.com/uploads/2010/05/NaiveBayesClassifier.zip" target="_blank" rel="external">源代码</a>。</p>
+<p>##参考文献</p>
+<p>[^1]: Christopher D. Manning, Prabhakar Raghavan, Hinrich Schütze, <a href="http://nlp.stanford.edu/IR-book/" target="_blank" rel="external">Introduction to Information Retrieval</a>, Cambridge University Press, 2008, chapter 13, Text classification and Naive Bayes.</p>
+<p>[^2]: Pang-Ning Tan, Michael Steinbach, Vipin Kumar, 《<a href="http://book.douban.com/subject/1786120/" target="_blank" rel="external">数据挖掘导论</a>》，北京：人民邮电出版社，2007，第140~145页。</p>
+<p>[^3]: 石志伟, 吴功宜, “<a href="http://d.wanfangdata.com.cn/Conference_5615512.aspx" target="_blank" rel="external">基于朴素贝叶斯分类器的文本分类算法</a>”, 第一届全国信息检索与内容安全学术会议，2004</p>
+<p>[^5]: DL88250, “<a href="http://blog.csdn.net/DL88250/archive/2008/02/20/2108164.aspx" target="_blank" rel="external">朴素贝叶斯中文文本分类器的研究与实现（1）</a>”，“<a href="http://blog.csdn.net/DL88250/archive/2008/03/27/2224126.aspx" target="_blank" rel="external">朴素贝叶斯中文文本分类器的研究与实现（2）</a>”，2008</p>
+</d,c></d,c></d,c>
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2010-04-01-read-and-write-images-using-java-imageio/" rel="next" title="Java使用imageio 读写图像">
+                <i class="fa fa-chevron-left"></i> Java使用imageio 读写图像
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2010-04-17-tex-resources-for-newbies/" rel="prev" title="推荐给TeX新手的电子书和书籍">
+                推荐给TeX新手的电子书和书籍 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2010-05-28-text-classification-algorithm-based-on-naive-bayes/"
+           data-title="基于朴素贝叶斯的文本分类算法" data-url="http://cn.soulmachine.me/2010-05-28-text-classification-algorithm-based-on-naive-bayes/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://tva2.sinaimg.cn/crop.4.536.2038.2038.180/632582bfgw1f31kbqdasbj21kw23uhdt.jpg"
+               alt="soulmachine" />
+          <p class="site-author-name" itemprop="name">soulmachine</p>
+          <p class="site-description motion-element" itemprop="description">一些技术笔记</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">56</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/soulmachine" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/soulmachine" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/soulmachine" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/soulmachine" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-block">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.liancheng.info/" title="连城" target="_blank">连城</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://yewen.us/" title="笨狗随手留下" target="_blank">笨狗随手留下</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.rational.so/" title="阎栋" target="_blank">阎栋</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.parallellabs.com/" title="并行实验室" target="_blank">并行实验室</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.javachen.com/" title="JavaChen" target="_blank">JavaChen</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://shenfeng.me/" title="沈峰" target="_blank">沈峰</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.lihaipeng.info/" title="李海鹏" target="_blank">李海鹏</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.chioka.in/" title="Eric" target="_blank">Eric</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/lgnlgn" title="梁兄的技术博客" target="_blank">梁兄的技术博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.doesbetter.com/" title="王孝舒的博客" target="_blank">王孝舒的博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.foreverlee.net/" title="ForeverLee" target="_blank">ForeverLee</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.cnblogs.com/yuzhangcmu/" title="CMU张宇" target="_blank">CMU张宇</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">soulmachine</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"soulmachine"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+
+</body>
+</html>
