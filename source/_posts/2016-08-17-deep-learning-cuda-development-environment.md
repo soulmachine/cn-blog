@@ -7,12 +7,24 @@ categories: 深度学习
 
 前提条件，已经安装好了 Ubuntu 16.04 操作系统， 见[安装 Windows 10 和 Ubuntu 16.04 双系统](http://cn.soulmachine.me/2016-08-14-dual-install-windows-ubuntu/)
 
+懒人版方法：
 
+```bash
+apt-key adv --fetch-keys http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/7fa2af80.pub
+echo "deb http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64 /" | sudo tee /etc/apt/sources.list.d/cuda.list
+sudo apt-get update
+sudo apt-get -y install cuda-drivers cuda
+```
+
+这个方法会安装稳定版的驱动和CUDA，可能不那么新。
+
+
+如果你想安装最新版的驱动和最新版的CUDA，那么接着读下去吧。
 
 ## 1. 安装 Nvidia 驱动
 
 
-```shell
+```bash
 sudo add-apt-repository -qy ppa:graphics-drivers/ppa
 sudo apt-get -qy update
 sudo apt-get -qy install nvidia-370
@@ -30,14 +42,14 @@ sudo reboot
 
 <!-- more -->
 
-```shell
+```bash
 chmod u+x ./cuda_8.0.27_linux.run
 sudo ./cuda_8.0.27_linux.run --tmpdir=/tmp
 ```
 
 执行后会有一系列提示让你确认，第一个就是问你是否安装显卡驱动，由于前一步已经安装了显卡驱动，所以这里就不需要了，况且 runfile 自带的驱动版本不是最新的。 因此 `Install NVIDIA Accelerated Graphics Driver for Linux-x86_64 361.77?` 这里选择 no。
 
-```shell
+```
 Do you accept the previously read EULA?
 accept/decline/quit: accept
 
@@ -64,7 +76,7 @@ Enter CUDA Samples Location
 
 看了一下安装日志，解决方案也很简单，加一个 `--override` 选项，
 
-```shell
+```bash
 sudo ./cuda_8.0.27_linux.run --tmpdir=/tmp --override
 ```
 
@@ -100,14 +112,14 @@ Signal caught, cleaning up
 
 把以下两行加入到 `.bashrc`，
 
-```shell
+```bash
 export PATH=/usr/local/cuda-8.0/bin${PATH:+:${PATH}}
 export LD_LIBRARY_PATH=/usr/local/cuda-8.0/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
 ```
 
 ## 安装补丁
 
-```shell
+```bash
 chmod u+x ./cuda_8.0.27.1_linux.run
 sudo ./cuda_8.0.27.1_linux.run
 ```
@@ -117,7 +129,7 @@ sudo ./cuda_8.0.27.1_linux.run
 
 最后再来测试一下CUDA，运行：
 
-```shell
+```bash
 nvidia-smi
 ```
 
@@ -145,7 +157,7 @@ nvidia-smi
 
 再来试几个CUDA例子：
 
-```shell
+```bash
 cd ~/NVIDIA_CUDA-8.0_Samples/1_Utilities/deviceQuery
 make
 ```
@@ -197,14 +209,14 @@ Result = PASS
 
 再测试试一下nobody：
 
-```shell
+```bash
 cd ~/NVIDIA_CUDA-8.0_Samples/5_Simulations/nbody/
 make
 ```
 
 执行：
 
-```shell
+```bash
 ./nbody -benchmark -numbodies=256000 -device=0
 ```
 
