@@ -75,6 +75,20 @@ categories: 深度学习
 这个命令会自动扫描其他硬盘上的操作系统，并加入grub 开机启动菜单。
 
 
+## 自动mount硬盘
+
+如果你有多块硬盘，需要在 Ubuntu 启动后自动mount, 那么可以在 `/etc/fstab` 里添加配置，一行对应一块硬盘，例如
+
+    UUID=edf094f8-42aa-8501-ef91245ff587  /data  ext4  errors=remount-ro  0  2
+
+上面这行配置添加了一块硬盘，mount 到 `/data`，文件系统为 ext4。
+
+
+## 备份系统
+
+在Windows上我们用Ghost来备份整个系统，那么在Ubuntu上，也有类似的工具，[Clonezilla](http://clonezilla.org/)，下载 ISO文件后，刻录到U盘，然后用U盘启动台式机，将系统盘整个备份，下次就不用重新装机了，直接从镜像文件恢复一下，就得到一个崭新的系统啦。
+
+
 ## 参考资料
 
 * [UEFI - Ubuntu](https://help.ubuntu.com/community/UEFI)
