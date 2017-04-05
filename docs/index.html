@@ -326,6 +326,11 @@
 <p>懒人版方法：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">apt-key adv --fetch-keys http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/7fa2af80.pub</div><div class="line"><span class="built_in">echo</span> <span class="string">"deb http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64 /"</span> | sudo tee /etc/apt/sources.list.d/cuda.list</div><div class="line">sudo apt-get update</div><div class="line">sudo apt-get -y install cuda-drivers cuda</div></pre></td></tr></table></figure>
 <p>这个方法会安装稳定版的驱动和CUDA，可能不那么新。</p>
+<p>然后开始安装 cuDNN, 先下载 cuDNN 6.0, </p>
+<pre><code>wget http://developer.download.nvidia.com/compute/redist/cudnn/v6.0/cudnn-8.0-linux-x64-v6.0.tgz
+</code></pre><p>然后解压到 <code>/usr/local</code>，</p>
+<pre><code>sudo tar -zxf cudnn-8.0-linux-x64-v6.0.tgz -P /usr/local
+</code></pre><p>至此，驱动， CUDA 和 cuDNN都安装完了。</p>
 <p>如果你想安装最新版的驱动和最新版的CUDA，那么接着读下去吧。</p>
 <h2 id="1-安装-Nvidia-驱动"><a href="#1-安装-Nvidia-驱动" class="headerlink" title="1. 安装 Nvidia 驱动"></a>1. 安装 Nvidia 驱动</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">sudo add-apt-repository -qy ppa:graphics-drivers/ppa</div><div class="line">sudo apt-get -qy update</div><div class="line">sudo apt-get -qy install nvidia-370</div><div class="line">sudo apt-get -qy install mesa-common-dev</div><div class="line">sudo apt-get -qy install freeglut3-dev</div><div class="line">sudo reboot</div></pre></td></tr></table></figure>
 <p>注意，一般比较新的主板，默认是UEFI BIOS，默认启用了 Secure Boot，否则开机后登陆不进去。老主板没有这个问题。</p>

@@ -18,6 +18,16 @@ sudo apt-get -y install cuda-drivers cuda
 
 这个方法会安装稳定版的驱动和CUDA，可能不那么新。
 
+然后开始安装 cuDNN, 先下载 cuDNN 6.0, 
+
+    wget http://developer.download.nvidia.com/compute/redist/cudnn/v6.0/cudnn-8.0-linux-x64-v6.0.tgz
+
+然后解压到 `/usr/local`，
+
+    sudo tar -zxf cudnn-8.0-linux-x64-v6.0.tgz -P /usr/local
+
+至此，驱动， CUDA 和 cuDNN都安装完了。
+
 
 如果你想安装最新版的驱动和最新版的CUDA，那么接着读下去吧。
 
