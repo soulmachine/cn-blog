@@ -102,7 +102,7 @@
 
 两个U盘，一个是可启动的Ubuntu 16.04.1 安装盘，一个是Windows 10 1607 x64 安装盘
  制作可启动安装盘很简单，下载 cn_window">
-<meta property="og:updated_time" content="2016-09-09T06:32:49.000Z">
+<meta property="og:updated_time" content="2017-04-05T21:42:18.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="安装 Windows 10 和 Ubuntu 16.04 双系统">
 <meta name="twitter:description" content="本文是上一篇文章我的深度学习工作站攒机过程记录的续集。
@@ -377,6 +377,10 @@
 <p>【可选项】如果你不想通过UEFI BIOS来切换操作系统，你还可以把Windows加入 Ubuntu的 grub 菜单，开机进入Ubuntu后，执行</p>
 <pre><code>sudo update-grub
 </code></pre><p>这个命令会自动扫描其他硬盘上的操作系统，并加入grub 开机启动菜单。</p>
+<h2 id="自动mount硬盘"><a href="#自动mount硬盘" class="headerlink" title="自动mount硬盘"></a>自动mount硬盘</h2><p>如果你有多块硬盘，需要在 Ubuntu 启动后自动mount, 那么可以在 <code>/etc/fstab</code> 里添加配置，一行对应一块硬盘，例如</p>
+<pre><code>UUID=edf094f8-42aa-8501-ef91245ff587  /data  ext4  errors=remount-ro  0  2
+</code></pre><p>上面这行配置添加了一块硬盘，mount 到 <code>/data</code>，文件系统为 ext4。</p>
+<h2 id="备份系统"><a href="#备份系统" class="headerlink" title="备份系统"></a>备份系统</h2><p>在Windows上我们用Ghost来备份整个系统，那么在Ubuntu上，也有类似的工具，<a href="http://clonezilla.org/" target="_blank" rel="external">Clonezilla</a>，下载 ISO文件后，刻录到U盘，然后用U盘启动台式机，将系统盘整个备份，下次就不用重新装机了，直接从镜像文件恢复一下，就得到一个崭新的系统啦。</p>
 <h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
 <li><a href="https://help.ubuntu.com/community/UEFI" target="_blank" rel="external">UEFI - Ubuntu</a></li>
 <li><a href="http://forum.ubuntu.org.cn/viewtopic.php?t=467746" target="_blank" rel="external">在Win8基础上加装Ubuntu，得先搞清楚Win8是以何种方式安装的</a></li>
@@ -511,7 +515,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -636,7 +640,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前提条件"><span class="nav-number">1.</span> <span class="nav-text">前提条件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Windows-和-Ubuntu-安装在同一块硬盘上"><span class="nav-number">2.</span> <span class="nav-text">Windows 和 Ubuntu 安装在同一块硬盘上</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Windows-和-Ubuntu-分别安装不同的硬盘上"><span class="nav-number">3.</span> <span class="nav-text">Windows 和 Ubuntu 分别安装不同的硬盘上</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">4.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前提条件"><span class="nav-number">1.</span> <span class="nav-text">前提条件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Windows-和-Ubuntu-安装在同一块硬盘上"><span class="nav-number">2.</span> <span class="nav-text">Windows 和 Ubuntu 安装在同一块硬盘上</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Windows-和-Ubuntu-分别安装不同的硬盘上"><span class="nav-number">3.</span> <span class="nav-text">Windows 和 Ubuntu 分别安装不同的硬盘上</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自动mount硬盘"><span class="nav-number">4.</span> <span class="nav-text">自动mount硬盘</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#备份系统"><span class="nav-number">5.</span> <span class="nav-text">备份系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">6.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
             
           </div>
         </section>
@@ -655,7 +659,7 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2016</span>
+  <span itemprop="copyrightYear">2017</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
