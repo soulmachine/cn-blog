@@ -1,5 +1,5 @@
 ---
-title: 2017 04 08 Ethereum mining using GTX 1080
+title: 使用显卡挖以太币教程
 date: 2017-04-08 01:04:09
 tags: Ethereum
 ---
@@ -30,6 +30,8 @@ make -j8
 ```
 
 编译完成后会在当前目录的子目录`ethminer`下生成一个 `ethminer` 可执行文件。
+
+<!-- more -->
 
 ## 3. 连接矿池开始挖矿
 

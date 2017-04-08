@@ -254,7 +254,7 @@
               
                 
                 <a class="post-title-link" href="/2017-04-08-Ethereum-mining-using-GTX-1080/" itemprop="url">
-                  2017 04 08 Ethereum mining using GTX 1080
+                  使用显卡挖以太币教程
                 </a>
               
             
@@ -303,34 +303,15 @@
 
       
         
-          
-            <p>操作系统: Ubuntu 16.04，显卡 GTX 1080</p>
+          <p>操作系统: Ubuntu 16.04，显卡 GTX 1080</p>
 <h2 id="1-安装显卡驱动和CUDA"><a href="#1-安装显卡驱动和CUDA" class="headerlink" title="1. 安装显卡驱动和CUDA"></a>1. 安装显卡驱动和CUDA</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">apt-key adv --fetch-keys http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/7fa2af80.pub</div><div class="line"><span class="built_in">echo</span> <span class="string">"deb http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64 /"</span> | sudo tee /etc/apt/sources.list.d/cuda.list</div><div class="line">sudo apt-get update</div><div class="line">sudo apt-get -y install cuda-drivers cuda</div></pre></td></tr></table></figure>
 <h2 id="2-编译安装-Genoil-cpp-ethereum"><a href="#2-编译安装-Genoil-cpp-ethereum" class="headerlink" title="2. 编译安装 Genoil/cpp-ethereum"></a>2. 编译安装 Genoil/cpp-ethereum</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">sudo apt -y install software-properties-common</div><div class="line">sudo add-apt-repository -y ppa:ethereum/ethereum</div><div class="line">sudo apt -y update</div><div class="line">sudo apt -y install git cmake libcryptopp-dev libleveldb-dev libjsoncpp-dev libjsonrpccpp-dev libboost-all-dev libgmp-dev libreadline-dev libcurl4-gnutls-dev ocl-icd-libopencl1 opencl-headers mesa-common-dev libmicrohttpd-dev build-essential</div><div class="line">git <span class="built_in">clone</span> git@github.com:Genoil/cpp-ethereum.git</div><div class="line"><span class="built_in">cd</span> cpp-ethereum/</div><div class="line">mkdir build</div><div class="line"><span class="built_in">cd</span> build</div><div class="line">cmake -DBUNDLE=cudaminer ..</div><div class="line">make -j8</div></pre></td></tr></table></figure>
 <p>编译完成后会在当前目录的子目录<code>ethminer</code>下生成一个 <code>ethminer</code> 可执行文件。</p>
-<h2 id="3-连接矿池开始挖矿"><a href="#3-连接矿池开始挖矿" class="headerlink" title="3. 连接矿池开始挖矿"></a>3. 连接矿池开始挖矿</h2><p>选一个矿池，选一个算力大的矿池，注册好账号。我这里选择的是 <a href="https://ethermine.org/" target="_blank" rel="external">https://ethermine.org/</a> 这个矿池。</p>
-<pre><code># 不太明白以下环境变量的作用
-export GPU_FORCE_64BIT_PTR=0
-export GPU_MAX_HEAP_SIZE=100
-export GPU_USE_SYNC_OBJECTS=1
-export GPU_MAX_ALLOC_PERCENT=100
-export GPU_SINGLE_ALLOC_PERCENT=100
-./ethminer --farm-recheck 2000 -U -S us2.ethermine.org:4444 -FS us1.ethermine.org:4444 -O 0xba90FF2fA9016B3883799D150fB15DB5b4894f8b.soulmachine
-</code></pre><p><code>--farm-recheck</code>大致是重新检查某些东西的时间间隔，毫秒为单位，<code>-U</code>指的是用GPU，且用的是CUDA而不是OpenCL，<code>-S</code>指定stratum服务器，<code>-FS</code>指定的备份服务器(这里用us2做主服务器，us1作备份服务器的原因是，us1是在美国东部，us2在美国西部，而我的机器在西部，离us2近一些)，<code>-O</code> 指定自己的钱包地址(我是用的CoinBase的在线)，<code>.</code>后面是RigName, 随便填。</p>
-<p>我搜到的第二大的矿池是 <a href="http://ethpool.org/" target="_blank" rel="external">http://ethpool.org/</a>，连接这个矿池的命令跟ethermine.org一模一样，只是地址变了，</p>
-<pre><code>./ethminer --farm-recheck 2000 -U -S us2.ethpool.org:3333 -FS us1.ethpool.org:3333 -O 0xba90FF2fA9016B3883799D150fB15DB5b4894f8b.soulmachine
-</code></pre><p>国内的两个较大的矿池是鱼池<a href="https://www.f2pool.com/" target="_blank" rel="external">https://www.f2pool.com/</a>和蚁池<a href="https://www.antpool.com/" target="_blank" rel="external">https://www.antpool.com/</a>，连接的方法与上面类似。</p>
-<p>关于5个环境变量的作用，我没有搞的很明白，大致猜测是如果显卡只有2G显存，那么就占用百分之百，不过我的GTX 1080 有8G显存，远远够用，所以感觉设不设置这些环境变量，没有差别，事实上也是如此，不设置环境变量，运行<code>nvidia-smi</code>可以看到占用的显存也在2G左右，挖矿速度也没有变化，仍然是 20MH/s 左右。</p>
-<h2 id="4-Genoil-和-Claymore-的比较"><a href="#4-Genoil-和-Claymore-的比较" class="headerlink" title="4. Genoil 和 Claymore 的比较"></a>4. Genoil 和 Claymore 的比较</h2><p>Claymore 是另一款挖矿软件，经过我亲自测试，二者的速度基本一样，GTX 1080 都在在 20MH/s 左右，不过 Claymore可以在不影响以太币挖矿速度的情况下，还可以同时挖 Decred/Siacoin/Lbry/Pascal 之一，于是我现在用的是 Claymore这个挖矿程序，命令行如下，</p>
-<pre><code>export GPU_FORCE_64BIT_PTR=0
-export GPU_MAX_HEAP_SIZE=100
-export GPU_USE_SYNC_OBJECTS=1
-export GPU_MAX_ALLOC_PERCENT=100
-export GPU_SINGLE_ALLOC_PERCENT=100
-./ethdcrminer64 -epool us2.ethermine.org:4444 -ewal 0xba90FF2fA9016B3883799D150fB15DB5b4894f8b.soulmachine -epsw x -dpool pasc-us-west1.nanopool.org:15555 -dwal Dsab2dnwdTTpibkUr9VREdhLNytdnCv9nGv -dpsw x
-</code></pre><p>不要试图同时运行<code>ethminer</code>和<code>ethdcrminer64</code>，这样的话它们的速度同时会降为原来的一半，总的速度还是跟单个一样。</p>
-
-          
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2017-04-08-Ethereum-mining-using-GTX-1080/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -379,7 +360,7 @@ export GPU_SINGLE_ALLOC_PERCENT=100
               
                 
                 <a class="post-title-link" href="/2017-04-07-bitcoin-mining-using-GTX-1080/" itemprop="url">
-                  GTX 1080挖矿教程
+                  使用显卡挖比特币教程
                 </a>
               
             
@@ -428,20 +409,19 @@ export GPU_SINGLE_ALLOC_PERCENT=100
 
       
         
-          
-            <p>操作系统: Ubuntu 16.04，显卡 GTX 1080</p>
+          <p>操作系统: Ubuntu 16.04，显卡 GTX 1080</p>
 <h2 id="1-安装显卡驱动和CUDA"><a href="#1-安装显卡驱动和CUDA" class="headerlink" title="1. 安装显卡驱动和CUDA"></a>1. 安装显卡驱动和CUDA</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">apt-key adv --fetch-keys http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/7fa2af80.pub</div><div class="line"><span class="built_in">echo</span> <span class="string">"deb http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64 /"</span> | sudo tee /etc/apt/sources.list.d/cuda.list</div><div class="line">sudo apt-get update</div><div class="line">sudo apt-get -y install cuda-drivers cuda</div></pre></td></tr></table></figure>
 <h2 id="2-编译安装-ccMiner"><a href="#2-编译安装-ccMiner" class="headerlink" title="2. 编译安装 ccMiner"></a>2. 编译安装 ccMiner</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">git <span class="built_in">clone</span> --recursive git@github.com:tpruvot/ccminer.git</div><div class="line"><span class="built_in">cd</span> ccminer</div><div class="line">git checkout --track origin/linux</div><div class="line">sudo apt install automake libcurl4-openssl-dev</div></pre></td></tr></table></figure>
-<p>根据显卡修改 <code>Makefile.am</code> (<a href="https://github.com/tpruvot/ccminer/wiki/Compatibility" target="_blank" rel="external">https://github.com/tpruvot/ccminer/wiki/Compatibility</a>), 比如GTX 1080 则用</p>
+<p>根据显卡修改 <code>Makefile.am</code> (<a href="https://github.com/tpruvot/ccminer/wiki/Compatibility">https://github.com/tpruvot/ccminer/wiki/Compatibility</a>), 比如GTX 1080 则用</p>
 <pre><code>nvcc_ARCH = -gencode=arch=compute_61,code=\&quot;sm_61,compute_61\&quot;
 </code></pre><p>开始编译，</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">./autogen.sh</div><div class="line">./configure</div><div class="line">./build.sh</div></pre></td></tr></table></figure>
 <p>编译完成后会在当前目录生成一个 <code>ccminer</code> 可执行文件</p>
-<h2 id="3-连接矿池开始挖矿"><a href="#3-连接矿池开始挖矿" class="headerlink" title="3. 连接矿池开始挖矿"></a>3. 连接矿池开始挖矿</h2><p>选一个矿池，注册好账号。<a href="https://bitcoinchain.com/pools" target="_blank" rel="external">https://bitcoinchain.com/pools</a> 这里可以看到各个矿池的算力，我们选择最大的 AntPool吧。</p>
-<pre><code>./ccminer -o stratum+tcp://stratum.antpool.com:3333 -u soulmachine.01 -p soul123456
-</code></pre><p><code>-o</code> 是矿池服务器地址, <code>-u</code>的格式是 <code>UserId.WorkerId</code>, <code>UserId</code>必须是你注册网站时的用户名，<code>WorkerId</code>随便填，<code>-p</code>表示密码，随便填即可。还有个参数, <code>--algo</code>表示算法，可以不填，不填的时候默认为<code>auto</code>，表示自动选择哈希算法。</p>
-
-          
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2017-04-07-bitcoin-mining-using-GTX-1080/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>

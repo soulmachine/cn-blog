@@ -87,14 +87,14 @@
 <meta name="description" content="操作系统: Ubuntu 16.04，显卡 GTX 1080
 1. 安装显卡驱动和CUDA1234apt-key adv --fetch-keys http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/7fa2af80.pubecho &quot;deb http://developer.download.nvid">
 <meta property="og:type" content="article">
-<meta property="og:title" content="2017 04 08 Ethereum mining using GTX 1080">
+<meta property="og:title" content="使用显卡挖以太币教程">
 <meta property="og:url" content="http://cn.soulmachine.me/2017-04-08-Ethereum-mining-using-GTX-1080/index.html">
 <meta property="og:site_name" content="灵魂机器">
 <meta property="og:description" content="操作系统: Ubuntu 16.04，显卡 GTX 1080
 1. 安装显卡驱动和CUDA1234apt-key adv --fetch-keys http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/7fa2af80.pubecho &quot;deb http://developer.download.nvid">
-<meta property="og:updated_time" content="2017-04-08T07:32:42.000Z">
+<meta property="og:updated_time" content="2017-04-08T07:41:15.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="2017 04 08 Ethereum mining using GTX 1080">
+<meta name="twitter:title" content="使用显卡挖以太币教程">
 <meta name="twitter:description" content="操作系统: Ubuntu 16.04，显卡 GTX 1080
 1. 安装显卡驱动和CUDA1234apt-key adv --fetch-keys http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/7fa2af80.pubecho &quot;deb http://developer.download.nvid">
 
@@ -114,7 +114,7 @@
   };
 </script>
 
-  <title> 2017 04 08 Ethereum mining using GTX 1080 | 灵魂机器 </title>
+  <title> 使用显卡挖以太币教程 | 灵魂机器 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -254,7 +254,7 @@
             
             
               
-                2017 04 08 Ethereum mining using GTX 1080
+                使用显卡挖以太币教程
               
             
           </h1>
@@ -305,6 +305,7 @@
 <h2 id="1-安装显卡驱动和CUDA"><a href="#1-安装显卡驱动和CUDA" class="headerlink" title="1. 安装显卡驱动和CUDA"></a>1. 安装显卡驱动和CUDA</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">apt-key adv --fetch-keys http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/7fa2af80.pub</div><div class="line"><span class="built_in">echo</span> <span class="string">"deb http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64 /"</span> | sudo tee /etc/apt/sources.list.d/cuda.list</div><div class="line">sudo apt-get update</div><div class="line">sudo apt-get -y install cuda-drivers cuda</div></pre></td></tr></table></figure>
 <h2 id="2-编译安装-Genoil-cpp-ethereum"><a href="#2-编译安装-Genoil-cpp-ethereum" class="headerlink" title="2. 编译安装 Genoil/cpp-ethereum"></a>2. 编译安装 Genoil/cpp-ethereum</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">sudo apt -y install software-properties-common</div><div class="line">sudo add-apt-repository -y ppa:ethereum/ethereum</div><div class="line">sudo apt -y update</div><div class="line">sudo apt -y install git cmake libcryptopp-dev libleveldb-dev libjsoncpp-dev libjsonrpccpp-dev libboost-all-dev libgmp-dev libreadline-dev libcurl4-gnutls-dev ocl-icd-libopencl1 opencl-headers mesa-common-dev libmicrohttpd-dev build-essential</div><div class="line">git <span class="built_in">clone</span> git@github.com:Genoil/cpp-ethereum.git</div><div class="line"><span class="built_in">cd</span> cpp-ethereum/</div><div class="line">mkdir build</div><div class="line"><span class="built_in">cd</span> build</div><div class="line">cmake -DBUNDLE=cudaminer ..</div><div class="line">make -j8</div></pre></td></tr></table></figure>
 <p>编译完成后会在当前目录的子目录<code>ethminer</code>下生成一个 <code>ethminer</code> 可执行文件。</p>
+<a id="more"></a>
 <h2 id="3-连接矿池开始挖矿"><a href="#3-连接矿池开始挖矿" class="headerlink" title="3. 连接矿池开始挖矿"></a>3. 连接矿池开始挖矿</h2><p>选一个矿池，选一个算力大的矿池，注册好账号。我这里选择的是 <a href="https://ethermine.org/" target="_blank" rel="external">https://ethermine.org/</a> 这个矿池。</p>
 <pre><code># 不太明白以下环境变量的作用
 export GPU_FORCE_64BIT_PTR=0
@@ -356,8 +357,8 @@ export GPU_SINGLE_ALLOC_PERCENT=100
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017-04-07-bitcoin-mining-using-GTX-1080/" rel="next" title="GTX 1080挖矿教程">
-                <i class="fa fa-chevron-left"></i> GTX 1080挖矿教程
+              <a href="/2017-04-07-bitcoin-mining-using-GTX-1080/" rel="next" title="使用显卡挖比特币教程">
+                <i class="fa fa-chevron-left"></i> 使用显卡挖比特币教程
               </a>
             
           </div>
@@ -389,7 +390,7 @@ export GPU_SINGLE_ALLOC_PERCENT=100
   <div class="comments" id="comments">
     
       <div class="ds-thread" data-thread-key="2017-04-08-Ethereum-mining-using-GTX-1080/"
-           data-title="2017 04 08 Ethereum mining using GTX 1080" data-url="http://cn.soulmachine.me/2017-04-08-Ethereum-mining-using-GTX-1080/">
+           data-title="使用显卡挖以太币教程" data-url="http://cn.soulmachine.me/2017-04-08-Ethereum-mining-using-GTX-1080/">
       </div>
     
   </div>

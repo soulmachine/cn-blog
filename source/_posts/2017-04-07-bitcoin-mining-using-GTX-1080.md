@@ -1,5 +1,5 @@
 ---
-title: GTX 1080挖矿教程
+title: 使用显卡挖比特币教程
 date: 2017-04-08 00:23:55
 tags: 比特币
 ---
@@ -36,6 +36,8 @@ sudo apt install automake libcurl4-openssl-dev
 ```
 
 编译完成后会在当前目录生成一个 `ccminer` 可执行文件
+
+<!-- more -->
 
 ## 3. 连接矿池开始挖矿
 

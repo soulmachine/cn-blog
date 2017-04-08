@@ -87,14 +87,14 @@
 <meta name="description" content="操作系统: Ubuntu 16.04，显卡 GTX 1080
 1. 安装显卡驱动和CUDA1234apt-key adv --fetch-keys http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/7fa2af80.pubecho &quot;deb http://developer.download.nvid">
 <meta property="og:type" content="article">
-<meta property="og:title" content="GTX 1080挖矿教程">
+<meta property="og:title" content="使用显卡挖比特币教程">
 <meta property="og:url" content="http://cn.soulmachine.me/2017-04-07-bitcoin-mining-using-GTX-1080/index.html">
 <meta property="og:site_name" content="灵魂机器">
 <meta property="og:description" content="操作系统: Ubuntu 16.04，显卡 GTX 1080
 1. 安装显卡驱动和CUDA1234apt-key adv --fetch-keys http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/7fa2af80.pubecho &quot;deb http://developer.download.nvid">
-<meta property="og:updated_time" content="2017-04-08T00:35:25.000Z">
+<meta property="og:updated_time" content="2017-04-08T07:40:23.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="GTX 1080挖矿教程">
+<meta name="twitter:title" content="使用显卡挖比特币教程">
 <meta name="twitter:description" content="操作系统: Ubuntu 16.04，显卡 GTX 1080
 1. 安装显卡驱动和CUDA1234apt-key adv --fetch-keys http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/7fa2af80.pubecho &quot;deb http://developer.download.nvid">
 
@@ -114,7 +114,7 @@
   };
 </script>
 
-  <title> GTX 1080挖矿教程 | 灵魂机器 </title>
+  <title> 使用显卡挖比特币教程 | 灵魂机器 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -254,7 +254,7 @@
             
             
               
-                GTX 1080挖矿教程
+                使用显卡挖比特币教程
               
             
           </h1>
@@ -309,6 +309,7 @@
 </code></pre><p>开始编译，</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">./autogen.sh</div><div class="line">./configure</div><div class="line">./build.sh</div></pre></td></tr></table></figure>
 <p>编译完成后会在当前目录生成一个 <code>ccminer</code> 可执行文件</p>
+<a id="more"></a>
 <h2 id="3-连接矿池开始挖矿"><a href="#3-连接矿池开始挖矿" class="headerlink" title="3. 连接矿池开始挖矿"></a>3. 连接矿池开始挖矿</h2><p>选一个矿池，注册好账号。<a href="https://bitcoinchain.com/pools" target="_blank" rel="external">https://bitcoinchain.com/pools</a> 这里可以看到各个矿池的算力，我们选择最大的 AntPool吧。</p>
 <pre><code>./ccminer -o stratum+tcp://stratum.antpool.com:3333 -u soulmachine.01 -p soul123456
 </code></pre><p><code>-o</code> 是矿池服务器地址, <code>-u</code>的格式是 <code>UserId.WorkerId</code>, <code>UserId</code>必须是你注册网站时的用户名，<code>WorkerId</code>随便填，<code>-p</code>表示密码，随便填即可。还有个参数, <code>--algo</code>表示算法，可以不填，不填的时候默认为<code>auto</code>，表示自动选择哈希算法。</p>
@@ -350,8 +351,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017-04-08-Ethereum-mining-using-GTX-1080/" rel="prev" title="2017 04 08 Ethereum mining using GTX 1080">
-                2017 04 08 Ethereum mining using GTX 1080 <i class="fa fa-chevron-right"></i>
+              <a href="/2017-04-08-Ethereum-mining-using-GTX-1080/" rel="prev" title="使用显卡挖以太币教程">
+                使用显卡挖以太币教程 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -379,7 +380,7 @@
   <div class="comments" id="comments">
     
       <div class="ds-thread" data-thread-key="2017-04-07-bitcoin-mining-using-GTX-1080/"
-           data-title="GTX 1080挖矿教程" data-url="http://cn.soulmachine.me/2017-04-07-bitcoin-mining-using-GTX-1080/">
+           data-title="使用显卡挖比特币教程" data-url="http://cn.soulmachine.me/2017-04-07-bitcoin-mining-using-GTX-1080/">
       </div>
     
   </div>
