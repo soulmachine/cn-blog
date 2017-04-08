@@ -253,6 +253,138 @@
             
               
                 
+                <a class="post-title-link" href="/2013-04-02-my-octopress-configuration/" itemprop="url">
+                  我的Octopress配置
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2013-04-02T15:35:00Z" content="2013-04-02">
+              2013-04-02
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Tools/" itemprop="url" rel="index">
+                    <span itemprop="name">Tools</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2013-04-02-my-octopress-configuration/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2013-04-02-my-octopress-configuration/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="实时预览"><a href="#实时预览" class="headerlink" title="实时预览"></a>实时预览</h2><p>使用如下命令可以实现实时预览：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rake preview</div></pre></td></tr></table></figure>
+<p><code>rake preview</code> 会自动监视文件的变化，重新生成静态页面。因此修改markdown文件后，只需要在浏览器里刷新一下页面，就立刻可以看到效果。不过如果修改了_config.yml的话，则需要Ctrl+C终止，用<code>rake generate</code>重新生成，才能看到效果。</p>
+<h2 id="嵌入代码块"><a href="#嵌入代码块" class="headerlink" title="嵌入代码块"></a>嵌入代码块</h2><p>见官方文档<a href="http://octopress.org/docs/blogging/code/">Sharing Code Snippets</a>。</p>
+<p>Octopress是一款为hacker量身定制的博客系统，当然内置了代码高亮的功能！它的代码高亮功能是通过Pygments实现的，配色方案用的是Solarized，堪称完美。</p>
+<p>Octopress支持多种方式嵌入代码，可以直接嵌入代码，也可以引用github上的gist 。</p>
+<p>我喜欢用<strong>三个反引号</strong>直接嵌入代码，比 <code>codeblock</code>要简洁。</p>
+<p>###启用MathJax<br>在<code>source/_includes/custom/footer.html</code>的第一行加入如下代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">&lt;!-- mathjax config similar to math.stackexchange --&gt;</div><div class="line">&lt;script type="text/x-mathjax-config"&gt;</div><div class="line">MathJax.Hub.Config(&#123;</div><div class="line">  jax: ["input/TeX", "output/HTML-CSS"],</div><div class="line">  tex2jax: &#123;</div><div class="line">    inlineMath: [ ['$', '$'] ],</div><div class="line">    displayMath: [ ['$$', '$$']],</div><div class="line">    processEscapes: true,</div><div class="line">    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']</div><div class="line">  &#125;,</div><div class="line">  messageStyle: "none",</div><div class="line">  "HTML-CSS": &#123; preferredFont: "TeX", availableFonts: ["STIX","TeX"] &#125;</div><div class="line">&#125;);</div><div class="line">&lt;/script&gt;</div><div class="line">&lt;script src=<span class="string">"http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"</span> type=<span class="string">"text/javascript"</span>&gt;&lt;/script&gt;</div></pre></td></tr></table></figure>
+<p>这样就引入了MathJax的JS包，可以直接在markdown文件里直接写公式了，例如 $\dfrac {\pi}{2}$。</p>
+<p>上面的代码也可以在<code>source/_includes/custom/header.html</code>里添加，不过这样会使得页面的加载速度变慢。还可以在<code>source/_layouts/default.html</code>里添加。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2013-04-02-my-octopress-configuration/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2013-04-01-using-github-and-octoperss-to-create-a-free-blog/" itemprop="url">
                   使用github + Octopress 搭建免费博客
                 </a>
@@ -1401,159 +1533,6 @@ exit
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2012-01-02-ssh-passwordless-login-configuration/" itemprop="url">
-                  SSH无密码登录的配置
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2012-01-02T02:16:00Z" content="2012-01-02">
-              2012-01-02
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/DevOps/" itemprop="url" rel="index">
-                    <span itemprop="name">DevOps</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2012-01-02-ssh-passwordless-login-configuration/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2012-01-02-ssh-passwordless-login-configuration/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>根据公钥加密的思想，如果机器A想无密码登录其他N台机器，只需要在自己机器上生成一对公钥和密钥，然后把密钥给这N台机器，这样，这N台机器，有了A的公钥，就可以解密A的数据包，跟A正常通信了。</p>
-<p>通常在一个集群中，我们会选择一台机器作为跳板机，在这台机器上登录其他机器，因此，无名需要在跳板机上生成一对公钥和密钥。一般的，我们也会把跳板板机作为整个集群的master，例如Hadoop的NameNode，因此最好选一台内存比较大的机器作为跳板机。</p>
-<p>下面详细讲解如何配置从跳板机SSH无密码登录到所有机器（包括自己）。</p>
-<p>根据公钥加密的思想，如果机器A想无密码登录其他N台机器，只需要在自己机器上生成一对公钥和密钥，然后把密钥给这N台机器，这样，这N台机器，有了A的公钥，就可以解密A的数据包，跟A正常通信了。</p>
-<p>通常在一个集群中，我们会选择一台机器作为跳板机，在这台机器上登录其他机器，因此，无名需要在跳板机上生成一对公钥和密钥。一般的，我们也会把跳板板机作为整个集群的master，例如Hadoop的NameNode，因此最好选一台内存比较大的机器作为跳板机。</p>
-<p>下面详细讲解如何配置从跳板机SSH无密码登录到所有机器（包括自己）。</p>
-<p>##前提： 修改hosts文件<br>假设有三台机器，<code>192.168.1.131, 192.168.1.132, 192.168.1.133</code>，hostname分别是master, slave01, slave02</p>
-<p>##1.在master上生成一对公钥和密钥</p>
-<pre><code>dev@master:~$ ssh-keygen -t dsa -P &apos;&apos; -f ~/.ssh/id_dsa
-</code></pre><p>##2. 将公钥拷贝到自己</p>
-<pre><code>dev@master:~$ cat ~/.ssh/id_dsa.pub &gt;&gt; ~/.ssh/authorized_keys
-</code></pre><p>##3. 将公钥拷贝到其他机器</p>
-<pre><code>dev@master:~$ scp ~/.ssh/id_dsa.pub dev@slave01:~
-dev@master:~$ scp ~/.ssh/id_dsa.pub dev@slave02:~
-#追加到authorized_keys
-dev@master:~$ ssh slave01
-dev@slave01:~$ mkdir .ssh
-dev@slave01:~$ cat id_dsa.pub &gt;&gt; .ssh/authorized_keys
-dev@slave01:~$ exit
-dev@master:~$ ssh slave02
-dev@slave02:~$ mkdir .ssh
-dev@slave02:~$ cat id_dsa.pub &gt;&gt; .ssh/authorized_keys
-dev@slave02:~$ exit
-</code></pre><p>##4. 设置.ssh目录和authorized_keys文件的权限<br>在被登录的每台机器上，执行如下命令：</p>
-<pre><code>chmod 755 .ssh
-chmod 600 ~/.ssh/authorized_keys
-</code></pre><p>##5. 测试一下</p>
-<pre><code>#在 master执行
-dev@master:~$ ssh slave01
-</code></pre><p>第一次还是需要密码的，<code>exit</code>退出再试一次，就不需要密码了。</p>
-<p>如果登陆不上，试试先关闭所有机器的防火墙，例如Ubuntu的命令是：</p>
-<pre><code>dev@slave01:~$ sudo ufw disable
-</code></pre><p>##参考资料<br><a href="http://www.cyberciti.biz/faq/ssh-password-less-login-with-dsa-publickey-authentication/" target="_blank" rel="external">Howto Linux / UNIX setup SSH with DSA public key authentication (password less login)</a></p>
-<p><a href="http://hortonworks.com/kb/generating-ssh-keys-for-passwordless-login/" target="_blank" rel="external">HOWTO: Generating SSH Keys for Passwordless Login</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1599,7 +1578,7 @@ dev@master:~$ ssh slave01
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">57</span>
+              <span class="site-state-item-count">58</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="机器学习, 深度学习, 人工智能" />
+  <meta name="keywords" content="Ethereum," />
 
 
 
@@ -84,22 +84,19 @@
 
 
 
-<meta name="description" content="Environment:CentOS 6.4, Hadoop 1.1.2, JDK 1.7, Spark 0.7.2, Scala 2.9.3
-After a few days hacking , I have found that installing a Spark cluster is exteremely easy :)
-#1. Install JDK 1.7    yum search">
+<meta name="description" content="操作系统: Ubuntu 16.04，显卡 GTX 1080
+1. 安装显卡驱动和CUDA1234apt-key adv --fetch-keys http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/7fa2af80.pubecho &quot;deb http://developer.download.nvid">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Installing Spark on CentOS">
-<meta property="og:url" content="http://cn.soulmachine.me/2013-06-14-installing-spark-on-centos/index.html">
+<meta property="og:title" content="2017 04 08 Ethereum mining using GTX 1080">
+<meta property="og:url" content="http://cn.soulmachine.me/2017-04-08-Ethereum-mining-using-GTX-1080/index.html">
 <meta property="og:site_name" content="灵魂机器">
-<meta property="og:description" content="Environment:CentOS 6.4, Hadoop 1.1.2, JDK 1.7, Spark 0.7.2, Scala 2.9.3
-After a few days hacking , I have found that installing a Spark cluster is exteremely easy :)
-#1. Install JDK 1.7    yum search">
-<meta property="og:updated_time" content="2016-09-09T06:32:49.000Z">
+<meta property="og:description" content="操作系统: Ubuntu 16.04，显卡 GTX 1080
+1. 安装显卡驱动和CUDA1234apt-key adv --fetch-keys http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/7fa2af80.pubecho &quot;deb http://developer.download.nvid">
+<meta property="og:updated_time" content="2017-04-08T07:32:42.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Installing Spark on CentOS">
-<meta name="twitter:description" content="Environment:CentOS 6.4, Hadoop 1.1.2, JDK 1.7, Spark 0.7.2, Scala 2.9.3
-After a few days hacking , I have found that installing a Spark cluster is exteremely easy :)
-#1. Install JDK 1.7    yum search">
+<meta name="twitter:title" content="2017 04 08 Ethereum mining using GTX 1080">
+<meta name="twitter:description" content="操作系统: Ubuntu 16.04，显卡 GTX 1080
+1. 安装显卡驱动和CUDA1234apt-key adv --fetch-keys http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/7fa2af80.pubecho &quot;deb http://developer.download.nvid">
 
 
 
@@ -117,7 +114,7 @@ After a few days hacking , I have found that installing a Spark cluster is exter
   };
 </script>
 
-  <title> Installing Spark on CentOS | 灵魂机器 </title>
+  <title> 2017 04 08 Ethereum mining using GTX 1080 | 灵魂机器 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -257,7 +254,7 @@ After a few days hacking , I have found that installing a Spark cluster is exter
             
             
               
-                Installing Spark on CentOS
+                2017 04 08 Ethereum mining using GTX 1080
               
             
           </h1>
@@ -269,38 +266,19 @@ After a few days hacking , I have found that installing a Spark cluster is exter
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2013-06-14T19:06:00+00:00" content="2013-06-14">
-              2013-06-14
+            <time itemprop="dateCreated" datetime="2017-04-08T01:04:09+00:00" content="2017-04-08">
+              2017-04-08
             </time>
           </span>
 
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Spark/" itemprop="url" rel="index">
-                    <span itemprop="name">Spark</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
           
 
           
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2013-06-14-installing-spark-on-centos/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2013-06-14-installing-spark-on-centos/" itemprop="commentsCount"></span>
+                <a href="/2017-04-08-Ethereum-mining-using-GTX-1080/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017-04-08-Ethereum-mining-using-GTX-1080/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -323,134 +301,31 @@ After a few days hacking , I have found that installing a Spark cluster is exter
       
 
       
-        <p><strong>Environment</strong>:CentOS 6.4, Hadoop 1.1.2, JDK 1.7, Spark 0.7.2, Scala 2.9.3</p>
-<p>After a few days hacking , I have found that installing a Spark cluster is exteremely easy :)</p>
-<p>#1. Install JDK 1.7<br>    yum search openjdk-devel<br>    sudo yum install java-1.7.0-openjdk-devel.x86_64<br>    /usr/sbin/alternatives –config java<br>    /usr/sbin/alternatives –config javac<br>    sudo vim /etc/profile</p>
-<pre><code># add the following lines at the end
-export JAVA_HOME=/usr/lib/jvm/java-1.7.0-openjdk-1.7.0.19.x86_64
-export JRE_HOME=$JAVA_HOME/jre
-export PATH=$PATH:$JAVA_HOME/bin
-export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
-# save and exit vim
-# make the bash profile take effect immediately
-$ source /etc/profile
-# test
-$ java -version
-</code></pre><p>#2. Install Scala 2.9.3<br>Spark 0.7.2 depends on Scala 2.9.3, So we must install Scala of version 2.9.3.</p>
-<p>Download <a href="http://www.scala-lang.org/downloads/distrib/files/scala-2.9.3.tgz" target="_blank" rel="external">scala-2.9.3.tgz</a> and save it to home directory.</p>
-<pre><code>$ tar -zxf scala-2.9.3.tgz
-$ sudo mv scala-2.9.3 /usr/lib
-$ sudo vim /etc/profile
-# add the following lines at the end
-export SCALA_HOME=/usr/lib/scala-2.9.3
-export PATH=$PATH:$SCALA_HOME/bin
-# save and exit vim
-# make the bash profile take effect immediately
-source /etc/profile
-# test
-$ scala -version
-</code></pre><p>#3. Download prebuilt packages<br>Download prebuilt packages, <a href="http://www.spark-project.org/download-spark-0.7.2-prebuilt-hadoop1" target="_blank" rel="external">spark-0.7.2-prebuilt-hadoop1.tgz</a>. </p>
-<p>If you want to compile it from scratch, download the source package, but I don’t recommend this way, because in Chinese Mainland the GFW has blocked one of maven repositories, twitter4j.org, which makes the compilation an impossible mission unless you can conquer GFW.</p>
-<p>#4. Local Mode</p>
-<p>##4.1 Untar the tarball</p>
-<pre><code>$ tar -zxf spark-0.7.2-prebuilt-hadoop1.tgz
-</code></pre><p>##4.2 Set the SPARK_EXAMPLES_JAR environment variable<br>    $ vim ~/.bash_profile</p>
-<pre><code># add the following lines at the end
-export SPARK_EXAMPLES_JAR=$HOME/spark-0.7.2/examples/target/scala-2.9.3/spark-examples_2.9.3-0.7.2.jar
-# save and exit vim
-# make the bash profile take effect immediately
-$ source /etc/profile
-</code></pre><p>This is the most important step that must be done , but unfortunately the official docs and most web blogs haven’t mentioned this. I found this step when I bumped into these posts, <a href="https://groups.google.com/forum/?fromgroups#!topic/spark-users/nQ6wB2lcFN8" target="_blank" rel="external">Running SparkPi</a>, <a href="https://groups.google.com/forum/#!msg/spark-users/x5UczgI-Xm8/wzMm3Mb77-oJ" target="_blank" rel="external">Null pointer exception when running ./run spark.examples.SparkPi local</a>.</p>
-<p>##4.3 (Optional)Set SPARK_HOME and add SPARK_HOME/bin to PATH</p>
-<pre><code>$ vim ~/.bash_profile
-# add the following lines at the end
-export SPARK_HOME=$HOME/spark-0.7.2
-export PATH=$PATH:$SPARK_HOME/bin
-# save and exit vim
-# make the bash profile take effect immediately
-$ source /etc/profile
-</code></pre><p>##4.4 Now you can run SparkPi.</p>
-<pre><code>$ cd ~/spark-0.7.2
-$ ./run spark.examples.SparkPi local 
-</code></pre><p>#5. Cluster Mode</p>
-<a id="more"></a>
-<p>##5.1 Install hadoop<br>Use VMware Workstation to create three CentOS virtual machines, which’s hostnames are master, slave01, slave02, setup password-less ssh to the slaves, install hadoop on the three machines and start up the hadoop cluster. For more details please read another blog of mine, <a href="http://www.yanjiuyanjiu.com/blog/20130612" target="_blank" rel="external">在CentOS上安装Hadoop</a>.</p>
-<p>##5.2 Install JDK and Scala<br>Install JDK 1.7 and Scala 2.9.3 on the three machines, according to section 1 and section 2.</p>
-<p>##5.3 Install and configure Spark on master<br>Untar</p>
-<pre><code>$ tar -zxf spark-0.7.2-prebuilt-hadoop1.tgz
-</code></pre><p>Set the SPARK_EXAMPLES_JAR environment variable</p>
-<pre><code>$ vim ~/.bash_profile
-# add the following lines at the end
-export SPARK_EXAMPLES_JAR=$HOME/spark-0.7.2/examples/target/scala-2.9.3/spark-examples_2.9.3-0.7.2.jar
-# save and exit vim
-# make the bash profile take effect immediately
-$ source /etc/profile
-</code></pre><p>Set <code>SCALA_HOME</code> in <code>conf/spark-env.sh</code></p>
-<pre><code>$ cd ~/spark-0.7.2/conf
-$ mv spark-env.sh.template spark-env.sh
-$ vim spark-env.sh
-# add the following line
-export SCALA_HOME=/usr/lib/scala-2.9.3
-# save and exit
-</code></pre><p>In<code>conf/slaves</code>, add hostnames of Spark workers, one per line.</p>
-<pre><code>$ vim slaves
-slave01
-slave02
-# save and exit
-</code></pre><p>(Optional)Set SPARK_HOME and add SPARK_HOME/bin to PATH</p>
-<pre><code>$ vim ~/.bash_profile
-# add the following lines at the end
-export SPARK_HOME=$HOME/spark-0.7.2
-export PATH=$PATH:$SPARK_HOME/bin
-# save and exit vim
-# make the bash profile take effect immediately
-$ source /etc/profile
-</code></pre><p>##5.4 Install and configure Spark on workers<br>Copy the spark directory to all slaves. <strong>Remark，the spark directories must locat at the the same path on all machines，because the master will login to work to execute spark commands, it assumes that workers have the same path as itself</strong></p>
-<pre><code>$ cd
-$ scp -r spark-0.7.2 dev@slave01:~
-$ scp -r spark-0.7.2 dev@slave02:~
-</code></pre><p>Set <code>SPARK_EXAMPLES_JAR</code>  on all slaves as section 5.3. There is no need to edit configuration files because they are copied from master, which are already well configured.</p>
-<p>##5.5 Start Spark cluster<br>On master</p>
-<pre><code>$ cd ~/spark-0.7.2
-$ bin/start-all.sh
-</code></pre><p>Check whether the processes have been started.</p>
-<pre><code>$ jps
-11055 Jps
-2313 SecondaryNameNode
-2409 JobTracker
-2152 NameNode
-4822 Master
-</code></pre><p>Look at the master’s web UI (<a href="http://localhost:8080" target="_blank" rel="external">http://localhost:8080</a> by default). You should see the new node listed there, along with its number of CPUs and memory (minus one gigabyte left for the OS).</p>
-<p>##5.6 run the SparkPi example in cluster mode</p>
-<pre><code>$ cd ~/spark-0.7.2
-$ ./run spark.examples.SparkPi spark://master:7077
-</code></pre><p>(Optional)Run built-in examples, SparkLR and SparkKMeans.</p>
-<pre><code>#Logistic Regression
-#./run spark.examples.SparkLR spark://master:7077
-#kmeans
-$ ./run spark.examples.SparkKMeans spark://master:7077 ./kmeans_data.txt 2 1
-</code></pre><p>##5.7 read files from HDFS and run WordCount</p>
-<pre><code>$ cd ~/spark-0.7.2
-$ hadoop fs -put README.md .
-$ MASTER=spark://master:7077 ./spark-shell
-scala&gt; val file = sc.textFile(&quot;hdfs://master:9000/user/dev/README.md&quot;)
-scala&gt; val count = file.flatMap(line =&gt; line.split(&quot; &quot;)).map(word =&gt; (word, 1)).reduceByKey(_+_)
-scala&gt; count.collect()
-</code></pre><p>##5.8 Stop Spark cluster</p>
-<pre><code>$ cd ~/spark-0.7.2
-$ bin/stop-all.sh
-</code></pre><p>#References</p>
-<ol>
-<li><a href="http://spark-project.org/docs/latest/spark-standalone.html" target="_blank" rel="external">Spark Standalone Mode</a></li>
-<li><a href="https://github.com/mesos/spark/wiki/Running-A-Spark-Standalone-Cluster" target="_blank" rel="external">Running A Spark Standalone Cluster</a></li>
-<li><a href="http://sprism.blogspot.com/2012/11/lightning-fast-wordcount-using-spark.html" target="_blank" rel="external">Lightning-Fast WordCount using Spark Alongside Hadoop</a></li>
-</ol>
-<p>The following posts are outdated.</p>
-<ol>
-<li><a href="http://chapeau.freevariable.com/2013/04/installing-spark-on-fedora-18.html" target="_blank" rel="external">Installing Spark on Fedora 18</a></li>
-<li><a href="http://rdc.taobao.com/team/jm/archives/1823" target="_blank" rel="external">Spark随谈（二）—— 安装攻略</a></li>
-<li><a href="http://www.cnblogs.com/jerrylead/archive/2012/08/13/2636115.html" target="_blank" rel="external">Spark安装与学习</a></li>
-</ol>
+        <p>操作系统: Ubuntu 16.04，显卡 GTX 1080</p>
+<h2 id="1-安装显卡驱动和CUDA"><a href="#1-安装显卡驱动和CUDA" class="headerlink" title="1. 安装显卡驱动和CUDA"></a>1. 安装显卡驱动和CUDA</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">apt-key adv --fetch-keys http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/7fa2af80.pub</div><div class="line"><span class="built_in">echo</span> <span class="string">"deb http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64 /"</span> | sudo tee /etc/apt/sources.list.d/cuda.list</div><div class="line">sudo apt-get update</div><div class="line">sudo apt-get -y install cuda-drivers cuda</div></pre></td></tr></table></figure>
+<h2 id="2-编译安装-Genoil-cpp-ethereum"><a href="#2-编译安装-Genoil-cpp-ethereum" class="headerlink" title="2. 编译安装 Genoil/cpp-ethereum"></a>2. 编译安装 Genoil/cpp-ethereum</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">sudo apt -y install software-properties-common</div><div class="line">sudo add-apt-repository -y ppa:ethereum/ethereum</div><div class="line">sudo apt -y update</div><div class="line">sudo apt -y install git cmake libcryptopp-dev libleveldb-dev libjsoncpp-dev libjsonrpccpp-dev libboost-all-dev libgmp-dev libreadline-dev libcurl4-gnutls-dev ocl-icd-libopencl1 opencl-headers mesa-common-dev libmicrohttpd-dev build-essential</div><div class="line">git <span class="built_in">clone</span> git@github.com:Genoil/cpp-ethereum.git</div><div class="line"><span class="built_in">cd</span> cpp-ethereum/</div><div class="line">mkdir build</div><div class="line"><span class="built_in">cd</span> build</div><div class="line">cmake -DBUNDLE=cudaminer ..</div><div class="line">make -j8</div></pre></td></tr></table></figure>
+<p>编译完成后会在当前目录的子目录<code>ethminer</code>下生成一个 <code>ethminer</code> 可执行文件。</p>
+<h2 id="3-连接矿池开始挖矿"><a href="#3-连接矿池开始挖矿" class="headerlink" title="3. 连接矿池开始挖矿"></a>3. 连接矿池开始挖矿</h2><p>选一个矿池，选一个算力大的矿池，注册好账号。我这里选择的是 <a href="https://ethermine.org/" target="_blank" rel="external">https://ethermine.org/</a> 这个矿池。</p>
+<pre><code># 不太明白以下环境变量的作用
+export GPU_FORCE_64BIT_PTR=0
+export GPU_MAX_HEAP_SIZE=100
+export GPU_USE_SYNC_OBJECTS=1
+export GPU_MAX_ALLOC_PERCENT=100
+export GPU_SINGLE_ALLOC_PERCENT=100
+./ethminer --farm-recheck 2000 -U -S us2.ethermine.org:4444 -FS us1.ethermine.org:4444 -O 0xba90FF2fA9016B3883799D150fB15DB5b4894f8b.soulmachine
+</code></pre><p><code>--farm-recheck</code>大致是重新检查某些东西的时间间隔，毫秒为单位，<code>-U</code>指的是用GPU，且用的是CUDA而不是OpenCL，<code>-S</code>指定stratum服务器，<code>-FS</code>指定的备份服务器(这里用us2做主服务器，us1作备份服务器的原因是，us1是在美国东部，us2在美国西部，而我的机器在西部，离us2近一些)，<code>-O</code> 指定自己的钱包地址(我是用的CoinBase的在线)，<code>.</code>后面是RigName, 随便填。</p>
+<p>我搜到的第二大的矿池是 <a href="http://ethpool.org/" target="_blank" rel="external">http://ethpool.org/</a>，连接这个矿池的命令跟ethermine.org一模一样，只是地址变了，</p>
+<pre><code>./ethminer --farm-recheck 2000 -U -S us2.ethpool.org:3333 -FS us1.ethpool.org:3333 -O 0xba90FF2fA9016B3883799D150fB15DB5b4894f8b.soulmachine
+</code></pre><p>国内的两个较大的矿池是鱼池<a href="https://www.f2pool.com/" target="_blank" rel="external">https://www.f2pool.com/</a>和蚁池<a href="https://www.antpool.com/" target="_blank" rel="external">https://www.antpool.com/</a>，连接的方法与上面类似。</p>
+<p>关于5个环境变量的作用，我没有搞的很明白，大致猜测是如果显卡只有2G显存，那么就占用百分之百，不过我的GTX 1080 有8G显存，远远够用，所以感觉设不设置这些环境变量，没有差别，事实上也是如此，不设置环境变量，运行<code>nvidia-smi</code>可以看到占用的显存也在2G左右，挖矿速度也没有变化，仍然是 20MH/s 左右。</p>
+<h2 id="4-Genoil-和-Claymore-的比较"><a href="#4-Genoil-和-Claymore-的比较" class="headerlink" title="4. Genoil 和 Claymore 的比较"></a>4. Genoil 和 Claymore 的比较</h2><p>Claymore 是另一款挖矿软件，经过我亲自测试，二者的速度基本一样，GTX 1080 都在在 20MH/s 左右，不过 Claymore可以在不影响以太币挖矿速度的情况下，还可以同时挖 Decred/Siacoin/Lbry/Pascal 之一，于是我现在用的是 Claymore这个挖矿程序，命令行如下，</p>
+<pre><code>export GPU_FORCE_64BIT_PTR=0
+export GPU_MAX_HEAP_SIZE=100
+export GPU_USE_SYNC_OBJECTS=1
+export GPU_MAX_ALLOC_PERCENT=100
+export GPU_SINGLE_ALLOC_PERCENT=100
+./ethdcrminer64 -epool us2.ethermine.org:4444 -ewal 0xba90FF2fA9016B3883799D150fB15DB5b4894f8b.soulmachine -epsw x -dpool pasc-us-west1.nanopool.org:15555 -dwal Dsab2dnwdTTpibkUr9VREdhLNytdnCv9nGv -dpsw x
+</code></pre><p>不要试图同时运行<code>ethminer</code>和<code>ethdcrminer64</code>，这样的话它们的速度同时会降为原来的一半，总的速度还是跟单个一样。</p>
 
       
     </div>
@@ -470,22 +345,24 @@ $ bin/stop-all.sh
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/Ethereum/" rel="tag">#Ethereum</a>
+          
+        </div>
+      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2013-06-11-read-spark-source-code-using-scala-ide/" rel="next" title="使用Scala IDE 阅读spark源码 -- 将sbt项目转化为eclipse项目">
-                <i class="fa fa-chevron-left"></i> 使用Scala IDE 阅读spark源码 -- 将sbt项目转化为eclipse项目
+              <a href="/2017-04-07-bitcoin-mining-using-GTX-1080/" rel="next" title="GTX 1080挖矿教程">
+                <i class="fa fa-chevron-left"></i> GTX 1080挖矿教程
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2013-06-17-installing-spark-on-centos-cn/" rel="prev" title="安装Spark集群(在CentOS上)">
-                安装Spark集群(在CentOS上) <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -511,8 +388,8 @@ $ bin/stop-all.sh
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2013-06-14-installing-spark-on-centos/"
-           data-title="Installing Spark on CentOS" data-url="http://cn.soulmachine.me/2013-06-14-installing-spark-on-centos/">
+      <div class="ds-thread" data-thread-key="2017-04-08-Ethereum-mining-using-GTX-1080/"
+           data-title="2017 04 08 Ethereum mining using GTX 1080" data-url="http://cn.soulmachine.me/2017-04-08-Ethereum-mining-using-GTX-1080/">
       </div>
     
   </div>
@@ -699,7 +576,7 @@ $ bin/stop-all.sh
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-安装显卡驱动和CUDA"><span class="nav-number">1.</span> <span class="nav-text">1. 安装显卡驱动和CUDA</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-编译安装-Genoil-cpp-ethereum"><span class="nav-number">2.</span> <span class="nav-text">2. 编译安装 Genoil/cpp-ethereum</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-连接矿池开始挖矿"><span class="nav-number">3.</span> <span class="nav-text">3. 连接矿池开始挖矿</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Genoil-和-Claymore-的比较"><span class="nav-number">4.</span> <span class="nav-text">4. Genoil 和 Claymore 的比较</span></a></li></ol></div>
             
           </div>
         </section>

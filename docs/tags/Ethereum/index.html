@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="mahout,naive bayes," />
+  <meta name="keywords" content="机器学习, 深度学习, 人工智能" />
 
 
 
@@ -84,34 +84,15 @@
 
 
 
-<meta name="description" content="##1.准备数据
-###1.1 下载数据集，并解压
-wget http://people.csail.mit.edu/jrennie/20Newsgroups/20news-bydate.tar.gz
-tar -xf 20news-bydate.tar.gz
-#上传到hdfs
-hadoop fs -put 20news-bydate-test .
-hadoop fs -put 20news-byd">
-<meta property="og:type" content="article">
-<meta property="og:title" content="运行mahout的朴素贝叶斯分类器">
-<meta property="og:url" content="http://cn.soulmachine.me/2013-12-23-run-mahout-nbc/index.html">
+<meta name="description" content="一些技术笔记">
+<meta property="og:type" content="website">
+<meta property="og:title" content="灵魂机器">
+<meta property="og:url" content="http://cn.soulmachine.me/tags/Ethereum/index.html">
 <meta property="og:site_name" content="灵魂机器">
-<meta property="og:description" content="##1.准备数据
-###1.1 下载数据集，并解压
-wget http://people.csail.mit.edu/jrennie/20Newsgroups/20news-bydate.tar.gz
-tar -xf 20news-bydate.tar.gz
-#上传到hdfs
-hadoop fs -put 20news-bydate-test .
-hadoop fs -put 20news-byd">
-<meta property="og:updated_time" content="2016-09-09T06:32:49.000Z">
+<meta property="og:description" content="一些技术笔记">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="运行mahout的朴素贝叶斯分类器">
-<meta name="twitter:description" content="##1.准备数据
-###1.1 下载数据集，并解压
-wget http://people.csail.mit.edu/jrennie/20Newsgroups/20news-bydate.tar.gz
-tar -xf 20news-bydate.tar.gz
-#上传到hdfs
-hadoop fs -put 20news-bydate-test .
-hadoop fs -put 20news-byd">
+<meta name="twitter:title" content="灵魂机器">
+<meta name="twitter:description" content="一些技术笔记">
 
 
 
@@ -129,7 +110,7 @@ hadoop fs -put 20news-byd">
   };
 </script>
 
-  <title> 运行mahout的朴素贝叶斯分类器 | 灵魂机器 </title>
+  <title> 标签: Ethereum | 灵魂机器 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -160,7 +141,7 @@ hadoop fs -put 20news-byd">
     
   
 
-  <div class="container one-collumn sidebar-position-left page-post-detail ">
+  <div class="container one-collumn sidebar-position-left  ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -248,196 +229,46 @@ hadoop fs -put 20news-byd">
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-expand">
-    
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                运行mahout的朴素贝叶斯分类器
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2013-12-23T17:20:00+00:00" content="2013-12-23">
-              2013-12-23
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Machine-Learning/" itemprop="url" rel="index">
-                    <span itemprop="name">Machine-Learning</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2013-12-23-run-mahout-nbc/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2013-12-23-run-mahout-nbc/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        <p>##1.准备数据</p>
-<p>###1.1 下载数据集，并解压</p>
-<pre><code>wget http://people.csail.mit.edu/jrennie/20Newsgroups/20news-bydate.tar.gz
-tar -xf 20news-bydate.tar.gz
-#上传到hdfs
-hadoop fs -put 20news-bydate-test .
-hadoop fs -put 20news-bydate-train .
-</code></pre><p>###1.2 转换格式</p>
-<pre><code>#转换为序列文件(sequence files)
-mahout seqdirectory -i 20news-bydate-train -o 20news-bydate-train-seq
-mahout seqdirectory -i 20news-bydate-test -o 20news-bydate-test-seq
-#转换为tf-idf向量
-mahout seq2sparse -i 20news-bydate-train-seq -o 20news-bydate-train-vector -lnorm -nv -wt tfidf
-mahout seq2sparse -i 20news-bydate-test-seq -o 20news-bydate-test-vector -lnorm -nv -wt tfidf
-</code></pre><p>##2. 训练朴素贝叶斯模型</p>
-<pre><code>mahout trainnb -i 20news-bydate-train-vectors/tfidf-vectors -el -o model -li labelindex -ow
-</code></pre><p>##3. 测试朴素贝叶斯模型</p>
-<pre><code>mahout testnb -i 20news-bydate-train-vectors/tfidf-vectors -m model -l labelindex -ow -o test-result
-</code></pre><p>##4. 查看训练后的结构</p>
-<pre><code>mahout seqdumper -i labelindex 
-
-Input Path: labelindex
-Key class: class org.apache.hadoop.io.Text Value Class: class org.apache.hadoop.io.IntWritable
-Key: alt.atheism: Value: 0
-Key: comp.graphics: Value: 1
-Key: comp.os.ms-windows.misc: Value: 2
-Key: comp.sys.ibm.pc.hardware: Value: 3
-Key: comp.sys.mac.hardware: Value: 4
-Key: comp.windows.x: Value: 5
-Key: misc.forsale: Value: 6
-Key: rec.autos: Value: 7
-Key: rec.motorcycles: Value: 8
-Key: rec.sport.baseball: Value: 9
-Key: rec.sport.hockey: Value: 10
-Key: sci.crypt: Value: 11
-Key: sci.electronics: Value: 12
-Key: sci.med: Value: 13
-Key: sci.space: Value: 14
-Key: soc.religion.christian: Value: 15
-Key: talk.politics.guns: Value: 16
-Key: talk.politics.mideast: Value: 17
-Key: talk.politics.misc: Value: 18
-Key: talk.religion.misc: Value: 19
-Count: 20
-</code></pre>
-      
+  <div id="posts" class="posts-collapse">
+    <div class="collection-title">
+      <h2 >
+        Ethereum
+        <small>标签</small>
+      </h2>
     </div>
 
-    <div>
+    
       
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
         
-      
-    </div>
-
-    <div>
-      
+            <a class="post-title-link" href="/2017-04-08-Ethereum-mining-using-GTX-1080/" itemprop="url">
+              
+                <span itemprop="name">2017 04 08 Ethereum mining using GTX 1080</span>
+              
+            </a>
         
+      </h1>
 
-      
-    </div>
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2017-04-08T01:04:09Z"
+              content="2017-04-08" >
+          04-08
+        </time>
+      </div>
 
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/mahout/" rel="tag">#mahout</a>
-          
-            <a href="/tags/naive-bayes/" rel="tag">#naive bayes</a>
-          
-        </div>
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2013-10-27-build-spark-cluster-with-docker/" rel="next" title="使用docker打造spark集群">
-                <i class="fa fa-chevron-left"></i> 使用docker打造spark集群
-              </a>
-            
-          </div>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2014-01-20-Running-Nutch-in-Eclipse/" rel="prev" title="在Eclipse里运行Nutch">
-                在Eclipse里运行Nutch <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
+    </header>
   </article>
 
 
-
-    <div class="post-spread">
-      
-    </div>
+    
   </div>
+
+  
 
 
           </div>
@@ -445,14 +276,6 @@ Count: 20
 
 
           
-  <div class="comments" id="comments">
-    
-      <div class="ds-thread" data-thread-key="2013-12-23-run-mahout-nbc/"
-           data-title="运行mahout的朴素贝叶斯分类器" data-url="http://cn.soulmachine.me/2013-12-23-run-mahout-nbc/">
-      </div>
-    
-  </div>
-
 
         </div>
         
@@ -472,17 +295,8 @@ Count: 20
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel ">
+      <section class="site-overview sidebar-panel  sidebar-panel-active ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="http://tva2.sinaimg.cn/crop.4.536.2038.2038.180/632582bfgw1f31kbqdasbj21kw23uhdt.jpg"
@@ -629,17 +443,6 @@ Count: 20
       </section>
 
       
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-            
-              
-            
-            
-              <p class="post-toc-empty">此文章未包含目录</p>
-            
-          </div>
-        </section>
-      
 
     </div>
   </aside>
@@ -742,10 +545,6 @@ Count: 20
 
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
-
-
 
   
 

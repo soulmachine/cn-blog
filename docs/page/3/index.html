@@ -253,6 +253,254 @@
             
               
                 
+                <a class="post-title-link" href="/2014-01-29-my-ansible-playbook/" itemprop="url">
+                  我的Ansible playbook
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2014-01-29T22:08:00Z" content="2014-01-29">
+              2014-01-29
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/DevOps/" itemprop="url" rel="index">
+                    <span itemprop="name">DevOps</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2014-01-29-my-ansible-playbook/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014-01-29-my-ansible-playbook/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><strong>前提</strong>，安装好Ansible，参考我的上一篇博客，<a href="http://www.yanjiuyanjiu.com/blog/20140127" target="_blank" rel="external">Ansible 快速入门</a></p>
+<pre><code>---
+- hosts: all
+  sudo: True
+  remote_user: work
+  vars:
+    ant_version: 1.9.3
+    maven_version: 3.1.1
+    scala_version: 2.10.3
+    sbt_version: 0.12.4
+
+  tasks:
+  ########## for CentOS and RedHat ##########
+    - name: Install the libselinux-python package  # because ansible needs it
+      yum: name=libselinux-python state=installed
+      when: ansible_distribution == &apos;CentOS&apos; or ansible_distribution == &apos;Red Hat Enterprise Linux&apos;
+
+    - name: Disable SELinux in conf file
+      selinux: state=disabled
+      when: ansible_distribution == &apos;CentOS&apos; or ansible_distribution == &apos;Red Hat Enterprise Linux&apos;
+
+    - name: update YUM repositories
+      shell: &apos;yum -y update&apos;
+      when: ansible_distribution == &apos;CentOS&apos; or ansible_distribution == &apos;Red Hat Enterprise Linux&apos;
+
+    - name: Install OpenJDK
+      yum: name=java-1.7.0-openjdk-devel state=present
+      when: ansible_distribution == &apos;CentOS&apos; or ansible_distribution == &apos;Red Hat Enterprise Linux&apos;
+
+    - name: Set JAVA_HOME environment variable
+      lineinfile: dest=&apos;/etc/profile&apos; regexp=&apos;^#?\s*export JAVA_HOME=(.*)$&apos; line=&apos;export JAVA_HOME=/usr/lib/jvm/java&apos; state=present
+      when: ansible_distribution == &apos;CentOS&apos; or ansible_distribution == &apos;Red Hat Enterprise Linux&apos;
+
+    - name: install the &apos;Development tools&apos; package group
+      yum: name=&quot;@Development tools&quot; state=present
+      when: ansible_distribution == &apos;CentOS&apos; or ansible_distribution == &apos;Red Hat Enterprise Linux&apos;
+
+    - name: upgrade all packages
+      shell: &apos;yum -y upgrade&apos;
+      when: ansible_distribution == &apos;CentOS&apos; or ansible_distribution == &apos;Red Hat Enterprise Linux&apos;
+
+
+  ########## for Ubuntu and Debian ##########
+    - name: Run &quot;apt-get update&quot; to update the source list
+      apt: update_cache=yes
+      when: ansible_distribution == &apos;Debian&apos; or ansible_distribution == &apos;Ubuntu&apos;
+
+    - name: Install OpenJDK
+      apt: pkg=openjdk-7-jdk state=present
+      when: ansible_distribution == &apos;Debian&apos; or ansible_distribution == &apos;Ubuntu&apos;
+
+    - name: Set JAVA_HOME environment variable
+      lineinfile: dest=&apos;/etc/profile&apos; regexp=&apos;^#?\s*export JAVA_HOME=(.*)$&apos; line=&apos;export JAVA_HOME=/usr/lib/jvm/java-1.7.0-openjdk-amd64&apos; state=present
+      when: ansible_distribution == &apos;Debian&apos; or ansible_distribution == &apos;Ubuntu&apos;
+
+    - name: Install build-essential
+      apt: pkg=build-essential state=present
+      when: ansible_distribution == &apos;Debian&apos; or ansible_distribution == &apos;Ubuntu&apos;
+
+    - name: Update all packages to the latest version
+      apt: upgrade=dist
+      when: ansible_distribution == &apos;Debian&apos; or ansible_distribution == &apos;Ubuntu&apos;
+
+
+  ########## Common opreations for all OS ##########
+    # Create local directories
+    - file: path=~/local/bin state=directory
+      sudo: no
+    - file: path=~/local/sbin state=directory
+      sudo: no
+    - file: path=~/local/src state=directory
+      sudo: no
+    - file: path=~/local/opt state=directory
+      sudo: no
+    - file: path=~/local/var state=directory
+      sudo: no
+    - lineinfile: dest=~/.bashrc regexp=&apos;^#?\s*export PATH=(.*)/local/bin(.*)$&apos; line=&quot;export PATH=$PATH:$HOME/local/bin&quot; state=present
+      sudo: no
+    - lineinfile: dest=~/.bashrc regexp=&apos;^#?\s*export PATH=(.*)/local/sbin(.*)$&apos; line=&quot;export PATH=$PATH:$HOME/local/sbin&quot; state=present
+      sudo: no
+
+    - name: Set CLASSPATH and PATH environment variables
+      lineinfile: $item
+      with_items:
+        - dest=&apos;/etc/profile&apos; regexp=&apos;^#?\s*export CLASSPATH=(.*)$&apos; line=&apos;export CLASSPATH=.:$JAVA_HOME/lib/*.jar:$JAVA_HOME/jre/lib/*.jar&apos; state=present
+        - dest=&apos;/etc/profile&apos; regexp=&apos;^#?\s*export PATH=(.*)JAVA_HOME(.*)$&apos; line=&quot;export PATH=$PATH:$JAVA_HOME/bin&quot; state=present
+
+    ###### Since Ant in yum and apt is too old, download the .tar.bz2 file and install it
+    # Install Apache Ant
+    - name: Download Apache Ant
+      get_url: url=http://mirror.cc.columbia.edu/pub/software/apache//ant/binaries/apache-ant-{{ant_version}}-bin.tar.bz2 dest=/tmp/apache-ant-{{ant_version}}-bin.tar.bz2
+    - name: Untar Ant
+      shell: chdir=/tmp creates=/opt/apache-ant-{{ant_version}} tar -jxf apache-ant-{{ant_version}}-bin.tar.bz2 -C /opt
+    - lineinfile: dest=/etc/profile regexp=&apos;^#?\s*export ANT_HOME=(.*)$&apos; line=&apos;export ANT_HOME=/opt/apache-ant-{{ant_version}}&apos; state=present
+    - lineinfile: dest=/etc/profile regexp=&apos;^#?\s*export PATH=(.*)ANT_HOME(.*)$&apos; line=&quot;export PATH=$PATH:$ANT_HOME/bin&quot; state=present
+
+    # Install Apache Maven, since there is no Maven package in yum and apt repo
+    - name: Download Apache Maven
+      get_url: url=http://apache.claz.org/maven/maven-3/3.1.1/binaries/apache-maven-{{maven_version}}-bin.tar.gz dest=/tmp/apache-maven-{{maven_version}}-bin.tar.gz
+    - name: Untar Maven
+      shell: chdir=/tmp creates=/opt/apache-maven-{{maven_version}} tar -zxf apache-maven-{{maven_version}}-bin.tar.gz -C /opt
+    - lineinfile: dest=/etc/profile regexp=&apos;^#?\s*export MAVEN_HOME=(.*)$&apos; line=&apos;export MAVEN_HOME=/opt/apache-maven-{{maven_version}}&apos; state=present
+    - lineinfile: dest=/etc/profile regexp=&apos;^#?\s*export PATH=(.*)MAVEN_HOME(.*)$&apos; line=&quot;export PATH=$PATH:$MAVEN_HOME/bin&quot; state=present
+
+    # Install the scala compiler, because the scala compiler in yum and apt repo is too old
+    - name: Download Scala
+      get_url: url=http://www.scala-lang.org/files/archive/scala-{{scala_version}}.tgz dest=/tmp/scala-{{scala_version}}.tgz
+    - name: Untar Scala
+      shell: chdir=/tmp creates=/opt/scala-{{scala_version}} tar -zxf scala-{{scala_version}}.tgz -C /opt
+    - lineinfile: dest=/etc/profile regexp=&apos;^#?\s*export SCALA_HOME=(.*)$&apos; line=&apos;export SCALA_HOME=/opt/scala-{{scala_version}}&apos; state=present
+    - lineinfile: dest=/etc/profile regexp=&apos;^#?\s*export PATH=(.*)SCALA_HOME(.*)$&apos; line=&quot;export PATH=$PATH:$SCALA_HOME/bin&quot; state=present
+
+    # Install sbt
+    - name: Download sbt
+      get_url: url=http://repo.scala-sbt.org/scalasbt/sbt-native-packages/org/scala-sbt/sbt//{{sbt_version}}/sbt.tgz dest=/tmp/sbt-{{sbt_version}}.tgz
+    - name: Untar sbt
+      shell: chdir=/tmp creates=/opt/sbt-{{sbt_version}} tar -zxf sbt-{{sbt_version}}.tgz -C /opt
+    - name: Rename sbt directory
+      shell: chdir=/opt creates=/opt/sbt-{{sbt_version}} mv sbt/ sbt-{{sbt_version}}/
+    - lineinfile: dest=/etc/profile regexp=&apos;^#?\s*export SBT_HOME=(.*)$&apos; line=&apos;export SBT_HOME=/opt/sbt-{{sbt_version}}&apos; state=present
+    - lineinfile: dest=/etc/profile regexp=&apos;^#?\s*export PATH=(.*)SBT_HOME(.*)$&apos; line=&quot;export PATH=$PATH:$SBT_HOME/bin&quot; state=present
+
+    # Install Go
+    - name: Download Go
+      get_url: url=https://go.googlecode.com/files/go1.2.linux-amd64.tar.gz dest=/tmp/go1.2.linux-amd64.tar.gz
+    - name: Untar Go
+      shell: chdir=/tmp creates=/opt/go tar -zxf go1.2.linux-amd64.tar.gz -C /opt
+    - lineinfile: dest=/etc/profile regexp=&apos;^#?\s*export GOROOT=(.*)$&apos; line=&apos;export GOROOT=/opt/go&apos; state=present
+    - lineinfile: dest=/etc/profile regexp=&apos;^#?\s*export PATH=(.*)GOROOT(.*)$&apos; line=&quot;export PATH=$PATH:$GOROOT/bin&quot; state=present
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2014-01-28-restore-octopress-at-a-new-computer/" itemprop="url">
                   Restore Octopress at a new computer
                 </a>
@@ -1522,169 +1770,6 @@ http://movie.douban.com/subject/5323968/
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2013-12-23-run-mahout-nbc/" itemprop="url">
-                  运行mahout的朴素贝叶斯分类器
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2013-12-23T17:20:00Z" content="2013-12-23">
-              2013-12-23
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Machine-Learning/" itemprop="url" rel="index">
-                    <span itemprop="name">Machine-Learning</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2013-12-23-run-mahout-nbc/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2013-12-23-run-mahout-nbc/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>##1.准备数据</p>
-<p>###1.1 下载数据集，并解压</p>
-<pre><code>wget http://people.csail.mit.edu/jrennie/20Newsgroups/20news-bydate.tar.gz
-tar -xf 20news-bydate.tar.gz
-#上传到hdfs
-hadoop fs -put 20news-bydate-test .
-hadoop fs -put 20news-bydate-train .
-</code></pre><p>###1.2 转换格式</p>
-<pre><code>#转换为序列文件(sequence files)
-mahout seqdirectory -i 20news-bydate-train -o 20news-bydate-train-seq
-mahout seqdirectory -i 20news-bydate-test -o 20news-bydate-test-seq
-#转换为tf-idf向量
-mahout seq2sparse -i 20news-bydate-train-seq -o 20news-bydate-train-vector -lnorm -nv -wt tfidf
-mahout seq2sparse -i 20news-bydate-test-seq -o 20news-bydate-test-vector -lnorm -nv -wt tfidf
-</code></pre><p>##2. 训练朴素贝叶斯模型</p>
-<pre><code>mahout trainnb -i 20news-bydate-train-vectors/tfidf-vectors -el -o model -li labelindex -ow
-</code></pre><p>##3. 测试朴素贝叶斯模型</p>
-<pre><code>mahout testnb -i 20news-bydate-train-vectors/tfidf-vectors -m model -l labelindex -ow -o test-result
-</code></pre><p>##4. 查看训练后的结构</p>
-<pre><code>mahout seqdumper -i labelindex 
-
-Input Path: labelindex
-Key class: class org.apache.hadoop.io.Text Value Class: class org.apache.hadoop.io.IntWritable
-Key: alt.atheism: Value: 0
-Key: comp.graphics: Value: 1
-Key: comp.os.ms-windows.misc: Value: 2
-Key: comp.sys.ibm.pc.hardware: Value: 3
-Key: comp.sys.mac.hardware: Value: 4
-Key: comp.windows.x: Value: 5
-Key: misc.forsale: Value: 6
-Key: rec.autos: Value: 7
-Key: rec.motorcycles: Value: 8
-Key: rec.sport.baseball: Value: 9
-Key: rec.sport.hockey: Value: 10
-Key: sci.crypt: Value: 11
-Key: sci.electronics: Value: 12
-Key: sci.med: Value: 13
-Key: sci.space: Value: 14
-Key: soc.religion.christian: Value: 15
-Key: talk.politics.guns: Value: 16
-Key: talk.politics.mideast: Value: 17
-Key: talk.politics.misc: Value: 18
-Key: talk.religion.misc: Value: 19
-Count: 20
-</code></pre>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1730,7 +1815,7 @@ Count: 20
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">57</span>
+              <span class="site-state-item-count">58</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
