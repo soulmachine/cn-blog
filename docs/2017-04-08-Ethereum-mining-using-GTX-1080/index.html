@@ -92,7 +92,7 @@
 <meta property="og:site_name" content="灵魂机器">
 <meta property="og:description" content="操作系统: Ubuntu 16.04，显卡 GTX 1080
 1. 安装显卡驱动和CUDA1234apt-key adv --fetch-keys http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/7fa2af80.pubecho &quot;deb http://developer.download.nvid">
-<meta property="og:updated_time" content="2017-04-08T07:41:15.000Z">
+<meta property="og:updated_time" content="2017-04-08T09:15:57.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用显卡挖以太币教程">
 <meta name="twitter:description" content="操作系统: Ubuntu 16.04，显卡 GTX 1080
@@ -266,7 +266,7 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-04-08T01:04:09+00:00" content="2017-04-08">
+            <time itemprop="dateCreated" datetime="2017-04-08T01:04:09Z" content="2017-04-08">
               2017-04-08
             </time>
           </span>
@@ -325,8 +325,13 @@ export GPU_MAX_HEAP_SIZE=100
 export GPU_USE_SYNC_OBJECTS=1
 export GPU_MAX_ALLOC_PERCENT=100
 export GPU_SINGLE_ALLOC_PERCENT=100
-./ethdcrminer64 -epool us2.ethermine.org:4444 -ewal 0xba90FF2fA9016B3883799D150fB15DB5b4894f8b.soulmachine -epsw x -dpool pasc-us-west1.nanopool.org:15555 -dwal Dsab2dnwdTTpibkUr9VREdhLNytdnCv9nGv -dpsw x
-</code></pre><p>不要试图同时运行<code>ethminer</code>和<code>ethdcrminer64</code>，这样的话它们的速度同时会降为原来的一半，总的速度还是跟单个一样。</p>
+</code></pre><p>举个例子，同时挖ETH和Decred，</p>
+<pre><code>./ethdcrminer64 -epool us2.ethermine.org:4444 -ewal 0xba90FF2fA9016B3883799D150fB15DB5b4894f8b.soulmachine -epsw x -dpool pasc-us-west1.nanopool.org:15555 -dwal Dsab2dnwdTTpibkUr9VREdhLNytdnCv9nGv -dpsw x
+</code></pre><p>或者同时挖ETH和SiaCoin,</p>
+<pre><code>./ethdcrminer64 -epool us2.ethermine.org:4444 -ewal 0xba90FF2fA9016B3883799D150fB15DB5b4894f8b.soulmachine -epsw x -dpool &quot;http://siamining.com:9980/miner/header?address=a808cdb0061d81418f6f146775dad4e3590eba207f285ad67b061a2ec01f6402960e02e36e7a&amp;worker=soulmachine.sia01&quot; -dcoin sia
+</code></pre><p>不过要注意，在 Ethereum-only 模式下，会收取 1% 的费用，在 Dual模式下，会收取 2%的费用，当然不会直接向你收费，它每个小时大概会有 36 到 72 秒为作者挖矿，这样间接达到了收费的目的。</p>
+<p>不要试图同时运行<code>ethminer</code>和<code>ethdcrminer64</code>，这样的话它们的速度同时会降为原来的一半，总的速度还是跟单个一样。</p>
+<p>Claymore 比较方便的是可以同时挖ETH和另一种币，大家可以同时看到我的ETH挖矿速度<a href="https://ethermine.org/miners/ba90FF2fA9016B3883799D150fB15DB5b4894f8b" target="_blank" rel="external">https://ethermine.org/miners/ba90FF2fA9016B3883799D150fB15DB5b4894f8b</a>和SiaCoin挖矿速度 <a href="https://siamining.com/addresses/a808cdb0061d81418f6f146775dad4e3590eba207f285ad67b061a2ec01f6402960e02e36e7a" target="_blank" rel="external">https://siamining.com/addresses/a808cdb0061d81418f6f146775dad4e3590eba207f285ad67b061a2ec01f6402960e02e36e7a</a></p>
 
       
     </div>

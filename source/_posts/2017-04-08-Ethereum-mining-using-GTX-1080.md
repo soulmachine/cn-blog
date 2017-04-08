@@ -64,6 +64,17 @@ Claymore 是另一款挖矿软件，经过我亲自测试，二者的速度基�
     export GPU_USE_SYNC_OBJECTS=1
     export GPU_MAX_ALLOC_PERCENT=100
     export GPU_SINGLE_ALLOC_PERCENT=100
+
+举个例子，同时挖ETH和Decred，
+
     ./ethdcrminer64 -epool us2.ethermine.org:4444 -ewal 0xba90FF2fA9016B3883799D150fB15DB5b4894f8b.soulmachine -epsw x -dpool pasc-us-west1.nanopool.org:15555 -dwal Dsab2dnwdTTpibkUr9VREdhLNytdnCv9nGv -dpsw x
 
+或者同时挖ETH和SiaCoin,
+
+    ./ethdcrminer64 -epool us2.ethermine.org:4444 -ewal 0xba90FF2fA9016B3883799D150fB15DB5b4894f8b.soulmachine -epsw x -dpool "http://siamining.com:9980/miner/header?address=a808cdb0061d81418f6f146775dad4e3590eba207f285ad67b061a2ec01f6402960e02e36e7a&worker=soulmachine.sia01" -dcoin sia
+
+不过要注意，在 Ethereum-only 模式下，会收取 1% 的费用，在 Dual模式下，会收取 2%的费用，当然不会直接向你收费，它每个小时大概会有 36 到 72 秒为作者挖矿，这样间接达到了收费的目的。
+
 不要试图同时运行`ethminer`和`ethdcrminer64`，这样的话它们的速度同时会降为原来的一半，总的速度还是跟单个一样。
+
+Claymore 比较方便的是可以同时挖ETH和另一种币，大家可以同时看到我的ETH挖矿速度<https://ethermine.org/miners/ba90FF2fA9016B3883799D150fB15DB5b4894f8b>和SiaCoin挖矿速度 <https://siamining.com/addresses/a808cdb0061d81418f6f146775dad4e3590eba207f285ad67b061a2ec01f6402960e02e36e7a>
