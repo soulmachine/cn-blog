@@ -253,6 +253,139 @@
             
               
                 
+                <a class="post-title-link" href="/2011-06-23-using-javac-to-compile-multi-java-files/" itemprop="url">
+                  用javac命令行编译多个java文件
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2011-06-23T17:22:00Z" content="2011-06-23">
+              2011-06-23
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Language/" itemprop="url" rel="index">
+                    <span itemprop="name">Language</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2011-06-23-using-javac-to-compile-multi-java-files/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2011-06-23-using-javac-to-compile-multi-java-files/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li>CLASSPATH一定要具体到jar路径，例如</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">export</span> CLASSPATH=/usr/lib/jvm/java-6-sun/lib/commons-codec.jar:/usr/lib/jvm/java-6-sun/lib/commons-httpclient-3.1.jar:/usr/lib/jvm/java-6-sun/lib/commons-logging-1.1.jar:/usr/lib/jvm/java-6-sun/lib/dt.jar:/usr/lib/jvm/java-6-sun/lib/htmlconverter.jar:/usr/lib/jvm/java-6-sun/lib/jconsole.jar:/usr/lib/jvm/java-6-sun/lib/junit-4.1.jar:/usr/lib/jvm/java-6-sun/lib/mysql-connector-java-5.1.16-bin.jar:/usr/lib/jvm/java-6-sun/lib/sa-jdi.jar:/usr/lib/jvm/java-6-sun/lib/tools.jar</div></pre></td></tr></table></figure>
+<ol>
+<li><p>每个java文件给出路径，最常见的是用通配符*，不支持目录递归。</p>
+</li>
+<li><p>最好加上 -d，这样会在这个目录下生成class文件，而不会和java文件混在一起</p>
+</li>
+</ol>
+<p>看我的一个具体的例子</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">javac -d /home/dfq/crawler/bin crawler/*.java weibo4j/*.java weibo4j/org/json/*.java weibo4j/*.java weibo4j/util/*.java weibo4j/http/*.java</div></pre></td></tr></table></figure>
+<p>运行时用如下命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd /home/dfq/crawler/bin</div><div class="line">java -cp .:$CLASSPATH crawler.ManagerThread</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2010-04-17-tex-resources-for-newbies/" itemprop="url">
                   推荐给TeX新手的电子书和书籍
                 </a>
@@ -1058,7 +1191,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">56</span>
+              <span class="site-state-item-count">57</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1075,7 +1208,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

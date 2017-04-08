@@ -253,6 +253,172 @@
             
               
                 
+                <a class="post-title-link" href="/2013-10-27-build-spark-cluster-with-docker/" itemprop="url">
+                  使用docker打造spark集群
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2013-10-27T20:30:00Z" content="2013-10-27">
+              2013-10-27
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Spark/" itemprop="url" rel="index">
+                    <span itemprop="name">Spark</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2013-10-27-build-spark-cluster-with-docker/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2013-10-27-build-spark-cluster-with-docker/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><strong>前提条件：</strong>安装好了docker，见我的另一篇博客，<a href="http://www.yanjiuyanjiu.com/blog/20131025" target="_blank" rel="external">Docker安装</a></p>
+<p>有两种方式，</p>
+<ul>
+<li><a href="https://github.com/apache/incubator-spark" target="_blank" rel="external">Spark官方repo</a>里，docker文件夹下的脚本。官方的这个脚本封装很薄，尽可能把必要的信息展示出来。</li>
+<li><a href="https://github.com/amplab/docker-scripts" target="_blank" rel="external">AMPLab开源的这个独立小项目</a>，来打造一个spark集群。这个脚本封装很深，自带了一个DNS服务器，还有hadoop，非常自动化，缺点是很多信息看不到了。</li>
+</ul>
+<h1 id="1-第1种方式"><a href="#1-第1种方式" class="headerlink" title="1. 第1种方式"></a>1. 第1种方式</h1><h2 id="git-clone-源码"><a href="#git-clone-源码" class="headerlink" title="git clone 源码"></a>git clone 源码</h2><p>首先要把官方repo的代码下载下来</p>
+<pre><code>git clone git@github.com:apache/incubator-spark.git
+</code></pre><h2 id="（可选）修改apt源"><a href="#（可选）修改apt源" class="headerlink" title="（可选）修改apt源"></a>（可选）修改apt源</h2><p>在国内，将apt源修改国内源，例如163的源，速度会快很多。将<code>base/Dockerfile</code>里的</p>
+<pre><code>RUN echo &quot;deb http://archive.ubuntu.com/ubuntu precise main universe&quot; &gt; /etc/apt/sources.list
+</code></pre><p>替换为</p>
+<pre><code>RUN echo &quot;deb http://mirrors.163.com/ubuntu/ precise main restricted universe multiverse&quot; &gt; /etc/apt/sources.list
+RUN echo &quot;deb http://mirrors.163.com/ubuntu/ precise-security main restricted universe multiverse&quot; &gt;&gt; /etc/apt/sources.list
+RUN echo &quot;deb http://mirrors.163.com/ubuntu/ precise-updates main restricted universe multiverse&quot; &gt;&gt; /etc/apt/sources.list
+RUN echo &quot;deb http://mirrors.163.com/ubuntu/ precise-proposed main restricted universe multiverse&quot; &gt;&gt; /etc/apt/sources.list
+RUN echo &quot;deb http://mirrors.163.com/ubuntu/ precise-backports main restricted universe multiverse&quot; &gt;&gt; /etc/apt/sources.list
+RUN echo &quot;deb-src http://mirrors.163.com/ubuntu/ precise main restricted universe multiverse&quot; &gt;&gt; /etc/apt/sources.list
+RUN echo &quot;deb-src http://mirrors.163.com/ubuntu/ precise-security main restricted universe multiverse&quot; &gt;&gt; /etc/apt/sources.list
+RUN echo &quot;deb-src http://mirrors.163.com/ubuntu/ precise-updates main restricted universe multiverse&quot; &gt;&gt; /etc/apt/sources.list
+RUN echo &quot;deb-src http://mirrors.163.com/ubuntu/ precise-proposed main restricted universe multiverse&quot; &gt;&gt; /etc/apt/sources.list
+RUN echo &quot;deb-src http://mirrors.163.com/ubuntu/ precise-backports main restricted universe multiverse&quot; &gt;&gt; /etc/apt/sources.list
+</code></pre><h2 id="build镜像"><a href="#build镜像" class="headerlink" title="build镜像"></a>build镜像</h2><p>将<code>build</code>和<code>spark-test/build</code>里的<code>docker</code>命令前，添加<code>sudo</code>，然后执行<code>docker</code>下的<code>build</code></p>
+<pre><code>cd docker
+./build
+</code></pre><h2 id="启动master"><a href="#启动master" class="headerlink" title="启动master"></a>启动master</h2><pre><code>sudo docker run -v $SPARK_HOME:/opt/spark spark-test-master
+</code></pre><h2 id="启动worker"><a href="#启动worker" class="headerlink" title="启动worker"></a>启动worker</h2><p>新开一个终端窗口（强烈推荐tmux），启动一个worker</p>
+<pre><code>sudo docker run -v $SPARK_HOME:/opt/spark spark-test-worker &lt;master_ip&gt;
+</code></pre><p>可以在master终端窗口看到worker注册上来了。</p>
+<p>可以再开多个终端窗口，启动多个worker。</p>
+<h1 id="2-第2种方式"><a href="#2-第2种方式" class="headerlink" title="2. 第2种方式"></a>2. 第2种方式</h1><h2 id="升级wget"><a href="#升级wget" class="headerlink" title="升级wget"></a>升级wget</h2><p>如果发现wget不识别<code>--no-proxy</code>选项，需要升级wget。</p>
+<h2 id="下载镜像"><a href="#下载镜像" class="headerlink" title="下载镜像"></a>下载镜像</h2><p>为了让脚本第一次执行的时候更快，还是手动下载所有的镜像吧，amplab在index.docker.io上有一个官方账号，把这个账号有关spark的repo都pull下来。</p>
+<pre><code>sudo docker pull amplab/apache-hadoop-hdfs-precise
+sudo docker pull amplab/dnsmasq-precise
+sudo docker pull amplab/spark-worker
+sudo docker pull amplab/spark-master
+sudo docker pull amplab/spark-shell
+</code></pre><h2 id="git-clone-脚本"><a href="#git-clone-脚本" class="headerlink" title="git clone 脚本"></a>git clone 脚本</h2><pre><code>git@github.com:amplab/docker-scripts.git
+</code></pre><p>这个脚本可以一键启动集群，爽啊哈哈哈！</p>
+<h2 id="一键启动spark集群"><a href="#一键启动spark集群" class="headerlink" title="一键启动spark集群"></a>一键启动spark集群</h2><pre><code>sudo ./deploy/deploy.sh -i amplab/spark:0.8.0 -w 3 
+</code></pre><h2 id="启动-Spark-shell"><a href="#启动-Spark-shell" class="headerlink" title="启动 Spark shell"></a>启动 Spark shell</h2><p>启动一个交互式shell吧，IP为上一步输出的Master的IP</p>
+<pre><code>sudo docker run -i -t -dns 172.17.0.90 amplab/spark-shell:0.8.0
+</code></pre><h2 id="运行一个简单的的例子"><a href="#运行一个简单的的例子" class="headerlink" title="运行一个简单的的例子"></a>运行一个简单的的例子</h2><pre><code>scala&gt; val textFile = sc.textFile(&quot;hdfs://master:9000/user/hdfs/test.txt&quot;)
+scala&gt; textFile.count()
+scala&gt; textFile.map({line =&gt; line}).collect()
+</code></pre><h2 id="关闭集群"><a href="#关闭集群" class="headerlink" title="关闭集群"></a>关闭集群</h2><pre><code>$ sudo ./deploy/kill_all.sh spark
+$ sudo ./deploy/kill_all.sh nameserver
+</code></pre><h2 id="更多详情请参考项目主页的文档"><a href="#更多详情请参考项目主页的文档" class="headerlink" title="更多详情请参考项目主页的文档"></a>更多详情请参考项目主页的文档</h2><p><a href="https://github.com/amplab/docker-scripts" target="_blank" rel="external">https://github.com/amplab/docker-scripts</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2013-10-26-docker-tutorial/" itemprop="url">
                   docker 快速入门
                 </a>
@@ -1622,132 +1788,6 @@ $ ./run spark.examples.SparkPi local
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2013-04-01-using-github-and-octoperss-to-create-a-free-blog/" itemprop="url">
-                  使用github + Octopress 搭建免费博客
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2013-04-01T15:14:00Z" content="2013-04-01">
-              2013-04-01
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Tools/" itemprop="url" rel="index">
-                    <span itemprop="name">Tools</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2013-04-01-using-github-and-octoperss-to-create-a-free-blog/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2013-04-01-using-github-and-octoperss-to-create-a-free-blog/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="前提条件"><a href="#前提条件" class="headerlink" title="前提条件"></a>前提条件</h3><p>注册一个github账号。</p>
-<p>任何资料，都不如<a href="http://octopress.org/docs/">Octopress</a> 和<a href="https://help.github.com/categories/20/articles">Github Pages</a>的官方文档，建议首先阅读官方文档。</p>
-<h3 id="GitHub-Pages快速体验"><a href="#GitHub-Pages快速体验" class="headerlink" title="GitHub Pages快速体验"></a>GitHub Pages快速体验</h3><p>在GitHub网站上，点击右上角的+号图标，创建一个新的Repo，Repository 的名字必须为 username.github.com。然后点击Settings进入该Repo的设置页面。看到”Automatic Page Generator”，说明这个Repo已经启用了GitHub Page。点击按钮进入设置。</p>
-<p>在”Create a GitHub User Page”填写一些基本信息，点击右下角的”Continue to Layout”。布局就用默认的，点击绿色的”Publish”按钮。</p>
-<p>大功告成，输入”username.github.com”，看到一个页面没？这就是你刚刚创建的一个页面。</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2013-04-01-using-github-and-octoperss-to-create-a-free-blog/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1793,7 +1833,7 @@ $ ./run spark.examples.SparkPi local
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">56</span>
+              <span class="site-state-item-count">57</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1810,7 +1850,7 @@ $ ./run spark.examples.SparkPi local
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

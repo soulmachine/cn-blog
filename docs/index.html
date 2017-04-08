@@ -253,6 +253,117 @@
             
               
                 
+                <a class="post-title-link" href="/2017-04-07-bitcoin-mining-using-GTX-1080/" itemprop="url">
+                  GTX 1080挖矿教程
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-04-08T00:23:55Z" content="2017-04-08">
+              2017-04-08
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017-04-07-bitcoin-mining-using-GTX-1080/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017-04-07-bitcoin-mining-using-GTX-1080/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>操作系统: Ubuntu 16.04，显卡 GTX 1080</p>
+<h2 id="1-安装显卡驱动和CUDA"><a href="#1-安装显卡驱动和CUDA" class="headerlink" title="1. 安装显卡驱动和CUDA"></a>1. 安装显卡驱动和CUDA</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">apt-key adv --fetch-keys http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/7fa2af80.pub</div><div class="line"><span class="built_in">echo</span> <span class="string">"deb http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64 /"</span> | sudo tee /etc/apt/sources.list.d/cuda.list</div><div class="line">sudo apt-get update</div><div class="line">sudo apt-get -y install cuda-drivers cuda</div></pre></td></tr></table></figure>
+<h2 id="2-编译安装-ccMiner"><a href="#2-编译安装-ccMiner" class="headerlink" title="2. 编译安装 ccMiner"></a>2. 编译安装 ccMiner</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">git <span class="built_in">clone</span> --recursive git@github.com:tpruvot/ccminer.git</div><div class="line"><span class="built_in">cd</span> ccminer</div><div class="line">git checkout --track origin/linux</div><div class="line">sudo apt install automake libcurl4-openssl-dev</div></pre></td></tr></table></figure>
+<p>根据显卡修改 <code>Makefile.am</code> (<a href="https://github.com/tpruvot/ccminer/wiki/Compatibility" target="_blank" rel="external">https://github.com/tpruvot/ccminer/wiki/Compatibility</a>), 比如GTX 1080 则用</p>
+<pre><code>nvcc_ARCH = -gencode=arch=compute_61,code=\&quot;sm_61,compute_61\&quot;
+</code></pre><p>开始编译，</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">./autogen.sh</div><div class="line">./configure</div><div class="line">./build.sh</div></pre></td></tr></table></figure>
+<p>编译完成后会在当前目录生成一个 <code>ccminer</code> 可执行文件</p>
+<h2 id="3-连接矿池开始挖矿"><a href="#3-连接矿池开始挖矿" class="headerlink" title="3. 连接矿池开始挖矿"></a>3. 连接矿池开始挖矿</h2><p>选一个矿池，注册好账号。<a href="https://bitcoinchain.com/pools" target="_blank" rel="external">https://bitcoinchain.com/pools</a> 这里可以看到各个矿池的算力，我们选择最大的 AntPool吧。</p>
+<pre><code>./ccminer -o stratum+tcp://stratum.antpool.com:3333 -u soulmachine.01 -p soul123456
+</code></pre><p><code>-o</code> 是矿池服务器地址, <code>-u</code>的格式是 <code>UserId.WorkerId</code>, <code>UserId</code>必须是你注册网站时的用户名，<code>WorkerId</code>随便填，<code>-p</code>表示密码，随便填即可。还有个参数, <code>--algo</code>表示算法，可以不填，不填的时候默认为<code>auto</code>，表示自动选择哈希算法。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016-08-17-deep-learning-cuda-development-environment/" itemprop="url">
                   深度学习开发环境配置：Ubuntu1 6.04+Nvidia GTX 1080+CUDA 8.0
                 </a>
@@ -1555,149 +1666,6 @@ starting Master, logging to logs/hbase-user-master-example.org.out
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2014-02-07-install-zookeeper-on-centos/" itemprop="url">
-                  在CentOS上安装ZooKeeper集群
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2014-02-07T23:40:00Z" content="2014-02-07">
-              2014-02-07
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Hadoop/" itemprop="url" rel="index">
-                    <span itemprop="name">Hadoop</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2014-02-07-install-zookeeper-on-centos/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2014-02-07-install-zookeeper-on-centos/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>环境：CentOS 6.5, jdk 1.7, ZooKeeper 3.4.5</p>
-<p>本文主要参考官网的<a href="http://zookeeper.apache.org/doc/trunk/zookeeperStarted.html">Getting Started</a></p>
-<p>##（可选）创建新用户<br>一般我倾向于把需要启动daemon进程，对外提供服务的程序，即服务器类的程序，安装在单独的用户下面。这样可以做到隔离，运维方面，安全性也提高了。</p>
-<p>创建一个新的group,</p>
-<pre><code>$ sudo groupadd zookeeper
-</code></pre><p>创建一个新的用户，并加入group,</p>
-<pre><code>$ sudo useradd -g zookeeper zookeeper
-</code></pre><p>给新用户设置密码，</p>
-<pre><code>$ sudo passwd zookeeper
-</code></pre><p>##1. 单机模式(Standalone mode)<br>单机模式在开发和调试阶段很有用。</p>
-<p>###1.1 下载，解压</p>
-<pre><code>$ wget http://mirror.bit.edu.cn/apache/zookeeper/zookeeper-3.4.5/zookeeper-3.4.5.tar.gz
-$ tar zxf zookeeper-3.4.5.tar.gz -C ~/local/opt
-</code></pre><p>###1.2 启动<br>默认就是单机模式，</p>
-<pre><code>$ mv conf/zoo_sample.cfg conf/zoo.cfg
-$ ./bin/zdServer.sh start
-</code></pre><p>###1.3 使用java 客户端连接ZooKeeper</p>
-<pre><code>$ ./bin/zkCli.sh -server 127.0.0.1:2181
-</code></pre><p>然后就可以使用各种命令了，跟文件操作命令很类似，输入<code>help</code>可以看到所有命令。</p>
-<p>####1.4 关闭</p>
-<pre><code>$ ./bin/zdServer.sh stop
-</code></pre><p>##2. 分布式模式(Replicated mode)<br>在生产环境中，要配置成分布式模式，才能发挥威力。</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2014-02-07-install-zookeeper-on-centos/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1743,7 +1711,7 @@ $ ./bin/zdServer.sh start
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">56</span>
+              <span class="site-state-item-count">57</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1760,7 +1728,7 @@ $ ./bin/zdServer.sh start
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

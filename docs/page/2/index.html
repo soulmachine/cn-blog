@@ -253,6 +253,149 @@
             
               
                 
+                <a class="post-title-link" href="/2014-02-07-install-zookeeper-on-centos/" itemprop="url">
+                  在CentOS上安装ZooKeeper集群
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2014-02-07T23:40:00Z" content="2014-02-07">
+              2014-02-07
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Hadoop/" itemprop="url" rel="index">
+                    <span itemprop="name">Hadoop</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2014-02-07-install-zookeeper-on-centos/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014-02-07-install-zookeeper-on-centos/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>环境：CentOS 6.5, jdk 1.7, ZooKeeper 3.4.5</p>
+<p>本文主要参考官网的<a href="http://zookeeper.apache.org/doc/trunk/zookeeperStarted.html">Getting Started</a></p>
+<p>##（可选）创建新用户<br>一般我倾向于把需要启动daemon进程，对外提供服务的程序，即服务器类的程序，安装在单独的用户下面。这样可以做到隔离，运维方面，安全性也提高了。</p>
+<p>创建一个新的group,</p>
+<pre><code>$ sudo groupadd zookeeper
+</code></pre><p>创建一个新的用户，并加入group,</p>
+<pre><code>$ sudo useradd -g zookeeper zookeeper
+</code></pre><p>给新用户设置密码，</p>
+<pre><code>$ sudo passwd zookeeper
+</code></pre><p>##1. 单机模式(Standalone mode)<br>单机模式在开发和调试阶段很有用。</p>
+<p>###1.1 下载，解压</p>
+<pre><code>$ wget http://mirror.bit.edu.cn/apache/zookeeper/zookeeper-3.4.5/zookeeper-3.4.5.tar.gz
+$ tar zxf zookeeper-3.4.5.tar.gz -C ~/local/opt
+</code></pre><p>###1.2 启动<br>默认就是单机模式，</p>
+<pre><code>$ mv conf/zoo_sample.cfg conf/zoo.cfg
+$ ./bin/zdServer.sh start
+</code></pre><p>###1.3 使用java 客户端连接ZooKeeper</p>
+<pre><code>$ ./bin/zkCli.sh -server 127.0.0.1:2181
+</code></pre><p>然后就可以使用各种命令了，跟文件操作命令很类似，输入<code>help</code>可以看到所有命令。</p>
+<p>####1.4 关闭</p>
+<pre><code>$ ./bin/zdServer.sh stop
+</code></pre><p>##2. 分布式模式(Replicated mode)<br>在生产环境中，要配置成分布式模式，才能发挥威力。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2014-02-07-install-zookeeper-on-centos/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2014-02-06-hadoop-multiple-users/" itemprop="url">
                   Hadoop多用户的配置(Hadoop 2.x)
                 </a>
@@ -1631,141 +1774,6 @@ spark@master $ spark@master $ scp ./conf/slaves spark@worker02:~/local/opt/spark
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2014-01-28-restore-octopress-at-a-new-computer/" itemprop="url">
-                  Restore Octopress at a new computer
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2014-01-28T00:04:00Z" content="2014-01-28">
-              2014-01-28
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Tools/" itemprop="url" rel="index">
-                    <span itemprop="name">Tools</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2014-01-28-restore-octopress-at-a-new-computer/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2014-01-28-restore-octopress-at-a-new-computer/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>OS: Ubuntu 12.04 64-bit</p>
-<p>##1. Install ruby</p>
-<p>###1.1 Install ruby via RVM</p>
-<pre><code>$ \curl -sSL https://get.rvm.io | bash -s stable --ruby
-</code></pre><p>###1.2 <a href="https://rvm.io/integration/gnome-terminal">Integrating RVM with gnome-terminal</a><br><code>/etc/profile</code>, <code>~/.bash_profile</code> are for login shell, and <code>~/.bashrc</code> is for interactive shell, and RVM’s path is added to <code>~/.bash_profile</code>, so you need to set the shell as a login shell.</p>
-<p>###1.3 Give it a try<br>Exit current shell, and open a new shell,</p>
-<pre><code>ruby -v
-</code></pre><p>You have successfully installed ruby.</p>
-<p>##2. Install Python</p>
-<pre><code>$ sudo apt-get install -y python
-</code></pre><p>Because <a href="http://pygments.org/">Pygments</a> syntax highlighting needs Python.</p>
-<p>##3. Clone your blog to the new machine<br>First you need to clone the <code>source</code> branch to the local octopress folder.</p>
-<pre><code>$ git clone -b source git@github.com:username/username.github.com.git octopress
-</code></pre>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2014-01-28-restore-octopress-at-a-new-computer/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1811,7 +1819,7 @@ spark@master $ spark@master $ scp ./conf/slaves spark@worker02:~/local/opt/spark
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">56</span>
+              <span class="site-state-item-count">57</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1828,7 +1836,7 @@ spark@master $ spark@master $ scp ./conf/slaves spark@worker02:~/local/opt/spark
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
