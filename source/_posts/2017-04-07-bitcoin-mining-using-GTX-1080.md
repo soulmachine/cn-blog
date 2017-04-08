@@ -43,6 +43,6 @@ sudo apt install automake libcurl4-openssl-dev
 
 选一个矿池，注册好账号。<https://bitcoinchain.com/pools> 这里可以看到各个矿池的算力，我们选择最大的 AntPool吧。
 
-    ./ccminer -o stratum+tcp://stratum.antpool.com:3333 -u soulmachine.01 -p soul123456
+    ./ccminer -o stratum+tcp://stratum.antpool.com:3333 -u soulmachine.btc01 -p soul123456
 
 `-o` 是矿池服务器地址, `-u`的格式是 `UserId.WorkerId`, `UserId`必须是你注册网站时的用户名，`WorkerId`随便填，`-p`表示密码，随便填即可。还有个参数, `--algo`表示算法，可以不填，不填的时候默认为`auto`，表示自动选择哈希算法。

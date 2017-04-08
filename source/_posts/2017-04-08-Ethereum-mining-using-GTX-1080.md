@@ -43,13 +43,13 @@ make -j8
     export GPU_USE_SYNC_OBJECTS=1
     export GPU_MAX_ALLOC_PERCENT=100
     export GPU_SINGLE_ALLOC_PERCENT=100
-    ./ethminer --farm-recheck 2000 -U -S us2.ethermine.org:4444 -FS us1.ethermine.org:4444 -O 0xba90FF2fA9016B3883799D150fB15DB5b4894f8b.soulmachine
+    ./ethminer --farm-recheck 2000 -U -S us2.ethermine.org:4444 -FS us1.ethermine.org:4444 -O 0xba90FF2fA9016B3883799D150fB15DB5b4894f8b.eth01
 
 `--farm-recheck`大致是重新检查某些东西的时间间隔，毫秒为单位，`-U`指的是用GPU，且用的是CUDA而不是OpenCL，`-S`指定stratum服务器，`-FS`指定的备份服务器(这里用us2做主服务器，us1作备份服务器的原因是，us1是在美国东部，us2在美国西部，而我的机器在西部，离us2近一些)，`-O` 指定自己的钱包地址(我是用的CoinBase的在线)，`.`后面是RigName, 随便填。
 
 我搜到的第二大的矿池是 <http://ethpool.org/>，连接这个矿池的命令跟ethermine.org一模一样，只是地址变了，
 
-    ./ethminer --farm-recheck 2000 -U -S us2.ethpool.org:3333 -FS us1.ethpool.org:3333 -O 0xba90FF2fA9016B3883799D150fB15DB5b4894f8b.soulmachine
+    ./ethminer --farm-recheck 2000 -U -S us2.ethpool.org:3333 -FS us1.ethpool.org:3333 -O 0xba90FF2fA9016B3883799D150fB15DB5b4894f8b.eth01
 
 国内的两个较大的矿池是鱼池<https://www.f2pool.com/>和蚁池<https://www.antpool.com/>，连接的方法与上面类似。
 
@@ -67,11 +67,11 @@ Claymore 是另一款挖矿软件，经过我亲自测试，二者的速度基�
 
 举个例子，同时挖ETH和Decred，
 
-    ./ethdcrminer64 -epool us2.ethermine.org:4444 -ewal 0xba90FF2fA9016B3883799D150fB15DB5b4894f8b.soulmachine -epsw x -dpool pasc-us-west1.nanopool.org:15555 -dwal Dsab2dnwdTTpibkUr9VREdhLNytdnCv9nGv -dpsw x
+    ./ethdcrminer64 -epool us2.ethermine.org:4444 -ewal 0xba90FF2fA9016B3883799D150fB15DB5b4894f8b.eth01 -epsw x -dpool pasc-us-west1.nanopool.org:15555 -dwal Dsab2dnwdTTpibkUr9VREdhLNytdnCv9nGv -dpsw x
 
 或者同时挖ETH和SiaCoin,
 
-    ./ethdcrminer64 -epool us2.ethermine.org:4444 -ewal 0xba90FF2fA9016B3883799D150fB15DB5b4894f8b.soulmachine -epsw x -dpool "http://siamining.com:9980/miner/header?address=a808cdb0061d81418f6f146775dad4e3590eba207f285ad67b061a2ec01f6402960e02e36e7a&worker=soulmachine.sia01" -dcoin sia
+    ./ethdcrminer64 -epool us2.ethermine.org:4444 -ewal 0xba90FF2fA9016B3883799D150fB15DB5b4894f8b.eth01 -epsw x -dpool stratum+tcp://siamining.com:7777 -dwal a808cdb0061d81418f6f146775dad4e3590eba207f285ad67b061a2ec01f6402960e02e36e7a.sia01 -dcoin sia
 
 不过要注意，在 Ethereum-only 模式下，会收取 1% 的费用，在 Dual模式下，会收取 2%的费用，当然不会直接向你收费，它每个小时大概会有 36 到 72 秒为作者挖矿，这样间接达到了收费的目的。
 
