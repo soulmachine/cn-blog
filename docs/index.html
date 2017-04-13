@@ -253,6 +253,114 @@
             
               
                 
+                <a class="post-title-link" href="/2017-04-10-how-to-design-tinyurl/" itemprop="url">
+                  如何设计短网址系统(TinyURL)
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-04-10T22:01:38Z" content="2017-04-10">
+              2017-04-10
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017-04-10-how-to-design-tinyurl/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017-04-10-how-to-design-tinyurl/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="短网址的长度"><a href="#短网址的长度" class="headerlink" title="短网址的长度"></a>短网址的长度</h2><p>短网址的长度该设计为多少呢？ 当前互联网上的网页总数大概是 45亿(参考 <a href="http://www.worldwidewebsize.com">http://www.worldwidewebsize.com</a>)，超过了 $2^{32}=4294967296$，那么用一个64位整数足够了。</p>
+<p>一个64位整数如何转化为字符串呢？，假设我们只是用大小写字母加数字，那么可以看做是62进制数，$log_{62} {(2^{64}-1)}=10.7$，即字符串最长11就足够了。</p>
+<p>实际生产中，还可以再短一点，比如新浪微博采用的长度就是7，因为 $62^7=3521614606208$，这个量级远远超过互联网上的URL总数了，绝对够用了。</p>
+<p>现代的web服务器（例如Apache, Nginx）大部分都区分URL里的大小写了，所以用大小写字母来区分不同的URL是没问题的。</p>
+<p>因此，<strong>正确答案：长度不超过7的字符串，由大小写字母加数字共62个字母组成</strong></p>
+<h2 id="一对一还是一对多映射？"><a href="#一对一还是一对多映射？" class="headerlink" title="一对一还是一对多映射？"></a>一对一还是一对多映射？</h2><p>一个长网址，对应一个短网址，还是可以对应多个短网址？ 这也是个重大选择问题</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2017-04-10-how-to-design-tinyurl/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017-04-08-Ethereum-mining-using-GTX-1080/" itemprop="url">
                   使用显卡挖以太币教程
                 </a>
@@ -1488,133 +1596,6 @@ sudo ./cuda_5.5.22_linux_64.run
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2014-02-14-compile-hadoop-220-on-centos/" itemprop="url">
-                  CentOS上编译 Hadoop 2.2.0
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2014-02-14T11:56:00Z" content="2014-02-14">
-              2014-02-14
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Hadoop/" itemprop="url" rel="index">
-                    <span itemprop="name">Hadoop</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2014-02-14-compile-hadoop-220-on-centos/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2014-02-14-compile-hadoop-220-on-centos/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>下载了Hadoop预编译好的二进制包，hadoop-2.2.0.tar.gz，启动起来后，总是出现这种警告：</p>
-<pre><code>WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
-</code></pre><p>原因是apache官网提供的二进制包，里面的native库，是32位的，坑跌啊，现在服务器谁还有32位的啊。</p>
-<pre><code>$ file $HADOOP_PREFIX/lib/native/libhadoop.so.1.0.0
-libhadoop.so.1.0.0: ELF 32-bit LSB shared object, Intel 80386, version 1 (SYSV), dynamically linked, BuildID[sha1]=0x9eb1d49b05f67d38454e42b216e053a27ae8bac9, not stripped
-</code></pre><p>我们需要下载Hadoop 2.2.0源码，在 64 位Linux下重新编译，然后把32位的native库用64位的native库替换。</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2014-02-14-compile-hadoop-220-on-centos/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1660,7 +1641,7 @@ libhadoop.so.1.0.0: ELF 32-bit LSB shared object, Intel 80386, version 1 (SYSV),
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">58</span>
+              <span class="site-state-item-count">59</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1677,7 +1658,7 @@ libhadoop.so.1.0.0: ELF 32-bit LSB shared object, Intel 80386, version 1 (SYSV),
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

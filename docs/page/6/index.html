@@ -253,6 +253,138 @@
             
               
                 
+                <a class="post-title-link" href="/2012-01-03-hadoop-installation-on-ubuntu/" itemprop="url">
+                  在Ubuntu上安装Hadoop
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2012-01-03T18:54:00Z" content="2012-01-03">
+              2012-01-03
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Hadoop/" itemprop="url" rel="index">
+                    <span itemprop="name">Hadoop</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2012-01-03-hadoop-installation-on-ubuntu/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2012-01-03-hadoop-installation-on-ubuntu/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>本文所使用的版本是 hadoop 1.0.0，即 <a href="http://www.iteye.com/news/23874">2011年12月27日发布的1.0正式版</a>。</p>
+<p>详细安装步骤如下，有大步骤，每个步骤里面有小步骤，绝大部分是必选，只有2步是可选的，粗体表示要特别注意的地方。</p>
+<p>##1. 用vmware workstation 新建三台虚拟机<br>首先用vmware workstation 新建一台ubuntu server，装好操作系统，安装各种必须的软件，包括安装好hadoop。安装好后然后用浅拷贝<code>Create a linked clone</code> 克隆出两台作为slave，这样有了三台ubuntu机器。启动三台机器，假设IP分别为<code>192.168.1.131, 192.168.1.132, 192.168.1.133</code>, 131做为master 和 SecondaryNameNode, 身兼两职，132为 slave01, 133为slave02。</p>
+<p>##2. 修改机器名<br>这一步看起来貌似不必要，其实是必须的，否则最后运行wordcount等例子时，会出现“Too many fetch-failures”。因为HDFS用hostname而不是IP，来相互之间进行通信（见后面的注意1）。</p>
+<ul>
+<li><p>192.168.1.131上执行</p>
+<pre><code>dev@bogon:~$ sudo vi /etc/hostname
+</code></pre></li>
+</ul>
+<p>输入<code>master</code>，重启，会发现命令提示符变为了 <code>dev@master:~$</code></p>
+<p>用同样的方法，将<code>192.168.1.132</code>改为slave01，<code>192.168.1.133</code>改为slave02。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2012-01-03-hadoop-installation-on-ubuntu/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2012-01-02-ssh-passwordless-login-configuration/" itemprop="url">
                   SSH无密码登录的配置
                 </a>
@@ -1344,7 +1476,7 @@ dev@master:~$ ssh slave01
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">58</span>
+              <span class="site-state-item-count">59</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1361,7 +1493,7 @@ dev@master:~$ ssh slave01
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

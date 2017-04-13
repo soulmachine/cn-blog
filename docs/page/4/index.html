@@ -253,6 +253,157 @@
             
               
                 
+                <a class="post-title-link" href="/2014-01-20-Running-Nutch-in-Eclipse/" itemprop="url">
+                  在Eclipse里运行Nutch
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2014-01-20T04:11:00Z" content="2014-01-20">
+              2014-01-20
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Search-Engine/" itemprop="url" rel="index">
+                    <span itemprop="name">Search-Engine</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2014-01-20-Running-Nutch-in-Eclipse/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014-01-20-Running-Nutch-in-Eclipse/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>环境：Ubuntu Desktop 12.04，JDK 1.7, Nutch 1.7</p>
+<p>本文主要参考<a href="http://wiki.apache.org/nutch/RunNutchInEclipse">Running Nutch in Eclipse</a></p>
+<p>##前提</p>
+<ul>
+<li>机器上安装了Ant, Eclipse</li>
+<li>Eclipse安装了subclipse, update site 是 <a href="http://subclipse.tigris.org/update_1.10.x">http://subclipse.tigris.org/update_1.10.x</a></li>
+<li>Eclipse安装了IvyDE, update site 是 <a href="http://www.apache.org/dist/ant/ivyde/updatesite">http://www.apache.org/dist/ant/ivyde/updatesite</a></li>
+<li>Eclipse安装了m2e插件，update site 是 <a href="http://download.eclipse.org/technology/m2e/releases">http://download.eclipse.org/technology/m2e/releases</a></li>
+</ul>
+<p>##1 下载源码<br>有两种方法，</p>
+<ol>
+<li>去官网首页下载apache-nutch-1.7-src.tar.gz</li>
+<li><p>用svn checkout</p>
+<pre><code>$ svn co https://svn.apache.org/repos/asf/nutch/tags/release-1.7
+</code></pre></li>
+</ol>
+<p>推荐用第2种方法，因为用SVN checkout出来的有<code>pom.xml</code>文件，即maven文件，但是压缩包里没有，只有ant的<code>build.xml</code>文件。</p>
+<p>##2 配置<br>把 conf/ 下的 <code>nutch-site.xml.template</code>复制一份，命名为<code>nutch-site.xml</code>，在里面添加如下配置：</p>
+<pre><code>&lt;property&gt;
+  &lt;name&gt;http.agent.name&lt;/name&gt;
+  &lt;value&gt;My Nutch Spider&lt;/value&gt;
+&lt;/property&gt;
+&lt;property&gt;
+  &lt;name&gt;plugin.folders&lt;/name&gt;
+  &lt;value&gt;$NUTCH_HOME/build/plugins&lt;/value&gt;
+&lt;/property&gt;
+</code></pre><p><code>$NUTCH_HOME</code>是指nutch源码的根目录，例如我的是<code>/home/soulmachine/local/opt/apache-nutch-1.7</code>.</p>
+<p>##3 生成Eclipse项目文件，即.project文件</p>
+<pre><code>$ ant eclipse
+</code></pre>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2014-01-20-Running-Nutch-in-Eclipse/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2013-12-23-run-mahout-nbc/" itemprop="url">
                   运行mahout的朴素贝叶斯分类器
                 </a>
@@ -1691,134 +1842,6 @@ $ ./run spark.examples.SparkPi local
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2013-04-12-latex-distributions-and-editors/" itemprop="url">
-                  LaTeX的各种发行版和编辑器的比较
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2013-04-12T11:01:00Z" content="2013-04-12">
-              2013-04-12
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Tools/" itemprop="url" rel="index">
-                    <span itemprop="name">Tools</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2013-04-12-latex-distributions-and-editors/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2013-04-12-latex-distributions-and-editors/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>##发行版(distribution)<br>TeX类似于Linux，有很多不同的发行版(distribution)。</p>
-<p>先看看各个发行版的流行程度。</p>
-<p>|———-+——————————-+——–+———–+——————+———–+———–|<br>| <strong>名字</strong> |            <strong>官网</strong>           | <strong>PR</strong> | <strong>Alexa</strong> |   <strong>最后更新</strong>   | <strong>weibo</strong> | <strong>quora</strong> |<br>|:——–:|:—————————–:|:——:|:———:|:—————-:|:———:|:——–:|<br>| TeX Live |     <a href="http://www.tug.org/texlive/">http://www.tug.org/texlive/</a>    |    7   |    N/A    |    2012-07-01    |     43    |    N/A    |<br>|  MiKTeX  |     <a href="http://miktex.org/">http://miktex.org/</a>      |    7   |  188,485  | 1.3.2 2012-09-24 |     54    |    N/A    |<br>|   CTeX   |     <a href="http://www.ctex.org/">http://www.ctex.org/</a>    |    6   |  252,657  | 2.9.2 2012-03-30 |     344   |    N/A    |<br>|  proTeXt | <a href="http://www.tug.org/protext/">http://www.tug.org/protext/</a> |    7   |    N/A    | 3.1.1 2012-07-23 |     10    |    N/A    |<br>|———-+——————————-+——–+———–+——————+———–+———–|   </p>
-<p>其中CTeX和proTeXt都是基于MiKTeX的，再次进行了打包。国内估计用CTeX比较多。</p>
-<p>##编辑器(editor)<br>编辑器大概分为两种，一种为WYSIWYG，所见即所得，实时预览，类似于Word，另一种是纯文本编辑器，有语法高亮，没有预览功能，需要另外安装一个发行版，编译成PDF后才能预览。</p>
-<p>先看看各个编辑器的流行程度。</p>
-<p>|————–+————————————-+——–+———–+————–+————————–+———–+———–|<br>|   <strong>名字</strong>   |                 <strong>官网</strong>            | <strong>PR</strong> | <strong>Alexa</strong> | <strong>预览类型</strong> |      <strong>最后更新</strong>        | <strong>weibo</strong> | <strong>quora</strong> |<br>|:————:|:———————————–:|:——:|:———:|:————:|:————————:|:———:|:———:|<br>|   TeXmaker   | <a href="http://www.xm1math.net/texmaker/">http://www.xm1math.net/texmaker/</a>  |    6   |  289,311  |    无预览    |      4.0.1 2013-03-16    |     60    |    N/A    |<br>|   TeXworks   |   <a href="http://www.tug.org/texworks/">http://www.tug.org/texworks/</a>    |    5   |  90,230   |    无预览    |      0.4.4  2012-04      |     23    |    N/A    |<br>|   TeXstudio  | <a href="http://texstudio.sourceforge.net/">http://texstudio.sourceforge.net/</a> |    6   |    N/A    |    无预览    |      2.5.2 2013-01-08    |     15    |    N/A    |<br>| TeXnicCenter |   <a href="http://www.texniccenter.org/">http://www.texniccenter.org/</a>    |    7   |  884,570  |    无预览    |  v2.0 beta1 2012-11-03   |     10    |    N/A    |<br>|     Lyx      |       <a href="http://www.lyx.org/">http://www.lyx.org/</a>         |    6   |  261,649  |   实时预览   |    2.0.5.1 2013-01-08    |     56    |     42    |<br>|    Bakoma    |   <a href="http://www.bakoma-tex.com/">http://www.bakoma-tex.com/</a>      |    5   | 1,327,901 |   实时预览   |     10.10 2013-01-13     |      3    |    N/A    |<br>|   TeXmacs    |     <a href="http://www.texmacs.org">http://www.texmacs.org</a>        |    6   | 1,525,373 |   实时预览   |   1.0.7.19 2013-03-27    |     27    |    N/A    |<br>|     LEd      |   <a href="http://www.latexeditor.org/">http://www.latexeditor.org/</a>     |    6   |  624,564  |   实时预览   |     0.53 2009-10-09      |     0    |    N/A    |<br>|————–+————————————-+——–+———–+————–+————————–+———–+———–|  </p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2013-04-12-latex-distributions-and-editors/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1864,7 +1887,7 @@ $ ./run spark.examples.SparkPi local
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">58</span>
+              <span class="site-state-item-count">59</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1881,7 +1904,7 @@ $ ./run spark.examples.SparkPi local
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

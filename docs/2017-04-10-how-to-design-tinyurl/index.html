@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="机器学习, 深度学习, 人工智能" />
+  <meta name="keywords" content="系统设计," />
 
 
 
@@ -84,49 +84,21 @@
 
 
 
-<meta name="description" content="前提，安装好Ansible，参考我的上一篇博客，Ansible 快速入门
----
-- hosts: all
-  sudo: True
-  remote_user: work
-  vars:
-    ant_version: 1.9.3
-    maven_version: 3.1.1
-    scala_version: 2.10.3
-    sbt_version: 0.12.4
-
-  task">
+<meta name="description" content="短网址的长度短网址的长度该设计为多少呢？ 当前互联网上的网页总数大概是 45亿(参考 http://www.worldwidewebsize.com)，超过了 $2^{32}=4294967296$，那么用一个64位整数足够了。
+一个64位整数如何转化为字符串呢？，假设我们只是用大小写字母加数字，那么可以看做是62进制数，$log_{62} {(2^{64}-1)}=10.7$，即字符串最长11就">
 <meta property="og:type" content="article">
-<meta property="og:title" content="我的Ansible playbook">
-<meta property="og:url" content="http://cn.soulmachine.me/2014-01-29-my-ansible-playbook/index.html">
+<meta property="og:title" content="如何设计短网址系统(TinyURL)">
+<meta property="og:url" content="http://cn.soulmachine.me/2017-04-10-how-to-design-tinyurl/index.html">
 <meta property="og:site_name" content="灵魂机器">
-<meta property="og:description" content="前提，安装好Ansible，参考我的上一篇博客，Ansible 快速入门
----
-- hosts: all
-  sudo: True
-  remote_user: work
-  vars:
-    ant_version: 1.9.3
-    maven_version: 3.1.1
-    scala_version: 2.10.3
-    sbt_version: 0.12.4
-
-  task">
-<meta property="og:updated_time" content="2016-09-09T06:32:49.000Z">
+<meta property="og:description" content="短网址的长度短网址的长度该设计为多少呢？ 当前互联网上的网页总数大概是 45亿(参考 http://www.worldwidewebsize.com)，超过了 $2^{32}=4294967296$，那么用一个64位整数足够了。
+一个64位整数如何转化为字符串呢？，假设我们只是用大小写字母加数字，那么可以看做是62进制数，$log_{62} {(2^{64}-1)}=10.7$，即字符串最长11就">
+<meta property="og:image" content="http://121.40.136.3/wp-content/uploads/2015/04/snowflake-64bit.jpg">
+<meta property="og:updated_time" content="2017-04-13T01:25:57.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="我的Ansible playbook">
-<meta name="twitter:description" content="前提，安装好Ansible，参考我的上一篇博客，Ansible 快速入门
----
-- hosts: all
-  sudo: True
-  remote_user: work
-  vars:
-    ant_version: 1.9.3
-    maven_version: 3.1.1
-    scala_version: 2.10.3
-    sbt_version: 0.12.4
-
-  task">
+<meta name="twitter:title" content="如何设计短网址系统(TinyURL)">
+<meta name="twitter:description" content="短网址的长度短网址的长度该设计为多少呢？ 当前互联网上的网页总数大概是 45亿(参考 http://www.worldwidewebsize.com)，超过了 $2^{32}=4294967296$，那么用一个64位整数足够了。
+一个64位整数如何转化为字符串呢？，假设我们只是用大小写字母加数字，那么可以看做是62进制数，$log_{62} {(2^{64}-1)}=10.7$，即字符串最长11就">
+<meta name="twitter:image" content="http://121.40.136.3/wp-content/uploads/2015/04/snowflake-64bit.jpg">
 
 
 
@@ -144,7 +116,7 @@
   };
 </script>
 
-  <title> 我的Ansible playbook | 灵魂机器 </title>
+  <title> 如何设计短网址系统(TinyURL) | 灵魂机器 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -284,7 +256,7 @@
             
             
               
-                我的Ansible playbook
+                如何设计短网址系统(TinyURL)
               
             
           </h1>
@@ -296,38 +268,19 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2014-01-29T22:08:00+00:00" content="2014-01-29">
-              2014-01-29
+            <time itemprop="dateCreated" datetime="2017-04-10T22:01:38+00:00" content="2017-04-10">
+              2017-04-10
             </time>
           </span>
 
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/DevOps/" itemprop="url" rel="index">
-                    <span itemprop="name">DevOps</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
           
 
           
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2014-01-29-my-ansible-playbook/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2014-01-29-my-ansible-playbook/" itemprop="commentsCount"></span>
+                <a href="/2017-04-10-how-to-design-tinyurl/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017-04-10-how-to-design-tinyurl/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -350,136 +303,47 @@
       
 
       
-        <p><strong>前提</strong>，安装好Ansible，参考我的上一篇博客，<a href="http://www.yanjiuyanjiu.com/blog/20140127" target="_blank" rel="external">Ansible 快速入门</a></p>
-<pre><code>---
-- hosts: all
-  sudo: True
-  remote_user: work
-  vars:
-    ant_version: 1.9.3
-    maven_version: 3.1.1
-    scala_version: 2.10.3
-    sbt_version: 0.12.4
+        <h2 id="短网址的长度"><a href="#短网址的长度" class="headerlink" title="短网址的长度"></a>短网址的长度</h2><p>短网址的长度该设计为多少呢？ 当前互联网上的网页总数大概是 45亿(参考 <a href="http://www.worldwidewebsize.com" target="_blank" rel="external">http://www.worldwidewebsize.com</a>)，超过了 $2^{32}=4294967296$，那么用一个64位整数足够了。</p>
+<p>一个64位整数如何转化为字符串呢？，假设我们只是用大小写字母加数字，那么可以看做是62进制数，$log_{62} {(2^{64}-1)}=10.7$，即字符串最长11就足够了。</p>
+<p>实际生产中，还可以再短一点，比如新浪微博采用的长度就是7，因为 $62^7=3521614606208$，这个量级远远超过互联网上的URL总数了，绝对够用了。</p>
+<p>现代的web服务器（例如Apache, Nginx）大部分都区分URL里的大小写了，所以用大小写字母来区分不同的URL是没问题的。</p>
+<p>因此，<strong>正确答案：长度不超过7的字符串，由大小写字母加数字共62个字母组成</strong></p>
+<h2 id="一对一还是一对多映射？"><a href="#一对一还是一对多映射？" class="headerlink" title="一对一还是一对多映射？"></a>一对一还是一对多映射？</h2><p>一个长网址，对应一个短网址，还是可以对应多个短网址？ 这也是个重大选择问题</p>
+<a id="more"></a>
+<p>一般而言，一个长网址，在不同的地点，不同的用户等情况下，生成的短网址应该不一样，这样，在后端数据库中，可以更好的进行数据分析。如果一个长网址与一个短网址一一对应，那么在数据库中，仅有一行数据，无法区分不同的来源，就无法做数据分析了。</p>
+<p>以这个7位长度的短网址作为唯一ID，这个ID下可以挂各种信息，比如生成该网址的用户名，所在网站，HTTP头部的 User Agent等信息，收集了这些信息，才有可能在后面做大数据分析，挖掘数据的价值。短网址服务商的一大盈利来源就是这些数据。</p>
+<p><strong>正确答案：一对多</strong></p>
+<h2 id="如何计算短网址"><a href="#如何计算短网址" class="headerlink" title="如何计算短网址"></a>如何计算短网址</h2><p>现在我们设定了短网址是一个长度为7的字符串，如何计算得到这个短网址呢？</p>
+<p>最容易想到的办法是哈希，先hash得到一个64位整数，将它转化为62进制整，截取低7位即可。但是哈希算法会有冲突，如何处理冲突呢，又是一个麻烦。这个方法只是转移了矛盾，没有解决矛盾，抛弃。</p>
+<!-- more -->
+<p>MySQL数据库有一个自增ID，能不能借鉴这个呢？每来一个长网址，就给它发一个号码，这个号码不断的自增。这个方法跟哈希相比，好处是没有冲突，不用考虑处理冲突的问题。如何实现单台的发号服务器呢？可以用一台MySQL服务器来做（一定要用 <code>REPLACE INTO</code>，不要存储所有ID），也可用一台Redis服务器（用<code>INCR</code>），一行代码也不用写；也可以自己写一个RESTful API，代码也很简单，就不赘述了。</p>
+<p>单台发号器有什么缺点呢？它是一个单点故障(SPOF, Single Point Of Failure)，也会成为性能瓶颈（其实，如果你的QPS能大到压垮这台MySQL，那说明你的短网址服务很成功，可以考虑上市了:D），所以它适合中小型企业，对于超大型企业（以及在面试显得追求高大上），我们还是要继续思考更好的方案，请接着往下看。</p>
+<p>下面开始讲如何打造多台机器组成的<strong>分布式发号器</strong>。</p>
+<ol>
+<li>使用<a href="https://en.wikipedia.org/wiki/Universally_unique_identifier" target="_blank" rel="external">UUID</a>算法或者MongoDB产生的<a href="https://docs.mongodb.com/manual/reference/method/ObjectId/" target="_blank" rel="external">ObjectID</a>。其实MongoDB的ObjectID也算是一种UUID，这类算法，每台机器可以独立工作，天然是分布式的，但是这类算法产生的ID通常都很长，那短网址服务还有什么意义呢？所以这个方法不行。</li>
+<li>多台MySQL服务器。前面讲了单台MySQL作为发号服务器，那么自然可以扩展一下，比如用8台MySQL服务器协同工作，第一台MySQL初始值是1，每次自增8，第二台MySQL初始值是2，每次自增8，一次类推。前面用一个 round-robin load balancer 挡着，每来一个长网址请求，由 round-robin balancer 随机地将请求发给10台MySQL中的任意一个，然后返回一个ID。<a href="http://code.flickr.net/2010/02/08/ticket-servers-distributed-unique-primary-keys-on-the-cheap/" target="_blank" rel="external">Flickr用的就是这个方案</a>，仅仅使用了两台MySQL服务器。这个方法仅有的一个缺点是，ID是连续的，容易被爬虫抓数据，爬虫基本不用写代码，顺着ID一个一个发请求就是了，太方便了（手动斜眼）。</li>
+<li><p>分布式ID生成器(Distributed Id Generator)。分布式的产生唯一的ID，比如 Twitter 有个成熟的开源项目，就是专门做这个的，<a href="https://github.com/twitter/snowflake" target="_blank" rel="external">Twitter Snowflake</a> 。Snowflake的核心算法如下：</p>
+<p> <img src="http://121.40.136.3/wp-content/uploads/2015/04/snowflake-64bit.jpg" alt=""><br> 最高位不用，永远为0，其余三组bit占位均可浮动，看具体的业务需求而定。默认情况下41bit的时间戳可以支持该算法使用到2082年，10bit的工作机器id可以支持1023台机器，序列号支持1毫秒产生4095个自增序列id。</p>
+<p> <a href="https://engineering.instagram.com/sharding-ids-at-instagram-1cf5a71e5a5c" target="_blank" rel="external">Instagram用了类似的方案</a>，41位表示时间戳，13位表示shard Id(一个shard Id对应一台PostgreSQL机器),最低10位表示自增ID，怎么样，跟Snowflake的设计非常类似吧。这个方案用一个PostgreSQL集群代替了Twitter Snowflake 集群，优点是利用了现成的PostgreSQL，容易懂，维护方便。</p>
+</li>
+</ol>
+<p>因此，<strong>正确答案：分布式发号器(Distributed ID Generator)</strong>，Flick, Twitter Snowflake 和 Instagram的方案都是不错的选择。</p>
+<h2 id="如何存储"><a href="#如何存储" class="headerlink" title="如何存储"></a>如何存储</h2><p>如果存储短网址和长网址的对应关系？以短网址为 primary key, 长网址为value, 可以用传统的关系数据库存起来，例如MySQL, PostgreSQL，也可以用任意一个分布式KV数据库，例如Redis, LevelDB。</p>
+<p>如果你手痒想要手工设计这个存储，那就是另一个话题了，你需要完整地造一个KV存储引擎轮子。当前流行的KV存储引擎有LevelDB何RockDB，去读它们的源码吧 :D</p>
+<h2 id="301还是302重定向"><a href="#301还是302重定向" class="headerlink" title="301还是302重定向"></a>301还是302重定向</h2><p>这也是一个有意思的问题。这个问题主要是考察你对301和302的理解，以及浏览器缓存机制的理解。</p>
+<p>301是永久重定向，302是临时重定向。短地址一经生成就不会变化，所以用301是符合http语义的。但是如果用了301， Google，百度等搜索引擎，搜索的时候会直接展示真实地址，那我们就无法统计到短地址被点击的次数了，也无法收集用户的Cookie, User Agent 等信息，这些信息可以用来做很多有意思的大数据分析，也是短网址服务商的主要盈利来源。</p>
+<p>所以，<strong>正确答案是302重定向</strong>。</p>
+<h2 id="预防攻击"><a href="#预防攻击" class="headerlink" title="预防攻击"></a>预防攻击</h2><p>如果一些别有用心的黑客，短时间内向TinyURL服务器发送大量的请求，会迅速耗光ID，怎么办呢？</p>
+<p>首先，限制IP的单日请求总数，超过阈值则直接拒绝服务。</p>
+<p>光限制IP的请求数还不够，因为黑客一般手里有上百万台肉鸡的，IP地址大大的有，所以光限制IP作用不大。</p>
+<p>可以用一台Redis作为缓存服务器，存储的不是 ID-&gt;长网址，而是 长网址-&gt;ID，仅存储一天以内的数据，用LRU机制进行淘汰。这样，如果黑客大量发同一个长网址过来，直接从缓存服务器里返回短网址即可，他就无法耗光我们的ID了。</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><a href="https://engineering.instagram.com/sharding-ids-at-instagram-1cf5a71e5a5c" target="_blank" rel="external">Sharding &amp; IDs at Instagram</a></li>
+<li><a href="http://code.flickr.net/2010/02/08/ticket-servers-distributed-unique-primary-keys-on-the-cheap/" target="_blank" rel="external">Ticket Servers: Distributed Unique Primary Keys on the Cheap</a></li>
+<li><a href="https://github.com/twitter/snowflake" target="_blank" rel="external">Twitter Snowflake</a></li>
+<li><a href="https://www.zhihu.com/question/29270034" target="_blank" rel="external">短 URL 系统是怎么设计的？</a></li>
+</ul>
 
-  tasks:
-  ########## for CentOS and RedHat ##########
-    - name: Install the libselinux-python package  # because ansible needs it
-      yum: name=libselinux-python state=installed
-      when: ansible_distribution == &apos;CentOS&apos; or ansible_distribution == &apos;Red Hat Enterprise Linux&apos;
-
-    - name: Disable SELinux in conf file
-      selinux: state=disabled
-      when: ansible_distribution == &apos;CentOS&apos; or ansible_distribution == &apos;Red Hat Enterprise Linux&apos;
-
-    - name: update YUM repositories
-      shell: &apos;yum -y update&apos;
-      when: ansible_distribution == &apos;CentOS&apos; or ansible_distribution == &apos;Red Hat Enterprise Linux&apos;
-
-    - name: Install OpenJDK
-      yum: name=java-1.7.0-openjdk-devel state=present
-      when: ansible_distribution == &apos;CentOS&apos; or ansible_distribution == &apos;Red Hat Enterprise Linux&apos;
-
-    - name: Set JAVA_HOME environment variable
-      lineinfile: dest=&apos;/etc/profile&apos; regexp=&apos;^#?\s*export JAVA_HOME=(.*)$&apos; line=&apos;export JAVA_HOME=/usr/lib/jvm/java&apos; state=present
-      when: ansible_distribution == &apos;CentOS&apos; or ansible_distribution == &apos;Red Hat Enterprise Linux&apos;
-
-    - name: install the &apos;Development tools&apos; package group
-      yum: name=&quot;@Development tools&quot; state=present
-      when: ansible_distribution == &apos;CentOS&apos; or ansible_distribution == &apos;Red Hat Enterprise Linux&apos;
-
-    - name: upgrade all packages
-      shell: &apos;yum -y upgrade&apos;
-      when: ansible_distribution == &apos;CentOS&apos; or ansible_distribution == &apos;Red Hat Enterprise Linux&apos;
-
-
-  ########## for Ubuntu and Debian ##########
-    - name: Run &quot;apt-get update&quot; to update the source list
-      apt: update_cache=yes
-      when: ansible_distribution == &apos;Debian&apos; or ansible_distribution == &apos;Ubuntu&apos;
-
-    - name: Install OpenJDK
-      apt: pkg=openjdk-7-jdk state=present
-      when: ansible_distribution == &apos;Debian&apos; or ansible_distribution == &apos;Ubuntu&apos;
-
-    - name: Set JAVA_HOME environment variable
-      lineinfile: dest=&apos;/etc/profile&apos; regexp=&apos;^#?\s*export JAVA_HOME=(.*)$&apos; line=&apos;export JAVA_HOME=/usr/lib/jvm/java-1.7.0-openjdk-amd64&apos; state=present
-      when: ansible_distribution == &apos;Debian&apos; or ansible_distribution == &apos;Ubuntu&apos;
-
-    - name: Install build-essential
-      apt: pkg=build-essential state=present
-      when: ansible_distribution == &apos;Debian&apos; or ansible_distribution == &apos;Ubuntu&apos;
-
-    - name: Update all packages to the latest version
-      apt: upgrade=dist
-      when: ansible_distribution == &apos;Debian&apos; or ansible_distribution == &apos;Ubuntu&apos;
-
-
-  ########## Common opreations for all OS ##########
-    # Create local directories
-    - file: path=~/local/bin state=directory
-      sudo: no
-    - file: path=~/local/sbin state=directory
-      sudo: no
-    - file: path=~/local/src state=directory
-      sudo: no
-    - file: path=~/local/opt state=directory
-      sudo: no
-    - file: path=~/local/var state=directory
-      sudo: no
-    - lineinfile: dest=~/.bashrc regexp=&apos;^#?\s*export PATH=(.*)/local/bin(.*)$&apos; line=&quot;export PATH=$PATH:$HOME/local/bin&quot; state=present
-      sudo: no
-    - lineinfile: dest=~/.bashrc regexp=&apos;^#?\s*export PATH=(.*)/local/sbin(.*)$&apos; line=&quot;export PATH=$PATH:$HOME/local/sbin&quot; state=present
-      sudo: no
-
-    - name: Set CLASSPATH and PATH environment variables
-      lineinfile: $item
-      with_items:
-        - dest=&apos;/etc/profile&apos; regexp=&apos;^#?\s*export CLASSPATH=(.*)$&apos; line=&apos;export CLASSPATH=.:$JAVA_HOME/lib/*.jar:$JAVA_HOME/jre/lib/*.jar&apos; state=present
-        - dest=&apos;/etc/profile&apos; regexp=&apos;^#?\s*export PATH=(.*)JAVA_HOME(.*)$&apos; line=&quot;export PATH=$PATH:$JAVA_HOME/bin&quot; state=present
-
-    ###### Since Ant in yum and apt is too old, download the .tar.bz2 file and install it
-    # Install Apache Ant
-    - name: Download Apache Ant
-      get_url: url=http://mirror.cc.columbia.edu/pub/software/apache//ant/binaries/apache-ant-{{ant_version}}-bin.tar.bz2 dest=/tmp/apache-ant-{{ant_version}}-bin.tar.bz2
-    - name: Untar Ant
-      shell: chdir=/tmp creates=/opt/apache-ant-{{ant_version}} tar -jxf apache-ant-{{ant_version}}-bin.tar.bz2 -C /opt
-    - lineinfile: dest=/etc/profile regexp=&apos;^#?\s*export ANT_HOME=(.*)$&apos; line=&apos;export ANT_HOME=/opt/apache-ant-{{ant_version}}&apos; state=present
-    - lineinfile: dest=/etc/profile regexp=&apos;^#?\s*export PATH=(.*)ANT_HOME(.*)$&apos; line=&quot;export PATH=$PATH:$ANT_HOME/bin&quot; state=present
-
-    # Install Apache Maven, since there is no Maven package in yum and apt repo
-    - name: Download Apache Maven
-      get_url: url=http://apache.claz.org/maven/maven-3/3.1.1/binaries/apache-maven-{{maven_version}}-bin.tar.gz dest=/tmp/apache-maven-{{maven_version}}-bin.tar.gz
-    - name: Untar Maven
-      shell: chdir=/tmp creates=/opt/apache-maven-{{maven_version}} tar -zxf apache-maven-{{maven_version}}-bin.tar.gz -C /opt
-    - lineinfile: dest=/etc/profile regexp=&apos;^#?\s*export MAVEN_HOME=(.*)$&apos; line=&apos;export MAVEN_HOME=/opt/apache-maven-{{maven_version}}&apos; state=present
-    - lineinfile: dest=/etc/profile regexp=&apos;^#?\s*export PATH=(.*)MAVEN_HOME(.*)$&apos; line=&quot;export PATH=$PATH:$MAVEN_HOME/bin&quot; state=present
-
-    # Install the scala compiler, because the scala compiler in yum and apt repo is too old
-    - name: Download Scala
-      get_url: url=http://www.scala-lang.org/files/archive/scala-{{scala_version}}.tgz dest=/tmp/scala-{{scala_version}}.tgz
-    - name: Untar Scala
-      shell: chdir=/tmp creates=/opt/scala-{{scala_version}} tar -zxf scala-{{scala_version}}.tgz -C /opt
-    - lineinfile: dest=/etc/profile regexp=&apos;^#?\s*export SCALA_HOME=(.*)$&apos; line=&apos;export SCALA_HOME=/opt/scala-{{scala_version}}&apos; state=present
-    - lineinfile: dest=/etc/profile regexp=&apos;^#?\s*export PATH=(.*)SCALA_HOME(.*)$&apos; line=&quot;export PATH=$PATH:$SCALA_HOME/bin&quot; state=present
-
-    # Install sbt
-    - name: Download sbt
-      get_url: url=http://repo.scala-sbt.org/scalasbt/sbt-native-packages/org/scala-sbt/sbt//{{sbt_version}}/sbt.tgz dest=/tmp/sbt-{{sbt_version}}.tgz
-    - name: Untar sbt
-      shell: chdir=/tmp creates=/opt/sbt-{{sbt_version}} tar -zxf sbt-{{sbt_version}}.tgz -C /opt
-    - name: Rename sbt directory
-      shell: chdir=/opt creates=/opt/sbt-{{sbt_version}} mv sbt/ sbt-{{sbt_version}}/
-    - lineinfile: dest=/etc/profile regexp=&apos;^#?\s*export SBT_HOME=(.*)$&apos; line=&apos;export SBT_HOME=/opt/sbt-{{sbt_version}}&apos; state=present
-    - lineinfile: dest=/etc/profile regexp=&apos;^#?\s*export PATH=(.*)SBT_HOME(.*)$&apos; line=&quot;export PATH=$PATH:$SBT_HOME/bin&quot; state=present
-
-    # Install Go
-    - name: Download Go
-      get_url: url=https://go.googlecode.com/files/go1.2.linux-amd64.tar.gz dest=/tmp/go1.2.linux-amd64.tar.gz
-    - name: Untar Go
-      shell: chdir=/tmp creates=/opt/go tar -zxf go1.2.linux-amd64.tar.gz -C /opt
-    - lineinfile: dest=/etc/profile regexp=&apos;^#?\s*export GOROOT=(.*)$&apos; line=&apos;export GOROOT=/opt/go&apos; state=present
-    - lineinfile: dest=/etc/profile regexp=&apos;^#?\s*export PATH=(.*)GOROOT(.*)$&apos; line=&quot;export PATH=$PATH:$GOROOT/bin&quot; state=present
-</code></pre>
       
     </div>
 
@@ -498,22 +362,24 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/系统设计/" rel="tag">#系统设计</a>
+          
+        </div>
+      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2014-01-28-restore-octopress-at-a-new-computer/" rel="next" title="Restore Octopress at a new computer">
-                <i class="fa fa-chevron-left"></i> Restore Octopress at a new computer
+              <a href="/2017-04-08-Ethereum-mining-using-GTX-1080/" rel="next" title="使用显卡挖以太币教程">
+                <i class="fa fa-chevron-left"></i> 使用显卡挖以太币教程
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2014-01-30-spark-development-environment/" rel="prev" title="Spark开发环境的配置">
-                Spark开发环境的配置 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -539,8 +405,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2014-01-29-my-ansible-playbook/"
-           data-title="我的Ansible playbook" data-url="http://cn.soulmachine.me/2014-01-29-my-ansible-playbook/">
+      <div class="ds-thread" data-thread-key="2017-04-10-how-to-design-tinyurl/"
+           data-title="如何设计短网址系统(TinyURL)" data-url="http://cn.soulmachine.me/2017-04-10-how-to-design-tinyurl/">
       </div>
     
   </div>
@@ -727,7 +593,7 @@
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#短网址的长度"><span class="nav-number">1.</span> <span class="nav-text">短网址的长度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一对一还是一对多映射？"><span class="nav-number">2.</span> <span class="nav-text">一对一还是一对多映射？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何计算短网址"><span class="nav-number">3.</span> <span class="nav-text">如何计算短网址</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何存储"><span class="nav-number">4.</span> <span class="nav-text">如何存储</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#301还是302重定向"><span class="nav-number">5.</span> <span class="nav-text">301还是302重定向</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#预防攻击"><span class="nav-number">6.</span> <span class="nav-text">预防攻击</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">7.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
             
           </div>
         </section>

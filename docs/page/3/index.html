@@ -253,6 +253,158 @@
             
               
                 
+                <a class="post-title-link" href="/2014-01-30-spark-development-environment/" itemprop="url">
+                  Spark开发环境的配置
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2014-01-30T16:36:00Z" content="2014-01-30">
+              2014-01-30
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Spark/" itemprop="url" rel="index">
+                    <span itemprop="name">Spark</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2014-01-30-spark-development-environment/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014-01-30-spark-development-environment/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p><strong>软件版本</strong>：Spark 0.9</p>
+<p>配置Spark开发环境，其实分为三个层次，一种是针对运维人员，把Spark安装部署到集群；一种是针对普通开发者，引入Spark的jar包，调用Spark提供的接口，编写分布式程序，写好后编译成jar，就可以提交到Spark集群去运行了；第三种是针对Spark开发者，为了给Spark贡献代码，需要git clone Spark的代码，然后导入IDE，为Spark开发代码。</p>
+<p>##1 部署Spark集群<br>这种是运维人员在生产环境下，搭建起一个Spark集群。</p>
+<p>###（可选）创建新用户 Spark<br>一般我倾向于把需要启动daemon进程，对外提供服务的程序，即服务器类的程序，安装在单独的用户下面。这样可以做到隔离，运维方面，安全性也提高了。</p>
+<p>创建一个新的group,</p>
+<pre><code>$ sudo groupadd spark
+</code></pre><p>创建一个新的用户，并加入group,</p>
+<pre><code>$ sudo useradd -g spark spark
+</code></pre><p>给新用户设置密码，</p>
+<pre><code>$ sudo passwd spark
+</code></pre><p>在每台机器上创建 spark 新用户，并配置好SSH无密码，参考我的另一篇博客，<a href="http://www.yanjiuyanjiu.com/blog/20120102/">SSH无密码登录的配置</a></p>
+<p>假设有三台机器，hostname分别是 master, worker01, worker02。</p>
+<p>###1.1 下载 Spark 预编译好的二进制包<br>如果你需要用到HDFS，则要针对Hadoop 1.x 和Hadoop 2.x 选择不同的版本。这里我选择 Hadoop 2.x 版。</p>
+<pre><code>spark@master $ wget http://d3kbcqa49mib13.cloudfront.net/spark-0.9.0-incubating-bin-hadoop1.tgz
+spark@master $ tar zxf spark-0.9.0-incubating-bin-hadoop1.tgz -C ~/local/opt
+</code></pre><p>###1.2 将tgz压缩包scp到所有机器，解压到相同的路径</p>
+<pre><code>spark@master $ scp spark-0.9.0-incubating-bin-hadoop1.tgz spark@worker01:~
+spark@master $ ssh worker01
+spark@worker01 $ tar zxf spark-0.9.0-incubating-bin-hadoop1.tgz -C ~/local/opt
+spark@worker01 $ exit
+spark@master $ scp spark-0.9.0-incubating-bin-hadoop1.tgz spark@worker02:~
+spark@master $ ssh worker02
+spark@worker02 $ tar zxf spark-0.9.0-incubating-bin-hadoop1.tgz -C ~/local/opt
+spark@worker02 $ exit
+</code></pre><p>###1.3 修改配置文件<br>Spark 0.9 以后，配置文件简单多了，只有一个必须要配置，就是 <code>conf/slaves</code> 这个文件。在这个文件里添加slave的hostname。</p>
+<p>###1.4 拷贝配置文件到所有slave</p>
+<pre><code>spark@master $ spark@master $ scp ./conf/slaves spark@worker01:~/local/opt/spark-0.9.0-incubating-bin-hadoop1/conf
+spark@master $ spark@master $ scp ./conf/slaves spark@worker02:~/local/opt/spark-0.9.0-incubating-bin-hadoop1/conf
+</code></pre><p>###1.5 启动Spark集群</p>
+<pre><code>spark@master $ ./sbin/start-all.sh
+</code></pre>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2014-01-30-spark-development-environment/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2014-01-29-my-ansible-playbook/" itemprop="url">
                   我的Ansible playbook
                 </a>
@@ -1619,157 +1771,6 @@ http://movie.douban.com/subject/5323968/
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2014-01-20-Running-Nutch-in-Eclipse/" itemprop="url">
-                  在Eclipse里运行Nutch
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2014-01-20T04:11:00Z" content="2014-01-20">
-              2014-01-20
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Search-Engine/" itemprop="url" rel="index">
-                    <span itemprop="name">Search-Engine</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2014-01-20-Running-Nutch-in-Eclipse/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2014-01-20-Running-Nutch-in-Eclipse/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>环境：Ubuntu Desktop 12.04，JDK 1.7, Nutch 1.7</p>
-<p>本文主要参考<a href="http://wiki.apache.org/nutch/RunNutchInEclipse">Running Nutch in Eclipse</a></p>
-<p>##前提</p>
-<ul>
-<li>机器上安装了Ant, Eclipse</li>
-<li>Eclipse安装了subclipse, update site 是 <a href="http://subclipse.tigris.org/update_1.10.x">http://subclipse.tigris.org/update_1.10.x</a></li>
-<li>Eclipse安装了IvyDE, update site 是 <a href="http://www.apache.org/dist/ant/ivyde/updatesite">http://www.apache.org/dist/ant/ivyde/updatesite</a></li>
-<li>Eclipse安装了m2e插件，update site 是 <a href="http://download.eclipse.org/technology/m2e/releases">http://download.eclipse.org/technology/m2e/releases</a></li>
-</ul>
-<p>##1 下载源码<br>有两种方法，</p>
-<ol>
-<li>去官网首页下载apache-nutch-1.7-src.tar.gz</li>
-<li><p>用svn checkout</p>
-<pre><code>$ svn co https://svn.apache.org/repos/asf/nutch/tags/release-1.7
-</code></pre></li>
-</ol>
-<p>推荐用第2种方法，因为用SVN checkout出来的有<code>pom.xml</code>文件，即maven文件，但是压缩包里没有，只有ant的<code>build.xml</code>文件。</p>
-<p>##2 配置<br>把 conf/ 下的 <code>nutch-site.xml.template</code>复制一份，命名为<code>nutch-site.xml</code>，在里面添加如下配置：</p>
-<pre><code>&lt;property&gt;
-  &lt;name&gt;http.agent.name&lt;/name&gt;
-  &lt;value&gt;My Nutch Spider&lt;/value&gt;
-&lt;/property&gt;
-&lt;property&gt;
-  &lt;name&gt;plugin.folders&lt;/name&gt;
-  &lt;value&gt;$NUTCH_HOME/build/plugins&lt;/value&gt;
-&lt;/property&gt;
-</code></pre><p><code>$NUTCH_HOME</code>是指nutch源码的根目录，例如我的是<code>/home/soulmachine/local/opt/apache-nutch-1.7</code>.</p>
-<p>##3 生成Eclipse项目文件，即.project文件</p>
-<pre><code>$ ant eclipse
-</code></pre>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2014-01-20-Running-Nutch-in-Eclipse/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1815,7 +1816,7 @@ http://movie.douban.com/subject/5323968/
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">58</span>
+              <span class="site-state-item-count">59</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1832,7 +1833,7 @@ http://movie.douban.com/subject/5323968/
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
