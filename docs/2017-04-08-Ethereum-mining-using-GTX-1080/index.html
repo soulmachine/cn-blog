@@ -92,7 +92,7 @@
 <meta property="og:site_name" content="灵魂机器">
 <meta property="og:description" content="操作系统: Ubuntu 16.04，显卡 GTX 1080
 1. 安装显卡驱动和CUDA1234apt-key adv --fetch-keys http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/7fa2af80.pubecho &quot;deb http://developer.download.nvid">
-<meta property="og:updated_time" content="2017-04-08T09:47:27.000Z">
+<meta property="og:updated_time" content="2017-04-25T14:37:28.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用显卡挖以太币教程">
 <meta name="twitter:description" content="操作系统: Ubuntu 16.04，显卡 GTX 1080
@@ -306,26 +306,20 @@
 <h2 id="2-编译安装-Genoil-cpp-ethereum"><a href="#2-编译安装-Genoil-cpp-ethereum" class="headerlink" title="2. 编译安装 Genoil/cpp-ethereum"></a>2. 编译安装 Genoil/cpp-ethereum</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">sudo apt -y install software-properties-common</div><div class="line">sudo add-apt-repository -y ppa:ethereum/ethereum</div><div class="line">sudo apt -y update</div><div class="line">sudo apt -y install git cmake libcryptopp-dev libleveldb-dev libjsoncpp-dev libjsonrpccpp-dev libboost-all-dev libgmp-dev libreadline-dev libcurl4-gnutls-dev ocl-icd-libopencl1 opencl-headers mesa-common-dev libmicrohttpd-dev build-essential</div><div class="line">git <span class="built_in">clone</span> git@github.com:Genoil/cpp-ethereum.git</div><div class="line"><span class="built_in">cd</span> cpp-ethereum/</div><div class="line">mkdir build</div><div class="line"><span class="built_in">cd</span> build</div><div class="line">cmake -DBUNDLE=cudaminer ..</div><div class="line">make -j8</div></pre></td></tr></table></figure>
 <p>编译完成后会在当前目录的子目录<code>ethminer</code>下生成一个 <code>ethminer</code> 可执行文件。</p>
 <a id="more"></a>
-<h2 id="3-连接矿池开始挖矿"><a href="#3-连接矿池开始挖矿" class="headerlink" title="3. 连接矿池开始挖矿"></a>3. 连接矿池开始挖矿</h2><p>选一个矿池，选一个算力大的矿池，注册好账号。我这里选择的是 <a href="https://ethermine.org/" target="_blank" rel="external">https://ethermine.org/</a> 这个矿池。</p>
-<pre><code># 不太明白以下环境变量的作用
-export GPU_FORCE_64BIT_PTR=0
-export GPU_MAX_HEAP_SIZE=100
-export GPU_USE_SYNC_OBJECTS=1
-export GPU_MAX_ALLOC_PERCENT=100
-export GPU_SINGLE_ALLOC_PERCENT=100
-./ethminer --farm-recheck 2000 -U -S us2.ethermine.org:4444 -FS us1.ethermine.org:4444 -O 0xba90FF2fA9016B3883799D150fB15DB5b4894f8b.eth01
-</code></pre><p><code>--farm-recheck</code>大致是重新检查某些东西的时间间隔，毫秒为单位，<code>-U</code>指的是用GPU，且用的是CUDA而不是OpenCL，<code>-S</code>指定stratum服务器，<code>-FS</code>指定的备份服务器(这里用us2做主服务器，us1作备份服务器的原因是，us1是在美国东部，us2在美国西部，而我的机器在西部，离us2近一些)，<code>-O</code> 指定自己的钱包地址(我是用的CoinBase的在线)，<code>.</code>后面是RigName, 随便填。</p>
-<p>我搜到的第二大的矿池是 <a href="http://ethpool.org/" target="_blank" rel="external">http://ethpool.org/</a>，连接这个矿池的命令跟ethermine.org一模一样，只是地址变了，</p>
-<pre><code>./ethminer --farm-recheck 2000 -U -S us2.ethpool.org:3333 -FS us1.ethpool.org:3333 -O 0xba90FF2fA9016B3883799D150fB15DB5b4894f8b.eth01
-</code></pre><p>国内的两个较大的矿池是鱼池<a href="https://www.f2pool.com/" target="_blank" rel="external">https://www.f2pool.com/</a>和蚁池<a href="https://www.antpool.com/" target="_blank" rel="external">https://www.antpool.com/</a>，连接的方法与上面类似。</p>
-<p>关于5个环境变量的作用，我没有搞的很明白，大致猜测是如果显卡只有2G显存，那么就占用百分之百，不过我的GTX 1080 有8G显存，远远够用，所以感觉设不设置这些环境变量，没有差别，事实上也是如此，不设置环境变量，运行<code>nvidia-smi</code>可以看到占用的显存也在2G左右，挖矿速度也没有变化，仍然是 20MH/s 左右。</p>
-<h2 id="4-Genoil-和-Claymore-的比较"><a href="#4-Genoil-和-Claymore-的比较" class="headerlink" title="4. Genoil 和 Claymore 的比较"></a>4. Genoil 和 Claymore 的比较</h2><p>Claymore 是另一款挖矿软件，经过我亲自测试，二者的速度基本一样，GTX 1080 都在在 20MH/s 左右，不过 Claymore可以在不影响以太币挖矿速度的情况下，还可以同时挖 Decred/Siacoin/Lbry/Pascal 之一，于是我现在用的是 Claymore这个挖矿程序，命令行如下，</p>
+<h2 id="3-连接矿池开始挖矿"><a href="#3-连接矿池开始挖矿" class="headerlink" title="3. 连接矿池开始挖矿"></a>3. 连接矿池开始挖矿</h2><p>在这里可以看到全球各大矿池的算力大小: <a href="https://etherchain.org/statistics/miners" target="_blank" rel="external">https://etherchain.org/statistics/miners</a></p>
+<p>选一个矿池，以<a href="https://ethermine.org/" target="_blank" rel="external">https://ethermine.org/</a> 这个矿池为例，</p>
 <pre><code>export GPU_FORCE_64BIT_PTR=0
 export GPU_MAX_HEAP_SIZE=100
 export GPU_USE_SYNC_OBJECTS=1
 export GPU_MAX_ALLOC_PERCENT=100
 export GPU_SINGLE_ALLOC_PERCENT=100
-</code></pre><p>举个例子，同时挖ETH和Decred，</p>
+</code></pre><p>如果你的显卡只有2G显存，需要设置以上环境变量，我的 GTX 1080 有8G内存，就不需要设置了。</p>
+<pre><code>./ethminer --farm-recheck 2000 -U -S us2.ethermine.org:4444 -FS us1.ethermine.org:4444 -O 0xba90FF2fA9016B3883799D150fB15DB5b4894f8b.eth01
+</code></pre><p><code>--farm-recheck</code>大致是重新检查某些东西的时间间隔，毫秒为单位，<code>-U</code>指的是用GPU，且用的是CUDA而不是OpenCL，<code>-S</code>指定stratum服务器，<code>-FS</code>指定的备份服务器(这里用us2做主服务器，us1作备份服务器的原因是，us1是在美国东部，us2在美国西部，而我的机器在西部，离us2近一些)，<code>-O</code> 指定自己的钱包地址(我是用的CoinBase的在线)，<code>.</code>后面是RigName, 随便填。</p>
+<p>我搜到的第二大的矿池是 <a href="http://ethpool.org/" target="_blank" rel="external">http://ethpool.org/</a>，连接这个矿池的命令跟ethermine.org一模一样，只是地址变了，</p>
+<pre><code>./ethminer --farm-recheck 2000 -U -S us2.ethpool.org:3333 -FS us1.ethpool.org:3333 -O 0xba90FF2fA9016B3883799D150fB15DB5b4894f8b.eth01
+</code></pre><h2 id="4-Genoil-和-Claymore-的比较"><a href="#4-Genoil-和-Claymore-的比较" class="headerlink" title="4. Genoil 和 Claymore 的比较"></a>4. Genoil 和 Claymore 的比较</h2><p>Claymore 是另一款挖矿软件，经过我亲自测试，二者的速度基本一样，GTX 1080 都在在 20MH/s 左右，不过 Claymore可以在不影响以太币挖矿速度的情况下，还可以同时挖 Decred/Siacoin/Lbry/Pascal 之一，于是我现在用的是 Claymore这个挖矿程序，命令行如下，</p>
+<p>举个例子，同时挖ETH和Decred，</p>
 <pre><code>./ethdcrminer64 -epool us2.ethermine.org:4444 -ewal 0xba90FF2fA9016B3883799D150fB15DB5b4894f8b.eth01 -epsw x -dpool pasc-us-west1.nanopool.org:15555 -dwal Dsab2dnwdTTpibkUr9VREdhLNytdnCv9nGv -dpsw x
 </code></pre><p>或者同时挖ETH和SiaCoin,</p>
 <pre><code>./ethdcrminer64 -epool us2.ethermine.org:4444 -ewal 0xba90FF2fA9016B3883799D150fB15DB5b4894f8b.eth01 -epsw x -dpool stratum+tcp://siamining.com:7777 -dwal a808cdb0061d81418f6f146775dad4e3590eba207f285ad67b061a2ec01f6402960e02e36e7a.sia01 -dcoin sia
@@ -444,7 +438,7 @@ export GPU_SINGLE_ALLOC_PERCENT=100
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">59</span>
+              <span class="site-state-item-count">60</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -461,7 +455,7 @@ export GPU_SINGLE_ALLOC_PERCENT=100
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

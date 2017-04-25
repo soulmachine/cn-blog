@@ -35,14 +35,18 @@ make -j8
 
 ## 3. 连接矿池开始挖矿
 
-选一个矿池，选一个算力大的矿池，注册好账号。我这里选择的是 <https://ethermine.org/> 这个矿池。
+在这里可以看到全球各大矿池的算力大小: <https://etherchain.org/statistics/miners>
 
-    # 不太明白以下环境变量的作用
+选一个矿池，以<https://ethermine.org/> 这个矿池为例，
+
     export GPU_FORCE_64BIT_PTR=0
     export GPU_MAX_HEAP_SIZE=100
     export GPU_USE_SYNC_OBJECTS=1
     export GPU_MAX_ALLOC_PERCENT=100
     export GPU_SINGLE_ALLOC_PERCENT=100
+
+如果你的显卡只有2G显存，需要设置以上环境变量，我的 GTX 1080 有8G内存，就不需要设置了。
+
     ./ethminer --farm-recheck 2000 -U -S us2.ethermine.org:4444 -FS us1.ethermine.org:4444 -O 0xba90FF2fA9016B3883799D150fB15DB5b4894f8b.eth01
 
 `--farm-recheck`大致是重新检查某些东西的时间间隔，毫秒为单位，`-U`指的是用GPU，且用的是CUDA而不是OpenCL，`-S`指定stratum服务器，`-FS`指定的备份服务器(这里用us2做主服务器，us1作备份服务器的原因是，us1是在美国东部，us2在美国西部，而我的机器在西部，离us2近一些)，`-O` 指定自己的钱包地址(我是用的CoinBase的在线)，`.`后面是RigName, 随便填。
@@ -51,19 +55,10 @@ make -j8
 
     ./ethminer --farm-recheck 2000 -U -S us2.ethpool.org:3333 -FS us1.ethpool.org:3333 -O 0xba90FF2fA9016B3883799D150fB15DB5b4894f8b.eth01
 
-国内的两个较大的矿池是鱼池<https://www.f2pool.com/>和蚁池<https://www.antpool.com/>，连接的方法与上面类似。
-
-关于5个环境变量的作用，我没有搞的很明白，大致猜测是如果显卡只有2G显存，那么就占用百分之百，不过我的GTX 1080 有8G显存，远远够用，所以感觉设不设置这些环境变量，没有差别，事实上也是如此，不设置环境变量，运行`nvidia-smi`可以看到占用的显存也在2G左右，挖矿速度也没有变化，仍然是 20MH/s 左右。
 
 ## 4. Genoil 和 Claymore 的比较
 
 Claymore 是另一款挖矿软件，经过我亲自测试，二者的速度基本一样，GTX 1080 都在在 20MH/s 左右，不过 Claymore可以在不影响以太币挖矿速度的情况下，还可以同时挖 Decred/Siacoin/Lbry/Pascal 之一，于是我现在用的是 Claymore这个挖矿程序，命令行如下，
-
-    export GPU_FORCE_64BIT_PTR=0
-    export GPU_MAX_HEAP_SIZE=100
-    export GPU_USE_SYNC_OBJECTS=1
-    export GPU_MAX_ALLOC_PERCENT=100
-    export GPU_SINGLE_ALLOC_PERCENT=100
 
 举个例子，同时挖ETH和Decred，
 

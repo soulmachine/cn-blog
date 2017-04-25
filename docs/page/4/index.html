@@ -253,6 +253,141 @@
             
               
                 
+                <a class="post-title-link" href="/2014-01-21-nutch-tutorial-17/" itemprop="url">
+                  Nutch 快速入门(Nutch 1.7)
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2014-01-21T04:11:00Z" content="2014-01-21">
+              2014-01-21
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Search-Engine/" itemprop="url" rel="index">
+                    <span itemprop="name">Search-Engine</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2014-01-21-nutch-tutorial-17/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014-01-21-nutch-tutorial-17/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>本文主要参考<a href="http://wiki.apache.org/nutch/NutchTutorial">Nutch Tutorial</a></p>
+<p>Nutch 2.2.1目前性能没有Nutch 1.7好，参考这里，<a href="http://digitalpebble.blogspot.com/2013/09/nutch-fight-17-vs-221.html">NUTCH FIGHT! 1.7 vs 2.2.1</a>. 所以我目前还是使用的Nutch 1.7。</p>
+<p>##1 下载已编译好的二进制包，解压<br>    $ wget <a href="http://psg.mtu.edu/pub/apache/nutch/1.7/apache-nutch-1.7-bin.tar.gz">http://psg.mtu.edu/pub/apache/nutch/1.7/apache-nutch-1.7-bin.tar.gz</a><br>    $ tar zxf apache-nutch-1.7-bin.tar.gz</p>
+<p>##2 验证一下</p>
+<pre><code>$ cd apache-nutch-1.7
+$ bin/nutch
+</code></pre><p>如果出现”Permission denied”请运行下面的命令：</p>
+<pre><code>$ chmod +x bin/nutch
+</code></pre><p>如果有Warning说 <code>JAVA_HOME</code>没有设置，请设置一下<code>JAVA_HOME</code>.</p>
+<p>##3 添加种子URL</p>
+<pre><code>mkdir ~/urls
+vim ～/urls/seed.txt
+http://movie.douban.com/subject/5323968/
+</code></pre><p>##4 设置URL过滤规则<br>如果只想抓取某种类型的URL，可以在 <code>conf/regex-urlfilter.txt</code>设置正则表达式，于是，只有匹配这些正则表达式的URL才会被抓取。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2014-01-21-nutch-tutorial-17/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2014-01-20-Running-Nutch-in-Eclipse/" itemprop="url">
                   在Eclipse里运行Nutch
                 </a>
@@ -1693,155 +1828,6 @@ $ ./run spark.examples.SparkPi local
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2013-06-11-read-spark-source-code-using-scala-ide/" itemprop="url">
-                  使用Scala IDE 阅读spark源码 -- 将sbt项目转化为eclipse项目
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2013-06-11T11:48:00Z" content="2013-06-11">
-              2013-06-11
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Spark/" itemprop="url" rel="index">
-                    <span itemprop="name">Spark</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2013-06-11-read-spark-source-code-using-scala-ide/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2013-06-11-read-spark-source-code-using-scala-ide/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>阅读Spark源代码，最简单的方式是下载源码包，解压后用纯文本方式来阅读源码。这样效率不高，可以用sbteclipse这个插件，将sbt项目文件转化为eclipse项目文件，然后导入到Scala IDE，用eclipse来阅读源码，效率大大提高。</p>
-<p><strong>环境</strong>：Windows 7, JDK 1.6</p>
-<ol>
-<li>安装 scala。去官网 <a href="http://www.scala-lang.org/">http://www.scala-lang.org/</a> ，下载MSI，安装，按默认设置即可。</li>
-<li><p>安装 sbt。去官网 <a href="http://www.scala-sbt.org/">http://www.scala-sbt.org/</a> ， 下载MSI，安装，按默认设置即可。<br>Linux下可以省略以上两步，spark源码自带了一个sbt，且启动sbt时它会自动下载对应的scala编译器。</p>
-</li>
-<li><p>安装 Scala IDE。 去官网 <a href="http://scala-ide.org/">http://scala-ide.org/</a>，点击”Get the SDK”绿色按钮，下载。这个IDE的好处是，自带了scala编译器，解压即可使用。</p>
-</li>
-<li><p>下载spark源码。 去官网 <a href="http://spark-project.org/">http://spark-project.org/</a> 下载源码，当前版本是 0.7.2, source package 大约4M左右。解压源码，例如 解压到 d:spark-0.7.0\</p>
-</li>
-<li><p>添加 sbteclipse 插件依赖。spark已经添加了依赖，这一步什么也不需要做。</p>
-<p> 这个插件的作用，就是能够读取sbt的配置文件，生成一个eclipse的工程文件。有了eclipse工程文件，就可以导入到eclipse了。</p>
-<p> spark已经添加了依赖，见 d:\spark-0.7.2\project\plugins.sbt，有一行</p>
-<p> addSbtPlugin(“com.typesafe.sbteclipse” % “sbteclipse-plugin” % “2.1.1”)</p>
-</li>
-</ol>
-<ol>
-<li><p>启动cmd，启动sbt。</p>
-<blockquote>
-<p>cd  d:\spark-0.7.0<br> sbt</p>
-</blockquote>
-<p> Linux下则是</p>
-<blockquote>
-<p>cd  d:\spark-0.7.0<br> sbt/sbt</p>
-</blockquote>
-<p> 开始下载各种依赖包，需要等待很长时间。</p>
-</li>
-<li><p><strong>翻@_@墙。见本文最后一段。</strong></p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2013-06-11-read-spark-source-code-using-scala-ide/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1887,7 +1873,7 @@ $ ./run spark.examples.SparkPi local
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">59</span>
+              <span class="site-state-item-count">60</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1904,7 +1890,7 @@ $ ./run spark.examples.SparkPi local
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

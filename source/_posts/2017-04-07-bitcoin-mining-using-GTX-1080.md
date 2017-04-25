@@ -41,7 +41,9 @@ sudo apt install automake libcurl4-openssl-dev
 
 ## 3. 连接矿池开始挖矿
 
-选一个矿池，注册好账号。<https://bitcoinchain.com/pools> 这里可以看到各个矿池的算力，我们选择最大的 AntPool吧。
+在这里可以看到全球各大矿池的算力大小: <https://blockchain.info/pools>
+
+选一个矿池，注册好账号，以 AntPool为例，
 
     ./ccminer -o stratum+tcp://stratum.antpool.com:3333 -u soulmachine.btc01 -p soul123456
 

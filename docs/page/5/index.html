@@ -253,6 +253,155 @@
             
               
                 
+                <a class="post-title-link" href="/2013-06-11-read-spark-source-code-using-scala-ide/" itemprop="url">
+                  使用Scala IDE 阅读spark源码 -- 将sbt项目转化为eclipse项目
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2013-06-11T11:48:00Z" content="2013-06-11">
+              2013-06-11
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Spark/" itemprop="url" rel="index">
+                    <span itemprop="name">Spark</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2013-06-11-read-spark-source-code-using-scala-ide/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2013-06-11-read-spark-source-code-using-scala-ide/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>阅读Spark源代码，最简单的方式是下载源码包，解压后用纯文本方式来阅读源码。这样效率不高，可以用sbteclipse这个插件，将sbt项目文件转化为eclipse项目文件，然后导入到Scala IDE，用eclipse来阅读源码，效率大大提高。</p>
+<p><strong>环境</strong>：Windows 7, JDK 1.6</p>
+<ol>
+<li>安装 scala。去官网 <a href="http://www.scala-lang.org/">http://www.scala-lang.org/</a> ，下载MSI，安装，按默认设置即可。</li>
+<li><p>安装 sbt。去官网 <a href="http://www.scala-sbt.org/">http://www.scala-sbt.org/</a> ， 下载MSI，安装，按默认设置即可。<br>Linux下可以省略以上两步，spark源码自带了一个sbt，且启动sbt时它会自动下载对应的scala编译器。</p>
+</li>
+<li><p>安装 Scala IDE。 去官网 <a href="http://scala-ide.org/">http://scala-ide.org/</a>，点击”Get the SDK”绿色按钮，下载。这个IDE的好处是，自带了scala编译器，解压即可使用。</p>
+</li>
+<li><p>下载spark源码。 去官网 <a href="http://spark-project.org/">http://spark-project.org/</a> 下载源码，当前版本是 0.7.2, source package 大约4M左右。解压源码，例如 解压到 d:spark-0.7.0\</p>
+</li>
+<li><p>添加 sbteclipse 插件依赖。spark已经添加了依赖，这一步什么也不需要做。</p>
+<p> 这个插件的作用，就是能够读取sbt的配置文件，生成一个eclipse的工程文件。有了eclipse工程文件，就可以导入到eclipse了。</p>
+<p> spark已经添加了依赖，见 d:\spark-0.7.2\project\plugins.sbt，有一行</p>
+<p> addSbtPlugin(“com.typesafe.sbteclipse” % “sbteclipse-plugin” % “2.1.1”)</p>
+</li>
+</ol>
+<ol>
+<li><p>启动cmd，启动sbt。</p>
+<blockquote>
+<p>cd  d:\spark-0.7.0<br> sbt</p>
+</blockquote>
+<p> Linux下则是</p>
+<blockquote>
+<p>cd  d:\spark-0.7.0<br> sbt/sbt</p>
+</blockquote>
+<p> 开始下载各种依赖包，需要等待很长时间。</p>
+</li>
+<li><p><strong>翻@_@墙。见本文最后一段。</strong></p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2013-06-11-read-spark-source-code-using-scala-ide/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2013-04-12-latex-distributions-and-editors/" itemprop="url">
                   LaTeX的各种发行版和编辑器的比较
                 </a>
@@ -1387,148 +1536,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2012-04-18-create-a-bootable-vmware-esxi-5-usb-stick/" itemprop="url">
-                  制作 VMware ESXI 5 U盘安装盘
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2012-04-18T20:17:00Z" content="2012-04-18">
-              2012-04-18
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Tools/" itemprop="url" rel="index">
-                    <span itemprop="name">Tools</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2012-04-18-create-a-bootable-vmware-esxi-5-usb-stick/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2012-04-18-create-a-bootable-vmware-esxi-5-usb-stick/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>有两种方法，使用 unetbootin ，或使用 LinuxLive USB Creator刻录可启动U盘。 </p>
-<p>##使用 unetbootin<br>这个方法最自动化，点击两下按钮即可，但是有时候会失败(我用EXSi 5.0 的ISO失败，但是用 EXSi 5.0U1可以成功)，U盘启动不了。 </p>
-<ol>
-<li>单击 光盘镜像，选择ISO文件VMware-VMvisor-Installer-5.0.0.update01-623860.x86_64.iso。 </li>
-<li>选择U盘，点击“确定”开始刻录。刻录后用U盘启动机器开始安装即可。如下图所示。<img src="http://yanjiuyanjiu-wordpress.stor.sinaapp.com/uploads/2012/04/unetbootin1.jpg">
-</li>
-</ol>
-<p>##使用 LinuxLive USB Creator</p>
-<ol>
-<li>格式化U盘，文件系统为FAT32，并设置为主分区，命令如下：<pre><code># 使用管理员权限运行cmd 
-diskpart 
-list disk 
-select disk USB number （例如 select dist 1） 
-clean 
-create partition primary 
-active 
-format fs=fat32 quick 
-assign 
-exit
-</code></pre></li>
-</ol>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2012-04-18-create-a-bootable-vmware-esxi-5-usb-stick/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1574,7 +1581,7 @@ exit
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">59</span>
+              <span class="site-state-item-count">60</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1591,7 +1598,7 @@ exit
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

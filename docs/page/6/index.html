@@ -253,6 +253,148 @@
             
               
                 
+                <a class="post-title-link" href="/2012-04-18-create-a-bootable-vmware-esxi-5-usb-stick/" itemprop="url">
+                  制作 VMware ESXI 5 U盘安装盘
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2012-04-18T20:17:00Z" content="2012-04-18">
+              2012-04-18
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Tools/" itemprop="url" rel="index">
+                    <span itemprop="name">Tools</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2012-04-18-create-a-bootable-vmware-esxi-5-usb-stick/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2012-04-18-create-a-bootable-vmware-esxi-5-usb-stick/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>有两种方法，使用 unetbootin ，或使用 LinuxLive USB Creator刻录可启动U盘。 </p>
+<p>##使用 unetbootin<br>这个方法最自动化，点击两下按钮即可，但是有时候会失败(我用EXSi 5.0 的ISO失败，但是用 EXSi 5.0U1可以成功)，U盘启动不了。 </p>
+<ol>
+<li>单击 光盘镜像，选择ISO文件VMware-VMvisor-Installer-5.0.0.update01-623860.x86_64.iso。 </li>
+<li>选择U盘，点击“确定”开始刻录。刻录后用U盘启动机器开始安装即可。如下图所示。<img src="http://yanjiuyanjiu-wordpress.stor.sinaapp.com/uploads/2012/04/unetbootin1.jpg">
+</li>
+</ol>
+<p>##使用 LinuxLive USB Creator</p>
+<ol>
+<li>格式化U盘，文件系统为FAT32，并设置为主分区，命令如下：<pre><code># 使用管理员权限运行cmd 
+diskpart 
+list disk 
+select disk USB number （例如 select dist 1） 
+clean 
+create partition primary 
+active 
+format fs=fat32 quick 
+assign 
+exit
+</code></pre></li>
+</ol>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2012-04-18-create-a-bootable-vmware-esxi-5-usb-stick/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2012-01-03-hadoop-installation-on-ubuntu/" itemprop="url">
                   在Ubuntu上安装Hadoop
                 </a>
@@ -1476,7 +1618,7 @@ dev@master:~$ ssh slave01
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">59</span>
+              <span class="site-state-item-count">60</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1493,7 +1635,7 @@ dev@master:~$ ssh slave01
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

@@ -253,6 +253,146 @@
             
               
                 
+                <a class="post-title-link" href="/2014-01-31-install-uek-for-centos/" itemprop="url">
+                  给CentOS安装UEK内核
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2014-01-31T22:05:00Z" content="2014-01-31">
+              2014-01-31
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/DevOps/" itemprop="url" rel="index">
+                    <span itemprop="name">DevOps</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2014-01-31-install-uek-for-centos/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014-01-31-install-uek-for-centos/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>最近给CentOS 6.5 安装了docker，不过每次运行都会报警：</p>
+<blockquote>
+<p>WARNING: You are running linux kernel version 2.6.32-431.3.1.el6.x86_64, which might be unstable running docker. Please upgrade your kernel to 3.8.0.</p>
+</blockquote>
+<p>给CentOS 升级内核，有三种途径，一种是yum官方源里有更新的版本，一种途径是自己编译，另一种途径是使用别人编译好了的内核。</p>
+<p>CentOS yum源是出了名的更新慢，目前没有 3.8版内核，第二种途径很麻烦，工作量很大，因此本文用第三种。例如UEK，Oracle提供了一个公共的yum源，<a href="http://public-yum.oracle.com/">http://public-yum.oracle.com/</a></p>
+<p>##添加yum源</p>
+<p>UEK的稳定版还是 2.6 内核的，beta版的内核是3.8的，所以我们使用beta源</p>
+<pre><code>sudo wget http://public-yum.oracle.com/beta/public-yum-ol6-beta.repo -P /etc/yum.repos.d
+</code></pre><p>由于UEK3还没有加入到正式版本中，还目前属于测试阶段，，需要手工将 <code>enabled=0</code>改为 <code>enabled=1</code></p>
+<pre><code>sudo vim /etc/yum.repos.d/public-yum-ol6-beta.repo
+</code></pre><p>##添加GPG key</p>
+<pre><code>sudo wget http://public-yum.oracle.com/RPM-GPG-KEY-oracle-ol6 -O /etc/pki/rpm-gpg/RPM-GPG-KEY-oracle
+gpg --quiet --with-fingerprint /etc/pki/rpm-gpg/RPM-GPG-KEY-oracle
+</code></pre><p>##更新yum源</p>
+<pre><code>sudo yum update
+</code></pre><p>##列出所有的kernel</p>
+<pre><code>yum list kernel*
+</code></pre>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2014-01-31-install-uek-for-centos/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2014-01-30-spark-development-environment/" itemprop="url">
                   Spark开发环境的配置
                 </a>
@@ -1636,141 +1776,6 @@ hello world
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2014-01-21-nutch-tutorial-17/" itemprop="url">
-                  Nutch 快速入门(Nutch 1.7)
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2014-01-21T04:11:00Z" content="2014-01-21">
-              2014-01-21
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Search-Engine/" itemprop="url" rel="index">
-                    <span itemprop="name">Search-Engine</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2014-01-21-nutch-tutorial-17/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2014-01-21-nutch-tutorial-17/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>本文主要参考<a href="http://wiki.apache.org/nutch/NutchTutorial">Nutch Tutorial</a></p>
-<p>Nutch 2.2.1目前性能没有Nutch 1.7好，参考这里，<a href="http://digitalpebble.blogspot.com/2013/09/nutch-fight-17-vs-221.html">NUTCH FIGHT! 1.7 vs 2.2.1</a>. 所以我目前还是使用的Nutch 1.7。</p>
-<p>##1 下载已编译好的二进制包，解压<br>    $ wget <a href="http://psg.mtu.edu/pub/apache/nutch/1.7/apache-nutch-1.7-bin.tar.gz">http://psg.mtu.edu/pub/apache/nutch/1.7/apache-nutch-1.7-bin.tar.gz</a><br>    $ tar zxf apache-nutch-1.7-bin.tar.gz</p>
-<p>##2 验证一下</p>
-<pre><code>$ cd apache-nutch-1.7
-$ bin/nutch
-</code></pre><p>如果出现”Permission denied”请运行下面的命令：</p>
-<pre><code>$ chmod +x bin/nutch
-</code></pre><p>如果有Warning说 <code>JAVA_HOME</code>没有设置，请设置一下<code>JAVA_HOME</code>.</p>
-<p>##3 添加种子URL</p>
-<pre><code>mkdir ~/urls
-vim ～/urls/seed.txt
-http://movie.douban.com/subject/5323968/
-</code></pre><p>##4 设置URL过滤规则<br>如果只想抓取某种类型的URL，可以在 <code>conf/regex-urlfilter.txt</code>设置正则表达式，于是，只有匹配这些正则表达式的URL才会被抓取。</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2014-01-21-nutch-tutorial-17/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1816,7 +1821,7 @@ http://movie.douban.com/subject/5323968/
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">59</span>
+              <span class="site-state-item-count">60</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1833,7 +1838,7 @@ http://movie.douban.com/subject/5323968/
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
