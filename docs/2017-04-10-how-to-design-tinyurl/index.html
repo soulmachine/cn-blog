@@ -88,21 +88,19 @@
 
 
 
-<meta name="description" content="短网址的长度短网址的长度该设计为多少呢？ 当前互联网上的网页总数大概是 45亿(参考 http://www.worldwidewebsize.com)，超过了 $2^{32}=4294967296$，那么用一个64位整数足够了。
-一个64位整数如何转化为字符串呢？，假设我们只是用大小写字母加数字，那么可以看做是62进制数，$log_{62} {(2^{64}-1)}=10.7$，即字符串最长11就">
+<meta name="description" content="短网址的长度短网址的长度该设计为多少呢？ 当前互联网上的网页总数大概是 45亿(参考 http://www.worldwidewebsize.com)，超过了 $2^{32}=4294967296$，那么用一个64位整数足够了。 一个64位整数如何转化为字符串呢？，假设我们只是用大小写字母加数字，那么可以看做是62进制数，$log_{62} {(2^{64}-1)}=10.7$，即字符串最长11就">
+<meta name="keywords" content="系统设计">
 <meta property="og:type" content="article">
 <meta property="og:title" content="如何设计短网址系统(TinyURL)">
 <meta property="og:url" content="http://cn.soulmachine.me/2017-04-10-how-to-design-tinyurl/index.html">
 <meta property="og:site_name" content="灵魂机器">
-<meta property="og:description" content="短网址的长度短网址的长度该设计为多少呢？ 当前互联网上的网页总数大概是 45亿(参考 http://www.worldwidewebsize.com)，超过了 $2^{32}=4294967296$，那么用一个64位整数足够了。
-一个64位整数如何转化为字符串呢？，假设我们只是用大小写字母加数字，那么可以看做是62进制数，$log_{62} {(2^{64}-1)}=10.7$，即字符串最长11就">
+<meta property="og:description" content="短网址的长度短网址的长度该设计为多少呢？ 当前互联网上的网页总数大概是 45亿(参考 http://www.worldwidewebsize.com)，超过了 $2^{32}=4294967296$，那么用一个64位整数足够了。 一个64位整数如何转化为字符串呢？，假设我们只是用大小写字母加数字，那么可以看做是62进制数，$log_{62} {(2^{64}-1)}=10.7$，即字符串最长11就">
 <meta property="og:image" content="http://121.40.136.3/wp-content/uploads/2015/04/snowflake-64bit.jpg">
 <meta property="og:image" content="http://cn.soulmachine.me/images/tinyurl-302.png">
-<meta property="og:updated_time" content="2017-04-13T01:51:47.000Z">
+<meta property="og:updated_time" content="2017-04-14T18:34:53.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="如何设计短网址系统(TinyURL)">
-<meta name="twitter:description" content="短网址的长度短网址的长度该设计为多少呢？ 当前互联网上的网页总数大概是 45亿(参考 http://www.worldwidewebsize.com)，超过了 $2^{32}=4294967296$，那么用一个64位整数足够了。
-一个64位整数如何转化为字符串呢？，假设我们只是用大小写字母加数字，那么可以看做是62进制数，$log_{62} {(2^{64}-1)}=10.7$，即字符串最长11就">
+<meta name="twitter:description" content="短网址的长度短网址的长度该设计为多少呢？ 当前互联网上的网页总数大概是 45亿(参考 http://www.worldwidewebsize.com)，超过了 $2^{32}=4294967296$，那么用一个64位整数足够了。 一个64位整数如何转化为字符串呢？，假设我们只是用大小写字母加数字，那么可以看做是62进制数，$log_{62} {(2^{64}-1)}=10.7$，即字符串最长11就">
 <meta name="twitter:image" content="http://121.40.136.3/wp-content/uploads/2015/04/snowflake-64bit.jpg">
 
 

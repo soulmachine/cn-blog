@@ -38,7 +38,7 @@
     
       &lt;p&gt;操作系统: Ubuntu 16.04，显卡 GTX 1080&lt;/p&gt;
 &lt;h2 id=&quot;1-安装显卡驱动和CUDA&quot;&gt;&lt;a href=&quot;#1-安装显卡驱动和CUDA&quot; class=&quot;headerlink&quot; title=&quot;1. 安装显卡驱动和CUDA&quot;&gt;&lt;/a&gt;1. 安装显卡驱动和CUDA&lt;/h2&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;apt-key adv --fetch-keys http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/7fa2af80.pub&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&quot;deb http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64 /&quot;&lt;/span&gt; | sudo tee /etc/apt/sources.list.d/cuda.list&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;sudo apt-get update&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;sudo apt-get -y install cuda-drivers cuda&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h2 id=&quot;2-安装-ewbf-miner&quot;&gt;&lt;a href=&quot;#2-安装-ewbf-miner&quot; class=&quot;headerlink&quot; title=&quot;2. 安装 ewbf-miner&quot;&gt;&lt;/a&gt;2. 安装 ewbf-miner&lt;/h2&gt;&lt;p&gt;到这里下载 &lt;a href=&quot;https://github.com/nanopool/ewbf-miner/releases&quot;&gt;https://github.com/nanopool/ewbf-miner/releases&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;2-安装-ewbf-miner&quot;&gt;&lt;a href=&quot;#2-安装-ewbf-miner&quot; class=&quot;headerlink&quot; title=&quot;2. 安装 ewbf-miner&quot;&gt;&lt;/a&gt;2. 安装 ewbf-miner&lt;/h2&gt;&lt;p&gt;到这里下载 &lt;a href=&quot;https://github.com/nanopool/ewbf-miner/releases&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/nanopool/ewbf-miner/releases&lt;/a&gt;&lt;/p&gt;
     
     </summary>
     
@@ -52,7 +52,7 @@
     <link href="http://cn.soulmachine.me/2017-04-10-how-to-design-tinyurl/"/>
     <id>http://cn.soulmachine.me/2017-04-10-how-to-design-tinyurl/</id>
     <published>2017-04-10T22:01:38.000Z</published>
-    <updated>2017-04-13T01:51:47.000Z</updated>
+    <updated>2017-04-14T18:34:53.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="短网址的长度"><a href="#短网址的长度" class="headerlink" title="短网址的长度"></a>短网址的长度</h2><p>短网址的长度该设计为多少呢？ 当前互联网上的网页总数大概是 45亿(参考 <a href="http://www.worldwidewebsize.com" target="_blank" rel="external">http://www.worldwidewebsize.com</a>)，超过了 $2^{32}=4294967296$，那么用一个64位整数足够了。</p>
 <p>一个64位整数如何转化为字符串呢？，假设我们只是用大小写字母加数字，那么可以看做是62进制数，$log_{62} {(2^{64}-1)}=10.7$，即字符串最长11就足够了。</p>
@@ -101,7 +101,7 @@
     
     <summary type="html">
     
-      &lt;h2 id=&quot;短网址的长度&quot;&gt;&lt;a href=&quot;#短网址的长度&quot; class=&quot;headerlink&quot; title=&quot;短网址的长度&quot;&gt;&lt;/a&gt;短网址的长度&lt;/h2&gt;&lt;p&gt;短网址的长度该设计为多少呢？ 当前互联网上的网页总数大概是 45亿(参考 &lt;a href=&quot;http://www.worldwidewebsize.com&quot;&gt;http://www.worldwidewebsize.com&lt;/a&gt;)，超过了 $2^{32}=4294967296$，那么用一个64位整数足够了。&lt;/p&gt;
+      &lt;h2 id=&quot;短网址的长度&quot;&gt;&lt;a href=&quot;#短网址的长度&quot; class=&quot;headerlink&quot; title=&quot;短网址的长度&quot;&gt;&lt;/a&gt;短网址的长度&lt;/h2&gt;&lt;p&gt;短网址的长度该设计为多少呢？ 当前互联网上的网页总数大概是 45亿(参考 &lt;a href=&quot;http://www.worldwidewebsize.com&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.worldwidewebsize.com&lt;/a&gt;)，超过了 $2^{32}=4294967296$，那么用一个64位整数足够了。&lt;/p&gt;
 &lt;p&gt;一个64位整数如何转化为字符串呢？，假设我们只是用大小写字母加数字，那么可以看做是62进制数，$log_{62} {(2^{64}-1)}=10.7$，即字符串最长11就足够了。&lt;/p&gt;
 &lt;p&gt;实际生产中，还可以再短一点，比如新浪微博采用的长度就是7，因为 $62^7=3521614606208$，这个量级远远超过互联网上的URL总数了，绝对够用了。&lt;/p&gt;
 &lt;p&gt;现代的web服务器（例如Apache, Nginx）大部分都区分URL里的大小写了，所以用大小写字母来区分不同的URL是没问题的。&lt;/p&gt;
@@ -190,7 +190,7 @@ export GPU_SINGLE_ALLOC_PERCENT=100
       &lt;p&gt;操作系统: Ubuntu 16.04，显卡 GTX 1080&lt;/p&gt;
 &lt;h2 id=&quot;1-安装显卡驱动和CUDA&quot;&gt;&lt;a href=&quot;#1-安装显卡驱动和CUDA&quot; class=&quot;headerlink&quot; title=&quot;1. 安装显卡驱动和CUDA&quot;&gt;&lt;/a&gt;1. 安装显卡驱动和CUDA&lt;/h2&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;apt-key adv --fetch-keys http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/7fa2af80.pub&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&quot;deb http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64 /&quot;&lt;/span&gt; | sudo tee /etc/apt/sources.list.d/cuda.list&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;sudo apt-get update&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;sudo apt-get -y install cuda-drivers cuda&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;h2 id=&quot;2-编译安装-ccMiner&quot;&gt;&lt;a href=&quot;#2-编译安装-ccMiner&quot; class=&quot;headerlink&quot; title=&quot;2. 编译安装 ccMiner&quot;&gt;&lt;/a&gt;2. 编译安装 ccMiner&lt;/h2&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;git &lt;span class=&quot;built_in&quot;&gt;clone&lt;/span&gt; --recursive git@github.com:tpruvot/ccminer.git&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;cd&lt;/span&gt; ccminer&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;git checkout --track origin/linux&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;sudo apt install automake libcurl4-openssl-dev&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;根据显卡修改 &lt;code&gt;Makefile.am&lt;/code&gt; (&lt;a href=&quot;https://github.com/tpruvot/ccminer/wiki/Compatibility&quot;&gt;https://github.com/tpruvot/ccminer/wiki/Compatibility&lt;/a&gt;), 比如GTX 1080 则用&lt;/p&gt;
+&lt;p&gt;根据显卡修改 &lt;code&gt;Makefile.am&lt;/code&gt; (&lt;a href=&quot;https://github.com/tpruvot/ccminer/wiki/Compatibility&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/tpruvot/ccminer/wiki/Compatibility&lt;/a&gt;), 比如GTX 1080 则用&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;nvcc_ARCH = -gencode=arch=compute_61,code=\&amp;quot;sm_61,compute_61\&amp;quot;
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;开始编译，&lt;/p&gt;
 &lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;./autogen.sh&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;./configure&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;./build.sh&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
@@ -272,7 +272,7 @@ export GPU_SINGLE_ALLOC_PERCENT=100
 &lt;p&gt;如果你想安装最新版的驱动和最新版的CUDA，那么接着读下去吧。&lt;/p&gt;
 &lt;h2 id=&quot;1-安装-Nvidia-驱动&quot;&gt;&lt;a href=&quot;#1-安装-Nvidia-驱动&quot; class=&quot;headerlink&quot; title=&quot;1. 安装 Nvidia 驱动&quot;&gt;&lt;/a&gt;1. 安装 Nvidia 驱动&lt;/h2&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;sudo add-apt-repository -qy ppa:graphics-drivers/ppa&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;sudo apt-get -qy update&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;sudo apt-get -qy install nvidia-370&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;sudo apt-get -qy install mesa-common-dev&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;sudo apt-get -qy install freeglut3-dev&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;sudo reboot&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;p&gt;注意，一般比较新的主板，默认是UEFI BIOS，默认启用了 Secure Boot，否则开机后登陆不进去。老主板没有这个问题。&lt;/p&gt;
-&lt;h2 id=&quot;2-安装-CUDA-8-x&quot;&gt;&lt;a href=&quot;#2-安装-CUDA-8-x&quot; class=&quot;headerlink&quot; title=&quot;2. 安装 CUDA 8.x&quot;&gt;&lt;/a&gt;2. 安装 CUDA 8.x&lt;/h2&gt;&lt;p&gt;去 &lt;a href=&quot;https://developer.nvidia.com/cuda-release-candidate-download&quot;&gt;CUDA 8.x 下载页面&lt;/a&gt;，一定要下载 runfile 安装方式的安装包，参考资料里的好几篇都是选择这种方式，貌似 deb包有坑？&lt;/p&gt;
+&lt;h2 id=&quot;2-安装-CUDA-8-x&quot;&gt;&lt;a href=&quot;#2-安装-CUDA-8-x&quot; class=&quot;headerlink&quot; title=&quot;2. 安装 CUDA 8.x&quot;&gt;&lt;/a&gt;2. 安装 CUDA 8.x&lt;/h2&gt;&lt;p&gt;去 &lt;a href=&quot;https://developer.nvidia.com/cuda-release-candidate-download&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;CUDA 8.x 下载页面&lt;/a&gt;，一定要下载 runfile 安装方式的安装包，参考资料里的好几篇都是选择这种方式，貌似 deb包有坑？&lt;/p&gt;
     
     </summary>
     
@@ -361,10 +361,10 @@ export GPU_SINGLE_ALLOC_PERCENT=100
 &lt;p&gt; 进入 UEFI BIOS 界面，点击 Advanced菜单，找到 Intel Rapid Storage Technology, 点击进去，如果你没有RAID模式的磁盘，这个RST一般是灰色的，没有启用。&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;p&gt;禁用主板的 Secure Boot&lt;/p&gt;
-&lt;p&gt; 如果你想要装Windows和 Linux 双操作系统，那么必须要禁用主板的 Secure Boot ，因为主板内置的公钥只有一个，就是微软的，因为微软影响力大。更具体信息请参考 &lt;a href=&quot;http://www.ruanyifeng.com/blog/2013/01/secure_boot.html&quot;&gt;反Secure Boot垄断：兼谈如何在Windows 8电脑上安装Linux - 阮一峰&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt; 如果你想要装Windows和 Linux 双操作系统，那么必须要禁用主板的 Secure Boot ，因为主板内置的公钥只有一个，就是微软的，因为微软影响力大。更具体信息请参考 &lt;a href=&quot;http://www.ruanyifeng.com/blog/2013/01/secure_boot.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;反Secure Boot垄断：兼谈如何在Windows 8电脑上安装Linux - 阮一峰&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt; Ubuntu 已经买了这个证书，所以微软的这个公钥，也能允许Ubuntu安装在主板上。看到这里，你会问，那岂不是不用禁用 Secure Boot 了？&lt;/p&gt;
 &lt;p&gt; 不尽然，在Ubuntu 下安装 GTX 1080 的 Nvidia 驱动的时候，会警告 &lt;code&gt;UEFI Secure Boot is not compatible with the use of third-party drivers.&lt;/code&gt; 如果没有禁用Secure Boot, 安装了显卡驱动后，开机，输入密码时，会进不去系统，屏幕会闪一下，有回到了登录界面，死循环 。。。&lt;/p&gt;
-&lt;p&gt; 具体步骤请参考 &lt;a href=&quot;http://www.technorms.com/45538/disable-enable-secure-boot-asus-motherboard-uefi-bios-utility&quot;&gt;How to Disable or Enable Secure Boot on Your Computer via ASUS UEFI BIOS Utility&lt;/a&gt; ：&lt;/p&gt;
+&lt;p&gt; 具体步骤请参考 &lt;a href=&quot;http://www.technorms.com/45538/disable-enable-secure-boot-asus-motherboard-uefi-bios-utility&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;How to Disable or Enable Secure Boot on Your Computer via ASUS UEFI BIOS Utility&lt;/a&gt; ：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;进入 UEFI BIOS界面，选择 &lt;code&gt;Boot-&amp;gt;Secure Boot-&amp;gt; Key Management -&amp;gt; Save Secure Boot Keys&lt;/code&gt;，插入U盘，备份key到这个U盘，会有四个文件,  &lt;code&gt;PK&lt;/code&gt;, &lt;code&gt;KEK&lt;/code&gt;, &lt;code&gt;DB&lt;/code&gt; 和 &lt;code&gt;DBX&lt;/code&gt; 写入到U盘。&lt;/li&gt;
 &lt;li&gt;删除 Platform Key. 选择 &lt;code&gt;Delete PK&lt;/code&gt;，点击OK确认删除。删除后回到上一级菜单，可以看到 Secure Boot 已经变成 disabled 了。&lt;/li&gt;
@@ -694,13 +694,13 @@ export GPU_SINGLE_ALLOC_PERCENT=100
     <summary type="html">
     
       &lt;p&gt;环境: Windows 7, VMware Workstation 10.0.2, Mac OS X 10.9 Mavericks&lt;/p&gt;
-&lt;p&gt;本文主要参考了这篇英文博客，&lt;a href=&quot;http://www.sysprobs.com/working-os-x-10-9-mavericks-vmware-image-for-windows-os-intel-processor&quot;&gt;Working OS X 10.9 Mavericks VMware Image For Windows OS and Intel Processor&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;本文主要参考了这篇英文博客，&lt;a href=&quot;http://www.sysprobs.com/working-os-x-10-9-mavericks-vmware-image-for-windows-os-intel-processor&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Working OS X 10.9 Mavericks VMware Image For Windows OS and Intel Processor&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;前提条件&lt;/strong&gt;：确保你的电脑支持&lt;code&gt;VT-x&lt;/code&gt;技术，并在BIOS里启用它。&lt;/p&gt;
-&lt;p&gt;##1. 下载别人做好的镜像&lt;br&gt;由于版权原因，这篇英文博客的作者不再提供下载地址了，不过google一下 “OS X Mavericks 10.9 Retail VMware Image”，可以在海盗湾找到种子，&lt;a href=&quot;http://thepiratebay.se/torrent/9012642/OS_X_Mavericks_10.9_Retail_VMware_Image&quot;&gt;这里&lt;/a&gt;。用迅雷或BT客户端下载。还有一种用更快速的下载方法，用百度网盘的离线下载，把magnet链接复制粘贴到百度网盘，等百度网盘下载好了后，再用百度管家客户端下载下来。&lt;/p&gt;
+&lt;p&gt;##1. 下载别人做好的镜像&lt;br&gt;由于版权原因，这篇英文博客的作者不再提供下载地址了，不过google一下 “OS X Mavericks 10.9 Retail VMware Image”，可以在海盗湾找到种子，&lt;a href=&quot;http://thepiratebay.se/torrent/9012642/OS_X_Mavericks_10.9_Retail_VMware_Image&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;这里&lt;/a&gt;。用迅雷或BT客户端下载。还有一种用更快速的下载方法，用百度网盘的离线下载，把magnet链接复制粘贴到百度网盘，等百度网盘下载好了后，再用百度管家客户端下载下来。&lt;/p&gt;
 &lt;p&gt;这个文件夹里，只有&lt;code&gt;OS X Mavericks 10.9 Retail VMware Image.7z&lt;/code&gt;是有用的额，其他小工具可以分别去下载最新的版本。&lt;/p&gt;
 &lt;p&gt;这个镜像就是别人制作好的“懒人版”，Google 搜索”OS X Mavericks VMware 懒人版”或”OS X Mavericks VMware 整合驱动版”，还可以搜到很多。&lt;/p&gt;
 &lt;p&gt;##2. 给 VMware Workstation 打补丁&lt;br&gt;Windows上的VMware Workstation在安装操作系统时不支持 Mac OS X，但 VMware Fusin(VMware Workstation在Mac上的等价物，叫做 VMware Fusion)是支持了，这两个软件基本是统一软件在不同操作系统上的版本，按道理VMware Workstation也支持Mac OS X，事实上的确如此，只需要给VMware Workstation打一个补丁，就可以支持Mac OS X了。&lt;/p&gt;
-&lt;p&gt;补丁名字叫做VMware Unlocker for OS X，在&lt;a href=&quot;http://www.insanelymac.com/forum/files/file/20-vmware-unlocker-for-os-x/&quot;&gt;这里下载&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;补丁名字叫做VMware Unlocker for OS X，在&lt;a href=&quot;http://www.insanelymac.com/forum/files/file/20-vmware-unlocker-for-os-x/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;这里下载&lt;/a&gt;。&lt;/p&gt;
 &lt;p&gt;下载完后，解压，浏览到&lt;code&gt;windows&lt;/code&gt;，以管理员权限执行 &lt;code&gt;install.cmd&lt;/code&gt;，然后启动VMware Workstation，就可以看到变化了。&lt;/p&gt;
     
     </summary>
@@ -802,7 +802,7 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda/lib64
     
       &lt;p&gt;&lt;strong&gt;环境&lt;/strong&gt;: CentOS 6.4&lt;/p&gt;
 &lt;p&gt;由于我的CentOS服务器上没有Nvidia的显卡，不过 caffe 是可以在CPU模式下进行train和predict的，因此我尝试了在没有GPU的情况下把caffe跑起来。&lt;/p&gt;
-&lt;p&gt;主要参考官网的文档，&lt;a href=&quot;http://caffe.berkeleyvision.org/installation.html&quot;&gt;Installation&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;主要参考官网的文档，&lt;a href=&quot;http://caffe.berkeleyvision.org/installation.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Installation&lt;/a&gt;。&lt;/p&gt;
 &lt;p&gt;安装 Caffe 前需要安装以下库：&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Prerequisites&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
@@ -1152,7 +1152,7 @@ $ scp -r conf/ hbase@slave02:$HBASE_HOME/
 &lt;pre&gt;&lt;code&gt;$ sudo useradd -g hbase hbase
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;给新用户设置密码，&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;$ sudo passwd hbase
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;在每台机器上创建hbase新用户，并配置好SSH无密码，参考我的另一篇博客，&lt;a href=&quot;http://www.yanjiuyanjiu.com/blog/20120102/&quot;&gt;SSH无密码登录的配置&lt;/a&gt;&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;在每台机器上创建hbase新用户，并配置好SSH无密码，参考我的另一篇博客，&lt;a href=&quot;http://www.yanjiuyanjiu.com/blog/20120102/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;SSH无密码登录的配置&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;##1. 单机模式(Standalone mode)&lt;/p&gt;
 &lt;p&gt;###1.1 下载，解压&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;$ wget wget http://mirror.esocc.com/apache/hbase/hbase-0.96.1.1/hbase-0.96.1.1-hadoop2-bin.tar.gz
@@ -1261,7 +1261,7 @@ $ ./bin/zkCli.sh -server zk01:2181
     <summary type="html">
     
       &lt;p&gt;环境：CentOS 6.5, jdk 1.7, ZooKeeper 3.4.5&lt;/p&gt;
-&lt;p&gt;本文主要参考官网的&lt;a href=&quot;http://zookeeper.apache.org/doc/trunk/zookeeperStarted.html&quot;&gt;Getting Started&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;本文主要参考官网的&lt;a href=&quot;http://zookeeper.apache.org/doc/trunk/zookeeperStarted.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Getting Started&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;##（可选）创建新用户&lt;br&gt;一般我倾向于把需要启动daemon进程，对外提供服务的程序，即服务器类的程序，安装在单独的用户下面。这样可以做到隔离，运维方面，安全性也提高了。&lt;/p&gt;
 &lt;p&gt;创建一个新的group,&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;$ sudo groupadd zookeeper
@@ -1379,7 +1379,7 @@ alias hls=&quot;hdfs dfs -ls&quot;
     
     <summary type="html">
     
-      &lt;p&gt;假设我们以名为hadoop的用户，建好了集群，见&lt;a href=&quot;http://www.yanjiuyanjiu.com/blog/20140205/&quot;&gt;在CentOS上安装Hadoop 2.x 集群&lt;/a&gt;。通常，我们会把这个集群共享给多个用户，而不是让大家都登录为hadoop，这样做有几个好处：&lt;/p&gt;
+      &lt;p&gt;假设我们以名为hadoop的用户，建好了集群，见&lt;a href=&quot;http://www.yanjiuyanjiu.com/blog/20140205/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;在CentOS上安装Hadoop 2.x 集群&lt;/a&gt;。通常，我们会把这个集群共享给多个用户，而不是让大家都登录为hadoop，这样做有几个好处：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;一个用户不能修改另一个用户的的文件&lt;/li&gt;
 &lt;li&gt;在hadoop web管理页面，可以很方便的看到不同的用户的job&lt;/li&gt;
@@ -1641,7 +1641,7 @@ $ stop-hdfs.sh
     <summary type="html">
     
       &lt;p&gt;&lt;strong&gt;环境&lt;/strong&gt;：CentOS 6.5, OPenJDK 1.7, Hadoop 2.2.0&lt;/p&gt;
-&lt;p&gt;本文主要参考官网的文档，&lt;a href=&quot;http://hadoop.apache.org/docs/r2.2.0/hadoop-project-dist/hadoop-common/SingleCluster.html&quot;&gt;Hadoop 2.2.0 Single Node Setup&lt;/a&gt;， &lt;a href=&quot;http://hadoop.apache.org/docs/r2.2.0/hadoop-project-dist/hadoop-common/ClusterSetup.html&quot;&gt;Hadoop 2.2.0  Cluster Setup&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;本文主要参考官网的文档，&lt;a href=&quot;http://hadoop.apache.org/docs/r2.2.0/hadoop-project-dist/hadoop-common/SingleCluster.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Hadoop 2.2.0 Single Node Setup&lt;/a&gt;， &lt;a href=&quot;http://hadoop.apache.org/docs/r2.2.0/hadoop-project-dist/hadoop-common/ClusterSetup.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Hadoop 2.2.0  Cluster Setup&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;##（可选）创建新用户&lt;br&gt;一般我倾向于把需要启动daemon进程，对外提供服务的程序，简单的说，就是服务器类程序，安装在单独的用户下面。这样可以做到隔离，运维方面，安全性也提高了。&lt;/p&gt;
 &lt;p&gt;创建一个新的group,&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;$ sudo groupadd hadoop
@@ -1791,14 +1791,14 @@ $ ./bin/readdb hdfs://localhost/user/soulmachine/TestCrawl/crawldb/ -stats
     <summary type="html">
     
       &lt;p&gt;软件版本：Nutch 1.7, Hadoop 1.2.1, CentOS 6.5, JDK 1.7&lt;/p&gt;
-&lt;p&gt;前面的3篇文章中，&lt;a href=&quot;http://www.yanjiuyanjiu.com/blog/20140121&quot;&gt;Nutch 快速入门(Nutch 1.7)&lt;/a&gt;，&lt;a href=&quot;http://www.yanjiuyanjiu.com/blog/20140201&quot;&gt;Nutch 快速入门(Nutch 2.2.1)&lt;/a&gt;，&lt;a href=&quot;http://www.yanjiuyanjiu.com/blog/20140120&quot;&gt;在Eclipse里运行Nutch&lt;/a&gt;，Nutch都是跑在单机上，本文把Nutch部署到Hadoop集群上，在真正的分布式Hadoop集群上跑。&lt;/p&gt;
+&lt;p&gt;前面的3篇文章中，&lt;a href=&quot;http://www.yanjiuyanjiu.com/blog/20140121&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Nutch 快速入门(Nutch 1.7)&lt;/a&gt;，&lt;a href=&quot;http://www.yanjiuyanjiu.com/blog/20140201&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Nutch 快速入门(Nutch 2.2.1)&lt;/a&gt;，&lt;a href=&quot;http://www.yanjiuyanjiu.com/blog/20140120&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;在Eclipse里运行Nutch&lt;/a&gt;，Nutch都是跑在单机上，本文把Nutch部署到Hadoop集群上，在真正的分布式Hadoop集群上跑。&lt;/p&gt;
 &lt;p&gt;##前提&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;学会了搭建一个分布式Hadoop集群，见&lt;a href=&quot;http://www.yanjiuyanjiu.com/blog/20140202&quot;&gt;在CentOS上安装Hadoop集群&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;学会了单机跑Nutch，见&lt;a href=&quot;http://www.yanjiuyanjiu.com/blog/20140121&quot;&gt;Nutch 快速入门(Nutch 1.7)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;学会了搭建一个分布式Hadoop集群，见&lt;a href=&quot;http://www.yanjiuyanjiu.com/blog/20140202&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;在CentOS上安装Hadoop集群&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;学会了单机跑Nutch，见&lt;a href=&quot;http://www.yanjiuyanjiu.com/blog/20140121&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Nutch 快速入门(Nutch 1.7)&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;##1 启动Hadoop集群&lt;br&gt;伪分布式或真分布式的Hadoop集群都可以，无所谓。&lt;/p&gt;
-&lt;p&gt;选择一台配置好了的Hadoop客户端的机器（见&lt;a href=&quot;http://www.yanjiuyanjiu.com/blog/20140203&quot;&gt;Hadoop多用户的配置&lt;/a&gt;），作为客户机，以下操作均在这台客户机上进行。&lt;/p&gt;
+&lt;p&gt;选择一台配置好了的Hadoop客户端的机器（见&lt;a href=&quot;http://www.yanjiuyanjiu.com/blog/20140203&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Hadoop多用户的配置&lt;/a&gt;），作为客户机，以下操作均在这台客户机上进行。&lt;/p&gt;
 &lt;p&gt;##2 下载Nutch源码&lt;br&gt;有两种方法，&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;去官网首页下载apache-nutch-1.7-src.tar.gz&lt;/li&gt;
@@ -1914,7 +1914,7 @@ alias hls=&quot;hadoop fs -ls&quot;
     
     <summary type="html">
     
-      &lt;p&gt;假设我们以名为hadoop的用户，建好了集群，见&lt;a href=&quot;http://www.yanjiuyanjiu.com/blog/20140202&quot;&gt;在CentOS上安装Hadoop集群&lt;/a&gt;。通常，我们会把这个集群共享给多个用户，而不是让大家都登录为hadoop，这样做有几个好处：&lt;/p&gt;
+      &lt;p&gt;假设我们以名为hadoop的用户，建好了集群，见&lt;a href=&quot;http://www.yanjiuyanjiu.com/blog/20140202&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;在CentOS上安装Hadoop集群&lt;/a&gt;。通常，我们会把这个集群共享给多个用户，而不是让大家都登录为hadoop，这样做有几个好处：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;一个用户不能修改另一个用户的的文件&lt;/li&gt;
 &lt;li&gt;在hadoop web管理页面，可以很方便的看到不同的用户的job&lt;/li&gt;
@@ -2190,10 +2190,10 @@ export PATH=$PATH:$HADOOP_PREFIX/bin
     
     <summary type="html">
     
-      &lt;p&gt;Ubuntu上安装，请参考我的另一篇博客，&lt;a href=&quot;http://www.yanjiuyanjiu.com/blog/20120103/&quot;&gt;在Ubuntu上安装Hadoop&lt;/a&gt;。&lt;/p&gt;
+      &lt;p&gt;Ubuntu上安装，请参考我的另一篇博客，&lt;a href=&quot;http://www.yanjiuyanjiu.com/blog/20120103/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;在Ubuntu上安装Hadoop&lt;/a&gt;。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;环境&lt;/strong&gt;：CentOS 6.5, OPenJDK 1.7, Hadoop 1.2.1&lt;/p&gt;
-&lt;p&gt;本文主要参考官网的文档，&lt;a href=&quot;http://hadoop.apache.org/docs/r1.2.1/#Getting+Started&quot;&gt;Hadoop 1.2.1 Getting Started&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;##1 单机模式(Standalone Mode)&lt;br&gt;为了能顺利安装成功，我们先练习在单台机器上安装Hadoop。在单台机器上，可以配置成单机模式(Standalone Mode)和伪分布式模式(Pseudo-Distributed Mode)，参考官方文档&lt;a href=&quot;http://hadoop.apache.org/docs/r1.2.1/single_node_setup.html&quot;&gt;Single Node Setup&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;本文主要参考官网的文档，&lt;a href=&quot;http://hadoop.apache.org/docs/r1.2.1/#Getting+Started&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Hadoop 1.2.1 Getting Started&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;##1 单机模式(Standalone Mode)&lt;br&gt;为了能顺利安装成功，我们先练习在单台机器上安装Hadoop。在单台机器上，可以配置成单机模式(Standalone Mode)和伪分布式模式(Pseudo-Distributed Mode)，参考官方文档&lt;a href=&quot;http://hadoop.apache.org/docs/r1.2.1/single_node_setup.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Single Node Setup&lt;/a&gt;。&lt;/p&gt;
 &lt;p&gt;###1.1 下载Hadoop 1.2.1，解压&lt;br&gt;用浏览器下载或wget,&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;$ wget http://mirror.olnevhost.net/pub/apache/hadoop/common/stable1/hadoop-1.2.1-bin.tar.gz
 $ tar -zxf hadoop-1.2.1-bin.tar.gz -C ~/local/opt
@@ -2385,9 +2385,9 @@ hbase(main):001:0&gt; scan &apos;TestCrawl_webpage&apos;
     
     <summary type="html">
     
-      &lt;p&gt;本文主要参考&lt;a href=&quot;http://wiki.apache.org/nutch/Nutch2Tutorial&quot;&gt;Nutch 2.x Tutorial&lt;/a&gt;&lt;/p&gt;
+      &lt;p&gt;本文主要参考&lt;a href=&quot;http://wiki.apache.org/nutch/Nutch2Tutorial&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Nutch 2.x Tutorial&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Nutch 2.x 与 Nutch 1.x 相比，剥离出了存储层，放到了gora中，可以使用多种数据库，例如HBase, Cassandra, MySql来存储数据了。Nutch 1.7 则是把数据直接存储在HDFS上。&lt;/p&gt;
-&lt;p&gt;##1. 安装并运行HBase&lt;br&gt;为了简单起见，使用Standalone模式，参考 &lt;a href=&quot;http://hbase.apache.org/book/quickstart.html&quot;&gt;HBase Quick start&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;##1. 安装并运行HBase&lt;br&gt;为了简单起见，使用Standalone模式，参考 &lt;a href=&quot;http://hbase.apache.org/book/quickstart.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;HBase Quick start&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;###1.1 下载，解压&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;wget http://archive.apache.org/dist/hbase/hbase-0.90.4/hbase-0.90.4.tar.gz
 tar zxf hbase-0.90.4.tar.gz

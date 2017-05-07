@@ -1,0 +1,1932 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="机器学习, 深度学习, 人工智能" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="灵魂机器" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="一些技术笔记">
+<meta property="og:type" content="website">
+<meta property="og:title" content="灵魂机器">
+<meta property="og:url" content="http://cn.soulmachine.me/page/6/index.html">
+<meta property="og:site_name" content="灵魂机器">
+<meta property="og:description" content="一些技术笔记">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="灵魂机器">
+<meta name="twitter:description" content="一些技术笔记">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 灵魂机器 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?259b539fcd8cab18ad0a6deb98ac2046";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left 
+   page-home 
+ ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">灵魂机器</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">终有一天机器也有灵魂</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+  <section id="posts" class="posts-expand">
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2012-04-18-create-a-bootable-vmware-esxi-5-usb-stick/" itemprop="url">
+                  制作 VMware ESXI 5 U盘安装盘
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2012-04-18T20:17:00Z" content="2012-04-18">
+              2012-04-18
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Tools/" itemprop="url" rel="index">
+                    <span itemprop="name">Tools</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2012-04-18-create-a-bootable-vmware-esxi-5-usb-stick/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2012-04-18-create-a-bootable-vmware-esxi-5-usb-stick/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>有两种方法，使用 unetbootin ，或使用 LinuxLive USB Creator刻录可启动U盘。 </p>
+<p>##使用 unetbootin<br>这个方法最自动化，点击两下按钮即可，但是有时候会失败(我用EXSi 5.0 的ISO失败，但是用 EXSi 5.0U1可以成功)，U盘启动不了。 </p>
+<ol>
+<li>单击 光盘镜像，选择ISO文件VMware-VMvisor-Installer-5.0.0.update01-623860.x86_64.iso。 </li>
+<li>选择U盘，点击“确定”开始刻录。刻录后用U盘启动机器开始安装即可。如下图所示。<img src="http://yanjiuyanjiu-wordpress.stor.sinaapp.com/uploads/2012/04/unetbootin1.jpg">
+</li>
+</ol>
+<p>##使用 LinuxLive USB Creator</p>
+<ol>
+<li>格式化U盘，文件系统为FAT32，并设置为主分区，命令如下：<pre><code># 使用管理员权限运行cmd 
+diskpart 
+list disk 
+select disk USB number （例如 select dist 1） 
+clean 
+create partition primary 
+active 
+format fs=fat32 quick 
+assign 
+exit
+</code></pre></li>
+</ol>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2012-04-18-create-a-bootable-vmware-esxi-5-usb-stick/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2012-01-03-hadoop-installation-on-ubuntu/" itemprop="url">
+                  在Ubuntu上安装Hadoop
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2012-01-03T18:54:00Z" content="2012-01-03">
+              2012-01-03
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Hadoop/" itemprop="url" rel="index">
+                    <span itemprop="name">Hadoop</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2012-01-03-hadoop-installation-on-ubuntu/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2012-01-03-hadoop-installation-on-ubuntu/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>本文所使用的版本是 hadoop 1.0.0，即 <a href="http://www.iteye.com/news/23874" target="_blank" rel="external">2011年12月27日发布的1.0正式版</a>。</p>
+<p>详细安装步骤如下，有大步骤，每个步骤里面有小步骤，绝大部分是必选，只有2步是可选的，粗体表示要特别注意的地方。</p>
+<p>##1. 用vmware workstation 新建三台虚拟机<br>首先用vmware workstation 新建一台ubuntu server，装好操作系统，安装各种必须的软件，包括安装好hadoop。安装好后然后用浅拷贝<code>Create a linked clone</code> 克隆出两台作为slave，这样有了三台ubuntu机器。启动三台机器，假设IP分别为<code>192.168.1.131, 192.168.1.132, 192.168.1.133</code>, 131做为master 和 SecondaryNameNode, 身兼两职，132为 slave01, 133为slave02。</p>
+<p>##2. 修改机器名<br>这一步看起来貌似不必要，其实是必须的，否则最后运行wordcount等例子时，会出现“Too many fetch-failures”。因为HDFS用hostname而不是IP，来相互之间进行通信（见后面的注意1）。</p>
+<ul>
+<li><p>192.168.1.131上执行</p>
+<pre><code>dev@bogon:~$ sudo vi /etc/hostname
+</code></pre></li>
+</ul>
+<p>输入<code>master</code>，重启，会发现命令提示符变为了 <code>dev@master:~$</code></p>
+<p>用同样的方法，将<code>192.168.1.132</code>改为slave01，<code>192.168.1.133</code>改为slave02。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2012-01-03-hadoop-installation-on-ubuntu/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2012-01-02-ssh-passwordless-login-configuration/" itemprop="url">
+                  SSH无密码登录的配置
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2012-01-02T02:16:00Z" content="2012-01-02">
+              2012-01-02
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/DevOps/" itemprop="url" rel="index">
+                    <span itemprop="name">DevOps</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2012-01-02-ssh-passwordless-login-configuration/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2012-01-02-ssh-passwordless-login-configuration/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>根据公钥加密的思想，如果机器A想无密码登录其他N台机器，只需要在自己机器上生成一对公钥和密钥，然后把密钥给这N台机器，这样，这N台机器，有了A的公钥，就可以解密A的数据包，跟A正常通信了。</p>
+<p>通常在一个集群中，我们会选择一台机器作为跳板机，在这台机器上登录其他机器，因此，无名需要在跳板机上生成一对公钥和密钥。一般的，我们也会把跳板板机作为整个集群的master，例如Hadoop的NameNode，因此最好选一台内存比较大的机器作为跳板机。</p>
+<p>下面详细讲解如何配置从跳板机SSH无密码登录到所有机器（包括自己）。</p>
+<p>根据公钥加密的思想，如果机器A想无密码登录其他N台机器，只需要在自己机器上生成一对公钥和密钥，然后把密钥给这N台机器，这样，这N台机器，有了A的公钥，就可以解密A的数据包，跟A正常通信了。</p>
+<p>通常在一个集群中，我们会选择一台机器作为跳板机，在这台机器上登录其他机器，因此，无名需要在跳板机上生成一对公钥和密钥。一般的，我们也会把跳板板机作为整个集群的master，例如Hadoop的NameNode，因此最好选一台内存比较大的机器作为跳板机。</p>
+<p>下面详细讲解如何配置从跳板机SSH无密码登录到所有机器（包括自己）。</p>
+<p>##前提： 修改hosts文件<br>假设有三台机器，<code>192.168.1.131, 192.168.1.132, 192.168.1.133</code>，hostname分别是master, slave01, slave02</p>
+<p>##1.在master上生成一对公钥和密钥</p>
+<pre><code>dev@master:~$ ssh-keygen -t dsa -P &apos;&apos; -f ~/.ssh/id_dsa
+</code></pre><p>##2. 将公钥拷贝到自己</p>
+<pre><code>dev@master:~$ cat ~/.ssh/id_dsa.pub &gt;&gt; ~/.ssh/authorized_keys
+</code></pre><p>##3. 将公钥拷贝到其他机器</p>
+<pre><code>dev@master:~$ scp ~/.ssh/id_dsa.pub dev@slave01:~
+dev@master:~$ scp ~/.ssh/id_dsa.pub dev@slave02:~
+#追加到authorized_keys
+dev@master:~$ ssh slave01
+dev@slave01:~$ mkdir .ssh
+dev@slave01:~$ cat id_dsa.pub &gt;&gt; .ssh/authorized_keys
+dev@slave01:~$ exit
+dev@master:~$ ssh slave02
+dev@slave02:~$ mkdir .ssh
+dev@slave02:~$ cat id_dsa.pub &gt;&gt; .ssh/authorized_keys
+dev@slave02:~$ exit
+</code></pre><p>##4. 设置.ssh目录和authorized_keys文件的权限<br>在被登录的每台机器上，执行如下命令：</p>
+<pre><code>chmod 755 .ssh
+chmod 600 ~/.ssh/authorized_keys
+</code></pre><p>##5. 测试一下</p>
+<pre><code>#在 master执行
+dev@master:~$ ssh slave01
+</code></pre><p>第一次还是需要密码的，<code>exit</code>退出再试一次，就不需要密码了。</p>
+<p>如果登陆不上，试试先关闭所有机器的防火墙，例如Ubuntu的命令是：</p>
+<pre><code>dev@slave01:~$ sudo ufw disable
+</code></pre><p>##参考资料<br><a href="http://www.cyberciti.biz/faq/ssh-password-less-login-with-dsa-publickey-authentication/" target="_blank" rel="external">Howto Linux / UNIX setup SSH with DSA public key authentication (password less login)</a></p>
+<p><a href="http://hortonworks.com/kb/generating-ssh-keys-for-passwordless-login/" target="_blank" rel="external">HOWTO: Generating SSH Keys for Passwordless Login</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2011-06-23-using-javac-to-compile-multi-java-files/" itemprop="url">
+                  用javac命令行编译多个java文件
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2011-06-23T17:22:00Z" content="2011-06-23">
+              2011-06-23
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Language/" itemprop="url" rel="index">
+                    <span itemprop="name">Language</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2011-06-23-using-javac-to-compile-multi-java-files/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2011-06-23-using-javac-to-compile-multi-java-files/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li>CLASSPATH一定要具体到jar路径，例如</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">export</span> CLASSPATH=/usr/lib/jvm/java-6-sun/lib/commons-codec.jar:/usr/lib/jvm/java-6-sun/lib/commons-httpclient-3.1.jar:/usr/lib/jvm/java-6-sun/lib/commons-logging-1.1.jar:/usr/lib/jvm/java-6-sun/lib/dt.jar:/usr/lib/jvm/java-6-sun/lib/htmlconverter.jar:/usr/lib/jvm/java-6-sun/lib/jconsole.jar:/usr/lib/jvm/java-6-sun/lib/junit-4.1.jar:/usr/lib/jvm/java-6-sun/lib/mysql-connector-java-5.1.16-bin.jar:/usr/lib/jvm/java-6-sun/lib/sa-jdi.jar:/usr/lib/jvm/java-6-sun/lib/tools.jar</div></pre></td></tr></table></figure>
+<ol>
+<li><p>每个java文件给出路径，最常见的是用通配符*，不支持目录递归。</p>
+</li>
+<li><p>最好加上 -d，这样会在这个目录下生成class文件，而不会和java文件混在一起</p>
+</li>
+</ol>
+<p>看我的一个具体的例子</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">javac -d /home/dfq/crawler/bin crawler/*.java weibo4j/*.java weibo4j/org/json/*.java weibo4j/*.java weibo4j/util/*.java weibo4j/http/*.java</div></pre></td></tr></table></figure>
+<p>运行时用如下命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd /home/dfq/crawler/bin</div><div class="line">java -cp .:$CLASSPATH crawler.ManagerThread</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2010-04-17-tex-resources-for-newbies/" itemprop="url">
+                  推荐给TeX新手的电子书和书籍
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2011-04-17T17:03:00Z" content="2011-04-17">
+              2011-04-17
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Tools/" itemprop="url" rel="index">
+                    <span itemprop="name">Tools</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2010-04-17-tex-resources-for-newbies/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2010-04-17-tex-resources-for-newbies/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>##CTEX自带的文档</p>
+<ol>
+<li>安装好CTEX后，c:CTEXCTeXctexdoc下的两个文档，ctex-faq.pdf和lshort-cn.pdf（即93 分钟学会 LaTeX2e）</li>
+<li><p><a href="ftp://ftp.ctex.org/pub/tex/documents/bible/" target="_blank" rel="external">ftp://ftp.ctex.org/pub/tex/documents/bible/</a> 下的 LaTeX_manual.zip<br>对于初学者，上面3个文档足够了，在c:CTEXCTeXctexdoc目录下的其他几个文档也非常好。</p>
+<p> 如果想进一步学习，推荐下面一本书。</p>
+</li>
+<li><a href="http://www.amazon.cn/mn/detailApp/ref=sr_1_1?_encoding=UTF8&amp;s=books&amp;qid=1271499096&amp;asin=B00114JYBU&amp;sr=8-1" target="_blank" rel="external">《LaTeX入门与提高》</a>，陈志杰，2008，高等教育出版社，卓越上有卖的。<a href="http://ishare.iask.sina.com.cn/f/7485622.html" target="_blank" rel="external">这里有个PDF扫描版</a>。</li>
+</ol>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2010-04-17-tex-resources-for-newbies/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2010-05-28-text-classification-algorithm-based-on-naive-bayes/" itemprop="url">
+                  基于朴素贝叶斯的文本分类算法
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2010-05-28T17:15:00Z" content="2010-05-28">
+              2010-05-28
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Machine-Learning/" itemprop="url" rel="index">
+                    <span itemprop="name">Machine-Learning</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2010-05-28-text-classification-algorithm-based-on-naive-bayes/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2010-05-28-text-classification-algorithm-based-on-naive-bayes/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>作者: 灵魂机器<br>新浪博客：<a href="www.weibo.com/soulmachine">www.weibo.com/soulmachine</a><br>作者博客：<a href="www.yanjiuyanjiu.com">www.yanjiuyanjiu.com</a></p>
+<p><strong>摘要</strong>：常用的文本分类方法有支持向量机、K-近邻算法和朴素贝叶斯。其中朴素贝叶斯具有容易实现，运行速度快的特点，被广泛使用。本文详细介绍了朴素贝叶斯的基本原理，讨论了两种常见模型：多项式模型（MM）和伯努利模型（BM），实现了可运行的代码，并进行了一些数据测试。</p>
+<p><strong>关键字</strong>：朴素贝叶斯；文本分类</p>
+<p><strong>Text Classification Algorithm Based on Naive Bayes</strong><br><strong>Author</strong>: soulmachine<br><strong>Email</strong>：soulmachine@gmail.com<br><strong>Blog</strong>：<a href="www.yanjiuyanjiu.com">www.yanjiuyanjiu.com</a></p>
+<p><strong>Abstract</strong>:Usually there are three methods for text classification: SVM、KNN and Naïve Bayes. Naïve Bayes is easy to implement and fast, so it is widely used. This article introduced the theory of Naïve Bayes and discussed two popular models: multinomial model(MM) and Bernoulli model(BM) in details, implemented runnable code and performed some data tests.</p>
+<p><strong>Keywords</strong>: naïve bayes; text classification</p>
+<p>##1 贝叶斯原理</p>
+<p>###1.1 贝叶斯公式</p>
+<p>设A、B是两个事件，且P(A)&gt;0，称 $$P(Y \vert X)=\dfrac {P(XY)}{P(X)}$$ 为事件A发生的条件下事件B发生的<strong>条件概率</strong>。</p>
+<p><strong>乘法公式</strong> $$P(XYZ)=P(Z \vert XY)P(Y \vert X)P(X)$$<br><strong>全概率公式</strong>  $$P(X)=P(X \vert Y_1)+ P(X \vert Y_2)+…+ P(X \vert Y_n)$$<br><strong>贝叶斯公式</strong>  $$P(Y_i \vert X)=\dfrac{P(XY_i)}{P(X)}=\dfrac{P(X \vert Y_i)P(Y_i)}{P(X)}=\dfrac{P(X \vert Y_i)P(Y<em>i)}{\sum\limits </em>{j=1} ^{n} P(X \vert Y_j)}$$  </p>
+<p>在此处，贝叶斯公式，我们要用到的是 $$P(Y_i \vert X)=\dfrac{P(X \vert Y_i)P(Y_i)}{P(X)}$$</p>
+<p>以上公式，请读者参考<a href="http://book.douban.com/subject/1231189/" target="_blank" rel="external">《概率论与数理统计（第五版）》</a>的1.4节“条件概率”（这里将原书中的A换成了X，B换成了Y），获得更深的理解。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2010-05-28-text-classification-algorithm-based-on-naive-bayes/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2010-04-01-read-and-write-images-using-java-imageio/" itemprop="url">
+                  Java使用imageio 读写图像
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2010-04-01T16:53:00Z" content="2010-04-01">
+              2010-04-01
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Tools/" itemprop="url" rel="index">
+                    <span itemprop="name">Tools</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2010-04-01-read-and-write-images-using-java-imageio/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2010-04-01-read-and-write-images-using-java-imageio/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>Java中进行图像I/O（即读图片和写图片，不涉及到复杂图像处理）有三个方法：</p>
+<ol>
+<li>Java Image I/O API，支持常见图片，从Java 2 version 1.4.0开始就内置了。<br>主页：<a href="http://java.sun.com/javase/6/docs/technotes/guides/imageio/index.html" target="_blank" rel="external">http://java.sun.com/javase/6/docs/technotes/guides/imageio/index.html</a></li>
+<li>JAI 中的 Image I/O Tools，支持更多图片类型，例如JPEG-LS, JPEG2000, 和 TIFF。<br>主页：<a href="https://jai-imageio.dev.java.net/" target="_blank" rel="external">https://jai-imageio.dev.java.net/</a>。JAI 是一个关于图像处理的框架，很庞大，<br>其中仅仅jai-imageio是关于图像I/O的，其他的可以不看。</li>
+<li>JAI的com.sun.media.jai.codec 也有一定的图像解码能力</li>
+</ol>
+<p>当然，还有众多的java开源工具包可以读写图像，例如JIMI, JMagic等，但JDK目前本身能<br>够读写图片，就用JDK的，开发和部署方便，不需要额外下载jar包。</p>
+<p>由于JAI是Java新加入的，很多组件不是正式规范，JDK不自带，因此开发和部署需要额外<br>安装，安装文件在官网<a href="https://jai.dev.java.net/" target="_blank" rel="external">https://jai.dev.java.net/</a>下载得到。</p>
+<p>如果你仅仅想读取常见格式的图片，不需要用JAI这么高级这么庞大的东西，<br>用Java Image I/O API即可。</p>
+<p>下面重点介绍 Java Image I/O API。</p>
+<p>Java Image I/O API 主要在 javax.imageio 下面。JDK已经内置了常见图片格式的插件，<br>但它提供了插件体系结构，第三方也可以开发插件支持其他图片格式。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2010-04-01-read-and-write-images-using-java-imageio/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2010-03-31-java-qa-tools/" itemprop="url">
+                  Java质量检测评估工具
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2010-03-31T16:45:00Z" content="2010-03-31">
+              2010-03-31
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Tools/" itemprop="url" rel="index">
+                    <span itemprop="name">Tools</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2010-03-31-java-qa-tools/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2010-03-31-java-qa-tools/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Java代码质量检测评估工具<br>“五大” 代码分析领域：</p>
+<ul>
+<li>编码风格</li>
+<li>冗余代码</li>
+<li>代码覆盖率</li>
+<li>依赖项分析</li>
+<li>复杂度监控</li>
+</ul>
+<p>一下列举了一些目前比较流行的工具。网址后面列出了其PR值，可以反映此工具的流行度。</p>
+<p>##1. 编码风格<br>CheckStyle<br>Home page: <a href="http://checkstyle.sourceforge.net/" target="_blank" rel="external">http://checkstyle.sourceforge.net/</a> (6)<br>对应的eclipse插件有多个，其中eclipsecs最常用<br>Home page: <a href="http://eclipse-cs.sourceforge.net/" target="_blank" rel="external">http://eclipse-cs.sourceforge.net/</a> (6)<br>eclipse插件URL：<a href="http://eclipse-cs.sf.net/update/" target="_blank" rel="external">http://eclipse-cs.sf.net/update/</a></p>
+<p>##2. 冗余代码<br>Simian <a href="http://www.redhillconsulting.com.au/products/simian/" target="_blank" rel="external">http://www.redhillconsulting.com.au/products/simian/</a> (5)<br>PMD 的 CPD <a href="http://pmd.sourceforge.net/cpd.html" target="_blank" rel="external">http://pmd.sourceforge.net/cpd.html</a> (5)</p>
+<p>##3. 代码覆盖率<br>EMMA  <a href="http://emma.sourceforge.net/" target="_blank" rel="external">http://emma.sourceforge.net/</a> (6)<br>Cobertura  <a href="http://cobertura.sourceforge.net/" target="_blank" rel="external">http://cobertura.sourceforge.net/</a> (6)<br>EclEmma <a href="http://update.eclemma.org/" target="_blank" rel="external">http://update.eclemma.org/</a> (5)<br>Coverlipse <a href="http://coverlipse.sourceforge.net/" target="_blank" rel="external">http://coverlipse.sourceforge.net/</a> (3)</p>
+<p>##4. 依赖项分析<br>JDepend <a href="http://clarkware.com/software/JDepend.html" target="_blank" rel="external">http://clarkware.com/software/JDepend.html</a> (6)</p>
+<p>##5. 复杂度监控<br>Metrics <a href="http://metrics.sourceforge.net/" target="_blank" rel="external">http://metrics.sourceforge.net/</a> (4)</p>
+<p>##6. 静态分析工具<br>具有以上两项或两项以上的综合工具（也称为静态分析工具）： </p>
+<p>###6.1 PMD<br>Home page: <a href="http://pmd.sourceforge.net/" target="_blank" rel="external">http://pmd.sourceforge.net/</a> (6)<br>eclipse插件URL：<a href="http://sourceforge.net/projects/pmd/files/pmd-eclipse/update-site/" target="_blank" rel="external">http://sourceforge.net/projects/pmd/files/pmd-eclipse/update-site/</a></p>
+<p>###6.2 FindBugs <a href="http://findbugs.sourceforge.net/" target="_blank" rel="external">http://findbugs.sourceforge.net/</a> (6)<br>eclipse插件URL：<a href="http://findbugs.cs.umd.edu/eclipse" target="_blank" rel="external">http://findbugs.cs.umd.edu/eclipse</a></p>
+<p>FindBugs 检查程序生成的class文件，即分析字节码<br>PMD 检查源码，分析源代码</p>
+<p>###6.3 Jtest<br><a href="http://www.parasoft.com/jtest" target="_blank" rel="external">http://www.parasoft.com/jtest</a></p>
+<p>###6.4 Jlint<br><a href="http://artho.com/jlint/" target="_blank" rel="external">http://artho.com/jlint/</a> (5)</p>
+<p>###6.5 Lint4j<br><a href="http://www.jutils.com/" target="_blank" rel="external">http://www.jutils.com/</a> (4)</p>
+<p>我个人平时最常用的是Checkstyle，其次是PMD，大家可以参考一下。</p>
+<p>##参考资料<br><a href="http://blog.csdn.net/cb_121/archive/2009/05/22/4208792.aspx" target="_blank" rel="external">http://blog.csdn.net/cb_121/archive/2009/05/22/4208792.aspx</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2010-03-28-extract-text-from-pdf-using-pdfbox/" itemprop="url">
+                  使用pdfbox 抽取PDF文件中的文本
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2010-03-28T16:41:00Z" content="2010-03-28">
+              2010-03-28
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Tools/" itemprop="url" rel="index">
+                    <span itemprop="name">Tools</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2010-03-28-extract-text-from-pdf-using-pdfbox/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2010-03-28-extract-text-from-pdf-using-pdfbox/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.yanjiuyanjiu.search;</div><div class="line"></div><div class="line"><span class="keyword">import</span> java.io.File;</div><div class="line"><span class="keyword">import</span> java.io.IOException;</div><div class="line"></div><div class="line"><span class="keyword">import</span> org.apache.pdfbox.pdmodel.PDDocument;</div><div class="line"><span class="keyword">import</span> org.apache.pdfbox.util.PDFTextStripper;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * 抽去PDF文件中的文本.</div><div class="line"> * <span class="doctag">@author</span> soulmachine</div><div class="line"> *</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">PDFboxTest</span> </span>&#123;</div><div class="line"> <span class="comment">/** 禁止创建对象. */</span></div><div class="line"> <span class="function"><span class="keyword">private</span> <span class="title">PDFboxTest</span><span class="params">()</span> </span>&#123;</div><div class="line"> &#125;</div><div class="line"> <span class="comment">/**</span></div><div class="line"> * 抽取PDF中的文本.</div><div class="line"> * <span class="doctag">@param</span> f PDF文件</div><div class="line"> * <span class="doctag">@return</span> PDF对应的文本字符串</div><div class="line"> */</div><div class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">getText</span><span class="params">(<span class="keyword">final</span> File f)</span> </span>&#123;</div><div class="line"> String text = <span class="string">""</span>;</div><div class="line"> <span class="keyword">try</span> &#123;</div><div class="line"> PDDocument pdfdocument = PDDocument.load(f);</div><div class="line"> PDFTextStripper stripper = <span class="keyword">new</span> PDFTextStripper();</div><div class="line"> stripper.setStartPage(<span class="number">1</span>); <span class="comment">// 只抽取第1页和第2页</span></div><div class="line"> stripper.setEndPage(<span class="number">2</span>);</div><div class="line"> text = stripper.getText(pdfdocument);</div><div class="line"> pdfdocument.close();</div><div class="line"></div><div class="line"> &#125; <span class="keyword">catch</span> (IOException e) &#123;</div><div class="line"> e.printStackTrace();</div><div class="line"> &#125;</div><div class="line"></div><div class="line"> <span class="keyword">return</span> text;</div><div class="line"> &#125;</div><div class="line"></div><div class="line"> <span class="comment">/** 测试.</span></div><div class="line"> *</div><div class="line"> * <span class="doctag">@param</span> args PDF文件路径</div><div class="line"> */</div><div class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(<span class="keyword">final</span> String[]  args)</span> </span>&#123;</div><div class="line"> File file = <span class="keyword">new</span> File(args[<span class="number">0</span>]);</div><div class="line"> System.out.println(PDFboxTest.getText(file));</div><div class="line"> &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2010-02-15-run-class-file-in-java-command-line/" itemprop="url">
+                  java命令行下运行class文件
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2010-02-15T16:27:00Z" content="2010-02-15">
+              2010-02-15
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Language/" itemprop="url" rel="index">
+                    <span itemprop="name">Language</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2010-02-15-run-class-file-in-java-command-line/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2010-02-15-run-class-file-in-java-command-line/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>今天碰到了一个很变态的问题，写了一个很简单的HelloWord.java，内容如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.yanjiuyanjiu;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloWorld</span> </span>&#123;</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span> </span>&#123;</div><div class="line">System.out.println(“Hello World!”);</div><div class="line">&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在eclipse中运行是可以的，但是在命令行下运行总是失败。我的工程位置为 d:workspaceHelloWorld。</p>
+<p>尝试了很多次，如下：</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2010-02-15-run-class-file-in-java-command-line/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+  </section>
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/5/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span>
+  </nav>
+
+
+
+          </div>
+          
+
+
+          
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://tva2.sinaimg.cn/crop.4.536.2038.2038.180/632582bfgw1f31kbqdasbj21kw23uhdt.jpg"
+               alt="soulmachine" />
+          <p class="site-author-name" itemprop="name">soulmachine</p>
+          <p class="site-description motion-element" itemprop="description">一些技术笔记</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">60</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/soulmachine" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/soulmachine" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/soulmachine" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/soulmachine" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-block">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.liancheng.info/" title="连城" target="_blank">连城</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://yewen.us/" title="笨狗随手留下" target="_blank">笨狗随手留下</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.rational.so/" title="阎栋" target="_blank">阎栋</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.parallellabs.com/" title="并行实验室" target="_blank">并行实验室</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.javachen.com/" title="JavaChen" target="_blank">JavaChen</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://shenfeng.me/" title="沈峰" target="_blank">沈峰</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.lihaipeng.info/" title="李海鹏" target="_blank">李海鹏</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.chioka.in/" title="Eric" target="_blank">Eric</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/lgnlgn" title="梁兄的技术博客" target="_blank">梁兄的技术博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.doesbetter.com/" title="王孝舒的博客" target="_blank">王孝舒的博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.foreverlee.net/" title="ForeverLee" target="_blank">ForeverLee</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.cnblogs.com/yuzhangcmu/" title="CMU张宇" target="_blank">CMU张宇</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">soulmachine</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"soulmachine"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+
+</body>
+</html>

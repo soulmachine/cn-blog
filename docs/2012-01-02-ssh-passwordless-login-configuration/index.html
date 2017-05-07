@@ -86,19 +86,16 @@
 
 
 
-<meta name="description" content="根据公钥加密的思想，如果机器A想无密码登录其他N台机器，只需要在自己机器上生成一对公钥和密钥，然后把密钥给这N台机器，这样，这N台机器，有了A的公钥，就可以解密A的数据包，跟A正常通信了。
-通常在一个集群中，我们会选择一台机器作为跳板机，在这台机器上登录其他机器，因此，无名需要在跳板机上生成一对公钥和密钥。一般的，我们也会把跳板板机作为整个集群的master，例如Hadoop的NameNode，因">
+<meta name="description" content="根据公钥加密的思想，如果机器A想无密码登录其他N台机器，只需要在自己机器上生成一对公钥和密钥，然后把密钥给这N台机器，这样，这N台机器，有了A的公钥，就可以解密A的数据包，跟A正常通信了。 通常在一个集群中，我们会选择一台机器作为跳板机，在这台机器上登录其他机器，因此，无名需要在跳板机上生成一对公钥和密钥。一般的，我们也会把跳板板机作为整个集群的master，例如Hadoop的NameNode，因">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SSH无密码登录的配置">
 <meta property="og:url" content="http://cn.soulmachine.me/2012-01-02-ssh-passwordless-login-configuration/index.html">
 <meta property="og:site_name" content="灵魂机器">
-<meta property="og:description" content="根据公钥加密的思想，如果机器A想无密码登录其他N台机器，只需要在自己机器上生成一对公钥和密钥，然后把密钥给这N台机器，这样，这N台机器，有了A的公钥，就可以解密A的数据包，跟A正常通信了。
-通常在一个集群中，我们会选择一台机器作为跳板机，在这台机器上登录其他机器，因此，无名需要在跳板机上生成一对公钥和密钥。一般的，我们也会把跳板板机作为整个集群的master，例如Hadoop的NameNode，因">
+<meta property="og:description" content="根据公钥加密的思想，如果机器A想无密码登录其他N台机器，只需要在自己机器上生成一对公钥和密钥，然后把密钥给这N台机器，这样，这N台机器，有了A的公钥，就可以解密A的数据包，跟A正常通信了。 通常在一个集群中，我们会选择一台机器作为跳板机，在这台机器上登录其他机器，因此，无名需要在跳板机上生成一对公钥和密钥。一般的，我们也会把跳板板机作为整个集群的master，例如Hadoop的NameNode，因">
 <meta property="og:updated_time" content="2016-09-09T06:32:49.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SSH无密码登录的配置">
-<meta name="twitter:description" content="根据公钥加密的思想，如果机器A想无密码登录其他N台机器，只需要在自己机器上生成一对公钥和密钥，然后把密钥给这N台机器，这样，这N台机器，有了A的公钥，就可以解密A的数据包，跟A正常通信了。
-通常在一个集群中，我们会选择一台机器作为跳板机，在这台机器上登录其他机器，因此，无名需要在跳板机上生成一对公钥和密钥。一般的，我们也会把跳板板机作为整个集群的master，例如Hadoop的NameNode，因">
+<meta name="twitter:description" content="根据公钥加密的思想，如果机器A想无密码登录其他N台机器，只需要在自己机器上生成一对公钥和密钥，然后把密钥给这N台机器，这样，这N台机器，有了A的公钥，就可以解密A的数据包，跟A正常通信了。 通常在一个集群中，我们会选择一台机器作为跳板机，在这台机器上登录其他机器，因此，无名需要在跳板机上生成一对公钥和密钥。一般的，我们也会把跳板板机作为整个集群的master，例如Hadoop的NameNode，因">
 
 
 
