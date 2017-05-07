@@ -63,7 +63,7 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 plugins:
-  - hexo-generator-feed
+  hexo-generator-feed
 # Feed Atom
 feed:
   type: atom
