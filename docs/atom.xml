@@ -1,0 +1,2418 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>灵魂机器</title>
+  <subtitle>终有一天机器也有灵魂</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://cn.soulmachine.me/"/>
+  <updated>2017-04-25T14:03:18.000Z</updated>
+  <id>http://cn.soulmachine.me/</id>
+  
+  <author>
+    <name>soulmachine</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>使用显卡挖ZCash教程</title>
+    <link href="http://cn.soulmachine.me/2017-04-25-zcash-mining-using-GTX-1080/"/>
+    <id>http://cn.soulmachine.me/2017-04-25-zcash-mining-using-GTX-1080/</id>
+    <published>2017-04-25T00:23:55.000Z</published>
+    <updated>2017-04-25T14:03:18.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>操作系统: Ubuntu 16.04，显卡 GTX 1080</p>
+<h2 id="1-安装显卡驱动和CUDA"><a href="#1-安装显卡驱动和CUDA" class="headerlink" title="1. 安装显卡驱动和CUDA"></a>1. 安装显卡驱动和CUDA</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">apt-key adv --fetch-keys http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/7fa2af80.pub</div><div class="line"><span class="built_in">echo</span> <span class="string">"deb http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64 /"</span> | sudo tee /etc/apt/sources.list.d/cuda.list</div><div class="line">sudo apt-get update</div><div class="line">sudo apt-get -y install cuda-drivers cuda</div></pre></td></tr></table></figure>
+<h2 id="2-安装-ewbf-miner"><a href="#2-安装-ewbf-miner" class="headerlink" title="2. 安装 ewbf-miner"></a>2. 安装 ewbf-miner</h2><p>到这里下载 <a href="https://github.com/nanopool/ewbf-miner/releases" target="_blank" rel="external">https://github.com/nanopool/ewbf-miner/releases</a></p>
+<a id="more"></a>
+<h2 id="3-连接矿池开始挖矿"><a href="#3-连接矿池开始挖矿" class="headerlink" title="3. 连接矿池开始挖矿"></a>3. 连接矿池开始挖矿</h2><p>在这里可以看到全球各大矿池的算力大小: <a href="https://explorer.zcha.in/statistics/miners" target="_blank" rel="external">https://explorer.zcha.in/statistics/miners</a></p>
+<p>连接 f2pool,</p>
+<pre><code>./miner --server zec.f2pool.com --user t1P4fnXWE3XibaZEEt99y1K7A3qBhg2rVnw.asusgtx1080 --pass z --port 3357
+</code></pre><p>连接flypool,</p>
+<pre><code>./miner --server us1-zcash.flypool.org --user t1P4fnXWE3XibaZEEt99y1K7A3qBhg2rVnw.asusgtx1080 --pass z --port 3333
+</code></pre><p>我对比了一下第一大的flypool和第二大的f2pool, 分别挖了一天，感觉 flypool一天大概能挖0.08 ZEC, f2pool 一天能得到 0.12 ZEC，相差好几倍，所以我目前选择 f2pool。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;操作系统: Ubuntu 16.04，显卡 GTX 1080&lt;/p&gt;
+&lt;h2 id=&quot;1-安装显卡驱动和CUDA&quot;&gt;&lt;a href=&quot;#1-安装显卡驱动和CUDA&quot; class=&quot;headerlink&quot; title=&quot;1. 安装显卡驱动和CUDA&quot;&gt;&lt;/a&gt;1. 安装显卡驱动和CUDA&lt;/h2&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;apt-key adv --fetch-keys http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/7fa2af80.pub&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&quot;deb http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64 /&quot;&lt;/span&gt; | sudo tee /etc/apt/sources.list.d/cuda.list&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;sudo apt-get update&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;sudo apt-get -y install cuda-drivers cuda&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h2 id=&quot;2-安装-ewbf-miner&quot;&gt;&lt;a href=&quot;#2-安装-ewbf-miner&quot; class=&quot;headerlink&quot; title=&quot;2. 安装 ewbf-miner&quot;&gt;&lt;/a&gt;2. 安装 ewbf-miner&lt;/h2&gt;&lt;p&gt;到这里下载 &lt;a href=&quot;https://github.com/nanopool/ewbf-miner/releases&quot;&gt;https://github.com/nanopool/ewbf-miner/releases&lt;/a&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="ZCash" scheme="http://cn.soulmachine.me/tags/ZCash/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>如何设计短网址系统(TinyURL)</title>
+    <link href="http://cn.soulmachine.me/2017-04-10-how-to-design-tinyurl/"/>
+    <id>http://cn.soulmachine.me/2017-04-10-how-to-design-tinyurl/</id>
+    <published>2017-04-10T22:01:38.000Z</published>
+    <updated>2017-04-13T01:51:47.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="短网址的长度"><a href="#短网址的长度" class="headerlink" title="短网址的长度"></a>短网址的长度</h2><p>短网址的长度该设计为多少呢？ 当前互联网上的网页总数大概是 45亿(参考 <a href="http://www.worldwidewebsize.com" target="_blank" rel="external">http://www.worldwidewebsize.com</a>)，超过了 $2^{32}=4294967296$，那么用一个64位整数足够了。</p>
+<p>一个64位整数如何转化为字符串呢？，假设我们只是用大小写字母加数字，那么可以看做是62进制数，$log_{62} {(2^{64}-1)}=10.7$，即字符串最长11就足够了。</p>
+<p>实际生产中，还可以再短一点，比如新浪微博采用的长度就是7，因为 $62^7=3521614606208$，这个量级远远超过互联网上的URL总数了，绝对够用了。</p>
+<p>现代的web服务器（例如Apache, Nginx）大部分都区分URL里的大小写了，所以用大小写字母来区分不同的URL是没问题的。</p>
+<p>因此，<strong>正确答案：长度不超过7的字符串，由大小写字母加数字共62个字母组成</strong></p>
+<h2 id="一对一还是一对多映射？"><a href="#一对一还是一对多映射？" class="headerlink" title="一对一还是一对多映射？"></a>一对一还是一对多映射？</h2><p>一个长网址，对应一个短网址，还是可以对应多个短网址？ 这也是个重大选择问题</p>
+<a id="more"></a>
+<p>一般而言，一个长网址，在不同的地点，不同的用户等情况下，生成的短网址应该不一样，这样，在后端数据库中，可以更好的进行数据分析。如果一个长网址与一个短网址一一对应，那么在数据库中，仅有一行数据，无法区分不同的来源，就无法做数据分析了。</p>
+<p>以这个7位长度的短网址作为唯一ID，这个ID下可以挂各种信息，比如生成该网址的用户名，所在网站，HTTP头部的 User Agent等信息，收集了这些信息，才有可能在后面做大数据分析，挖掘数据的价值。短网址服务商的一大盈利来源就是这些数据。</p>
+<p><strong>正确答案：一对多</strong></p>
+<h2 id="如何计算短网址"><a href="#如何计算短网址" class="headerlink" title="如何计算短网址"></a>如何计算短网址</h2><p>现在我们设定了短网址是一个长度为7的字符串，如何计算得到这个短网址呢？</p>
+<p>最容易想到的办法是哈希，先hash得到一个64位整数，将它转化为62进制整，截取低7位即可。但是哈希算法会有冲突，如何处理冲突呢，又是一个麻烦。这个方法只是转移了矛盾，没有解决矛盾，抛弃。</p>
+<!-- more -->
+<p>MySQL数据库有一个自增ID，能不能借鉴这个呢？每来一个长网址，就给它发一个号码，这个号码不断的自增。这个方法跟哈希相比，好处是没有冲突，不用考虑处理冲突的问题。如何实现单台的发号服务器呢？可以用一台MySQL服务器来做（一定要用 <code>REPLACE INTO</code>，不要存储所有ID），也可用一台Redis服务器（用<code>INCR</code>），一行代码也不用写；也可以自己写一个RESTful API，代码也很简单，就不赘述了。</p>
+<p>单台发号器有什么缺点呢？它是一个单点故障(SPOF, Single Point Of Failure)，也会成为性能瓶颈（其实，如果你的QPS能大到压垮这台MySQL，那说明你的短网址服务很成功，可以考虑上市了:D），所以它适合中小型企业，对于超大型企业（以及在面试显得追求高大上），我们还是要继续思考更好的方案，请接着往下看。</p>
+<p>下面开始讲如何打造多台机器组成的<strong>分布式发号器</strong>。</p>
+<ol>
+<li>使用<a href="https://en.wikipedia.org/wiki/Universally_unique_identifier" target="_blank" rel="external">UUID</a>算法或者MongoDB产生的<a href="https://docs.mongodb.com/manual/reference/method/ObjectId/" target="_blank" rel="external">ObjectID</a>。其实MongoDB的ObjectID也算是一种UUID，这类算法，每台机器可以独立工作，天然是分布式的，但是这类算法产生的ID通常都很长，那短网址服务还有什么意义呢？所以这个方法不行。</li>
+<li>多台MySQL服务器。前面讲了单台MySQL作为发号服务器，那么自然可以扩展一下，比如用8台MySQL服务器协同工作，第一台MySQL初始值是1，每次自增8，第二台MySQL初始值是2，每次自增8，一次类推。前面用一个 round-robin load balancer 挡着，每来一个长网址请求，由 round-robin balancer 随机地将请求发给10台MySQL中的任意一个，然后返回一个ID。<a href="http://code.flickr.net/2010/02/08/ticket-servers-distributed-unique-primary-keys-on-the-cheap/" target="_blank" rel="external">Flickr用的就是这个方案</a>，仅仅使用了两台MySQL服务器。这个方法仅有的一个缺点是，ID是连续的，容易被爬虫抓数据，爬虫基本不用写代码，顺着ID一个一个发请求就是了，太方便了（手动斜眼）。</li>
+<li><p>分布式ID生成器(Distributed Id Generator)。分布式的产生唯一的ID，比如 Twitter 有个成熟的开源项目，就是专门做这个的，<a href="https://github.com/twitter/snowflake" target="_blank" rel="external">Twitter Snowflake</a> 。Snowflake的核心算法如下：</p>
+<p> <img src="http://121.40.136.3/wp-content/uploads/2015/04/snowflake-64bit.jpg" alt=""><br> 最高位不用，永远为0，其余三组bit占位均可浮动，看具体的业务需求而定。默认情况下41bit的时间戳可以支持该算法使用到2082年，10bit的工作机器id可以支持1023台机器，序列号支持1毫秒产生4095个自增序列id。</p>
+<p> <a href="https://engineering.instagram.com/sharding-ids-at-instagram-1cf5a71e5a5c" target="_blank" rel="external">Instagram用了类似的方案</a>，41位表示时间戳，13位表示shard Id(一个shard Id对应一台PostgreSQL机器),最低10位表示自增ID，怎么样，跟Snowflake的设计非常类似吧。这个方案用一个PostgreSQL集群代替了Twitter Snowflake 集群，优点是利用了现成的PostgreSQL，容易懂，维护方便。</p>
+</li>
+</ol>
+<p>因此，<strong>正确答案：分布式发号器(Distributed ID Generator)</strong>，Flick, Twitter Snowflake 和 Instagram的方案都是不错的选择。</p>
+<h2 id="如何存储"><a href="#如何存储" class="headerlink" title="如何存储"></a>如何存储</h2><p>如果存储短网址和长网址的对应关系？以短网址为 primary key, 长网址为value, 可以用传统的关系数据库存起来，例如MySQL, PostgreSQL，也可以用任意一个分布式KV数据库，例如Redis, LevelDB。</p>
+<p>如果你手痒想要手工设计这个存储，那就是另一个话题了，你需要完整地造一个KV存储引擎轮子。当前流行的KV存储引擎有LevelDB何RockDB，去读它们的源码吧 :D</p>
+<h2 id="301还是302重定向"><a href="#301还是302重定向" class="headerlink" title="301还是302重定向"></a>301还是302重定向</h2><p>这也是一个有意思的问题。这个问题主要是考察你对301和302的理解，以及浏览器缓存机制的理解。</p>
+<p>301是永久重定向，302是临时重定向。短地址一经生成就不会变化，所以用301是符合http语义的。但是如果用了301， Google，百度等搜索引擎，搜索的时候会直接展示真实地址，那我们就无法统计到短地址被点击的次数了，也无法收集用户的Cookie, User Agent 等信息，这些信息可以用来做很多有意思的大数据分析，也是短网址服务商的主要盈利来源。</p>
+<p>所以，<strong>正确答案是302重定向</strong>。</p>
+<p>可以抓包看看新浪微博的短网址是怎么做的，使用 Chrome 浏览器，访问这个URL <a href="http://t.cn/RX2VxjI" target="_blank" rel="external">http://t.cn/RX2VxjI</a>，是我事先发微博自动生成的短网址。来抓包看看返回的结果是啥，</p>
+<p><img src="http://cn.soulmachine.me/images/tinyurl-302.png" alt=""></p>
+<p>可见新浪微博用的就是302临时重定向。</p>
+<h2 id="预防攻击"><a href="#预防攻击" class="headerlink" title="预防攻击"></a>预防攻击</h2><p>如果一些别有用心的黑客，短时间内向TinyURL服务器发送大量的请求，会迅速耗光ID，怎么办呢？</p>
+<p>首先，限制IP的单日请求总数，超过阈值则直接拒绝服务。</p>
+<p>光限制IP的请求数还不够，因为黑客一般手里有上百万台肉鸡的，IP地址大大的有，所以光限制IP作用不大。</p>
+<p>可以用一台Redis作为缓存服务器，存储的不是 ID-&gt;长网址，而是 长网址-&gt;ID，仅存储一天以内的数据，用LRU机制进行淘汰。这样，如果黑客大量发同一个长网址过来，直接从缓存服务器里返回短网址即可，他就无法耗光我们的ID了。</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><a href="https://engineering.instagram.com/sharding-ids-at-instagram-1cf5a71e5a5c" target="_blank" rel="external">Sharding &amp; IDs at Instagram</a></li>
+<li><a href="http://code.flickr.net/2010/02/08/ticket-servers-distributed-unique-primary-keys-on-the-cheap/" target="_blank" rel="external">Ticket Servers: Distributed Unique Primary Keys on the Cheap</a></li>
+<li><a href="https://github.com/twitter/snowflake" target="_blank" rel="external">Twitter Snowflake</a></li>
+<li><a href="https://www.zhihu.com/question/29270034" target="_blank" rel="external">短 URL 系统是怎么设计的？</a></li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;短网址的长度&quot;&gt;&lt;a href=&quot;#短网址的长度&quot; class=&quot;headerlink&quot; title=&quot;短网址的长度&quot;&gt;&lt;/a&gt;短网址的长度&lt;/h2&gt;&lt;p&gt;短网址的长度该设计为多少呢？ 当前互联网上的网页总数大概是 45亿(参考 &lt;a href=&quot;http://www.worldwidewebsize.com&quot;&gt;http://www.worldwidewebsize.com&lt;/a&gt;)，超过了 $2^{32}=4294967296$，那么用一个64位整数足够了。&lt;/p&gt;
+&lt;p&gt;一个64位整数如何转化为字符串呢？，假设我们只是用大小写字母加数字，那么可以看做是62进制数，$log_{62} {(2^{64}-1)}=10.7$，即字符串最长11就足够了。&lt;/p&gt;
+&lt;p&gt;实际生产中，还可以再短一点，比如新浪微博采用的长度就是7，因为 $62^7=3521614606208$，这个量级远远超过互联网上的URL总数了，绝对够用了。&lt;/p&gt;
+&lt;p&gt;现代的web服务器（例如Apache, Nginx）大部分都区分URL里的大小写了，所以用大小写字母来区分不同的URL是没问题的。&lt;/p&gt;
+&lt;p&gt;因此，&lt;strong&gt;正确答案：长度不超过7的字符串，由大小写字母加数字共62个字母组成&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&quot;一对一还是一对多映射？&quot;&gt;&lt;a href=&quot;#一对一还是一对多映射？&quot; class=&quot;headerlink&quot; title=&quot;一对一还是一对多映射？&quot;&gt;&lt;/a&gt;一对一还是一对多映射？&lt;/h2&gt;&lt;p&gt;一个长网址，对应一个短网址，还是可以对应多个短网址？ 这也是个重大选择问题&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="系统设计" scheme="http://cn.soulmachine.me/tags/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>使用显卡挖以太币教程</title>
+    <link href="http://cn.soulmachine.me/2017-04-08-Ethereum-mining-using-GTX-1080/"/>
+    <id>http://cn.soulmachine.me/2017-04-08-Ethereum-mining-using-GTX-1080/</id>
+    <published>2017-04-08T01:04:09.000Z</published>
+    <updated>2017-04-25T14:37:28.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>操作系统: Ubuntu 16.04，显卡 GTX 1080</p>
+<h2 id="1-安装显卡驱动和CUDA"><a href="#1-安装显卡驱动和CUDA" class="headerlink" title="1. 安装显卡驱动和CUDA"></a>1. 安装显卡驱动和CUDA</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">apt-key adv --fetch-keys http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/7fa2af80.pub</div><div class="line"><span class="built_in">echo</span> <span class="string">"deb http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64 /"</span> | sudo tee /etc/apt/sources.list.d/cuda.list</div><div class="line">sudo apt-get update</div><div class="line">sudo apt-get -y install cuda-drivers cuda</div></pre></td></tr></table></figure>
+<h2 id="2-编译安装-Genoil-cpp-ethereum"><a href="#2-编译安装-Genoil-cpp-ethereum" class="headerlink" title="2. 编译安装 Genoil/cpp-ethereum"></a>2. 编译安装 Genoil/cpp-ethereum</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">sudo apt -y install software-properties-common</div><div class="line">sudo add-apt-repository -y ppa:ethereum/ethereum</div><div class="line">sudo apt -y update</div><div class="line">sudo apt -y install git cmake libcryptopp-dev libleveldb-dev libjsoncpp-dev libjsonrpccpp-dev libboost-all-dev libgmp-dev libreadline-dev libcurl4-gnutls-dev ocl-icd-libopencl1 opencl-headers mesa-common-dev libmicrohttpd-dev build-essential</div><div class="line">git <span class="built_in">clone</span> git@github.com:Genoil/cpp-ethereum.git</div><div class="line"><span class="built_in">cd</span> cpp-ethereum/</div><div class="line">mkdir build</div><div class="line"><span class="built_in">cd</span> build</div><div class="line">cmake -DBUNDLE=cudaminer ..</div><div class="line">make -j8</div></pre></td></tr></table></figure>
+<p>编译完成后会在当前目录的子目录<code>ethminer</code>下生成一个 <code>ethminer</code> 可执行文件。</p>
+<a id="more"></a>
+<h2 id="3-连接矿池开始挖矿"><a href="#3-连接矿池开始挖矿" class="headerlink" title="3. 连接矿池开始挖矿"></a>3. 连接矿池开始挖矿</h2><p>在这里可以看到全球各大矿池的算力大小: <a href="https://etherchain.org/statistics/miners" target="_blank" rel="external">https://etherchain.org/statistics/miners</a></p>
+<p>选一个矿池，以<a href="https://ethermine.org/" target="_blank" rel="external">https://ethermine.org/</a> 这个矿池为例，</p>
+<pre><code>export GPU_FORCE_64BIT_PTR=0
+export GPU_MAX_HEAP_SIZE=100
+export GPU_USE_SYNC_OBJECTS=1
+export GPU_MAX_ALLOC_PERCENT=100
+export GPU_SINGLE_ALLOC_PERCENT=100
+</code></pre><p>如果你的显卡只有2G显存，需要设置以上环境变量，我的 GTX 1080 有8G内存，就不需要设置了。</p>
+<pre><code>./ethminer --farm-recheck 2000 -U -S us2.ethermine.org:4444 -FS us1.ethermine.org:4444 -O 0xba90FF2fA9016B3883799D150fB15DB5b4894f8b.eth01
+</code></pre><p><code>--farm-recheck</code>大致是重新检查某些东西的时间间隔，毫秒为单位，<code>-U</code>指的是用GPU，且用的是CUDA而不是OpenCL，<code>-S</code>指定stratum服务器，<code>-FS</code>指定的备份服务器(这里用us2做主服务器，us1作备份服务器的原因是，us1是在美国东部，us2在美国西部，而我的机器在西部，离us2近一些)，<code>-O</code> 指定自己的钱包地址(我是用的CoinBase的在线)，<code>.</code>后面是RigName, 随便填。</p>
+<p>我搜到的第二大的矿池是 <a href="http://ethpool.org/" target="_blank" rel="external">http://ethpool.org/</a>，连接这个矿池的命令跟ethermine.org一模一样，只是地址变了，</p>
+<pre><code>./ethminer --farm-recheck 2000 -U -S us2.ethpool.org:3333 -FS us1.ethpool.org:3333 -O 0xba90FF2fA9016B3883799D150fB15DB5b4894f8b.eth01
+</code></pre><h2 id="4-Genoil-和-Claymore-的比较"><a href="#4-Genoil-和-Claymore-的比较" class="headerlink" title="4. Genoil 和 Claymore 的比较"></a>4. Genoil 和 Claymore 的比较</h2><p>Claymore 是另一款挖矿软件，经过我亲自测试，二者的速度基本一样，GTX 1080 都在在 20MH/s 左右，不过 Claymore可以在不影响以太币挖矿速度的情况下，还可以同时挖 Decred/Siacoin/Lbry/Pascal 之一，于是我现在用的是 Claymore这个挖矿程序，命令行如下，</p>
+<p>举个例子，同时挖ETH和Decred，</p>
+<pre><code>./ethdcrminer64 -epool us2.ethermine.org:4444 -ewal 0xba90FF2fA9016B3883799D150fB15DB5b4894f8b.eth01 -epsw x -dpool pasc-us-west1.nanopool.org:15555 -dwal Dsab2dnwdTTpibkUr9VREdhLNytdnCv9nGv -dpsw x
+</code></pre><p>或者同时挖ETH和SiaCoin,</p>
+<pre><code>./ethdcrminer64 -epool us2.ethermine.org:4444 -ewal 0xba90FF2fA9016B3883799D150fB15DB5b4894f8b.eth01 -epsw x -dpool stratum+tcp://siamining.com:7777 -dwal a808cdb0061d81418f6f146775dad4e3590eba207f285ad67b061a2ec01f6402960e02e36e7a.sia01 -dcoin sia
+</code></pre><p>不过要注意，在 Ethereum-only 模式下，会收取 1% 的费用，在 Dual模式下，会收取 2%的费用，当然不会直接向你收费，它每个小时大概会有 36 到 72 秒为作者挖矿，这样间接达到了收费的目的。</p>
+<p>不要试图同时运行<code>ethminer</code>和<code>ethdcrminer64</code>，这样的话它们的速度同时会降为原来的一半，总的速度还是跟单个一样。</p>
+<p>Claymore 比较方便的是可以同时挖ETH和另一种币，大家可以同时看到我的ETH挖矿速度<a href="https://ethermine.org/miners/ba90FF2fA9016B3883799D150fB15DB5b4894f8b" target="_blank" rel="external">https://ethermine.org/miners/ba90FF2fA9016B3883799D150fB15DB5b4894f8b</a>和SiaCoin挖矿速度 <a href="https://siamining.com/addresses/a808cdb0061d81418f6f146775dad4e3590eba207f285ad67b061a2ec01f6402960e02e36e7a" target="_blank" rel="external">https://siamining.com/addresses/a808cdb0061d81418f6f146775dad4e3590eba207f285ad67b061a2ec01f6402960e02e36e7a</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;操作系统: Ubuntu 16.04，显卡 GTX 1080&lt;/p&gt;
+&lt;h2 id=&quot;1-安装显卡驱动和CUDA&quot;&gt;&lt;a href=&quot;#1-安装显卡驱动和CUDA&quot; class=&quot;headerlink&quot; title=&quot;1. 安装显卡驱动和CUDA&quot;&gt;&lt;/a&gt;1. 安装显卡驱动和CUDA&lt;/h2&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;apt-key adv --fetch-keys http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/7fa2af80.pub&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&quot;deb http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64 /&quot;&lt;/span&gt; | sudo tee /etc/apt/sources.list.d/cuda.list&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;sudo apt-get update&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;sudo apt-get -y install cuda-drivers cuda&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h2 id=&quot;2-编译安装-Genoil-cpp-ethereum&quot;&gt;&lt;a href=&quot;#2-编译安装-Genoil-cpp-ethereum&quot; class=&quot;headerlink&quot; title=&quot;2. 编译安装 Genoil/cpp-ethereum&quot;&gt;&lt;/a&gt;2. 编译安装 Genoil/cpp-ethereum&lt;/h2&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;sudo apt -y install software-properties-common&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;sudo add-apt-repository -y ppa:ethereum/ethereum&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;sudo apt -y update&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;sudo apt -y install git cmake libcryptopp-dev libleveldb-dev libjsoncpp-dev libjsonrpccpp-dev libboost-all-dev libgmp-dev libreadline-dev libcurl4-gnutls-dev ocl-icd-libopencl1 opencl-headers mesa-common-dev libmicrohttpd-dev build-essential&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;git &lt;span class=&quot;built_in&quot;&gt;clone&lt;/span&gt; git@github.com:Genoil/cpp-ethereum.git&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;cd&lt;/span&gt; cpp-ethereum/&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;mkdir build&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;cd&lt;/span&gt; build&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;cmake -DBUNDLE=cudaminer ..&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;make -j8&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;编译完成后会在当前目录的子目录&lt;code&gt;ethminer&lt;/code&gt;下生成一个 &lt;code&gt;ethminer&lt;/code&gt; 可执行文件。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Ethereum" scheme="http://cn.soulmachine.me/tags/Ethereum/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>使用显卡挖比特币教程</title>
+    <link href="http://cn.soulmachine.me/2017-04-07-bitcoin-mining-using-GTX-1080/"/>
+    <id>http://cn.soulmachine.me/2017-04-07-bitcoin-mining-using-GTX-1080/</id>
+    <published>2017-04-08T00:23:55.000Z</published>
+    <updated>2017-04-25T14:07:13.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>操作系统: Ubuntu 16.04，显卡 GTX 1080</p>
+<h2 id="1-安装显卡驱动和CUDA"><a href="#1-安装显卡驱动和CUDA" class="headerlink" title="1. 安装显卡驱动和CUDA"></a>1. 安装显卡驱动和CUDA</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">apt-key adv --fetch-keys http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/7fa2af80.pub</div><div class="line"><span class="built_in">echo</span> <span class="string">"deb http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64 /"</span> | sudo tee /etc/apt/sources.list.d/cuda.list</div><div class="line">sudo apt-get update</div><div class="line">sudo apt-get -y install cuda-drivers cuda</div></pre></td></tr></table></figure>
+<h2 id="2-编译安装-ccMiner"><a href="#2-编译安装-ccMiner" class="headerlink" title="2. 编译安装 ccMiner"></a>2. 编译安装 ccMiner</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">git <span class="built_in">clone</span> --recursive git@github.com:tpruvot/ccminer.git</div><div class="line"><span class="built_in">cd</span> ccminer</div><div class="line">git checkout --track origin/linux</div><div class="line">sudo apt install automake libcurl4-openssl-dev</div></pre></td></tr></table></figure>
+<p>根据显卡修改 <code>Makefile.am</code> (<a href="https://github.com/tpruvot/ccminer/wiki/Compatibility" target="_blank" rel="external">https://github.com/tpruvot/ccminer/wiki/Compatibility</a>), 比如GTX 1080 则用</p>
+<pre><code>nvcc_ARCH = -gencode=arch=compute_61,code=\&quot;sm_61,compute_61\&quot;
+</code></pre><p>开始编译，</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">./autogen.sh</div><div class="line">./configure</div><div class="line">./build.sh</div></pre></td></tr></table></figure>
+<p>编译完成后会在当前目录生成一个 <code>ccminer</code> 可执行文件</p>
+<a id="more"></a>
+<h2 id="3-连接矿池开始挖矿"><a href="#3-连接矿池开始挖矿" class="headerlink" title="3. 连接矿池开始挖矿"></a>3. 连接矿池开始挖矿</h2><p>在这里可以看到全球各大矿池的算力大小: <a href="https://blockchain.info/pools" target="_blank" rel="external">https://blockchain.info/pools</a></p>
+<p>选一个矿池，注册好账号，以 AntPool为例，</p>
+<pre><code>./ccminer -o stratum+tcp://stratum.antpool.com:3333 -u soulmachine.btc01 -p soul123456
+</code></pre><p><code>-o</code> 是矿池服务器地址, <code>-u</code>的格式是 <code>UserId.WorkerId</code>, <code>UserId</code>必须是你注册网站时的用户名，<code>WorkerId</code>随便填，<code>-p</code>表示密码，随便填即可。还有个参数, <code>--algo</code>表示算法，可以不填，不填的时候默认为<code>auto</code>，表示自动选择哈希算法。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;操作系统: Ubuntu 16.04，显卡 GTX 1080&lt;/p&gt;
+&lt;h2 id=&quot;1-安装显卡驱动和CUDA&quot;&gt;&lt;a href=&quot;#1-安装显卡驱动和CUDA&quot; class=&quot;headerlink&quot; title=&quot;1. 安装显卡驱动和CUDA&quot;&gt;&lt;/a&gt;1. 安装显卡驱动和CUDA&lt;/h2&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;apt-key adv --fetch-keys http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/7fa2af80.pub&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&quot;deb http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64 /&quot;&lt;/span&gt; | sudo tee /etc/apt/sources.list.d/cuda.list&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;sudo apt-get update&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;sudo apt-get -y install cuda-drivers cuda&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h2 id=&quot;2-编译安装-ccMiner&quot;&gt;&lt;a href=&quot;#2-编译安装-ccMiner&quot; class=&quot;headerlink&quot; title=&quot;2. 编译安装 ccMiner&quot;&gt;&lt;/a&gt;2. 编译安装 ccMiner&lt;/h2&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;git &lt;span class=&quot;built_in&quot;&gt;clone&lt;/span&gt; --recursive git@github.com:tpruvot/ccminer.git&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;cd&lt;/span&gt; ccminer&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;git checkout --track origin/linux&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;sudo apt install automake libcurl4-openssl-dev&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;根据显卡修改 &lt;code&gt;Makefile.am&lt;/code&gt; (&lt;a href=&quot;https://github.com/tpruvot/ccminer/wiki/Compatibility&quot;&gt;https://github.com/tpruvot/ccminer/wiki/Compatibility&lt;/a&gt;), 比如GTX 1080 则用&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;nvcc_ARCH = -gencode=arch=compute_61,code=\&amp;quot;sm_61,compute_61\&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;开始编译，&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;./autogen.sh&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;./configure&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;./build.sh&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;编译完成后会在当前目录生成一个 &lt;code&gt;ccminer&lt;/code&gt; 可执行文件&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="比特币" scheme="http://cn.soulmachine.me/tags/%E6%AF%94%E7%89%B9%E5%B8%81/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>深度学习开发环境配置：Ubuntu1 6.04+Nvidia GTX 1080+CUDA 8.0</title>
+    <link href="http://cn.soulmachine.me/2016-08-17-deep-learning-cuda-development-environment/"/>
+    <id>http://cn.soulmachine.me/2016-08-17-deep-learning-cuda-development-environment/</id>
+    <published>2016-08-17T23:59:11.000Z</published>
+    <updated>2017-04-05T23:42:45.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>前提条件，已经安装好了 Ubuntu 16.04 操作系统， 见<a href="http://cn.soulmachine.me/2016-08-14-dual-install-windows-ubuntu/">安装 Windows 10 和 Ubuntu 16.04 双系统</a></p>
+<p>懒人版方法：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">apt-key adv --fetch-keys http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/7fa2af80.pub</div><div class="line"><span class="built_in">echo</span> <span class="string">"deb http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64 /"</span> | sudo tee /etc/apt/sources.list.d/cuda.list</div><div class="line">sudo apt-get update</div><div class="line">sudo apt-get -y install cuda-drivers cuda</div></pre></td></tr></table></figure>
+<p>这个方法会安装稳定版的驱动和CUDA，可能不那么新。</p>
+<p>然后开始安装 cuDNN, 先下载 cuDNN 6.0, </p>
+<pre><code>wget http://developer.download.nvidia.com/compute/redist/cudnn/v6.0/cudnn-8.0-linux-x64-v6.0.tgz
+</code></pre><p>然后解压到 <code>/usr/local</code>，</p>
+<pre><code>sudo tar -zxf cudnn-8.0-linux-x64-v6.0.tgz -P /usr/local
+</code></pre><p>至此，驱动， CUDA 和 cuDNN都安装完了。</p>
+<p>如果你想安装最新版的驱动和最新版的CUDA，那么接着读下去吧。</p>
+<h2 id="1-安装-Nvidia-驱动"><a href="#1-安装-Nvidia-驱动" class="headerlink" title="1. 安装 Nvidia 驱动"></a>1. 安装 Nvidia 驱动</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">sudo add-apt-repository -qy ppa:graphics-drivers/ppa</div><div class="line">sudo apt-get -qy update</div><div class="line">sudo apt-get -qy install nvidia-370</div><div class="line">sudo apt-get -qy install mesa-common-dev</div><div class="line">sudo apt-get -qy install freeglut3-dev</div><div class="line">sudo reboot</div></pre></td></tr></table></figure>
+<p>注意，一般比较新的主板，默认是UEFI BIOS，默认启用了 Secure Boot，否则开机后登陆不进去。老主板没有这个问题。</p>
+<h2 id="2-安装-CUDA-8-x"><a href="#2-安装-CUDA-8-x" class="headerlink" title="2. 安装 CUDA 8.x"></a>2. 安装 CUDA 8.x</h2><p>去 <a href="https://developer.nvidia.com/cuda-release-candidate-download" target="_blank" rel="external">CUDA 8.x 下载页面</a>，一定要下载 runfile 安装方式的安装包，参考资料里的好几篇都是选择这种方式，貌似 deb包有坑？</p>
+<a id="more"></a>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">chmod u+x ./cuda_8.0.27_linux.run</div><div class="line">sudo ./cuda_8.0.27_linux.run --tmpdir=/tmp</div></pre></td></tr></table></figure>
+<p>执行后会有一系列提示让你确认，第一个就是问你是否安装显卡驱动，由于前一步已经安装了显卡驱动，所以这里就不需要了，况且 runfile 自带的驱动版本不是最新的。 因此 <code>Install NVIDIA Accelerated Graphics Driver for Linux-x86_64 361.77?</code> 这里选择 no。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">Do you accept the previously read EULA?</div><div class="line">accept/decline/quit: accept</div><div class="line"></div><div class="line">Install NVIDIA Accelerated Graphics Driver for Linux-x86_64 361.77?</div><div class="line">(y)es/(n)o/(q)uit: n</div><div class="line"></div><div class="line">Install the CUDA 8.0 Toolkit?</div><div class="line">(y)es/(n)o/(q)uit: y</div><div class="line"></div><div class="line">Enter Toolkit Location</div><div class="line"> [ default is /usr/local/cuda-8.0 ]: </div><div class="line"></div><div class="line">Do you want to install a symbolic link at /usr/local/cuda?</div><div class="line">(y)es/(n)o/(q)uit: y</div><div class="line"></div><div class="line">Install the CUDA 8.0 Samples?</div><div class="line">(y)es/(n)o/(q)uit: y</div><div class="line"></div><div class="line">Enter CUDA Samples Location</div><div class="line"> [ default is /home/programmer ]:</div></pre></td></tr></table></figure>
+<p>你以为你会成功安装吗？并不是，你一定会碰到一个错误，<code>Installation Failed. Using unsupported Compiler.</code> ，这是因为 Ubuntu 16.04 默认的 GCC 5.4 对于 CUDA 8.x来说过于新了，CUDA 安装脚本还不能识别新版本的 GCC。</p>
+<p>看了一下安装日志，解决方案也很简单，加一个 <code>--override</code> 选项，</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo ./cuda_8.0.27_linux.run --tmpdir=/tmp --override</div></pre></td></tr></table></figure>
+<p>这次可以成功了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">===========</div><div class="line">= Summary =</div><div class="line">===========</div><div class="line"></div><div class="line">Driver:   Not Selected</div><div class="line">Toolkit:  Installed in /usr/local/cuda-8.0</div><div class="line">Samples:  Installed in /home/programmer, but missing recommended libraries</div><div class="line"></div><div class="line">Please make sure that</div><div class="line"> -   PATH includes /usr/local/cuda-8.0/bin</div><div class="line"> -   LD_LIBRARY_PATH includes /usr/local/cuda-8.0/lib64, or, add /usr/local/cuda-8.0/lib64 to /etc/ld.so.conf and run ldconfig as root</div><div class="line"></div><div class="line">To uninstall the CUDA Toolkit, run the uninstall script in /usr/local/cuda-8.0/bin</div><div class="line"></div><div class="line">Please see CUDA_Installation_Guide_Linux.pdf in /usr/local/cuda-8.0/doc/pdf for detailed information on setting up CUDA.</div><div class="line"></div><div class="line">***WARNING: Incomplete installation! This installation did not install the CUDA Driver. A driver of version at least 361.00 is required for CUDA 8.0 functionality to work.</div><div class="line"></div><div class="line">To install the driver using this installer, run the following command, replacing &lt;CudaInstaller&gt; with the name of this run file:</div><div class="line"></div><div class="line">    sudo &lt;CudaInstaller&gt;.run -silent -driver</div><div class="line"></div><div class="line">Logfile is /tmp/cuda_install_6794.log</div><div class="line"></div><div class="line">Signal caught, cleaning up</div></pre></td></tr></table></figure>
+<p>把以下两行加入到 <code>.bashrc</code>，</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">export</span> PATH=/usr/<span class="built_in">local</span>/cuda-8.0/bin<span class="variable">$&#123;PATH:+:$&#123;PATH&#125;</span>&#125;</div><div class="line"><span class="built_in">export</span> LD_LIBRARY_PATH=/usr/<span class="built_in">local</span>/cuda-8.0/lib64<span class="variable">$&#123;LD_LIBRARY_PATH:+:$&#123;LD_LIBRARY_PATH&#125;</span>&#125;</div></pre></td></tr></table></figure>
+<h2 id="安装补丁"><a href="#安装补丁" class="headerlink" title="安装补丁"></a>安装补丁</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">chmod u+x ./cuda_8.0.27.1_linux.run</div><div class="line">sudo ./cuda_8.0.27.1_linux.run</div></pre></td></tr></table></figure>
+<h2 id="测试是否安装成功"><a href="#测试是否安装成功" class="headerlink" title="测试是否安装成功"></a>测试是否安装成功</h2><p>最后再来测试一下CUDA，运行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nvidia-smi</div></pre></td></tr></table></figure>
+<p>结果如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">+-----------------------------------------------------------------------------+</div><div class="line">| NVIDIA-SMI 370.23                 Driver Version: 370.23                    |</div><div class="line">|-------------------------------+----------------------+----------------------+</div><div class="line">| GPU  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |</div><div class="line">| Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |</div><div class="line">|===============================+======================+======================|</div><div class="line">|   0  GeForce GTX 1080    Off  | 0000:05:00.0      On |                  N/A |</div><div class="line">| 27%   29C    P8     9W / 180W |    515MiB /  8110MiB |      4%      Default |</div><div class="line">+-------------------------------+----------------------+----------------------+</div><div class="line"></div><div class="line">+-----------------------------------------------------------------------------+</div><div class="line">| Processes:                                                       GPU Memory |</div><div class="line">|  GPU       PID  Type  Process name                               Usage      |</div><div class="line">|=============================================================================|</div><div class="line">|    0      4761    G   /usr/lib/xorg/Xorg                             259MiB |</div><div class="line">|    0      5224    G   compiz                                         253MiB |</div><div class="line">+-----------------------------------------------------------------------------+</div></pre></td></tr></table></figure>
+<p>再来试几个CUDA例子：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> ~/NVIDIA_CUDA-8.0_Samples/1_Utilities/deviceQuery</div><div class="line">make</div></pre></td></tr></table></figure>
+<p>执行 <code>./deviceQuery</code>，得到：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line">CUDA Device Query (Runtime API) version (CUDART static linking)</div><div class="line"></div><div class="line">Detected 1 CUDA Capable device(s)</div><div class="line"></div><div class="line">Device 0: &quot;GeForce GTX 1080&quot;</div><div class="line">  CUDA Driver Version / Runtime Version          8.0 / 8.0</div><div class="line">  CUDA Capability Major/Minor version number:    6.1</div><div class="line">  Total amount of global memory:                 8110 MBytes (8504279040 bytes)</div><div class="line">  (20) Multiprocessors, (128) CUDA Cores/MP:     2560 CUDA Cores</div><div class="line">  GPU Max Clock rate:                            1734 MHz (1.73 GHz)</div><div class="line">  Memory Clock rate:                             5005 Mhz</div><div class="line">  Memory Bus Width:                              256-bit</div><div class="line">  L2 Cache Size:                                 2097152 bytes</div><div class="line">  Maximum Texture Dimension Size (x,y,z)         1D=(131072), 2D=(131072, 65536), 3D=(16384, 16384, 16384)</div><div class="line">  Maximum Layered 1D Texture Size, (num) layers  1D=(32768), 2048 layers</div><div class="line">  Maximum Layered 2D Texture Size, (num) layers  2D=(32768, 32768), 2048 layers</div><div class="line">  Total amount of constant memory:               65536 bytes</div><div class="line">  Total amount of shared memory per block:       49152 bytes</div><div class="line">  Total number of registers available per block: 65536</div><div class="line">  Warp size:                                     32</div><div class="line">  Maximum number of threads per multiprocessor:  2048</div><div class="line">  Maximum number of threads per block:           1024</div><div class="line">  Max dimension size of a thread block (x,y,z): (1024, 1024, 64)</div><div class="line">  Max dimension size of a grid size    (x,y,z): (2147483647, 65535, 65535)</div><div class="line">  Maximum memory pitch:                          2147483647 bytes</div><div class="line">  Texture alignment:                             512 bytes</div><div class="line">  Concurrent copy and kernel execution:          Yes with 2 copy engine(s)</div><div class="line">  Run time limit on kernels:                     Yes</div><div class="line">  Integrated GPU sharing Host Memory:            No</div><div class="line">  Support host page-locked memory mapping:       Yes</div><div class="line">  Alignment requirement for Surfaces:            Yes</div><div class="line">  Device has ECC support:                        Disabled</div><div class="line">  Device supports Unified Addressing (UVA):      Yes</div><div class="line">  Device PCI Domain ID / Bus ID / location ID:   0 / 5 / 0</div><div class="line"></div><div class="line">  Compute Mode:</div><div class="line">     &lt; Default (multiple host threads can use ::cudaSetDevice() with device simultaneously) &gt;</div><div class="line"></div><div class="line">deviceQuery, CUDA Driver = CUDART, CUDA Driver Version = 8.0, CUDA Runtime Version = 8.0, NumDevs = 1, Device0 = GeForce GTX 1080</div><div class="line">Result = PASS</div></pre></td></tr></table></figure>
+<p>再测试试一下nobody：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> ~/NVIDIA_CUDA-8.0_Samples/5_Simulations/nbody/</div><div class="line">make</div></pre></td></tr></table></figure>
+<p>执行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./nbody -benchmark -numbodies=256000 -device=0</div></pre></td></tr></table></figure>
+<p>得到：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&gt; Windowed mode</div><div class="line">&gt; Simulation data stored in video memory</div><div class="line">&gt; Single precision floating point simulation</div><div class="line">&gt; 1 Devices used for simulation</div><div class="line">gpuDeviceInit() CUDA Device [0]: &quot;GeForce GTX 1080</div><div class="line">&gt; Compute 6.1 CUDA device: [GeForce GTX 1080]</div><div class="line">number of bodies = 256000</div><div class="line">256000 bodies, total time for 10 iterations: 2364.286 ms</div><div class="line">= 277.192 billion interactions per second</div><div class="line">= 5543.830 single-precision GFLOP/s at 20 flops per interaction</div></pre></td></tr></table></figure>
+<p>至此，说明 CUDA 8.x 安装成功了。</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><a href="http://www.52nlp.cn/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E4%B8%BB%E6%9C%BA%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE-ubuntu-16-04-nvidia-gtx-1080-cuda-8" target="_blank" rel="external">深度学习主机环境配置: Ubuntu16.04+Nvidia GTX 1080+CUDA8.0</a></li>
+<li><a href="http://yangcha.github.io/GTX-1080/" target="_blank" rel="external">Nvidia GTX 1080 on Ubuntu 16.04 for Deep Learning - Changjiang</a></li>
+<li><a href="http://guanghan.info/blog/en/my-works/building-our-personal-deep-learning-rig-gtx-1080-ubuntu-16-04-cuda-8-0rc-cudnn-7-tensorflowmxnetcaffedarknet/" target="_blank" rel="external">Build Personal Deep Learning Rig: GTX 1080 + Ubuntu 16.04 + CUDA 8.0RC + CuDnn 7 + Tensorflow/Mxnet/Caffe/Darknet - by Guanghan Ning</a></li>
+<li><a href="https://github.com/BVLC/caffe/wiki/GeForce-GTX-1080,---CUDA-8.0,---Ubuntu-16.04,---Caffe" target="_blank" rel="external">GeForce GTX 1080, CUDA 8.0, Ubuntu 16.04, Caffe</a></li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;前提条件，已经安装好了 Ubuntu 16.04 操作系统， 见&lt;a href=&quot;http://cn.soulmachine.me/2016-08-14-dual-install-windows-ubuntu/&quot;&gt;安装 Windows 10 和 Ubuntu 16.04 双系统&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;懒人版方法：&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;apt-key adv --fetch-keys http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/7fa2af80.pub&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&quot;deb http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64 /&quot;&lt;/span&gt; | sudo tee /etc/apt/sources.list.d/cuda.list&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;sudo apt-get update&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;sudo apt-get -y install cuda-drivers cuda&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;这个方法会安装稳定版的驱动和CUDA，可能不那么新。&lt;/p&gt;
+&lt;p&gt;然后开始安装 cuDNN, 先下载 cuDNN 6.0, &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;wget http://developer.download.nvidia.com/compute/redist/cudnn/v6.0/cudnn-8.0-linux-x64-v6.0.tgz
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;然后解压到 &lt;code&gt;/usr/local&lt;/code&gt;，&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;sudo tar -zxf cudnn-8.0-linux-x64-v6.0.tgz -P /usr/local
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;至此，驱动， CUDA 和 cuDNN都安装完了。&lt;/p&gt;
+&lt;p&gt;如果你想安装最新版的驱动和最新版的CUDA，那么接着读下去吧。&lt;/p&gt;
+&lt;h2 id=&quot;1-安装-Nvidia-驱动&quot;&gt;&lt;a href=&quot;#1-安装-Nvidia-驱动&quot; class=&quot;headerlink&quot; title=&quot;1. 安装 Nvidia 驱动&quot;&gt;&lt;/a&gt;1. 安装 Nvidia 驱动&lt;/h2&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;sudo add-apt-repository -qy ppa:graphics-drivers/ppa&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;sudo apt-get -qy update&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;sudo apt-get -qy install nvidia-370&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;sudo apt-get -qy install mesa-common-dev&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;sudo apt-get -qy install freeglut3-dev&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;sudo reboot&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;注意，一般比较新的主板，默认是UEFI BIOS，默认启用了 Secure Boot，否则开机后登陆不进去。老主板没有这个问题。&lt;/p&gt;
+&lt;h2 id=&quot;2-安装-CUDA-8-x&quot;&gt;&lt;a href=&quot;#2-安装-CUDA-8-x&quot; class=&quot;headerlink&quot; title=&quot;2. 安装 CUDA 8.x&quot;&gt;&lt;/a&gt;2. 安装 CUDA 8.x&lt;/h2&gt;&lt;p&gt;去 &lt;a href=&quot;https://developer.nvidia.com/cuda-release-candidate-download&quot;&gt;CUDA 8.x 下载页面&lt;/a&gt;，一定要下载 runfile 安装方式的安装包，参考资料里的好几篇都是选择这种方式，貌似 deb包有坑？&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="深度学习" scheme="http://cn.soulmachine.me/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+      <category term="深度学习" scheme="http://cn.soulmachine.me/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>安装 Windows 10 和 Ubuntu 16.04 双系统</title>
+    <link href="http://cn.soulmachine.me/2016-08-14-dual-install-windows-ubuntu/"/>
+    <id>http://cn.soulmachine.me/2016-08-14-dual-install-windows-ubuntu/</id>
+    <published>2016-08-14T22:23:11.000Z</published>
+    <updated>2017-04-05T21:42:18.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>本文是上一篇文章<a href="http://cn.soulmachine.me/2016-08-13-my-deep-learning-workstation-assemble-process-note/">我的深度学习工作站攒机过程记录</a>的续集。</p>
+<h2 id="前提条件"><a href="#前提条件" class="headerlink" title="前提条件"></a>前提条件</h2><ol>
+<li><p>主板BIOS是 UEFI 模式</p>
+<p> 首先确认下你的主板的BIOS是UEFI模式，例如 Asus X99-E WS/USB 3.1 主板的BIOS默认就是UEFI模式。</p>
+</li>
+<li><p>两个U盘，一个是可启动的Ubuntu 16.04.1 安装盘，一个是Windows 10 1607 x64 安装盘</p>
+<p> 制作可启动安装盘很简单，下载 <code>cn_windows_10_multiple_editions_version_1511_updated_apr_2016_x64_dvd_8712460.iso</code> 和 <code>ubuntu-16.04.1-desktop-amd64.iso</code> ，找一台 Windows 电脑，安装 UltraISO这个小软件，启动软件，点击 <code>打开</code>，打开操作系统的ISO文件，点击菜单<code>启动-&gt;写入硬盘映像</code>，即可开始刻录U盘。</p>
+<p> 如果你只有一个U盘，有没问题，先刻录Windows，装完了Windows后，格式化U盘，再刻录一个Ubuntu 进去。</p>
+</li>
+<li><p>关闭主板的 Fast Startup</p>
+<p> 进入 UEFI BIOS 界面，点击 Boot 菜单，找打 Fast Boot, 改为 <code>Disabled</code></p>
+</li>
+<li><p>关闭主板的 SRT（Intel Smart Response Technology)</p>
+<p> 进入 UEFI BIOS 界面，点击 Advanced菜单，找到 Intel Rapid Storage Technology, 点击进去，如果你没有RAID模式的磁盘，这个RST一般是灰色的，没有启用。</p>
+</li>
+<li><p>禁用主板的 Secure Boot</p>
+<p> 如果你想要装Windows和 Linux 双操作系统，那么必须要禁用主板的 Secure Boot ，因为主板内置的公钥只有一个，就是微软的，因为微软影响力大。更具体信息请参考 <a href="http://www.ruanyifeng.com/blog/2013/01/secure_boot.html" target="_blank" rel="external">反Secure Boot垄断：兼谈如何在Windows 8电脑上安装Linux - 阮一峰</a></p>
+<p> Ubuntu 已经买了这个证书，所以微软的这个公钥，也能允许Ubuntu安装在主板上。看到这里，你会问，那岂不是不用禁用 Secure Boot 了？</p>
+<p> 不尽然，在Ubuntu 下安装 GTX 1080 的 Nvidia 驱动的时候，会警告 <code>UEFI Secure Boot is not compatible with the use of third-party drivers.</code> 如果没有禁用Secure Boot, 安装了显卡驱动后，开机，输入密码时，会进不去系统，屏幕会闪一下，有回到了登录界面，死循环 。。。</p>
+<p> 具体步骤请参考 <a href="http://www.technorms.com/45538/disable-enable-secure-boot-asus-motherboard-uefi-bios-utility" target="_blank" rel="external">How to Disable or Enable Secure Boot on Your Computer via ASUS UEFI BIOS Utility</a> ：</p>
+<ul>
+<li>进入 UEFI BIOS界面，选择 <code>Boot-&gt;Secure Boot-&gt; Key Management -&gt; Save Secure Boot Keys</code>，插入U盘，备份key到这个U盘，会有四个文件,  <code>PK</code>, <code>KEK</code>, <code>DB</code> 和 <code>DBX</code> 写入到U盘。</li>
+<li>删除 Platform Key. 选择 <code>Delete PK</code>，点击OK确认删除。删除后回到上一级菜单，可以看到 Secure Boot 已经变成 disabled 了。</li>
+</ul>
+</li>
+<li><p>顺序上，最好是先安装 Windows 再安装 Ubuntu，本文的方法1和方法2都是这个顺序</p>
+</li>
+<li><p>安装了Wiondows后，必须要关闭Windows的 Fast Startup。</p>
+<p> 进入<code>控制面板-&gt;电源</code>，找到 Fast Startup，禁用掉。</p>
+</li>
+</ol>
+<h2 id="Windows-和-Ubuntu-安装在同一块硬盘上"><a href="#Windows-和-Ubuntu-安装在同一块硬盘上" class="headerlink" title="Windows 和 Ubuntu 安装在同一块硬盘上"></a>Windows 和 Ubuntu 安装在同一块硬盘上</h2><p>开机，按住 DEL 键进入BIOS，点击Boot Menu(F8)菜单，选择从U盘启动，且注意要选择UEFI模式的U盘</p>
+<a id="more"></a>
+<p>开始安装Windows, 安装完后，重启，进入Windows 后，关闭Windows的 Fast Startup，即进入<code>控制面板-&gt;电源</code>，找到 Fast Startup，禁用掉。</p>
+<p>把 Ubuntu U盘启动盘插上，开机，按DEL键进入BIOS，选择从这个U盘启动，要选择UEFI模式的U盘，开始安装，记得选择 <code>Install Ubuntu alongside Windows Boot Manager</code></p>
+<h2 id="Windows-和-Ubuntu-分别安装不同的硬盘上"><a href="#Windows-和-Ubuntu-分别安装不同的硬盘上" class="headerlink" title="Windows 和 Ubuntu 分别安装不同的硬盘上"></a>Windows 和 Ubuntu 分别安装不同的硬盘上</h2><p>先按照方法一中的步骤，安装好Windows，然后关机，把这块硬盘拆下来，当做它不存在。</p>
+<p>开始安装Ubuntu，安装到另一块硬盘上。选择 <code>Erase disk and install Ubuntu</code>，接下来选择安装到 SM951 NVMe SSD 这块磁盘上。</p>
+<p>把 Windows 那块硬盘在接入主板。</p>
+<p>这样，两块硬盘就分别安装了独立的操作系统，具体进入哪个，由UEFI BIOS里的启动优先级来决定。你想默认启动Windows，那就把Windows那块硬盘拖动到第一的位置，如果你想默认启动Ubuntu，那就把Ubuntu那块硬盘拖动到第一的位置。</p>
+<p>【可选项】如果你不想通过UEFI BIOS来切换操作系统，你还可以把Windows加入 Ubuntu的 grub 菜单，开机进入Ubuntu后，执行</p>
+<pre><code>sudo update-grub
+</code></pre><p>这个命令会自动扫描其他硬盘上的操作系统，并加入grub 开机启动菜单。</p>
+<h2 id="自动mount硬盘"><a href="#自动mount硬盘" class="headerlink" title="自动mount硬盘"></a>自动mount硬盘</h2><p>如果你有多块硬盘，需要在 Ubuntu 启动后自动mount, 那么可以在 <code>/etc/fstab</code> 里添加配置，一行对应一块硬盘，例如</p>
+<pre><code>UUID=edf094f8-42aa-8501-ef91245ff587  /data  ext4  errors=remount-ro  0  2
+</code></pre><p>上面这行配置添加了一块硬盘，mount 到 <code>/data</code>，文件系统为 ext4。</p>
+<h2 id="备份系统"><a href="#备份系统" class="headerlink" title="备份系统"></a>备份系统</h2><p>在Windows上我们用Ghost来备份整个系统，那么在Ubuntu上，也有类似的工具，<a href="http://clonezilla.org/" target="_blank" rel="external">Clonezilla</a>，下载 ISO文件后，刻录到U盘，然后用U盘启动台式机，将系统盘整个备份，下次就不用重新装机了，直接从镜像文件恢复一下，就得到一个崭新的系统啦。</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><a href="https://help.ubuntu.com/community/UEFI" target="_blank" rel="external">UEFI - Ubuntu</a></li>
+<li><a href="http://forum.ubuntu.org.cn/viewtopic.php?t=467746" target="_blank" rel="external">在Win8基础上加装Ubuntu，得先搞清楚Win8是以何种方式安装的</a></li>
+<li><a href="http://linuxbsdos.com/2015/10/31/how-to-dual-boot-windows-10-and-ubuntu-15-10-on-two-hard-drives/" target="_blank" rel="external">How to dual-boot Windows 10 and Ubuntu 15.10 on two hard drives</a></li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;本文是上一篇文章&lt;a href=&quot;http://cn.soulmachine.me/2016-08-13-my-deep-learning-workstation-assemble-process-note/&quot;&gt;我的深度学习工作站攒机过程记录&lt;/a&gt;的续集。&lt;/p&gt;
+&lt;h2 id=&quot;前提条件&quot;&gt;&lt;a href=&quot;#前提条件&quot; class=&quot;headerlink&quot; title=&quot;前提条件&quot;&gt;&lt;/a&gt;前提条件&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;主板BIOS是 UEFI 模式&lt;/p&gt;
+&lt;p&gt; 首先确认下你的主板的BIOS是UEFI模式，例如 Asus X99-E WS/USB 3.1 主板的BIOS默认就是UEFI模式。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;两个U盘，一个是可启动的Ubuntu 16.04.1 安装盘，一个是Windows 10 1607 x64 安装盘&lt;/p&gt;
+&lt;p&gt; 制作可启动安装盘很简单，下载 &lt;code&gt;cn_windows_10_multiple_editions_version_1511_updated_apr_2016_x64_dvd_8712460.iso&lt;/code&gt; 和 &lt;code&gt;ubuntu-16.04.1-desktop-amd64.iso&lt;/code&gt; ，找一台 Windows 电脑，安装 UltraISO这个小软件，启动软件，点击 &lt;code&gt;打开&lt;/code&gt;，打开操作系统的ISO文件，点击菜单&lt;code&gt;启动-&amp;gt;写入硬盘映像&lt;/code&gt;，即可开始刻录U盘。&lt;/p&gt;
+&lt;p&gt; 如果你只有一个U盘，有没问题，先刻录Windows，装完了Windows后，格式化U盘，再刻录一个Ubuntu 进去。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;关闭主板的 Fast Startup&lt;/p&gt;
+&lt;p&gt; 进入 UEFI BIOS 界面，点击 Boot 菜单，找打 Fast Boot, 改为 &lt;code&gt;Disabled&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;关闭主板的 SRT（Intel Smart Response Technology)&lt;/p&gt;
+&lt;p&gt; 进入 UEFI BIOS 界面，点击 Advanced菜单，找到 Intel Rapid Storage Technology, 点击进去，如果你没有RAID模式的磁盘，这个RST一般是灰色的，没有启用。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;禁用主板的 Secure Boot&lt;/p&gt;
+&lt;p&gt; 如果你想要装Windows和 Linux 双操作系统，那么必须要禁用主板的 Secure Boot ，因为主板内置的公钥只有一个，就是微软的，因为微软影响力大。更具体信息请参考 &lt;a href=&quot;http://www.ruanyifeng.com/blog/2013/01/secure_boot.html&quot;&gt;反Secure Boot垄断：兼谈如何在Windows 8电脑上安装Linux - 阮一峰&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt; Ubuntu 已经买了这个证书，所以微软的这个公钥，也能允许Ubuntu安装在主板上。看到这里，你会问，那岂不是不用禁用 Secure Boot 了？&lt;/p&gt;
+&lt;p&gt; 不尽然，在Ubuntu 下安装 GTX 1080 的 Nvidia 驱动的时候，会警告 &lt;code&gt;UEFI Secure Boot is not compatible with the use of third-party drivers.&lt;/code&gt; 如果没有禁用Secure Boot, 安装了显卡驱动后，开机，输入密码时，会进不去系统，屏幕会闪一下，有回到了登录界面，死循环 。。。&lt;/p&gt;
+&lt;p&gt; 具体步骤请参考 &lt;a href=&quot;http://www.technorms.com/45538/disable-enable-secure-boot-asus-motherboard-uefi-bios-utility&quot;&gt;How to Disable or Enable Secure Boot on Your Computer via ASUS UEFI BIOS Utility&lt;/a&gt; ：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;进入 UEFI BIOS界面，选择 &lt;code&gt;Boot-&amp;gt;Secure Boot-&amp;gt; Key Management -&amp;gt; Save Secure Boot Keys&lt;/code&gt;，插入U盘，备份key到这个U盘，会有四个文件,  &lt;code&gt;PK&lt;/code&gt;, &lt;code&gt;KEK&lt;/code&gt;, &lt;code&gt;DB&lt;/code&gt; 和 &lt;code&gt;DBX&lt;/code&gt; 写入到U盘。&lt;/li&gt;
+&lt;li&gt;删除 Platform Key. 选择 &lt;code&gt;Delete PK&lt;/code&gt;，点击OK确认删除。删除后回到上一级菜单，可以看到 Secure Boot 已经变成 disabled 了。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;顺序上，最好是先安装 Windows 再安装 Ubuntu，本文的方法1和方法2都是这个顺序&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;安装了Wiondows后，必须要关闭Windows的 Fast Startup。&lt;/p&gt;
+&lt;p&gt; 进入&lt;code&gt;控制面板-&amp;gt;电源&lt;/code&gt;，找到 Fast Startup，禁用掉。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&quot;Windows-和-Ubuntu-安装在同一块硬盘上&quot;&gt;&lt;a href=&quot;#Windows-和-Ubuntu-安装在同一块硬盘上&quot; class=&quot;headerlink&quot; title=&quot;Windows 和 Ubuntu 安装在同一块硬盘上&quot;&gt;&lt;/a&gt;Windows 和 Ubuntu 安装在同一块硬盘上&lt;/h2&gt;&lt;p&gt;开机，按住 DEL 键进入BIOS，点击Boot Menu(F8)菜单，选择从U盘启动，且注意要选择UEFI模式的U盘&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="深度学习" scheme="http://cn.soulmachine.me/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+      <category term="深度学习" scheme="http://cn.soulmachine.me/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>我的深度学习工作站攒机过程记录</title>
+    <link href="http://cn.soulmachine.me/2016-08-13-my-deep-learning-workstation-assemble-process-note/"/>
+    <id>http://cn.soulmachine.me/2016-08-13-my-deep-learning-workstation-assemble-process-note/</id>
+    <published>2016-08-13T09:26:11.000Z</published>
+    <updated>2016-09-09T06:32:49.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>一年前就有攒一台深度学习工作站的想法了，今年 6月29号在Amazon 上抢到了一块 GTX 1080后，正式开始了攒机，经过了漫长了的一个半月，到今天8约13号，终于凑齐了所有零件并开机点亮了。为甚么这么漫长？因为本屌为了省钱几乎所有零件都是在 eBay和Amazon 上买的二手（除了GTX 1080太新没二手货）。</p>
+<h2 id="硬件配置单"><a href="#硬件配置单" class="headerlink" title="硬件配置单"></a>硬件配置单</h2><h3 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h3><p>懒人不想看过程的话，可以先看结论。</p>
+<p>以下是我的配置单：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">配件名</th>
+<th style="text-align:center">品牌型号</th>
+<th style="text-align:center">数量</th>
+<th style="text-align:center">价格</th>
+<th style="text-align:center">哪里买的</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">机箱</td>
+<td style="text-align:center">Corsair Carbide Air 540</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">$130.57</td>
+<td style="text-align:center">Amazon 二手</td>
+</tr>
+<tr>
+<td style="text-align:center">主板</td>
+<td style="text-align:center">Asus X99-E WS/USB3.1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">$563.84</td>
+<td style="text-align:center">Amazon 新</td>
+</tr>
+<tr>
+<td style="text-align:center">CPU</td>
+<td style="text-align:center">Intel I7-5930K</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">$467.45</td>
+<td style="text-align:center">eBay 二手</td>
+</tr>
+<tr>
+<td style="text-align:center">CPU 水冷头</td>
+<td style="text-align:center">Corsair H60 Cooler</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">$65.24</td>
+<td style="text-align:center">Amazon 新</td>
+</tr>
+<tr>
+<td style="text-align:center">DDR4内存</td>
+<td style="text-align:center">Kingston 32GB HX421C14FB2K4/32</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">$139.19</td>
+<td style="text-align:center">Amazon新</td>
+</tr>
+<tr>
+<td style="text-align:center">显卡</td>
+<td style="text-align:center">Zotac GTX 1080 Founders Edition</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">$761.24</td>
+<td style="text-align:center">Amazon 新</td>
+</tr>
+<tr>
+<td style="text-align:center">电源</td>
+<td style="text-align:center">EVGA 1600W 80+ Gold 120-G2-1600-X1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">$241.74</td>
+<td style="text-align:center">eBay二手</td>
+</tr>
+<tr>
+<td style="text-align:center">SSD</td>
+<td style="text-align:center">Samsung SM951 256GB M.2 NVMe MZVPV256HDGL</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">$129.5</td>
+<td style="text-align:center">eBay二手</td>
+</tr>
+<tr>
+<td style="text-align:center">机械硬盘</td>
+<td style="text-align:center">WD Green 4TB</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">$162.36</td>
+<td style="text-align:center">Amazon新</td>
+</tr>
+</tbody>
+</table>
+<p>总计：$2661.13</p>
+<p>以上价格已经包含了税。</p>
+<p>这个配置单基本齐全了，唯一还没有到位的是GPU显卡了，目前只有一块 GTX 1080。我打算等一年后 GTX 1080 有二手货了，再收3块二手的，这样就全了。</p>
+<p>接下来一项一项详细说明我为什么这么选择，展示我的决策过程。</p>
+<a id="more"></a>
+<h3 id="机箱"><a href="#机箱" class="headerlink" title="机箱"></a>机箱</h3><p>直接选跟 Nvidia DevBox 同款的机箱，即 Corsair Carbide Air 540</p>
+<h3 id="主板"><a href="#主板" class="headerlink" title="主板"></a>主板</h3><p>硬性要求：</p>
+<ol>
+<li>X99平台</li>
+<li>四个 PCI-E Gen3 x16 接口</li>
+</ol>
+<p>众所周知单机多卡进行训练时，总线带宽是瓶颈，所以主板有越多的PCI-e 3.0 接口越好，可以尽可能把显卡的性能发挥出来。计划上四块 GTX 1080，那么至少需要四路 PCI-e 3.0 的 x16 接口。</p>
+<p>Nvidia DevBox 用的是 Asus X99-E WS 工作站主板，那我也在X99 主板里选了很久，</p>
+<p>这三块板子都有 4路 PCI-e 3.0 x16 接口，</p>
+<ul>
+<li>Asus X99-E WS</li>
+<li>Asus X99-E WS/USB 3.1</li>
+<li>技嘉 GA-X99P-SLI</li>
+</ul>
+<p>当时我还请教了一下 <a href="http://weibo.com/1775948951/DESoMxdRf" target="_blank" rel="external">@硬哥</a> ，问上四块 GTX 1080 显卡的话，用哪个主板好，</p>
+<p><img src="/images/weibo-which-motherboard.png" alt=""></p>
+<p>华硕 X99-E WS/USB 3.1 是 Asus X99-E WS 的新版，本着买新不买旧的原则，那就买  Asus  X99-E WS/USB 3.1 吧。</p>
+<h3 id="CPU"><a href="#CPU" class="headerlink" title="CPU"></a>CPU</h3><p>众所周知单机多卡进行训练时，总线带宽是瓶颈，所以 CPU 的 PCI-e  lane 越多越好，一般消费级的CPU，PCI-e总线根数是 16, 28 或 40，最大就是40，再大就需要上服务器CPU或者双路CPU了。选40， 这个条件下，有两款 CPU 入围，I7-5930K和 I7-5960X, 5860X太贵了，一般机器学习训练中CPU不是瓶颈，所以选 5930K就可以了，这也是 Nvidia 官方推出的 DevBox 工作站所使用的CPU。</p>
+<p>在知乎上看到不少人用 I7-5820K，这个CPU虽然很不错，可是只有 28条 PCI-e总线，所以还是加几百块钱上 5930k比较好。</p>
+<h3 id="CPU水冷头"><a href="#CPU水冷头" class="headerlink" title="CPU水冷头"></a>CPU水冷头</h3><p>其实普通的风扇就可以了，不过水冷更加安静些，所以我选择了一个便宜的 Corsair H60 Cooler ，够用了。</p>
+<h3 id="内存"><a href="#内存" class="headerlink" title="内存"></a>内存</h3><p>DDR4 64G</p>
+<p>再大就没必要了，李沐的这篇博客<a href="http://mli.github.io/gpu/2016/01/17/build-gpu-clusters/" target="_blank" rel="external">GPU集群折腾手记</a>  末尾有说到过，单机4卡的机器，64G内存绰绰有余了。</p>
+<p>况且消费级的I7 CPU，最大支持内存就是 64G。</p>
+<h3 id="显卡"><a href="#显卡" class="headerlink" title="显卡"></a>显卡</h3><p>这个最好选，GTX 1080</p>
+<p>最新出来的 GTX 1080 吊打 Maxwell 架构的 Titan , 价钱又便宜很多，所以显卡最好选。</p>
+<h3 id="电源"><a href="#电源" class="headerlink" title="电源"></a>电源</h3><p>一般 Nvidia 的旗舰显卡，功耗都是压着 300W的线的，四卡就 1200W了，加上主板，CPU等耗电，选一个 1600W的电源吧。</p>
+<p>Nvidia DevBox 用的是 EVGA 1600W 80+ Gold 120-G2-1600-X1 ，那我也用它吧。</p>
+<h3 id="SSD"><a href="#SSD" class="headerlink" title="SSD"></a>SSD</h3><p>起码需要一块SSD作为系统盘。</p>
+<p>当前 SATA III 接口的SSD最普遍也最便宜，不过由于 Asus X99-E WS/USB 3.1 恰好有一个 M.2 接口，我决定买一个 M.2 NVMe 的SSD，不用就浪费了主板的这个接口了。在 eBay 上买了一块二手的 Samsung SM951 256GB M.2 NVMe MZVPV256HDGL 。</p>
+<h3 id="机械硬盘"><a href="#机械硬盘" class="headerlink" title="机械硬盘"></a>机械硬盘</h3><p>随便选，我选择最便宜的绿盘。</p>
+<h3 id="一些波折"><a href="#一些波折" class="headerlink" title="一些波折"></a>一些波折</h3><p>等了一个月终于凑齐了所有配件后，兴奋的开始装机，装完了后发现死活点不亮，<a href="http://weibo.com/1663402687/E1vrO4VFn" target="_blank" rel="external">http://weibo.com/1663402687/E1vrO4VFn</a></p>
+<p><img src="/images/weibo-cannot-boot.png" alt=""></p>
+<p>尼玛，浪费了我2天时间在各种诊断，甚至一度怀疑自己的装机能力一直到怀疑人生。。。</p>
+<p>只好把主板和CPU退货了，又在 eBay上竞拍了一个二手 I7-5930K，这是 eBay 上的 Asus X99-E WS/USB 3.1 竟然没有二手货了，Amazon 也没有二手货，只有一个 refurbishment , 不敢买，只要在 Amazon 买了个全新的主板。</p>
+<p>等了一周多，今天终于齐了，可以开机进入操作系统了。不过有个小问题，按机箱上的开机键，没有反应，必须打开机箱按主板上的那个开机键。当时我内心是崩溃的，不可能每次开机需要打开机箱吧，那多烦啊。于是开始诊断，先用一根金属棒让 POWSER_SW 的两根针脚短路，可以开机，说明主板的POWSER_SW的两根针脚是好的，那么唯一的原因，就是机箱上的开机键不灵了，我打开机箱，把开机键后面焊接的细线按了几下，再开机，机箱上的开机键起作用了。可能是接触不良吧，我也没有深究了，盖上了机箱盖。</p>
+<h2 id="一些配置和-tunning"><a href="#一些配置和-tunning" class="headerlink" title="一些配置和 tunning"></a>一些配置和 tunning</h2><p>打开了TPU，EPU,DR.POWER , EZ_XMP四个开关，TPU推到了中间的 TPU I， 没敢到最右边的 TPU II</p>
+<p>GTX 1080 要插到 PCIE 1,3,5,7的位置上，这几个插槽是X16模式的，其他是x8模式的</p>
+<p>后续：</p>
+<p><a href="http://cn.soulmachine.me/2016-08-14-dual-install-windows-ubuntu/">安装 Windows 10 和 Ubuntu 16.04 双系统</a><br><a href="http://cn.soulmachine.me/2016-08-17-deep-learning-cuda-development-environment/">深度学习开发环境配置：Ubuntu1 6.04+Nvidia GTX 1080+CUDA 8.0</a></p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ol>
+<li><a href="https://developer.nvidia.com/devbox" target="_blank" rel="external">Nvidia DevBox</a></li>
+<li><a href="https://hackaday.io/project/12070-32-tflop-deep-learning-gpu-box" target="_blank" rel="external">32-TFLOP Deep Learning GPU Box - hackaday</a></li>
+<li><a href="https://www.zhihu.com/question/33996159" target="_blank" rel="external">如何配置一台适用于深度学习的工作站？- 知乎</a></li>
+<li><a href="http://exxactcorp.com/deep-learning-workstations-servers.php" target="_blank" rel="external">Exxact Deep Learning Workstation</a></li>
+<li><a href="http://mli.github.io/gpu/2016/01/17/build-gpu-clusters/" target="_blank" rel="external">GPU集群折腾手记 - 李沐</a></li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;一年前就有攒一台深度学习工作站的想法了，今年 6月29号在Amazon 上抢到了一块 GTX 1080后，正式开始了攒机，经过了漫长了的一个半月，到今天8约13号，终于凑齐了所有零件并开机点亮了。为甚么这么漫长？因为本屌为了省钱几乎所有零件都是在 eBay和Amazon 上买的二手（除了GTX 1080太新没二手货）。&lt;/p&gt;
+&lt;h2 id=&quot;硬件配置单&quot;&gt;&lt;a href=&quot;#硬件配置单&quot; class=&quot;headerlink&quot; title=&quot;硬件配置单&quot;&gt;&lt;/a&gt;硬件配置单&lt;/h2&gt;&lt;h3 id=&quot;结论&quot;&gt;&lt;a href=&quot;#结论&quot; class=&quot;headerlink&quot; title=&quot;结论&quot;&gt;&lt;/a&gt;结论&lt;/h3&gt;&lt;p&gt;懒人不想看过程的话，可以先看结论。&lt;/p&gt;
+&lt;p&gt;以下是我的配置单：&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;配件名&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;品牌型号&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;数量&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;价格&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;哪里买的&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;机箱&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;Corsair Carbide Air 540&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;1&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;$130.57&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;Amazon 二手&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;主板&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;Asus X99-E WS/USB3.1&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;1&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;$563.84&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;Amazon 新&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;CPU&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;Intel I7-5930K&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;1&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;$467.45&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;eBay 二手&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;CPU 水冷头&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;Corsair H60 Cooler&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;1&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;$65.24&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;Amazon 新&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;DDR4内存&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;Kingston 32GB HX421C14FB2K4/32&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;4&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;$139.19&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;Amazon新&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;显卡&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;Zotac GTX 1080 Founders Edition&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;1&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;$761.24&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;Amazon 新&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;电源&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;EVGA 1600W 80+ Gold 120-G2-1600-X1&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;1&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;$241.74&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;eBay二手&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;SSD&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;Samsung SM951 256GB M.2 NVMe MZVPV256HDGL&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;1&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;$129.5&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;eBay二手&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;机械硬盘&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;WD Green 4TB&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;1&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;$162.36&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;Amazon新&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;总计：$2661.13&lt;/p&gt;
+&lt;p&gt;以上价格已经包含了税。&lt;/p&gt;
+&lt;p&gt;这个配置单基本齐全了，唯一还没有到位的是GPU显卡了，目前只有一块 GTX 1080。我打算等一年后 GTX 1080 有二手货了，再收3块二手的，这样就全了。&lt;/p&gt;
+&lt;p&gt;接下来一项一项详细说明我为什么这么选择，展示我的决策过程。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="深度学习" scheme="http://cn.soulmachine.me/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+      <category term="深度学习" scheme="http://cn.soulmachine.me/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>安装基于Python3 的NumPy, SciPy和Scikit-Learn</title>
+    <link href="http://cn.soulmachine.me/2014-08-06-install-scikit-learn-with-python3/"/>
+    <id>http://cn.soulmachine.me/2014-08-06-install-scikit-learn-with-python3/</id>
+    <published>2014-08-06T09:04:00.000Z</published>
+    <updated>2016-09-09T06:32:49.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>软件版本：Ubuntun 14.04, Python 3.4, NumPy 1.8.1, SciPy 0.14.0, Scikit-Learn 0.16</p>
+<p>Numpy, SciPy 的官网安装文档，安装的是基于Python 2.7的，SciPy-Learn 官网的安装文档，也是Python 2.7的，如果想基于高大上的Python 3，该怎么安装呢？经过一堆的坑之后，我摸索出了方法。</p>
+<p>##1. 安装Python 3<br>首先我们要安装Python 3, 不过，千万别因为有了Python 3, 就卸载系统自带的Python 2.7，很多软件依赖它，所以不能卸载</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo apt-get install python3</div></pre></td></tr></table></figure>
+<p>设置Python3为默认Python</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ vi ~/.bash_aliases</div><div class="line">$ <span class="built_in">alias</span> python=python3</div><div class="line">  wq</div></pre></td></tr></table></figure>
+<p>关闭当前Shell，重新开一个新Shell，输入python就发现进入Python 3.4 的交互环境了。</p>
+<p>##2. 安装 NumPy SciPy SymPy 等软件<br>参考 <a href="http://www.scipy.org/install.html" target="_blank" rel="external">http://www.scipy.org/install.html</a> , 只不过改成了 python3</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install python3-numpy python3-scipy python3-matplotlib ipython3 ipython3-notebook python3-pandas python-sympy python3-nose</div></pre></td></tr></table></figure>
+<p>##3. 安装 Scikit-Learn<br>参考 <a href="http://scikit-learn.org/stable/install.html" target="_blank" rel="external">http://scikit-learn.org/stable/install.html</a>, 不过要修改成python3</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install build-essential python3-dev python3-setuptools python3-numpy python3-scipy libatlas-dev libatlas3gf-base</div><div class="line">sudo update-alternatives --set libblas.so.3 /usr/lib/atlas-base/atlas/libblas.so.3</div><div class="line">sudo update-alternatives --set liblapack.so.3 /usr/lib/atlas-base/atlas/liblapack.so.3</div><div class="line">sudo apt-get install gfortran</div><div class="line"></div><div class="line">sudo apt-get install git, 并配置好git</div><div class="line">mkdir -p ~/<span class="built_in">local</span>/src</div><div class="line"><span class="built_in">cd</span> ~/<span class="built_in">local</span>/src</div><div class="line">git <span class="built_in">clone</span> git@github.com:scikit-learn/scikit-learn.git</div><div class="line"><span class="built_in">cd</span> scikit-learn</div><div class="line">python setup.py install --user <span class="comment">#开始编译</span></div><div class="line">make PYTHON=python3 NOSETESTS=nosetests3 <span class="comment">#或者使用make编译</span></div><div class="line">nosetests3 -v sklearn <span class="comment">#单元测试，可以在任何位置运行，不一定要在源码目录里</span></div></pre></td></tr></table></figure>
+<p>这里主要的坑是make, 刚开始我直接用 <code>make</code>, 失败，因为它默认是去找Python 2.7的 python.h 来编译，而我没有安装 python-dev, 只是安装了python3-dev，所以会编译失败。</p>
+<p>我给 Scikit-Learn 的邮件组发了封邮件，不久得到了回复，要在make 后面加上 <code>PYTHON=python3</code>，这次编译成功了，不过到单元测试时说找不到<code>nosetests</code>命令，当然找不到了，因为前面安装的是python3-nose而不是python-nose，于是我猜测了一把，用 <code>make PYTHON=python3 NOSETESTS=nosetests3</code>试试, 果然可以！</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;软件版本：Ubuntun 14.04, Python 3.4, NumPy 1.8.1, SciPy 0.14.0, Scikit-Learn 0.16&lt;/p&gt;
+&lt;p&gt;Numpy, SciPy 的官网安装文档，安装的是基于Python 2.7的，SciPy-Learn 官网
+    
+    </summary>
+    
+      <category term="Python" scheme="http://cn.soulmachine.me/categories/Python/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>在Windows上直接使用现成的 OS X 10.9 Mavericks VMware镜像</title>
+    <link href="http://cn.soulmachine.me/2014-04-24-working-os-x-10-dot-9-mavericks-vmware-image-for-windows-os/"/>
+    <id>http://cn.soulmachine.me/2014-04-24-working-os-x-10-dot-9-mavericks-vmware-image-for-windows-os/</id>
+    <published>2014-04-24T21:58:00.000Z</published>
+    <updated>2016-09-09T06:32:49.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>环境: Windows 7, VMware Workstation 10.0.2, Mac OS X 10.9 Mavericks</p>
+<p>本文主要参考了这篇英文博客，<a href="http://www.sysprobs.com/working-os-x-10-9-mavericks-vmware-image-for-windows-os-intel-processor" target="_blank" rel="external">Working OS X 10.9 Mavericks VMware Image For Windows OS and Intel Processor</a></p>
+<p><strong>前提条件</strong>：确保你的电脑支持<code>VT-x</code>技术，并在BIOS里启用它。</p>
+<p>##1. 下载别人做好的镜像<br>由于版权原因，这篇英文博客的作者不再提供下载地址了，不过google一下 “OS X Mavericks 10.9 Retail VMware Image”，可以在海盗湾找到种子，<a href="http://thepiratebay.se/torrent/9012642/OS_X_Mavericks_10.9_Retail_VMware_Image" target="_blank" rel="external">这里</a>。用迅雷或BT客户端下载。还有一种用更快速的下载方法，用百度网盘的离线下载，把magnet链接复制粘贴到百度网盘，等百度网盘下载好了后，再用百度管家客户端下载下来。</p>
+<p>这个文件夹里，只有<code>OS X Mavericks 10.9 Retail VMware Image.7z</code>是有用的额，其他小工具可以分别去下载最新的版本。</p>
+<p>这个镜像就是别人制作好的“懒人版”，Google 搜索”OS X Mavericks VMware 懒人版”或”OS X Mavericks VMware 整合驱动版”，还可以搜到很多。</p>
+<p>##2. 给 VMware Workstation 打补丁<br>Windows上的VMware Workstation在安装操作系统时不支持 Mac OS X，但 VMware Fusin(VMware Workstation在Mac上的等价物，叫做 VMware Fusion)是支持了，这两个软件基本是统一软件在不同操作系统上的版本，按道理VMware Workstation也支持Mac OS X，事实上的确如此，只需要给VMware Workstation打一个补丁，就可以支持Mac OS X了。</p>
+<p>补丁名字叫做VMware Unlocker for OS X，在<a href="http://www.insanelymac.com/forum/files/file/20-vmware-unlocker-for-os-x/" target="_blank" rel="external">这里下载</a>。</p>
+<p>下载完后，解压，浏览到<code>windows</code>，以管理员权限执行 <code>install.cmd</code>，然后启动VMware Workstation，就可以看到变化了。</p>
+<a id="more"></a>
+<p>打补丁之前，</p>
+<p><img src="/images/before-unlocker.png" alt=""></p>
+<p>打补丁之后。</p>
+<p><img src="/images/after-unlocker.png" alt=""></p>
+<p>##3. 启动虚拟机<br>解压 <code>OS X Mavericks 10.9 Retail VMware Image.7z</code>，双击<code>.vmx</code>文件，就可以打开虚拟机了。</p>
+<p>在启动虚拟机之前，你可以修改一下虚拟机的设置，例如提高内存到4GB，设置CPU核数为2，视你的电脑硬件配置而定。</p>
+<p>启动虚拟机后，要做一些设置，例如键盘，icloud账户，设置密码等等。</p>
+<p>##4. 安装VMware Tools<br>VMware Tools for OS X最新版来自 <a href="http://softwareupdate.vmware.com/cds/vmw-desktop/fusion/" target="_blank" rel="external">http://softwareupdate.vmware.com/cds/vmw-desktop/fusion/</a> ，当前最新版是 6.0.3。下载<code>com.vmware.fusion.tools.darwin.zip.tar</code> ，解压出里面的 <code>darwin.iso</code> ，然后 mount 到 Mac OS X 虚拟机，一定要勾选”已连接”，然后 Mac OS X 虚拟机会自动弹出安装对话框。</p>
+<p><img src="/images/mount-vmware-tools.png" alt=""></p>
+<p>##5. 安装显卡驱动<br>点击全屏菜单，发现Mac OS X 虚拟机不能这是由于没有显卡驱动。去<a href="http://sourceforge.net/projects/vmsvga2/" target="_blank" rel="external">vmsvga2官网</a> 下载<code>VMsvga2_v1.2.5_OS_10.9.pkg</code>(显卡驱动)和<code>guestd_patches.pkg</code>(自动调整分辨率补丁)，然后安装，重启，再试试全屏，发现可以了。</p>
+<p>##6. 更新软件，关机并压缩打包<br>点击左上角的苹果图标，选择”Software update”，更新所有，就会从 10.9 更新到 10.9.2。然后关机，用7z将整个虚拟机文件夹压缩成一个压缩包。</p>
+<p>可以将这个压缩包共享给别人，也可以作为一个备份，一旦虚拟机装新软件或其它操作弄坏了，可以从这个压缩包解压，以这个镜像为起点，重新开始，而不用从零重新开始。</p>
+<p>##参考资料</p>
+<ol>
+<li><a href="http://www.sysprobs.com/working-os-x-10-9-mavericks-vmware-image-for-windows-os-intel-processor" target="_blank" rel="external">Working OS X 10.9 Mavericks VMware Image For Windows OS and Intel Processor</a></li>
+<li><a href="http://www.rshining.net/2013/10/%E8%B6%85%E8%AF%A6%E7%BB%86vmware-workstation-10%E5%AE%89%E8%A3%85os-x-mavericks/" target="_blank" rel="external">超详细VMware Workstation 10安装OS X Mavericks</a></li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;环境: Windows 7, VMware Workstation 10.0.2, Mac OS X 10.9 Mavericks&lt;/p&gt;
+&lt;p&gt;本文主要参考了这篇英文博客，&lt;a href=&quot;http://www.sysprobs.com/working-os-x-10-9-mavericks-vmware-image-for-windows-os-intel-processor&quot;&gt;Working OS X 10.9 Mavericks VMware Image For Windows OS and Intel Processor&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;前提条件&lt;/strong&gt;：确保你的电脑支持&lt;code&gt;VT-x&lt;/code&gt;技术，并在BIOS里启用它。&lt;/p&gt;
+&lt;p&gt;##1. 下载别人做好的镜像&lt;br&gt;由于版权原因，这篇英文博客的作者不再提供下载地址了，不过google一下 “OS X Mavericks 10.9 Retail VMware Image”，可以在海盗湾找到种子，&lt;a href=&quot;http://thepiratebay.se/torrent/9012642/OS_X_Mavericks_10.9_Retail_VMware_Image&quot;&gt;这里&lt;/a&gt;。用迅雷或BT客户端下载。还有一种用更快速的下载方法，用百度网盘的离线下载，把magnet链接复制粘贴到百度网盘，等百度网盘下载好了后，再用百度管家客户端下载下来。&lt;/p&gt;
+&lt;p&gt;这个文件夹里，只有&lt;code&gt;OS X Mavericks 10.9 Retail VMware Image.7z&lt;/code&gt;是有用的额，其他小工具可以分别去下载最新的版本。&lt;/p&gt;
+&lt;p&gt;这个镜像就是别人制作好的“懒人版”，Google 搜索”OS X Mavericks VMware 懒人版”或”OS X Mavericks VMware 整合驱动版”，还可以搜到很多。&lt;/p&gt;
+&lt;p&gt;##2. 给 VMware Workstation 打补丁&lt;br&gt;Windows上的VMware Workstation在安装操作系统时不支持 Mac OS X，但 VMware Fusin(VMware Workstation在Mac上的等价物，叫做 VMware Fusion)是支持了，这两个软件基本是统一软件在不同操作系统上的版本，按道理VMware Workstation也支持Mac OS X，事实上的确如此，只需要给VMware Workstation打一个补丁，就可以支持Mac OS X了。&lt;/p&gt;
+&lt;p&gt;补丁名字叫做VMware Unlocker for OS X，在&lt;a href=&quot;http://www.insanelymac.com/forum/files/file/20-vmware-unlocker-for-os-x/&quot;&gt;这里下载&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;下载完后，解压，浏览到&lt;code&gt;windows&lt;/code&gt;，以管理员权限执行 &lt;code&gt;install.cmd&lt;/code&gt;，然后启动VMware Workstation，就可以看到变化了。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="DevOps" scheme="http://cn.soulmachine.me/categories/DevOps/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Caffe 安装配置(CentOS + 无GPU)</title>
+    <link href="http://cn.soulmachine.me/2014-04-03-caffe-installation/"/>
+    <id>http://cn.soulmachine.me/2014-04-03-caffe-installation/</id>
+    <published>2014-04-03T16:05:00.000Z</published>
+    <updated>2016-09-09T06:32:49.000Z</updated>
+    
+    <content type="html"><![CDATA[<p><strong>环境</strong>: CentOS 6.4</p>
+<p>由于我的CentOS服务器上没有Nvidia的显卡，不过 caffe 是可以在CPU模式下进行train和predict的，因此我尝试了在没有GPU的情况下把caffe跑起来。</p>
+<p>主要参考官网的文档，<a href="http://caffe.berkeleyvision.org/installation.html" target="_blank" rel="external">Installation</a>。</p>
+<p>安装 Caffe 前需要安装以下库：</p>
+<p><strong>Prerequisites</strong></p>
+<ul>
+<li>CUDA (5.0 or 5.5)</li>
+<li>Boost</li>
+<li>MKL (but see the boost-eigen branch for a boost/Eigen3 port)</li>
+<li>OpenCV</li>
+<li>glog, gflags, protobuf, leveldb, snappy, hdf5</li>
+<li>For the Python wrapper: python, numpy (&gt;= 1.7 preferred), and boost_python</li>
+<li>For the Matlab wrapper: Matlab with mex</li>
+</ul>
+<p>##1. 安装CUDA</p>
+<pre><code>wget http://developer.download.nvidia.com/compute/cuda/repos/rhel6/x86_64/cuda-repo-rhel6-5.5-0.x86_64.rpm
+sudo rpm -Uvh libgcc-4.4.7-4.el6.x86_64.rpm
+yum search cuda
+sudo yum install cuda
+</code></pre><p>或者</p>
+<pre><code>wget http://developer.download.nvidia.com/compute/cuda/5_5/rel/installers/cuda_5.5.22_linux_64.run
+sudo ./cuda_5.5.22_linux_64.run
+</code></pre><p>##2. 安装Boost</p>
+<pre><code>sudo yum install boost-devel
+</code></pre><a id="more"></a>
+<p>##3. 安装MKL<br>MKL是Intel的商业软件，性能很高，也卖的很贵。还好可以申请非商业版，去这里 <a href="https://registrationcenter.intel.com/RegCenter/NComForm.aspx?ProductID=1461&amp;pass=yes" target="_blank" rel="external">https://registrationcenter.intel.com/RegCenter/NComForm.aspx?ProductID=1461&amp;pass=yes</a> 申请，申请成功之后你会得到一个序列号以及下载地址，下载完并解压， 执行<code>sudo ./install.sh</code> ， 之后按提示安装就好了，这个安装特别简单。</p>
+<p>##4. 安装OpenCV</p>
+<pre><code>sudo yum install opencv-devel
+</code></pre><p>##5. 安装其他库</p>
+<pre><code>wget https://google-glog.googlecode.com/files/glog-0.3.3.tar.gz
+tar zxf glog-0.3.3.tar.gz
+cd glog-0.3.3
+./configure
+make
+sudo make install
+
+sudo yum install gflags-devel protobuf-devel leveldb-devel snappy-devel hdf5-devel
+</code></pre><p>##6. 配置OpenCV环境<br>Caffe作者默认你已经配置好了OpenCV环境，文档里没有说这一步。好在有人已经写好了配置OpenCV的脚本，<a href="https://github.com/jayrambhia/Install-OpenCV" target="_blank" rel="external">https://github.com/jayrambhia/Install-OpenCV</a> ，直接拿来用。</p>
+<pre><code>git clone https://github.com/jayrambhia/Install-OpenCV
+cd Install-OpenCV/RedHat
+sudo ./opencv_latest.sh
+</code></pre><p>如果脚本运行失败，则详细阅读<code>RetHat/opencv_install.sh</code>的代码，然后手工敲入命令进行安装。</p>
+<pre><code>mkdir OpenCV
+cd OpenCV
+wget -O opencv-2.4.7.tar.gz http://sourceforge.net/projects/opencvlibrary/files/opencv-unix/2.4.7/opencv-2.4.7.tar.gz/download
+tar -zxf opencv-2.4.7.tar.gz
+cd opencv-2.4.7
+sed  -i &apos;/string(MD5/d&apos; cmake/cl2cpp.cmake
+mkdir build
+cd build
+cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local ..
+make -j 4
+sudo make install
+sudo sh -c &apos;echo &quot;/usr/local/lib&quot; &gt; /etc/ld.so.conf.d/opencv.conf&apos;
+sudo ldconfig
+</code></pre><p>##7. 编译</p>
+<pre><code>cp Makefile.config.example Makefile.config
+make all
+</code></pre><p>##8. 运行MNIST例子<br>主要参考官网的 <a href="http://caffe.berkeleyvision.org/mnist.html" target="_blank" rel="external">Training MNIST with Caffe</a></p>
+<p>###8.1 下载数据集</p>
+<pre><code>cd $CAFFE_ROOT/data/mnist
+./get_mnist.sh
+cd $CAFFE_ROOT/examples/lenet
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda/lib64
+./create_mnist.sh
+</code></pre><p>运行完上述命令后，应该会得到两个数据集，<code>mnist-train-leveldb/</code>, 和 <code>mnist-test-leveldb/</code>.</p>
+<p>最终的model，</p>
+<p>###8.2 切换到CPU模式<br>由于服务器没有安装显卡，只能使用CPU训练。切换到CPU模式非常简单，只需要在<code>lenet_solver.prototxt</code>中修改一行：</p>
+<blockquote>
+<p># solver mode: 0 for CPU and 1 for GP<br>solver_mode: 0</p>
+</blockquote>
+<p>###8.3 开始训练</p>
+<pre><code>./train_lenet.sh
+</code></pre><p>经过一段时间运行，训练完成！最终的model，会存为一个二进制的protobuf文件，<code>lenet_iter_10000</code>. </p>
+<p>##参考资料</p>
+<ol>
+<li><a href="http://www.cnblogs.com/alfredtofu/p/3577241.html" target="_blank" rel="external">CNN之Caffe配置</a></li>
+</ol>
+<p>注意， CUDA 5.5 不支持 Visual Studio 2013，参考 <a href="http://docs.nvidia.com/cuda/cuda-toolkit-release-notes/index.html#windows-5-5" target="_blank" rel="external">CUDA 5.5 release notes</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;strong&gt;环境&lt;/strong&gt;: CentOS 6.4&lt;/p&gt;
+&lt;p&gt;由于我的CentOS服务器上没有Nvidia的显卡，不过 caffe 是可以在CPU模式下进行train和predict的，因此我尝试了在没有GPU的情况下把caffe跑起来。&lt;/p&gt;
+&lt;p&gt;主要参考官网的文档，&lt;a href=&quot;http://caffe.berkeleyvision.org/installation.html&quot;&gt;Installation&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;安装 Caffe 前需要安装以下库：&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Prerequisites&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;CUDA (5.0 or 5.5)&lt;/li&gt;
+&lt;li&gt;Boost&lt;/li&gt;
+&lt;li&gt;MKL (but see the boost-eigen branch for a boost/Eigen3 port)&lt;/li&gt;
+&lt;li&gt;OpenCV&lt;/li&gt;
+&lt;li&gt;glog, gflags, protobuf, leveldb, snappy, hdf5&lt;/li&gt;
+&lt;li&gt;For the Python wrapper: python, numpy (&amp;gt;= 1.7 preferred), and boost_python&lt;/li&gt;
+&lt;li&gt;For the Matlab wrapper: Matlab with mex&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;##1. 安装CUDA&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;wget http://developer.download.nvidia.com/compute/cuda/repos/rhel6/x86_64/cuda-repo-rhel6-5.5-0.x86_64.rpm
+sudo rpm -Uvh libgcc-4.4.7-4.el6.x86_64.rpm
+yum search cuda
+sudo yum install cuda
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;或者&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;wget http://developer.download.nvidia.com/compute/cuda/5_5/rel/installers/cuda_5.5.22_linux_64.run
+sudo ./cuda_5.5.22_linux_64.run
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;##2. 安装Boost&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;sudo yum install boost-devel
+&lt;/code&gt;&lt;/pre&gt;
+    
+    </summary>
+    
+      <category term="Deep-Learning" scheme="http://cn.soulmachine.me/categories/Deep-Learning/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>编写Nutch插件</title>
+    <link href="http://cn.soulmachine.me/2014-02-20-writing-nutch-plugins/"/>
+    <id>http://cn.soulmachine.me/2014-02-20-writing-nutch-plugins/</id>
+    <published>2014-02-20T16:53:00.000Z</published>
+    <updated>2016-09-09T06:32:49.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>软件版本：Nutch 1.7</p>
+<p>Nutch Plugin的所有资料，都在官网这里, <a href="http://wiki.apache.org/nutch/PluginCentral" target="_blank" rel="external">PluginCentral</a></p>
+<p>##前提<br><a href="http://www.yanjiuyanjiu.com/blog/20140120" target="_blank" rel="external">在Eclipse里运行Nutch</a></p>
+<h2 id="Extension-和-Extension-point的关系"><a href="#Extension-和-Extension-point的关系" class="headerlink" title="Extension 和 Extension-point的关系"></a>Extension 和 Extension-point的关系</h2><p>Extension point类似与Java语言里的接口(interface), extension 则是具体的实现(implementation)。</p>
+<p><a href="http://wiki.apache.org/nutch/AboutPlugins" target="_blank" rel="external">About Plugins</a>里有一句话，<strong>Each extension-point defines an interface that must be implemented by the extension.</strong></p>
+<p>##Nutch里的各种概念<br>Extension point, extension, plugin, 这些概念是什么意思？见 <a href="http://wiki.apache.org/nutch/WhichTechnicalConceptsAreBehindTheNutchPluginSystem" target="_blank" rel="external">Technical Concepts Behind the Nutch Plugin System</a></p>
+<p>##Nutch 1.7 有哪些 Extension-point<br><img src="/images/extension-points.png" alt=""></p>
+<p>ExtensionPoint 这个东西，本身也是一个插件，可以看看 <code>src/plugin/nutch-extensionpoints/plugin.xml</code>，里面定义了所有的扩展点，跟上图基本一致。</p>
+<p><a href="http://wiki.apache.org/nutch/AboutPlugins" target="_blank" rel="external">AboutPlugins</a>这里列出来的是 Nuch 1.4的扩展点，有点过时了。</p>
+<p>##一个Nutch的组成文件<br>build.xml, plugins.xml 等等</p>
+<p>##Nutch 插件例子</p>
+<ol>
+<li><a href="http://wiki.apache.org/nutch/WritingPluginExample" target="_blank" rel="external">WritingPluginExample</a></li>
+<li><a href="http://wiki.apache.org/nutch/WritingPluginExample-1.2" target="_blank" rel="external">WritingPluginExample-1.2</a>，针对Nutch 1.2的，有点老，但是值得一看</li>
+<li><a href="http://www.ryanpfister.com/2009/04/how-to-sort-by-date-with-nutch/" target="_blank" rel="external">Writing a plugin to add dates by Ryan Pfister</a></li>
+</ol>
+<p>看来这3个例子，你应该就知道怎么开发插件了。</p>
+<p>##Nutch 的缺点<br>在抓取的过程中，真正的难度在于, ip limit 和 user limit，可惜 Nutch 对这两个问题都没有解决方案。</p>
+<ol>
+<li>Nutch 的 <a href="http://wiki.apache.org/nutch/HttpPostAuthentication" target="_blank" rel="external">HttpPostAuthentication</a> 现在还没有开发完，导致无法抓取需要登录的网站，例如新浪微波，豆瓣等UGC网站，都是需要登录的。没有这个<code>HttpPostAuthentication</code>，Nutch其实只能抓取不需要登录的网页，适用范围大打折扣，现在是web 2.0时代，真正优质的内容，几乎都是需要登录的。</li>
+<li>多个代理的管理。Nutch 没有提供多个代理的管理功能，只能在<code>nutch-site.xml</code>里配置一个代理。比如我在网上抓取了几百个免费的http代理，怎么让Nutch的各个线程均匀的使用这些代理，平能自动判断代理的速度，优先选择速度高的代理呢？</li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;软件版本：Nutch 1.7&lt;/p&gt;
+&lt;p&gt;Nutch Plugin的所有资料，都在官网这里, &lt;a href=&quot;http://wiki.apache.org/nutch/PluginCentral&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Plugi
+    
+    </summary>
+    
+      <category term="Search-Engine" scheme="http://cn.soulmachine.me/categories/Search-Engine/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>CentOS上编译 Hadoop 2.2.0</title>
+    <link href="http://cn.soulmachine.me/2014-02-14-compile-hadoop-220-on-centos/"/>
+    <id>http://cn.soulmachine.me/2014-02-14-compile-hadoop-220-on-centos/</id>
+    <published>2014-02-14T11:56:00.000Z</published>
+    <updated>2016-09-09T06:32:49.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>下载了Hadoop预编译好的二进制包，hadoop-2.2.0.tar.gz，启动起来后，总是出现这种警告：</p>
+<pre><code>WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+</code></pre><p>原因是apache官网提供的二进制包，里面的native库，是32位的，坑跌啊，现在服务器谁还有32位的啊。</p>
+<pre><code>$ file $HADOOP_PREFIX/lib/native/libhadoop.so.1.0.0
+libhadoop.so.1.0.0: ELF 32-bit LSB shared object, Intel 80386, version 1 (SYSV), dynamically linked, BuildID[sha1]=0x9eb1d49b05f67d38454e42b216e053a27ae8bac9, not stripped
+</code></pre><p>我们需要下载Hadoop 2.2.0源码，在 64 位Linux下重新编译，然后把32位的native库用64位的native库替换。</p>
+<a id="more"></a>
+<p>##1. 下载Hadoop 2.2.0 源码包，并解压</p>
+<pre><code>$ wget http://mirrors.hust.edu.cn/apache/hadoop/common/hadoop-2.2.0/hadoop-2.2.0-src.tar.gz
+$ tar zxf hadoop-2.2.0-src.tar.gz
+</code></pre><p>##2. 安装下面的软件</p>
+<pre><code>$ sudo yum install lzo-devel  zlib-devel  gcc autoconf automake libtool   ncurses-devel openssl-deve
+</code></pre><p>##3. 安装Maven<br>不要使用最新的Maven 3.1.1。Hadoop 2.2.0的源码与Maven3.x存在兼容性问题，所以会出现</p>
+<pre><code>java.lang.NoClassDefFoundError: org/sonatype/aether/graph/DependencyFilter
+</code></pre><p>之类的错误。</p>
+<p>安装 Maven 3.0.5</p>
+<pre><code>$ wget http://mirror.esocc.com/apache/maven/maven-3/3.0.5/binaries/apache-maven-3.0.5-bin.tar.gz
+$ sudo tar zxf apache-maven-3.0.5-bin.tar.gz -C /opt
+$ sudo vim /etc/profile
+export MAVEN_HOME=/opt/apache-maven-3.0.5
+export PATH=$PATH:$MAVEN_HOME/bin
+</code></pre><p>注销并重新登录，让环境变量生效。</p>
+<p>##4. 安装Ant</p>
+<pre><code>$ wget http://apache.dataguru.cn//ant/binaries/apache-ant-1.9.3-bin.tar.gz
+$ sudo tar zxf apache-ant-1.9.3-bin.tar.gz -C /opt
+$ sudo vim /etc/profile
+export ANT_HOME=/opt/apache-ant-1.9.3
+export PATH=$PATH:$ANT_HOME/bin
+</code></pre><p>##5. 安装Findbugs</p>
+<pre><code>$ wget http://prdownloads.sourceforge.net/findbugs/findbugs-2.0.3.tar.gz?download
+$ sudo tar zxf findbugs-2.0.3.tar.gz -C /opt
+$ sudo vim /etc/profile
+export FINDBUGS_HOME=/opt/findbugs-2.0.3
+export PATH=$PATH:$FINDBUGS_HOME/bin
+</code></pre><p>##6. 安装protobuf<br>编译Hadoop 2.2.0，需要protobuf的编译器protoc。一定需要protobuf 2.5.0以上，yum里的是2.3，太老了。因此下载源码，编译安装。</p>
+<pre><code>$ wget https://protobuf.googlecode.com/files/protobuf-2.5.0.tar.gz
+$ tar zxf protobuf-2.5.0.tar.gz
+$ cd protobuf-2.5.0
+$ ./configure
+$ make
+$ sudo make install
+</code></pre><p>##7. 给Hadoop源码打一个patch<br>最新的Hadoop 2.2.0 的Source Code 压缩包解压出来的code有个bug 需要patch后才能编译。否则编译hadoop-auth 会提示下面错误：</p>
+<pre><code>[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:2.5.1:testCompile (default-testCompile) on project hadoop-auth: Compilation failure: Compilation failure:
+[ERROR] /home/chuan/trunk/hadoop-common-project/hadoop-auth/src/test/java/org/apache/hadoop/security/authentication/client/AuthenticatorTestCase.java:[84,13] cannot access org.mortbay.component.AbstractLifeCycle
+[ERROR] class file for org.mortbay.component.AbstractLifeCycle not found
+</code></pre><p>Patch: <a href="https://issues.apache.org/jira/browse/HADOOP-10110" target="_blank" rel="external">https://issues.apache.org/jira/browse/HADOOP-10110</a></p>
+<p>##8. 编译 Hadoop</p>
+<pre><code>cd hadoop-2.2.0-src
+mvn package -DskipTests -Pdist,native -Dtar
+</code></pre><p>##9. 替换掉32位的native库<br>用 <code>hadoop-2.2.0-src/hadoop-dist/target/hadoop-2.2.0/lib/native</code> 替换掉 <code>hadoop-2.2.0/lib/native</code>。</p>
+<pre><code>rm -rf ~/local/opt/hadoop-2.2.0/lib/native
+cp ./hadoop-dist/target/hadoop-2.2.0/lib/native ~/local/opt/hadoop-2.2.0/lib/
+</code></pre><p>然后重启Hadoop集群，会看到控制台下不再有警告信息了。</p>
+<p>##10 解决Ubuntu下启动失败的问题<br>在Ubuntu上，那就不是一点WARN了，而是启动不起来，会出错，原因在于，在<code>./sbin/start-dfs.sh</code>第55行，</p>
+<pre><code>NAMENODES=$($HADOOP_PREFIX/bin/hdfs getconf -namenodes)
+</code></pre><p>在shell里单独运行这样命令，</p>
+<pre><code>./bin/hdfs getconf -namenodes
+
+OpenJDK 64-Bit Server VM warning: You have loaded library /home/soulmachine/local/opt/hadoop-2.2.0/lib/native/libhadoop.so which might have disabled stack guard. The VM will try to fix the stack guard now.
+It&apos;s highly recommended that you fix the library with &apos;execstack -c &lt;libfile&gt;&apos;, or link it with &apos;-z noexecstack&apos;.
+14/02/14 13:14:50 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+localhost
+</code></pre><p>最后一行的localhost，才是有效的namenode，但是由于前面有一大堆warning，脚本把这一大堆字符串，按空格隔开，每个单词都看作是namenode，接下来就错的稀里哗啦。</p>
+<p>根本原因，还是因为32位native库。</p>
+<p>把自带的32位native目录删除，用编译好的64位native目录拷贝过去，再运行</p>
+<pre><code>./bin/hdfs getconf -namenodes
+localhost
+</code></pre><p>这下就对了！</p>
+<p>##参考资料</p>
+<ol>
+<li><a href="http://blog.csdn.net/lalaguozhe/article/details/10580727" target="_blank" rel="external">YARN加载本地库抛出Unable to load native-hadoop library解决办法</a></li>
+<li><a href="http://blog.csdn.net/zwj0403/article/details/16855555" target="_blank" rel="external">CentOS编译Hadoop 2.2.0 Pass 总结</a></li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;下载了Hadoop预编译好的二进制包，hadoop-2.2.0.tar.gz，启动起来后，总是出现这种警告：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;原因是apache官网提供的二进制包，里面的native库，是32位的，坑跌啊，现在服务器谁还有32位的啊。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ file $HADOOP_PREFIX/lib/native/libhadoop.so.1.0.0
+libhadoop.so.1.0.0: ELF 32-bit LSB shared object, Intel 80386, version 1 (SYSV), dynamically linked, BuildID[sha1]=0x9eb1d49b05f67d38454e42b216e053a27ae8bac9, not stripped
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;我们需要下载Hadoop 2.2.0源码，在 64 位Linux下重新编译，然后把32位的native库用64位的native库替换。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Hadoop" scheme="http://cn.soulmachine.me/categories/Hadoop/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>在CentOS上安装HBase 0.96</title>
+    <link href="http://cn.soulmachine.me/2014-02-08-install-hbase-on-centos/"/>
+    <id>http://cn.soulmachine.me/2014-02-08-install-hbase-on-centos/</id>
+    <published>2014-02-08T16:42:00.000Z</published>
+    <updated>2016-09-09T06:32:49.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>环境：CentOS 6.5, jdk 1.7, HBase 0.96.1.1</p>
+<p>##（可选）创建新用户，并配置好SSH无密码登录<br>一般我倾向于把需要启动daemon进程，对外提供服务的程序，即服务器类的程序，安装在单独的用户下面。这样可以做到隔离，运维方面，安全性也提高了。</p>
+<p>创建一个新的group,</p>
+<pre><code>$ sudo groupadd hbase
+</code></pre><p>创建一个新的用户，并加入group,</p>
+<pre><code>$ sudo useradd -g hbase hbase
+</code></pre><p>给新用户设置密码，</p>
+<pre><code>$ sudo passwd hbase
+</code></pre><p>在每台机器上创建hbase新用户，并配置好SSH无密码，参考我的另一篇博客，<a href="http://www.yanjiuyanjiu.com/blog/20120102/" target="_blank" rel="external">SSH无密码登录的配置</a></p>
+<p>##1. 单机模式(Standalone mode)</p>
+<p>###1.1 下载，解压</p>
+<pre><code>$ wget wget http://mirror.esocc.com/apache/hbase/hbase-0.96.1.1/hbase-0.96.1.1-hadoop2-bin.tar.gz
+$ tar zxf hbase-0.96.1.1-hadoop2-bin.tar.gz -C ~/local/opt
+</code></pre><p>###1.2 hbase-env.sh<br>在这个文件中要指明JDK 安装在了哪里</p>
+<pre><code>$ echo $JAVA_HOME
+/usr/lib/jvm/java
+$ vim conf/hbase-env.sh
+</code></pre><p>取消<code>JAVA_HOME</code>那一行的注释，设置正确的JDK位置</p>
+<pre><code>export JAVA_HOME=/usr/lib/jvm/java
+</code></pre><p>###1.3 修改 conf/hbase-site.xml<br>内容如下</p>
+<pre><code>&lt;configuration&gt;
+  &lt;property&gt;
+    &lt;name&gt;hbase.rootdir&lt;/name&gt;
+    &lt;value&gt;/home/hbase/local/var/hbase&lt;/value&gt;
+  &lt;/property&gt;
+  &lt;property&gt;
+    &lt;name&gt;hbase.zookeeper.property.dataDir&lt;/name&gt;
+    &lt;value&gt;/home/hbase/local/var/zookeeper&lt;/value&gt;
+  &lt;/property&gt;
+&lt;/configuration&gt;
+</code></pre><p><code>hbase.rootdir</code>目录是用来存放HBase的相关信息的，默认值是<code>/tmp/hbase-${user.name}/hbase</code>； <code>hbase.zookeeper.property.dataDir</code>目录是用来存放zookeeper（HBase内置了zookeeper）的相关信息的，默认值是<code>/tmp/hbase-${user.name}/zookeeper</code>。</p>
+<p>###1.4 启动</p>
+<pre><code>$ ./bin/start-hbase.sh
+starting Master, logging to logs/hbase-user-master-example.org.out
+</code></pre><a id="more"></a>
+<p>###1.5 试用一下HBase shell<br>$ ./bin/hbase shell<br>    2014-02-09 23:56:28,637 INFO  [main] Configuration.deprecation: hadoop.native.lib is deprecated. Instead, use io.native.lib.available<br>    HBase Shell; enter ‘help<return>‘ for list of supported commands.<br>    Type “exit<return>“ to leave the HBase Shell<br>    Version 0.96.1.1-hadoop2, rUnknown, Tue Dec 17 12:22:12 PST 2013</return></return></p>
+<pre><code>hbase(main):001:0&gt;
+</code></pre><p>创建一张名字为<code>test</code>的表，只有一个列，名为<code>cf</code>。为了验证创建是否成功，用<code>list</code>命令查看所有的table，并用<code>put</code>命令插入一些值。</p>
+<pre><code>hbase(main):003:0&gt; create &apos;test&apos;, &apos;cf&apos;
+0 row(s) in 1.2200 seconds
+hbase(main):003:0&gt; list &apos;test&apos;
+..
+1 row(s) in 0.0550 seconds
+hbase(main):004:0&gt; put &apos;test&apos;, &apos;row1&apos;, &apos;cf:a&apos;, &apos;value1&apos;
+0 row(s) in 0.0560 seconds
+hbase(main):005:0&gt; put &apos;test&apos;, &apos;row2&apos;, &apos;cf:b&apos;, &apos;value2&apos;
+0 row(s) in 0.0370 seconds
+hbase(main):006:0&gt; put &apos;test&apos;, &apos;row3&apos;, &apos;cf:c&apos;, &apos;value3&apos;
+0 row(s) in 0.0450 seconds
+</code></pre><p>用<code>scan</code>命令扫描table，验证一下刚才的插入是否成功。</p>
+<pre><code>hbase(main):007:0&gt; scan &apos;test&apos;
+ROW        COLUMN+CELL
+row1       column=cf:a, timestamp=1288380727188, value=value1
+row2       column=cf:b, timestamp=1288380738440, value=value2
+row3       column=cf:c, timestamp=1288380747365, value=value3
+3 row(s) in 0.0590 seconds
+</code></pre><p>现在，disable并drop掉你的表，这会把上面的所有操作清零。</p>
+<pre><code>hbase(main):012:0&gt; disable &apos;test&apos;
+0 row(s) in 1.0930 seconds
+hbase(main):013:0&gt; drop &apos;test&apos;
+0 row(s) in 0.0770 seconds 
+</code></pre><p>退出shell，</p>
+<pre><code>hbase(main):014:0&gt; exit
+</code></pre><p>###1.6 停止</p>
+<pre><code>$ ./bin/stop-hbase.sh
+stopping hbase...............
+</code></pre><p>##2 伪分布式模式(Pseudo-distributed mode)</p>
+<p>###前提</p>
+<p>HBase集群需要一个正在运行的zookeeper集群，要么用自带的，要么用外部的。</p>
+<p>用自带的很方便，不需要任何其他操作。</p>
+<p>如果用外部的，要先安装并启动一个ZK集群，参考我的这篇博客，<a href="http://www.yanjiuyanjiu.com/blog/20140207" target="_blank" rel="external">在CentOS上安装ZooKeeper集群</a>。并在 conf/hbase-env.sh 里，设置<code>HBASE_MANAGES_ZK=false</code>。这个值默认为true，HBase自带了一个zk，启动HBase的时候也会先启动zk，如果把这个值设置为false，那么HBase就不会自己管理zk集群了。</p>
+<p>一般用外部的zk。因为一般情况下，公司会在集群上安装好zookeeper集群，然后多个项目共用一个zk集群，有利于提高资源利用率。</p>
+<p>HBase还需要一个正在运行的HDFS集群，如何搭建请参考我的这篇博客，<a href="http://www.yanjiuyanjiu.com/blog/20140205" target="_blank" rel="external">在CentOS上安装Hadoop 2.x 集群</a>。</p>
+<p>###2.1 设置SSH无密码登录localhost<br>先检查一下是能够无密码登录本机，</p>
+<pre><code>ssh localhost
+</code></pre><p>如果提示输入密码，说明不能，按如下步骤设置。</p>
+<pre><code>$ ssh-keygen -t dsa -P &apos;&apos; -f ~/.ssh/id_dsa 
+$ cat ~/.ssh/id_dsa.pub &gt;&gt; ~/.ssh/authorized_keys
+</code></pre><p>###2.2 下载，解压</p>
+<pre><code>$ wget wget http://mirror.esocc.com/apache/hbase/hbase-0.96.1.1/hbase-0.96.1.1-hadoop2-bin.tar.gz
+$ tar zxf hbase-0.96.1.1-hadoop2-bin.tar.gz -C ~/local/opt
+</code></pre><p>###2.3 hbase-env.sh<br>在这个文件中要指明JDK 安装在了哪里</p>
+<pre><code>$ echo $JAVA_HOME
+/usr/lib/jvm/java
+$ vim conf/hbase-env.sh
+</code></pre><p>取消<code>JAVA_HOME</code>那一行的注释，设置正确的JDK位置</p>
+<pre><code>export JAVA_HOME=/usr/lib/jvm/java
+</code></pre><p>###2.4 conf/hbase-site.xml<br>内容如下</p>
+<pre><code>&lt;configuration&gt;
+  &lt;property&gt;
+    &lt;name&gt;hbase.rootdir&lt;/name&gt;
+    &lt;value&gt;/home/hadoop/local/var/hadoop/hbase&lt;/value&gt;
+  &lt;/property&gt;
+  &lt;property&gt;
+    &lt;name&gt;hbase.cluster.distributed&lt;/name&gt;
+    &lt;value&gt;true&lt;/value&gt;
+  &lt;/property&gt;
+
+  &lt;property&gt;
+    &lt;name&gt;hbase.zookeeper.property.clientPort&lt;/name&gt;
+    &lt;value&gt;2181&lt;/value&gt;
+  &lt;/property&gt;
+  &lt;property&gt;
+    &lt;name&gt;hbase.zookeeper.quorum&lt;/name&gt;
+    &lt;value&gt;zk01, zk02, zk03&lt;/value&gt;
+  &lt;/property&gt;
+  &lt;property&gt;
+    &lt;name&gt;hbase.zookeeper.property.dataDir&lt;/name&gt;
+    &lt;value&gt;/home/zookeeper/local/var/zookeeper&lt;/value&gt;
+  &lt;/property&gt;
+&lt;/configuration&gt;
+</code></pre><p><code>hbase.rootdir</code>是HBase存放数据的目录，这个值应该从Hadoop集群的core-site.xml里的<code>fs.defaultFS</code>或<code>fs.default.name</code>拷贝过来。</p>
+<p>接下来关于ZooKeeper的三项配置都是从ZooKeeper集群的zoo.cfg里拷贝过来的。</p>
+<p>###2.5 启动</p>
+<pre><code>$ ./bin/start-hbase.sh
+starting Master, logging to logs/hbase-user-master-example.org.out
+</code></pre><p>查看一下进程，</p>
+<pre><code>$ jps
+26142 HMaster
+26255 HRegionServer
+26360 Jps
+</code></pre><p>启动了一个HMaster和一个HRegionServer。</p>
+<p>###2.6 试用一下HBase shell<br>见第1.5节。</p>
+<p>###2.7 停止</p>
+<pre><code>$ ./bin/stop-hbase.sh
+stopping hbase...............
+</code></pre><p>##3 完全分布式模式(Fully-distributed mode)</p>
+<p>###3.1 准备3台机器<br>跟这篇文章<a href="http://www.yanjiuyanjiu.com/blog/20140205/" target="_blank" rel="external">在CentOS上安装Hadoop 2.x 集群</a>的第2.1节很类似。</p>
+<p>设3台机器的hostname分别是master, slave01, slave02, master作为HMaster，而slave01,slave02作为HRegionServer。</p>
+<p>###3.2 配置 master 无密码登陆到所有机器（包括master自己登陆自己）<br>参考我的另一篇博客，<a href="http://www.yanjiuyanjiu.com/blog/20120102/" target="_blank" rel="external">SSH无密码登录的配置</a></p>
+<p>###3.3 把HBase压缩包上传到所有机器，并解压<br>将 hbase-0.96.1.1-hadoop2-bin.tar.gz 上传到所有机器，然后解压。<strong>注意，所有机器的hbase路径必须一致，因为master会登陆到slave上执行命令，master认为slave的hbase路径与自己一样。</strong></p>
+<p>下面开始配置，配置好了后，把<code>conf/</code>目录scp到所有其他机器。</p>
+<p>###3.4 修改配置文件<br>在第2节的基础上，增加下列修改。</p>
+<p>####3.4.1 conf/regionservers<br>在这个文件里面添加slave，一行一个。</p>
+<pre><code>slave01
+slave01
+</code></pre><p>####3.4.2 将conf/目录拷贝到所有slaves</p>
+<pre><code>$ scp -r conf/ hbase@slave01:$HBASE_HOME/
+$ scp -r conf/ hbase@slave02:$HBASE_HOME/
+</code></pre><p>###3.5 启动HBase集群</p>
+<p>####3.5.1 启动<br>在master上执行：</p>
+<pre><code>$ ./bin/start-hbase.sh
+</code></pre><p>####3.5.2 检查是否启动成功<br>用<code>jps</code>查看java进程。</p>
+<p>在master上，应该有一个HMaster进程，在每台slave上，应该有一个HRegionServer进程。</p>
+<p>####3.5.3 Web UI</p>
+<ul>
+<li>HMaster: <a href="http://master:60010" target="_blank" rel="external">http://master:60010</a></li>
+<li>HRegionServer: <a href="http://slave:60030" target="_blank" rel="external">http://slave:60030</a></li>
+</ul>
+<p>##4 客户端<br>想要在另一台机器，或者另一个用户下访问HBase，怎么办？把hbase的安装目录整个拷贝过来即可，不用任何配置（跟Hadoop想比简单多了）。</p>
+<p>运行<code>./bin/hbase shell</code>，就可以使用HBase集群了。</p>
+<p>##参考资料</p>
+<ol>
+<li><a href="http://hbase.apache.org/book/quickstart.html" target="_blank" rel="external">1.2. Quick Start</a></li>
+<li><a href="http://hbase.apache.org/book/standalone_dist.html" target="_blank" rel="external">2.2 HBase run modes: Standalone and Distributed</a></li>
+<li><a href="http://hbase.apache.org/book/example_config.html" target="_blank" rel="external">2.4. Example Configurations</a></li>
+<li><a href="http://hbase.apache.org/book/zookeeper.html" target="_blank" rel="external">Chapter 17. ZooKeeper</a></li>
+<li><a href="http://blog.csdn.net/iam333/article/details/16358087" target="_blank" rel="external">CentOS分布式环境安装HBase-0.96.0</a></li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;环境：CentOS 6.5, jdk 1.7, HBase 0.96.1.1&lt;/p&gt;
+&lt;p&gt;##（可选）创建新用户，并配置好SSH无密码登录&lt;br&gt;一般我倾向于把需要启动daemon进程，对外提供服务的程序，即服务器类的程序，安装在单独的用户下面。这样可以做到隔离，运维方面，安全性也提高了。&lt;/p&gt;
+&lt;p&gt;创建一个新的group,&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ sudo groupadd hbase
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;创建一个新的用户，并加入group,&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ sudo useradd -g hbase hbase
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;给新用户设置密码，&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ sudo passwd hbase
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;在每台机器上创建hbase新用户，并配置好SSH无密码，参考我的另一篇博客，&lt;a href=&quot;http://www.yanjiuyanjiu.com/blog/20120102/&quot;&gt;SSH无密码登录的配置&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;##1. 单机模式(Standalone mode)&lt;/p&gt;
+&lt;p&gt;###1.1 下载，解压&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ wget wget http://mirror.esocc.com/apache/hbase/hbase-0.96.1.1/hbase-0.96.1.1-hadoop2-bin.tar.gz
+$ tar zxf hbase-0.96.1.1-hadoop2-bin.tar.gz -C ~/local/opt
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;###1.2 hbase-env.sh&lt;br&gt;在这个文件中要指明JDK 安装在了哪里&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ echo $JAVA_HOME
+/usr/lib/jvm/java
+$ vim conf/hbase-env.sh
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;取消&lt;code&gt;JAVA_HOME&lt;/code&gt;那一行的注释，设置正确的JDK位置&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;export JAVA_HOME=/usr/lib/jvm/java
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;###1.3 修改 conf/hbase-site.xml&lt;br&gt;内容如下&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;configuration&amp;gt;
+  &amp;lt;property&amp;gt;
+    &amp;lt;name&amp;gt;hbase.rootdir&amp;lt;/name&amp;gt;
+    &amp;lt;value&amp;gt;/home/hbase/local/var/hbase&amp;lt;/value&amp;gt;
+  &amp;lt;/property&amp;gt;
+  &amp;lt;property&amp;gt;
+    &amp;lt;name&amp;gt;hbase.zookeeper.property.dataDir&amp;lt;/name&amp;gt;
+    &amp;lt;value&amp;gt;/home/hbase/local/var/zookeeper&amp;lt;/value&amp;gt;
+  &amp;lt;/property&amp;gt;
+&amp;lt;/configuration&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;code&gt;hbase.rootdir&lt;/code&gt;目录是用来存放HBase的相关信息的，默认值是&lt;code&gt;/tmp/hbase-${user.name}/hbase&lt;/code&gt;； &lt;code&gt;hbase.zookeeper.property.dataDir&lt;/code&gt;目录是用来存放zookeeper（HBase内置了zookeeper）的相关信息的，默认值是&lt;code&gt;/tmp/hbase-${user.name}/zookeeper&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;###1.4 启动&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ ./bin/start-hbase.sh
+starting Master, logging to logs/hbase-user-master-example.org.out
+&lt;/code&gt;&lt;/pre&gt;
+    
+    </summary>
+    
+      <category term="Hadoop" scheme="http://cn.soulmachine.me/categories/Hadoop/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>在CentOS上安装ZooKeeper集群</title>
+    <link href="http://cn.soulmachine.me/2014-02-07-install-zookeeper-on-centos/"/>
+    <id>http://cn.soulmachine.me/2014-02-07-install-zookeeper-on-centos/</id>
+    <published>2014-02-07T23:40:00.000Z</published>
+    <updated>2016-09-09T06:32:49.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>环境：CentOS 6.5, jdk 1.7, ZooKeeper 3.4.5</p>
+<p>本文主要参考官网的<a href="http://zookeeper.apache.org/doc/trunk/zookeeperStarted.html" target="_blank" rel="external">Getting Started</a></p>
+<p>##（可选）创建新用户<br>一般我倾向于把需要启动daemon进程，对外提供服务的程序，即服务器类的程序，安装在单独的用户下面。这样可以做到隔离，运维方面，安全性也提高了。</p>
+<p>创建一个新的group,</p>
+<pre><code>$ sudo groupadd zookeeper
+</code></pre><p>创建一个新的用户，并加入group,</p>
+<pre><code>$ sudo useradd -g zookeeper zookeeper
+</code></pre><p>给新用户设置密码，</p>
+<pre><code>$ sudo passwd zookeeper
+</code></pre><p>##1. 单机模式(Standalone mode)<br>单机模式在开发和调试阶段很有用。</p>
+<p>###1.1 下载，解压</p>
+<pre><code>$ wget http://mirror.bit.edu.cn/apache/zookeeper/zookeeper-3.4.5/zookeeper-3.4.5.tar.gz
+$ tar zxf zookeeper-3.4.5.tar.gz -C ~/local/opt
+</code></pre><p>###1.2 启动<br>默认就是单机模式，</p>
+<pre><code>$ mv conf/zoo_sample.cfg conf/zoo.cfg
+$ ./bin/zdServer.sh start
+</code></pre><p>###1.3 使用java 客户端连接ZooKeeper</p>
+<pre><code>$ ./bin/zkCli.sh -server 127.0.0.1:2181
+</code></pre><p>然后就可以使用各种命令了，跟文件操作命令很类似，输入<code>help</code>可以看到所有命令。</p>
+<p>####1.4 关闭</p>
+<pre><code>$ ./bin/zdServer.sh stop
+</code></pre><p>##2. 分布式模式(Replicated mode)<br>在生产环境中，要配置成分布式模式，才能发挥威力。</p>
+<a id="more"></a>
+<p>ZooKeeper集群一般被称为ZooKeeper ensemble，或者  quorum.</p>
+<p>###2.1 准备3台机器<br>假设有三台机器，hostname和ip对应关系是：</p>
+<pre><code>192.168.1.131 zk01
+192.168.1.132 zk02
+192.168.1.133 zk03
+</code></pre><p>ZooKeeper不存在明显的master/slave关系，各个节点都是服务器，leader挂了，会立马从follower中选举一个出来作为leader.</p>
+<p>由于没有主从关系，也不用配置SSH无密码登录了，各个zk服务器是自己启动的，互相之间通过TCP端口来交换数据。</p>
+<p>###2.2 修改配置文件conf/zoo.cfg</p>
+<pre><code>tickTime=2000
+initLimit=10
+syncLimit=5
+dataDir=/home/zookeeper/local/var/zookeeper
+clientPort=2181
+server.1=zk01:2888:3888
+server.2=zk02:2888:3888
+server.3=zk03:2888:3888
+</code></pre><p>我一般把服务器程序，即需要启动daemon进程的程序，放在单独的用户里安装；且用户的数据，放在<code>local/var</code>下面，所以我的dataDir是<code>/home/zookeeper/local/var/zookeeper</code>。</p>
+<p>###2.3 myid文件<br>要在每台机器的dataDir下，新建一个myid文件，里面存放一个数字，用来标识当前主机。</p>
+<pre><code>zookeeper@zk01:$ echo &quot;1&quot; &gt;&gt; ~/local/var/zookeeper/myid
+zookeeper@zk02:$ echo &quot;2&quot; &gt;&gt; ~/local/var/zookeeper/myid
+zookeeper@zk03:$ echo &quot;3&quot; &gt;&gt; ~/local/var/zookeeper/myid
+</code></pre><p>###2.4 启动每台机器</p>
+<pre><code>zookeeper@zk01:$ ~/local/opt/zookeeper-3.4.5/bin/zkServer.sh start
+zookeeper@zk02:$ ~/local/opt/zookeeper-3.4.5/bin/zkServer.sh start
+zookeeper@zk03:$ ~/local/opt/zookeeper-3.4.5/bin/zkServer.sh start
+</code></pre><p>因为3个节点的启动是有顺序的，所以在陆续启动三个节点的时候，前面先启动的节点连接未启动的节点的时候会报出一些错误。可以忽略。</p>
+<p>###2.5 查看状态</p>
+<pre><code>$ ~/local/opt/zookeeper-3.4.5/bin/zkServer.sh status
+</code></pre><p>##3 使用java客户端连接ZooKeeper集群</p>
+<p>找一台机器，解压zookeeper压缩包，不用配置，就可以使用java客户端连接ZooKeeper集群中的任意一台服务器了。</p>
+<pre><code>$ ./bin/zkCli.sh -server zk01:2181
+$ ./bin/zkCli.sh -server zk01:2181
+$ ./bin/zkCli.sh -server zk01:2181
+</code></pre><p>连接上以后，就可以执行各种命令，使用<code>help</code>查看帮助。</p>
+<p>##参考资料</p>
+<ol>
+<li><a href="http://zookeeper.apache.org/doc/trunk/zookeeperStarted.html" target="_blank" rel="external">Getting Started</a></li>
+<li><a href="http://blog.csdn.net/jmy99527/article/details/17582349" target="_blank" rel="external">Zookeeper 3.4.5 集群安装笔记</a></li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;环境：CentOS 6.5, jdk 1.7, ZooKeeper 3.4.5&lt;/p&gt;
+&lt;p&gt;本文主要参考官网的&lt;a href=&quot;http://zookeeper.apache.org/doc/trunk/zookeeperStarted.html&quot;&gt;Getting Started&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;##（可选）创建新用户&lt;br&gt;一般我倾向于把需要启动daemon进程，对外提供服务的程序，即服务器类的程序，安装在单独的用户下面。这样可以做到隔离，运维方面，安全性也提高了。&lt;/p&gt;
+&lt;p&gt;创建一个新的group,&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ sudo groupadd zookeeper
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;创建一个新的用户，并加入group,&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ sudo useradd -g zookeeper zookeeper
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;给新用户设置密码，&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ sudo passwd zookeeper
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;##1. 单机模式(Standalone mode)&lt;br&gt;单机模式在开发和调试阶段很有用。&lt;/p&gt;
+&lt;p&gt;###1.1 下载，解压&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ wget http://mirror.bit.edu.cn/apache/zookeeper/zookeeper-3.4.5/zookeeper-3.4.5.tar.gz
+$ tar zxf zookeeper-3.4.5.tar.gz -C ~/local/opt
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;###1.2 启动&lt;br&gt;默认就是单机模式，&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ mv conf/zoo_sample.cfg conf/zoo.cfg
+$ ./bin/zdServer.sh start
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;###1.3 使用java 客户端连接ZooKeeper&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ ./bin/zkCli.sh -server 127.0.0.1:2181
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;然后就可以使用各种命令了，跟文件操作命令很类似，输入&lt;code&gt;help&lt;/code&gt;可以看到所有命令。&lt;/p&gt;
+&lt;p&gt;####1.4 关闭&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ ./bin/zdServer.sh stop
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;##2. 分布式模式(Replicated mode)&lt;br&gt;在生产环境中，要配置成分布式模式，才能发挥威力。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Hadoop" scheme="http://cn.soulmachine.me/categories/Hadoop/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Hadoop多用户的配置(Hadoop 2.x)</title>
+    <link href="http://cn.soulmachine.me/2014-02-06-hadoop-multiple-users/"/>
+    <id>http://cn.soulmachine.me/2014-02-06-hadoop-multiple-users/</id>
+    <published>2014-02-06T10:05:00.000Z</published>
+    <updated>2016-09-09T06:32:49.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>假设我们以名为hadoop的用户，建好了集群，见<a href="http://www.yanjiuyanjiu.com/blog/20140205/" target="_blank" rel="external">在CentOS上安装Hadoop 2.x 集群</a>。通常，我们会把这个集群共享给多个用户，而不是让大家都登录为hadoop，这样做有几个好处：</p>
+<ul>
+<li>一个用户不能修改另一个用户的的文件</li>
+<li>在hadoop web管理页面，可以很方便的看到不同的用户的job</li>
+</ul>
+<p>现在集群中有一台机器，上面有一个用户名为 hbase 的用户，他想要使用hadoop集群，怎么配置呢？</p>
+<p>##1. 安装hadoop客户端</p>
+<p>###1.1 下载，解压<br>下载跟hadoop集群一样的hadoop软件包，并解压，</p>
+<pre><code>$ wget http://mirrors.hust.edu.cn/apache/hadoop/common/hadoop-2.2.0/hadoop-2.2.0.tar.gz
+$ tar -zxf hadoop-2.2.0.tar.gz -C ~/local/opt
+$ cd ~/local/opt/hadoop-2.2.0
+</code></pre><p>###1.2 拷贝Hadoop集群的配置文件<br>将Hadoop集群的配置文件全部拷贝到客户端，相当与把集群的信息告诉客户端。</p>
+<pre><code>$ scp -r hadoop@localhost:~/local/opt/hadoop-2.2.0/etc/hadoop ./etc/
+</code></pre><p>修改conf/mapred-site.xml中的<code>mapreduce.cluster.local.dir</code>，改为本机上的某个目录，确保这个目录存在且有写权限。因为这个目录是本地目录，每台机器都可以不同。例如我的是：</p>
+<pre><code>&lt;property&gt;
+  &lt;name&gt;mapreduce.cluster.local.dir&lt;/name&gt;
+  &lt;value&gt;/home/soulmachine/local/var/hadoop/mapred/local&lt;/value&gt;
+&lt;/property&gt;
+</code></pre><p>确保这个目录存在，</p>
+<pre><code>$ mkdir -p ~/local/var/hadoop/mapred/local
+</code></pre><a id="more"></a>
+<p>还有另一种方法，由于<code>mapreduce.cluster.local.dir</code>默认值是<code>${hadoop.tmp.dir}/mapred/local</code>，也可以通过修改<code>hadoop.tmp.dir</code>达到目的，在<code>core-site.xml</code>中，确保<code>${hadoop.tmp.dir}/mapred/local</code>存在且有写权限。</p>
+<p>##2. 在master上配置权限<br>以下操作均在hadoop集群的 namenode 这台机器上进行，且登录为hadoop，因为hadoop这个用户是整个hadoop集群权限最高的用户（但对于Linux系统本身，这个用户其实没有sudo权限）。</p>
+<p>Hadoop关于用户权限方面，有很多高级的配置，这里我们简单的利用HDFS本身的文件权限检查机制，来配置多用户。</p>
+<p>HDFS本身没有提供用户名、用户组的创建，在客户端调用hadoop 的文件操作命令时，hadoop 识别出执行命令所在进程的linux系统的用户名和用户组，然后使用这个用户名和组来检查文件权限。 用户名=linux命令中的<code>whoami</code>，而组名等于<code>groups</code>。 </p>
+<p>启动hadoop hdfs系统的用户即为超级用户（在这里就是名为hadoop的这个用户），可以进行任意的操作。</p>
+<p>在客户端机器上，用gropus命令看一下hbase所在的组，</p>
+<pre><code>$ groups
+hbase
+</code></pre><p>说明hbase这个用户所在的组为hbase。</p>
+<p>###2.1 为客户端用户创建home文件夹</p>
+<pre><code>$ hdfs dfs -mkdir /user/hbase
+$ hdfs dfs -chown hbase /user/hbase
+$ hdfs dfs -chgrp hbase /user/hbase
+</code></pre><p>###2.2 设置HDFS上的/tmp目录的权限<br>客户端提交job的时候，需要往/tmp里写入文件，因此最好把/tmp设置为所有用户都有可读、可写和可执行的权限。 </p>
+<pre><code>$ hdfs dfs -chmod -R 777 /tmp
+</code></pre><p>###2.3 设置mapreduce.jobtracker.staging.root.dir<br>客户端向集群提交任务时，需要把该job需要的文件打包，拷贝到HDFS上。在拷贝之前，得先确定这些资源文件存放在HDFS的什么地方。JobTracker设置有一个工作目录(Staging area, 也称数据中转站)，用来存储与每个job相关的数据。这个目录的前缀由<code>mapreduce.jobtracker.staging.root.dir</code> 参数来指定，默认是<code>${hadoop.tmp.dir}/mapred/staging</code>，每个client user可以提交多个job，在这个目录后就得附加user name的信息。所以这个工作目录(Staging area)默认是<code>${hadoop.tmp.dir}/mapred/staging/denny/.staging/</code>。</p>
+<p>一般把前缀设置为<code>/user</code>，这是官方推荐的，见 <a href="http://hadoop.apache.org/docs/stable/hadoop-mapreduce-client/hadoop-mapreduce-client-core/mapred-default.xml" target="_blank" rel="external">mapred-default.xml</a> 里的<code>mapreduce.jobtracker.staging.root.dir</code>处：</p>
+<blockquote>
+<p>The root of the staging area for users’ job files In practice, this should be the directory where users’ home directories are located (usually /user)</p>
+</blockquote>
+<pre><code>#以hadoop用户登录jobtracker机器
+$ vim conf/mapred-site.xml
+&lt;property&gt;
+  &lt;name&gt;mapreduce.jobtracker.staging.root.dir&lt;/name&gt;
+  &lt;value&gt;/user&lt;/value&gt;
+&lt;/property&gt;
+</code></pre><p>###2.4 重启hadoop集群<br>将配置文件scp到所有机器，然后重启集群，</p>
+<pre><code>$ ./sbin/stop-yarn.sh
+$ ./sbin/start-yarn.sh
+$ ./sbin/stop-dfs.sh
+$ ./sbin/start-dfs.sh
+</code></pre><p>##3. 测试一下<br>回到客户端机器。</p>
+<p>将输入数据拷贝到分布式文件系统中:</p>
+<pre><code>$ ./bin/hdfs dfs -put /etc/hadoop input
+$ ./bin/hdfs dfs -ls input
+</code></pre><p>运行 Hadoop 自带的例子:</p>
+<pre><code>$ ./bin/$ hadoop jar $HADOOP_PREFIX/share/hadoop/mapreduce/hadoop-mapreduce-examples-2.2.0.jar wordcount input output
+</code></pre><p>查看输出文件:</p>
+<pre><code>$ hdfs dfs -lsr output
+$ hdfs dfs -cat output/part-r-00000
+</code></pre><p>如果能看到结果，说明这个例子运行成功。</p>
+<p>###4 （可选）将bin目录加入PATH<br>这样就不用每次都cd到Hadoop目录，执行命令了。</p>
+<p>在 <code>~/.bashrc</code>中添加如下4行：</p>
+<pre><code>export HADOOP_PREFIX=$HOME/local/opt/hadoop-2.2.0
+export PATH=$PATH:$HADOOP_PREFIX/bin
+alias hls=&quot;hdfs dfs -ls&quot;
+</code></pre><p>source使之立刻生效，</p>
+<pre><code>$ source ~/.bashrc
+</code></pre><p>##参考资料</p>
+<ol>
+<li><a href="http://blog.csdn.net/j3smile/article/details/7887826" target="_blank" rel="external">hadoop远程客户端安装配置、多用户权限配置</a></li>
+<li><a href="http://blog.csdn.net/a999wt/article/details/8718707" target="_blank" rel="external">hadoop如何创建多用户</a></li>
+<li><a href="http://blog.sina.com.cn/s/blog_605f5b4f0101897z.html" target="_blank" rel="external">关于多用户时hadoop的权限问题</a></li>
+<li><a href="http://langyu.iteye.com/blog/909170" target="_blank" rel="external">MapReduce: Job提交过程</a></li>
+<li><a href="http://www.hadoopor.com/archiver/tid-481.html" target="_blank" rel="external">hadoop中的dfs.name.dir,mapred.local.dir,mapred.system.dir和hadoop.tmp.dir说明</a></li>
+<li><a href="http://fenriswolf.me/2012/08/06/hadoop-%E5%8F%83%E6%95%B8%E8%A8%AD%E5%AE%9A-mapred-site-xml/" target="_blank" rel="external">Hadoop 參數設定 – mapred-site.xml</a></li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;假设我们以名为hadoop的用户，建好了集群，见&lt;a href=&quot;http://www.yanjiuyanjiu.com/blog/20140205/&quot;&gt;在CentOS上安装Hadoop 2.x 集群&lt;/a&gt;。通常，我们会把这个集群共享给多个用户，而不是让大家都登录为hadoop，这样做有几个好处：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;一个用户不能修改另一个用户的的文件&lt;/li&gt;
+&lt;li&gt;在hadoop web管理页面，可以很方便的看到不同的用户的job&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;现在集群中有一台机器，上面有一个用户名为 hbase 的用户，他想要使用hadoop集群，怎么配置呢？&lt;/p&gt;
+&lt;p&gt;##1. 安装hadoop客户端&lt;/p&gt;
+&lt;p&gt;###1.1 下载，解压&lt;br&gt;下载跟hadoop集群一样的hadoop软件包，并解压，&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ wget http://mirrors.hust.edu.cn/apache/hadoop/common/hadoop-2.2.0/hadoop-2.2.0.tar.gz
+$ tar -zxf hadoop-2.2.0.tar.gz -C ~/local/opt
+$ cd ~/local/opt/hadoop-2.2.0
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;###1.2 拷贝Hadoop集群的配置文件&lt;br&gt;将Hadoop集群的配置文件全部拷贝到客户端，相当与把集群的信息告诉客户端。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ scp -r hadoop@localhost:~/local/opt/hadoop-2.2.0/etc/hadoop ./etc/
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;修改conf/mapred-site.xml中的&lt;code&gt;mapreduce.cluster.local.dir&lt;/code&gt;，改为本机上的某个目录，确保这个目录存在且有写权限。因为这个目录是本地目录，每台机器都可以不同。例如我的是：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;property&amp;gt;
+  &amp;lt;name&amp;gt;mapreduce.cluster.local.dir&amp;lt;/name&amp;gt;
+  &amp;lt;value&amp;gt;/home/soulmachine/local/var/hadoop/mapred/local&amp;lt;/value&amp;gt;
+&amp;lt;/property&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;确保这个目录存在，&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ mkdir -p ~/local/var/hadoop/mapred/local
+&lt;/code&gt;&lt;/pre&gt;
+    
+    </summary>
+    
+      <category term="Hadoop" scheme="http://cn.soulmachine.me/categories/Hadoop/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>在CentOS上安装Hadoop 2.x 集群</title>
+    <link href="http://cn.soulmachine.me/2014-02-05-hadoop-2-installatioin-on-centos/"/>
+    <id>http://cn.soulmachine.me/2014-02-05-hadoop-2-installatioin-on-centos/</id>
+    <published>2014-02-05T12:39:00.000Z</published>
+    <updated>2016-09-09T06:32:49.000Z</updated>
+    
+    <content type="html"><![CDATA[<p><strong>环境</strong>：CentOS 6.5, OPenJDK 1.7, Hadoop 2.2.0</p>
+<p>本文主要参考官网的文档，<a href="http://hadoop.apache.org/docs/r2.2.0/hadoop-project-dist/hadoop-common/SingleCluster.html" target="_blank" rel="external">Hadoop 2.2.0 Single Node Setup</a>， <a href="http://hadoop.apache.org/docs/r2.2.0/hadoop-project-dist/hadoop-common/ClusterSetup.html" target="_blank" rel="external">Hadoop 2.2.0  Cluster Setup</a></p>
+<p>##（可选）创建新用户<br>一般我倾向于把需要启动daemon进程，对外提供服务的程序，简单的说，就是服务器类程序，安装在单独的用户下面。这样可以做到隔离，运维方面，安全性也提高了。</p>
+<p>创建一个新的group,</p>
+<pre><code>$ sudo groupadd hadoop
+</code></pre><p>创建一个新的用户，并加入group,</p>
+<pre><code>$ sudo useradd -g hadoop hadoop
+</code></pre><p>给新用户设置密码，</p>
+<pre><code>$ sudo passwd hadoop
+</code></pre><p>##1 伪分布式模式(Pseudo-Distributed Mode)<br>Hadoop能在单台机器上以伪分布式模式运行，即每个Hadoop模块运行在单独的java进程里。</p>
+<p>###1.1 设置SSH无密码登录localhost<br>先检查一下是能够无密码登录本机，</p>
+<pre><code>ssh localhost
+</code></pre><p>如果提示输入密码，说明不能，按如下步骤设置。</p>
+<pre><code>$ ssh-keygen -t dsa -P &apos;&apos; -f ~/.ssh/id_dsa 
+$ cat ~/.ssh/id_dsa.pub &gt;&gt; ~/.ssh/authorized_keys
+</code></pre><p>###1.2 下载已经编译好的二进制包，解压<br>用浏览器下载或wget,</p>
+<pre><code>$ wget http://mirrors.hust.edu.cn/apache/hadoop/common/hadoop-2.2.0/hadoop-2.2.0.tar.gz
+$ tar -zxf hadoop-2.2.0.tar.gz -C ~/local/opt
+$ cd ~/local/opt/hadoop-2.2.0
+</code></pre><p>###1.3 设置环境变量</p>
+<pre><code>$ vim ~/.bashrc
+export HADOOP_PREFIX=$HOME/local/opt/hadoop-2.2.0
+export HADOOP_COMMON_HOME=$HADOOP_PREFIX
+export HADOOP_HDFS_HOME=$HADOOP_PREFIX
+export HADOOP_MAPRED_HOME=$HADOOP_PREFIX
+export HADOOP_YARN_HOME=$HADOOP_PREFIX
+export HADOOP_CONF_DIR=$HADOOP_PREFIX/etc/hadoop
+export PATH=$PATH:$HADOOP_PREFIX/bin:$HADOOP_PREFIX/sbin
+</code></pre><a id="more"></a>
+<p>###1.4 修改配置文件<br>配置文件的位置在 <code>$HADOOP_PREIFIX/etc/hadoop</code>下面。</p>
+<p>###1.4.1 hadoop-env.sh<br>在这个文件中要告诉hadoop JDK 安装在了哪里</p>
+<pre><code>$ echo $JAVA_HOME
+/usr/lib/jvm/java
+$ vim conf/hadoop-env.sh
+</code></pre><p>取消<code>JAVA_HOME</code>那一行的注释，设置正确的JDK位置</p>
+<pre><code>export JAVA_HOME=/usr/lib/jvm/java
+</code></pre><p>####1.4.2 HDFS的配置<br>为了简单，我们仍采用Hadoop 1.x中的HDFS工作模式（不配置HDFS Federation）。</p>
+<p>core-site.xml:</p>
+<pre><code>&lt;configuration&gt;
+  &lt;property&gt;
+    &lt;name&gt;fs.defaultFS&lt;/name&gt;
+    &lt;value&gt;hdfs://localhost&lt;/value&gt;
+  &lt;/property&gt;
+&lt;/configuration&gt;
+</code></pre><p>hdfs-site.xml:</p>
+<pre><code>&lt;configuration&gt;
+  &lt;property&gt;
+    &lt;name&gt;dfs.datanode.data.dir&lt;/name&gt;
+    &lt;value&gt;file:///home/hadoop/local/var/hadoop/hdfs/datanode&lt;/value&gt;
+  &lt;/property&gt;
+  &lt;property&gt;
+    &lt;name&gt;dfs.namenode.name.dir&lt;/name&gt;
+    &lt;value&gt;file:///home/hadoop/local/var/hadoop/hdfs/namenode&lt;/value&gt;
+  &lt;/property&gt;
+  &lt;property&gt;
+    &lt;name&gt;dfs.namenode.checkpoint.dir&lt;/name&gt;
+    &lt;value&gt;file:///home/hadoop/local/var/hadoop/hdfs/namesecondary&lt;/value&gt;
+  &lt;/property&gt;
+  &lt;property&gt;
+    &lt;name&gt;dfs.replication&lt;/name&gt;
+    &lt;value&gt;1&lt;/value&gt;
+  &lt;/property&gt;
+&lt;/configuration&gt;
+</code></pre><p>Hadoop会自动创建目录。</p>
+<p>####1.4.3 YARN的配置<br>yarn-site.xml，不用修改，保持为空。</p>
+<p>####1.4.4 MapReduce的配置<br>Yarn不仅仅只支持MapReduce这种计算模式，还支持Spar, Tez, MPI等框架，因此，要显式地配置Yarn，使其支持mapreduce。在Hadoop 1.x中，只支持MapReduce，因此需要而且必须配置mapred-site.xml，到了Hadoop 2.x，MapReduce的配置是可选的。</p>
+<p>在yarn-site.xml中添加：</p>
+<pre><code>&lt;property&gt;
+   &lt;name&gt;yarn.nodemanager.aux-services&lt;/name&gt;
+   &lt;value&gt;mapreduce_shuffle&lt;/value&gt;
+&lt;/property&gt;
+</code></pre><p><strong>解释</strong>：为了能够运行MapReduce程序，需要让各个NodeManager在启动时加载shuffle server，shuffle server实际上是Jetty/Netty Server，Reduce Task通过该server从各个NodeManager上远程拷贝Map Task产生的中间结果。上面增加的这个配置用于指定shuffle server。</p>
+<p>将 mapred-site.xml.template 复制一份，重命名为mapred-site.xml。</p>
+<p>mapred-site.xml:</p>
+<pre><code>&lt;property&gt;
+   &lt;name&gt;mapreduce.framework.name&lt;/name&gt;
+   &lt;value&gt;yarn&lt;/value&gt;
+&lt;/property&gt;
+</code></pre><p><strong>解释</strong>：用mapreduce.framework.name指定采用的框架名称，默认是将作业提交到MRv1的JobTracker端。</p>
+<p>###1.5 测试</p>
+<p>####1.5.1 启动HDFS</p>
+<pre><code>$ hdfs namenode -format
+$ start-dfs.sh
+</code></pre><p>####1.5.2 启动Yarn</p>
+<pre><code>$ start-yarn.sh
+</code></pre><p>####1.5.3 启动MapReduce<br>在Hadoop 2.x中，MapReduce Job不需要额外的daemon进程，在MapReduce Application Master启动的时候会自动启动JobTracker和TaskTracker进程，Job结束的时候会自动被关闭。</p>
+<p>####1.5.4 运行一个DistributedShell的例子<br>运行一个Hadoop自带的例子，名称为<code>DistributedShell</code>，可以同时在多台机器上运行shell命令。</p>
+<pre><code>$ hadoop jar $HADOOP_PREFIX/share/hadoop/yarn/hadoop-yarn-applications-distributedshell-2.2.0.jar org.apache.hadoop.yarn.applications.distributedshell.Client --jar $HADOOP_PREFIX/share/hadoop/yarn/hadoop-yarn-applications-distributedshell-2.2.0.jar --shell_command date --num_containers 2
+</code></pre><p>运行完成后，看看倒数第三行，有类似与<code>application_1391783685869_0001</code>的字符串，这是application ID。查看该application的每个container的输出，执行下面的命令，</p>
+<pre><code>$ grep &quot;&quot; $HADOOP_PREFIX/logs/userlogs/&lt;APPLICATION ID&gt;/**/stdout
+</code></pre><p>####1.5.5 运行wordcount</p>
+<pre><code>$ cd $HADOOP_PREFIX
+$ hdfs dfs -put ./etc/hadoop/ input
+$ hadoop jar $HADOOP_PREFIX/share/hadoop/mapreduce/hadoop-mapreduce-examples-2.2.0.jar wordcount input output
+$ hdfs dfs -lsr output
+$ hdfs dfs -cat output/part-r-00000
+</code></pre><p>结束后，关闭 Hadoop:</p>
+<pre><code>$ stop-dfs.sh
+$ stop-yarn.sh
+</code></pre><p>##2 分布式模式(Fully-Distributed Mode)</p>
+<p>###2.1 准备3台机器<br>如果你已经有了三台机器，这一步可以省略。</p>
+<p>如果没有，则可以用VMware Workstation 或 VirtualBox创建3台虚拟机。首先用vmware workstation 新建一台CentOS 6.5，装好操作系统，选择 Basic Server，安装JDK，参考我的另一篇博客，<a href="http://www.yanjiuyanjiu.com/blog/20120423/" target="_blank" rel="external">安装和配置CentOS服务器的详细步骤</a>。安装好后然后用<strong>浅拷贝</strong><code>Create a linked clone</code> 克隆出2台，这样有了3台虚拟机。启动3台机器，假设IP分别为<code>192.168.1.131, 192.168.1.132, 192.168.1.133</code>, 131做为NameNode,JobTracker和SecondaryNameNode，身兼3个角色，这3个角色应该放到3台不同的机器上，这里为了简化，用一台机器来做3个角色；132和133为 slave。假设三台机器上的用户名是<code>hadoop</code>，也可以用其他用户名，但必须三台机器都相同。</p>
+<p>####2.1.1 关闭防火墙<br>临时关闭防火墙</p>
+<pre><code>$ sudo service iptables stop
+</code></pre><p>下次开机后，防火墙还是会启动。</p>
+<p>永久关闭防火墙</p>
+<pre><code>$ sudo chkconfig iptables off
+</code></pre><p>由于这几台虚拟机是开发机，不是生产环境，因此不必考虑安全性，可以永久关闭防火墙，还能给开发阶段带来很多便利。</p>
+<p>####2.1.2 修改hostname<br>如果集群中的每一台机器事先已经有了hostname，则这一步可以跳过。</p>
+<p>这一步看起来貌似不必要，其实是必须的，否则最后运行wordcount等例子时，会出现“Too many fetch-failures”。因为HDFS用hostname而不是IP，来相互之间进行通信（见后面的注意1）。</p>
+<p>在CentOS上修改hostname，包含两个步骤(假设将hostname1改为hostname2，参考<a href="http://www.ichiayi.com/wiki/tech/linux_hostname" target="_blank" rel="external">这里</a>，但不需要第一步)：</p>
+<ol>
+<li>将 <code>/etc/sysconfig/network</code> 內的 HOSTNAME 改成 yourhostname</li>
+<li>用<code>hostname</code>命令，临时修改机器名， <code>sudo hostname yourhostname</code></li>
+</ol>
+<p>用<code>exit</code>命令退出shell，再次登录，命令提示字符串就会变成<code>[username@yourhostname ~]$</code>。</p>
+<p>用上述方法，将131改名为master，132改名为slave01，133改名为slave02。</p>
+<p><strong>注意</strong>，对于有的Ubuntu/Debia 系统，会把本机的hostname解析成 127.0.1.1，例如：</p>
+<pre><code>127.0.0.1       localhost
+127.0.1.1       master
+</code></pre><p>将第二行改为(参考<a href="http://wiki.ubuntu.org.cn/%E5%88%A9%E7%94%A8Cloudera%E5%AE%9E%E7%8E%B0Hadoop" target="_blank" rel="external">利用Cloudera实现Hadoop</a>)</p>
+<pre><code>127.0.0.1       master
+</code></pre><p>####2.1.3 修改所有机器的<code>/etc/hosts</code>文件<br>在所有机器的<code>/etc/hosts</code>文件中，添加所有hostname对应的IP，一般在一台机器上设置好，然后scp到所有机器。例如</p>
+<pre><code>192.168.1.131 master
+192.168.1.132 slave01
+192.168.1.133 slave02
+</code></pre><p>###2.2 配置 master 无密码登陆到所有机器（包括master自己登陆自己）<br>参考我的另一篇博客，<a href="http://www.yanjiuyanjiu.com/blog/20120102/" target="_blank" rel="external">SSH无密码登录的配置</a></p>
+<p>###2.3 把Hadoop压缩包上传到所有机器，并解压<br>将 hadoop-1.2.1-bin.tar.gz 上传到所有机器，然后解压。<strong>注意，所有机器的hadoop路径必须一致，因为master会登陆到slave上执行命令，master认为slave的hadoop路径与自己一样。</strong></p>
+<p>下面开始配置，配置好了后，把<code>./etc/hadoop</code>目录scp到所有其他机器。</p>
+<p>###2.4 修改配置文件<br>在第1节的基础上，增加下列修改。</p>
+<p>####2.4.1 指定NameNode<br>在core-site.xml中，<code>fs.defaultFS</code>要改为运行NameNode的那台机器的hostname，不再是localhost。</p>
+<pre><code>&lt;configuration&gt;
+  &lt;property&gt;
+    &lt;name&gt;fs.defaultFS&lt;/name&gt;
+    &lt;value&gt;hdfs://master&lt;/value&gt;
+  &lt;/property&gt;
+&lt;/configuration&gt;
+</code></pre><p>####2.4.2 指定ResourceManager<br>在yarn-site.xml中增加，</p>
+<pre><code>&lt;property&gt;
+   &lt;name&gt;yarn.resourcemanager.hostname&lt;/name&gt;
+   &lt;value&gt;master&lt;/value&gt;
+&lt;/property&gt;
+</code></pre><p>####2.4.3 添加Slave，即NodeManager<br>在 <code>etc/hadoop/slaves</code>中添加，</p>
+<pre><code>slave01
+slave02
+</code></pre><p>####2.4.4 设置 hadoop.tmp.dir<br>在core-site.xml里添加：</p>
+<pre><code>&lt;property&gt;
+  &lt;name&gt;hadoop.tmp.dir&lt;/name&gt;
+  &lt;value&gt;/home/hadoop/local/var/hadoop/tmp/hadoop-${user.name}&lt;/value&gt;
+&lt;/property&gt;
+</code></pre><p>####2.4.4 修改mapred-site.xml<br>添加如下内容：</p>
+<pre><code>&lt;property&gt;
+    &lt;name&gt;mapreduce.jobtracker.staging.root.dir&lt;/name&gt;
+    &lt;value&gt;/user&lt;/value&gt;
+&lt;/property&gt;
+</code></pre><p>这是为以后的多用户支持做准备。</p>
+<p>####2.4.4 设置pid文件的存放位置<br>在hadoop-env.sh中添加</p>
+<pre><code>export HADOOP_MAPRED_PID_DIR=/home/hadoop/local/var/hadoop/pids
+</code></pre><p>在 mapred-env.sh中添加</p>
+<pre><code>export HADOOP_PID_DIR=/home/hadoop/local/var/hadoop/pids
+</code></pre><p>####2.4.5 将dfs.replication设置为slave的个数<br>我们这里有2台slave，就设置为2。在hdfs-site.xml里添加：</p>
+<pre><code>&lt;property&gt;
+    &lt;name&gt;dfs.replication&lt;/name&gt;
+    &lt;value&gt;2&lt;/value&gt;
+&lt;/property&gt;
+</code></pre><p>####2.4.6 将配置文件拷贝到所有slaves</p>
+<pre><code>$ cd $HADOOP_PREFIX/etc/hadoop
+$ scp hadoop-env.sh mapred-env.sh core-site.xml hdfs-site.xml mapred-site.xml yarn-site.xml slaves hadoop@slave01:$HADOOP_PREFIX/etc/hadoop
+$ scp hadoop-env.sh mapred-env.sh core-site.xml hdfs-site.xml mapred-site.xml yarn-site.xml slaves hadoop@slave02:$HADOOP_PREFIX/etc/hadoop
+</code></pre><p>###2.5 设置环境变量<br>在所有机器上添加环境变量，与第1.3节相同。</p>
+<p>###2.6 启动 hadoop</p>
+<p>####2.6.1 启动HDFS<br>在NameNode这个机器（在这里是master）上执行下列命令，</p>
+<pre><code>#只需一次，下次启动不再需要格式化，只需 start-dfs.sh
+$ hdfs namenode -format
+$ start-dfs.sh
+</code></pre><p>####2.6.2 启动Yarn<br>在ResourceManager这台机器（在这里仍然是master）上执行，</p>
+<pre><code>$ start-yarn.sh
+</code></pre><p>####2.6.3 启动MapReduce<br>在Hadoop 2.x中，MapReduce Job不需要额外的daemon进程，在Job开始的时候，NodeManager会启动一个MapReduce Application Master（相当与一个精简的JobTracker），Job结束的时候自动被关闭。</p>
+<p>####2.6.4 检查是否启动成功<br>用<code>jps</code>查看java进程。</p>
+<p>在master上，应该有三个进程，NameNode, SecondaryNameNode, ResourceManger；在每台slave上，应该有两个进程，DataNode, NodeManager。</p>
+<p>####2.6.5 Web UI<br>可以用浏览器打开NameNode, ResourceManager和各个NodeManager的web界面，</p>
+<ul>
+<li>NameNode web UI, <a href="http://master:50070/" target="_blank" rel="external">http://master:50070/</a></li>
+<li>ResourceManager web UI, <a href="http://master:8088/" target="_blank" rel="external">http://master:8088/</a></li>
+<li>NodeManager web UI, <a href="http://slave01:8042" target="_blank" rel="external">http://slave01:8042</a></li>
+</ul>
+<p>还可以启动JobHistory Server，能够通过Web页面查看集群的历史Job，执行如下命令：</p>
+<pre><code>mr-jobhistory-daemon.sh start historyserver
+</code></pre><p>默认使用19888端口，通过访问<a href="http://master:19888/" target="_blank" rel="external">http://master:19888/</a>查看历史信息。</p>
+<p>终止JobHistory Server，执行如下命令：</p>
+<pre><code>mr-jobhistory-daemon.sh stop historyserver
+</code></pre><p>###2.8 运行wordcount<br>将输入数据拷贝到HDFS中:</p>
+<pre><code>$ cd $HADOOP_PREFIX
+$ hdfs dfs -put ./etc/hadoop input
+</code></pre><p>这一步会报错，”No such file or directory”, 用<code>hdfs dfs -ls /</code>查看，是空的，难怪了。我们需要手动建立”/user/hadoop”目录，</p>
+<pre><code>$ hdfs dfs -mkdir /user/hadoop
+</code></pre><p>再上传文件，就可以了。</p>
+<p>运行WordCount:</p>
+<pre><code>$ hadoop jar $HADOOP_PREFIX/share/hadoop/mapreduce/hadoop-mapreduce-examples-2.2.0.jar wordcount input output
+</code></pre><p>查看结果：</p>
+<pre><code>$ hdfs dfs -lsr output
+$ hdfs dfs -cat output/part-r-00000
+</code></pre><p>如果能看到结果，说明这个例子运行成功。</p>
+<p>###2.9 停止 hadoop集群<br>在master上执行：</p>
+<pre><code>$ stop-yarn.sh
+$ stop-hdfs.sh
+</code></pre><p>##4. 排除错误<br>本文已经尽可能的把步骤详细列出来了，但是我相信大部分人不会一次成功。这时候，查找错误就很重要了。查找错误最重要的手段是查看hadoop的日志，一般在logs目录下。把错误消息复制粘贴到google，搜索一下，慢慢找错误。</p>
+<p>##参考资料</p>
+<ol>
+<li><a href="http://hadoop.apache.org/docs/r2.2.0/hadoop-project-dist/hadoop-common/core-default.xml" target="_blank" rel="external">core-default</a>, <a href="http://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-hdfs/hdfs-default.xml" target="_blank" rel="external">hdfs-default</a>, <a href="http://hadoop.apache.org/docs/current/hadoop-yarn/hadoop-yarn-common/yarn-default.xml" target="_blank" rel="external">yarn-default</a>, <a href="http://hadoop.apache.org/docs/stable/hadoop-mapreduce-client/hadoop-mapreduce-client-core/mapred-default.xml" target="_blank" rel="external">mapred-default</a></li>
+<li><a href="http://dongxicheng.org/mapreduce-nextgen/hadoop-yarn-install/" target="_blank" rel="external">Hadoop YARN安装部署初探</a></li>
+<li><a href="http://www.alexjf.net/blog/distributed-systems/hadoop-yarn-installation-definitive-guide" target="_blank" rel="external">Hadoop YARN Installation: The definitive guide</a></li>
+<li><a href="http://codesfusion.blogspot.com/2013/10/setup-hadoop-2x-220-on-ubuntu.html" target="_blank" rel="external">Setup newest Hadoop 2.x (2.2.0) on Ubuntu</a></li>
+<li><a href="http://shiyanjun.cn/archives/561.html" target="_blank" rel="external">Hadoop-2.2.0集群安装配置实践</a></li>
+<li><a href="http://dongxicheng.org/mapreduce-nextgen/hadoop-yarn-configurations-resourcemanager-nodemanager/" target="_blank" rel="external">Hadoop YARN配置参数剖析(1)—RM与NM相关参数</a></li>
+</ol>
+<p>##相关文章</p>
+<ol>
+<li><a href="http://www.yanjiuyanjiu.com/blog/20140202" target="_blank" rel="external">在CentOS上安装Hadoop集群</a></li>
+<li><a href="http://www.yanjiuyanjiu.com/blog/20120103/" target="_blank" rel="external">在Ubuntu上安装Hadoop</a></li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;strong&gt;环境&lt;/strong&gt;：CentOS 6.5, OPenJDK 1.7, Hadoop 2.2.0&lt;/p&gt;
+&lt;p&gt;本文主要参考官网的文档，&lt;a href=&quot;http://hadoop.apache.org/docs/r2.2.0/hadoop-project-dist/hadoop-common/SingleCluster.html&quot;&gt;Hadoop 2.2.0 Single Node Setup&lt;/a&gt;， &lt;a href=&quot;http://hadoop.apache.org/docs/r2.2.0/hadoop-project-dist/hadoop-common/ClusterSetup.html&quot;&gt;Hadoop 2.2.0  Cluster Setup&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;##（可选）创建新用户&lt;br&gt;一般我倾向于把需要启动daemon进程，对外提供服务的程序，简单的说，就是服务器类程序，安装在单独的用户下面。这样可以做到隔离，运维方面，安全性也提高了。&lt;/p&gt;
+&lt;p&gt;创建一个新的group,&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ sudo groupadd hadoop
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;创建一个新的用户，并加入group,&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ sudo useradd -g hadoop hadoop
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;给新用户设置密码，&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ sudo passwd hadoop
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;##1 伪分布式模式(Pseudo-Distributed Mode)&lt;br&gt;Hadoop能在单台机器上以伪分布式模式运行，即每个Hadoop模块运行在单独的java进程里。&lt;/p&gt;
+&lt;p&gt;###1.1 设置SSH无密码登录localhost&lt;br&gt;先检查一下是能够无密码登录本机，&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ssh localhost
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;如果提示输入密码，说明不能，按如下步骤设置。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ ssh-keygen -t dsa -P &amp;apos;&amp;apos; -f ~/.ssh/id_dsa 
+$ cat ~/.ssh/id_dsa.pub &amp;gt;&amp;gt; ~/.ssh/authorized_keys
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;###1.2 下载已经编译好的二进制包，解压&lt;br&gt;用浏览器下载或wget,&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ wget http://mirrors.hust.edu.cn/apache/hadoop/common/hadoop-2.2.0/hadoop-2.2.0.tar.gz
+$ tar -zxf hadoop-2.2.0.tar.gz -C ~/local/opt
+$ cd ~/local/opt/hadoop-2.2.0
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;###1.3 设置环境变量&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ vim ~/.bashrc
+export HADOOP_PREFIX=$HOME/local/opt/hadoop-2.2.0
+export HADOOP_COMMON_HOME=$HADOOP_PREFIX
+export HADOOP_HDFS_HOME=$HADOOP_PREFIX
+export HADOOP_MAPRED_HOME=$HADOOP_PREFIX
+export HADOOP_YARN_HOME=$HADOOP_PREFIX
+export HADOOP_CONF_DIR=$HADOOP_PREFIX/etc/hadoop
+export PATH=$PATH:$HADOOP_PREFIX/bin:$HADOOP_PREFIX/sbin
+&lt;/code&gt;&lt;/pre&gt;
+    
+    </summary>
+    
+      <category term="Hadoop" scheme="http://cn.soulmachine.me/categories/Hadoop/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>把Nutch爬虫部署到Hadoop集群上</title>
+    <link href="http://cn.soulmachine.me/2014-02-04-running-nutch-on-hadoop-cluster/"/>
+    <id>http://cn.soulmachine.me/2014-02-04-running-nutch-on-hadoop-cluster/</id>
+    <published>2014-02-04T22:36:00.000Z</published>
+    <updated>2016-09-09T06:32:49.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>软件版本：Nutch 1.7, Hadoop 1.2.1, CentOS 6.5, JDK 1.7</p>
+<p>前面的3篇文章中，<a href="http://www.yanjiuyanjiu.com/blog/20140121" target="_blank" rel="external">Nutch 快速入门(Nutch 1.7)</a>，<a href="http://www.yanjiuyanjiu.com/blog/20140201" target="_blank" rel="external">Nutch 快速入门(Nutch 2.2.1)</a>，<a href="http://www.yanjiuyanjiu.com/blog/20140120" target="_blank" rel="external">在Eclipse里运行Nutch</a>，Nutch都是跑在单机上，本文把Nutch部署到Hadoop集群上，在真正的分布式Hadoop集群上跑。</p>
+<p>##前提</p>
+<ul>
+<li>学会了搭建一个分布式Hadoop集群，见<a href="http://www.yanjiuyanjiu.com/blog/20140202" target="_blank" rel="external">在CentOS上安装Hadoop集群</a></li>
+<li>学会了单机跑Nutch，见<a href="http://www.yanjiuyanjiu.com/blog/20140121" target="_blank" rel="external">Nutch 快速入门(Nutch 1.7)</a></li>
+</ul>
+<p>##1 启动Hadoop集群<br>伪分布式或真分布式的Hadoop集群都可以，无所谓。</p>
+<p>选择一台配置好了的Hadoop客户端的机器（见<a href="http://www.yanjiuyanjiu.com/blog/20140203" target="_blank" rel="external">Hadoop多用户的配置</a>），作为客户机，以下操作均在这台客户机上进行。</p>
+<p>##2 下载Nutch源码<br>有两种方法，</p>
+<ol>
+<li>去官网首页下载apache-nutch-1.7-src.tar.gz</li>
+<li><p>用svn checkout</p>
+<pre><code>$ svn co https://svn.apache.org/repos/asf/nutch/tags/release-1.7
+</code></pre></li>
+</ol>
+<p>##3 把Hadoop的6个配置文件拷贝到Nutch的conf/目录<br>将Hadoop的六个配置文件，拷贝到Nutch的conf/目录，相当于把Hadoop集群的配置信息告诉Nutch，</p>
+<a id="more"></a>
+<p>在伪分布式模式下，</p>
+<pre><code>$ cd ~/local/opt/hadoop-1.2.1/conf
+$ cp hadoop-env.sh core-site.xml hdfs-site.xml mapred-site.xml masters slaves /home/soulmachine/local/src/apache-nutch-1.7/conf
+</code></pre><p>在分布式模式下，</p>
+<pre><code>$ ssh hadoop@localhost
+$ cd ~/local/opt/hadoop-1.2.1/conf
+$ scp hadoop-env.sh core-site.xml hdfs-site.xml mapred-site.xml masters slaves soulmachine@localhost:~/local/src/apache-nutch-1.7/conf
+$ exit
+</code></pre><p>##4 修改Nutch的配置文件<br>修改 conf/nutch-site.xml:</p>
+<pre><code>&lt;property&gt;
+  &lt;name&gt;http.agent.name&lt;/name&gt;
+  &lt;value&gt;My Nutch Spider&lt;/value&gt;
+&lt;/property&gt;
+</code></pre><p>修改 <code>regex-urlfilter.txt</code>, 见<a href="http://www.yanjiuyanjiu.com/blog/20140121/" target="_blank" rel="external">Nutch 快速入门(Nutch 1.7)</a> 第4节，</p>
+<pre><code>#注释掉这一行
+# skip URLs containing certain characters as probable queries, etc.
+#-[?*!@=]
+# accept anything else
+#注释掉这行
+#+.
++^http:\/\/movie\.douban\.com\/subject\/[0-9]+\/(\?.+)?$
+</code></pre><p>##5 重新编译Nutch<br>每次修改了<code>$NUTCH_HOME/conf</code>下的的文件，都需要重新编译Nutch，重新打包生成一个nutch-x.x.x.job文件，见这里，<a href="http://wiki.apache.org/nutch/NutchHadoopSingleNodeTutorial" target="_blank" rel="external">Running Nutch in (pseudo) distributed-mode</a>。也可以打开build.xml看看里面的”runtime”这个task干了什么，就明白了。</p>
+<pre><code>$ ant runtime
+</code></pre><p>这会在<code>runtime/deploy</code>下生成一个Job文件，<code>apache-nutch-1.7.job</code>，它本质上是一个zip压缩包，可以打开看一下它里面的内容。可以看到它包含了很多编译好的class文件，以及从conf/目录下的拷贝出来的xml配置文件。</p>
+<p>##6 向Hadoop集群提交Job，进行抓取</p>
+<p>首先，要在con/hadoop-env.sh 添加<code>HADOOP_CLASSPATH</code>，让Hadoop知道去哪里找Nutch所依赖的jar包，</p>
+<pre><code>export HADOOP_CLASSPATH=/home/soulmachine/local/opt/apache-nutch-1.7/runtime/local/lib/*.jar
+</code></pre><p>上传种子URL列表，</p>
+<pre><code>$ hadoop fs -put ~/urls urls
+$ hadoop fs -lsr urls
+</code></pre><p>提交Job,</p>
+<pre><code>$ hadoop jar ./runtime/deploy/apache-nutch-1.7.job org.apache.nutch.crawl.Crawl urls -dir TestCrawl -depth 1 -topN 5
+</code></pre><p>可以打开web页面监控job的进度，</p>
+<ul>
+<li>Jobtracer: <a href="http://master:50030" target="_blank" rel="external">http://master:50030</a></li>
+<li>Namenode: <a href="http://master:50070" target="_blank" rel="external">http://master:50070</a></li>
+</ul>
+<p>把Nutch运行在伪分布式Hadoop集群上，比Standalone模式要好，因为可以通过web页面监控job。</p>
+<p>查看结果</p>
+<pre><code>$ hadoop fs -ls TestCrawl
+
+Found 3 items
+drwxr-xr-x   - soulmachine supergroup          0 2014-02-04 02:17 /user/soulmachine/TestCrawl/crawldb
+drwxr-xr-x   - soulmachine supergroup          0 2014-02-04 02:18 /user/soulmachine/TestCrawl/linkdb
+drwxr-xr-x   - soulmachine supergroup          0 2014-02-04 02:16 /user/soulmachine/TestCrawl/segments
+</code></pre><p>##7 注意<br>如果出现<code>java.io.IOException: No valid local directories in property: mapred.local.dir</code>的错误，说明你的客户机的mapred-site.xml是从hadoop集群拷贝过来的，没有修改过，<code>mapred.local.dir</code>是一个本地目录，集群上的机器有这个目录，但是你的本机上没有，所以出现了这个错误。解决办法是，在本地新建一个目录，然后把<code>mapred.local.dir</code>设置为这个路径。</p>
+<p>如果出现<code>org.apache.hadoop.security.AccessControlException: Permission denied: user=soulmachine, access=WRITE, inode=&quot;tmp&quot;</code>的错误，多半是因为你没有给这个用户创建<code>hadoop.tmp.dir</code>文件夹，见<a href="http://www.yanjiuyanjiu.com/blog/20140203" target="_blank" rel="external">Hadoop多用户的配置</a>第2.2节。</p>
+<p>##8 把Nutch 1.7 爬虫部署到Hadoop 2.x集群上<br>事实证明是完全可行的，Hadoop 2.x 向后兼容。</p>
+<p>把hadoop 2.x的配置文件，全部拷贝到 nutch 的conf目录下</p>
+<pre><code>cp ~/local/opt/hadoop-2.2.0/etc/hadoop* ~/local/src/apache-nutch-1.7/conf
+</code></pre><p>然后编译，</p>
+<pre><code>ant runtime
+</code></pre><p>把种子列表上传到hdfs,</p>
+<pre><code>$ hdfs dfs -put ~/urls urls
+$ hdfs dfs -lsr urls
+</code></pre><p>提交Job,</p>
+<pre><code>$ hadoop jar ./runtime/deploy/apache-nutch-1.7.job org.apache.nutch.crawl.Crawl urls -dir TestCrawl -depth 2
+</code></pre><p>查看结果，</p>
+<pre><code>$ cd runtime/deploy
+$ ./bin/readdb hdfs://localhost/user/soulmachine/TestCrawl/crawldb/ -stats
+14/02/14 16:51:07 INFO crawl.CrawlDbReader: Statistics for CrawlDb: hdfs://localhost/user/soulmachine/TestCrawl/crawldb/
+14/02/14 16:51:07 INFO crawl.CrawlDbReader: TOTAL urls:    70
+14/02/14 16:51:07 INFO crawl.CrawlDbReader: retry 0:    70
+14/02/14 16:51:07 INFO crawl.CrawlDbReader: min score:    0.006
+14/02/14 16:51:07 INFO crawl.CrawlDbReader: avg score:    0.03972857
+14/02/14 16:51:07 INFO crawl.CrawlDbReader: max score:    1.2
+14/02/14 16:51:07 INFO crawl.CrawlDbReader: status 1 (db_unfetched):    59
+14/02/14 16:51:07 INFO crawl.CrawlDbReader: status 2 (db_fetched):    11
+14/02/14 16:51:07 INFO crawl.CrawlDbReader: CrawlDb statistics: done
+</code></pre><p>##参考资料</p>
+<ol>
+<li><a href="http://packtlib.packtpub.com/library/web-crawling-and-data-mining-with-apache-nutch/ch03lvl1sec20" target="_blank" rel="external">Web Crawling and Data Mining with Apache Nutch 的第3.2节</a></li>
+<li><p><a href="http://nutchhadoop.blogspot.com/" target="_blank" rel="external">Install Nutch 1.7 and Hadoop 1.2.0</a></p>
+</li>
+<li><p><a href="http://blog.csdn.net/azhao_dn/article/details/6921398" target="_blank" rel="external">hadoop mapred(hive)执行目录 文件权限问题</a></p>
+</li>
+</ol>
+<p>##废弃的资料</p>
+<ol>
+<li><p><a href="http://wiki.apache.org/nutch/NutchHadoopTutorial" target="_blank" rel="external">Nutch and Hadoop Tutorial</a>，讲的是Nutch 1.3的，太老了，完全不适用Nutch 1.7</p>
+</li>
+<li><p><a href="http://wiki.apache.org/nutch/NutchHadoopSingleNodeTutorial" target="_blank" rel="external">Running Nutch in (pseudo) distributed-mode</a>，太短了，没什么内容</p>
+</li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;软件版本：Nutch 1.7, Hadoop 1.2.1, CentOS 6.5, JDK 1.7&lt;/p&gt;
+&lt;p&gt;前面的3篇文章中，&lt;a href=&quot;http://www.yanjiuyanjiu.com/blog/20140121&quot;&gt;Nutch 快速入门(Nutch 1.7)&lt;/a&gt;，&lt;a href=&quot;http://www.yanjiuyanjiu.com/blog/20140201&quot;&gt;Nutch 快速入门(Nutch 2.2.1)&lt;/a&gt;，&lt;a href=&quot;http://www.yanjiuyanjiu.com/blog/20140120&quot;&gt;在Eclipse里运行Nutch&lt;/a&gt;，Nutch都是跑在单机上，本文把Nutch部署到Hadoop集群上，在真正的分布式Hadoop集群上跑。&lt;/p&gt;
+&lt;p&gt;##前提&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;学会了搭建一个分布式Hadoop集群，见&lt;a href=&quot;http://www.yanjiuyanjiu.com/blog/20140202&quot;&gt;在CentOS上安装Hadoop集群&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;学会了单机跑Nutch，见&lt;a href=&quot;http://www.yanjiuyanjiu.com/blog/20140121&quot;&gt;Nutch 快速入门(Nutch 1.7)&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;##1 启动Hadoop集群&lt;br&gt;伪分布式或真分布式的Hadoop集群都可以，无所谓。&lt;/p&gt;
+&lt;p&gt;选择一台配置好了的Hadoop客户端的机器（见&lt;a href=&quot;http://www.yanjiuyanjiu.com/blog/20140203&quot;&gt;Hadoop多用户的配置&lt;/a&gt;），作为客户机，以下操作均在这台客户机上进行。&lt;/p&gt;
+&lt;p&gt;##2 下载Nutch源码&lt;br&gt;有两种方法，&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;去官网首页下载apache-nutch-1.7-src.tar.gz&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;用svn checkout&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ svn co https://svn.apache.org/repos/asf/nutch/tags/release-1.7
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;##3 把Hadoop的6个配置文件拷贝到Nutch的conf/目录&lt;br&gt;将Hadoop的六个配置文件，拷贝到Nutch的conf/目录，相当于把Hadoop集群的配置信息告诉Nutch，&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Search-Engine" scheme="http://cn.soulmachine.me/categories/Search-Engine/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Hadoop多用户的配置(Hadoop 1.x)</title>
+    <link href="http://cn.soulmachine.me/2014-02-03-hadoop-multiple-users/"/>
+    <id>http://cn.soulmachine.me/2014-02-03-hadoop-multiple-users/</id>
+    <published>2014-02-03T10:05:00.000Z</published>
+    <updated>2016-09-09T06:32:49.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>假设我们以名为hadoop的用户，建好了集群，见<a href="http://www.yanjiuyanjiu.com/blog/20140202" target="_blank" rel="external">在CentOS上安装Hadoop集群</a>。通常，我们会把这个集群共享给多个用户，而不是让大家都登录为hadoop，这样做有几个好处：</p>
+<ul>
+<li>一个用户不能修改另一个用户的的文件</li>
+<li>在hadoop web管理页面，可以很方便的看到不同的用户的job</li>
+</ul>
+<p>现在集群中有一台机器，上面有一个用户名为 hbase 的用户，他想要使用hadoop集群，怎么配置呢？</p>
+<p>##1. 安装hadoop客户端</p>
+<p>###1.1 下载，解压<br>下载跟hadoop集群一样的hadoop软件包，并解压，</p>
+<pre><code>$ wget http://mirror.olnevhost.net/pub/apache/hadoop/common/stable1/hadoop-1.2.1-bin.tar.gz
+$ tar -zxf hadoop-1.2.1-bin.tar.gz -C ~/local/opt
+$ cd ~/local/opt/hadoop-1.2.1
+</code></pre><p>###1.2 配置<br>在客户端只需配置集群namenode 和 jobtracker 的相关信息, 把namenode和jobtracker的信息告诉客户端即可。</p>
+<p>把hadoop用户下的<code>conf/core-site.xml</code>和<code>conf/mapred-site.xml</code>拷贝到本用户的conf/目录下</p>
+<pre><code>$ scp hadoop@localhost:~/local/opt/hadoop-1.2.1/conf/core-site.xml ./conf/
+$ scp hadoop@localhost:~/local/opt/hadoop-1.2.1/conf/mapred-site.xml ./conf/
+</code></pre><p>修改conf/mapred-site.xml中的<code>mapred.local.dir</code>，改为本机上的某个目录，确保这个目录存在且有写入。因为这个目录是本地目录，每台机器都可以不同。例如我的是：</p>
+<pre><code>&lt;property&gt;
+  &lt;name&gt;mapred.local.dir&lt;/name&gt;
+  &lt;value&gt;/home/soulmachine/local/var/hadoop/mapred/local&lt;/value&gt;
+&lt;/property&gt;
+</code></pre><p>确保这个目录存在，</p>
+<pre><code>$ mkdir -p ~/local/var/hadoop/mapred/local
+</code></pre><a id="more"></a>
+<p>还有另一种方法，由于<code>mapred.local.dir</code>默认值是<code>${hadoop.tmp.dir}/mapred/local</code>，也可以通过修改<code>hadoop.tmp.dir</code>达到目的，在<code>core-site.xml</code>中，确保<code>${hadoop.tmp.dir}/mapred/local</code>存在且有写权限。</p>
+<p>##2. 在master上配置权限<br>以下操作均在hadoop集群的 namenode 这台机器上进行，且登录为hadoop，因为hadoop这个用户是整个hadoop集群权限最高的用户（但对于Linux系统本身，这个用户其实没有sudo权限）。</p>
+<p>Hadoop关于用户权限方面，有很多高级的配置，这里我们简单的利用HDFS本身的文件权限检查机制，来配置多用户。</p>
+<p>HDFS本身没有提供用户名、用户组的创建，在客户端调用hadoop 的文件操作命令时，hadoop 识别出执行命令所在进程的linux系统的用户名和用户组，然后使用这个用户名和组来检查文件权限。 用户名=linux命令中的<code>whoami</code>，而组名等于<code>groups</code>。 </p>
+<p>启动hadoop hdfs系统的用户即为超级用户（在这里就是名为hadoop的这个用户），可以进行任意的操作。</p>
+<p>在客户端机器上，用gropus命令看一下hbase所在的组，</p>
+<pre><code>$ groups
+hbase
+</code></pre><p>说明hbase这个用户所在的组为hbase。</p>
+<p>###2.1 为客户端用户创建home文件夹</p>
+<pre><code>$ hadoop fs -mkdir /user/hbase
+$ hadoop fs -chown hbase /user/hbase
+$ hadoop fs -chgrp hbase /user/hbase
+</code></pre><p>###2.2 为客户端用户创建hadoop.tmp.dir文件夹<br><code>hadoop.tmp.dir</code>既是一个本地目录，也是HDFS上的一个目录，参考<a href="http://stackoverflow.com/questions/2354525/what-should-be-hadoop-tmp-dir" target="_blank" rel="external">What should be hadoop.tmp.dir?</a>。默认是<code>/tmp/hadoop-${user.name}</code>（参考官方表格，<a href="http://hadoop.apache.org/docs/r1.2.1/core-default.html" target="_blank" rel="external">core-default</a>），所以我们需要为用户创建这个文件夹，</p>
+<pre><code>$ hadoop fs -mkdir /tmp/hadoop-hbase
+$ hadoop fs -chown hbase /tmp/hadoop-hbase
+$ hadoop fs -chgrp hbase /tmp/hadoop-hbase
+</code></pre><p>补充说明一下各个常见目录的相关知识，</p>
+<ul>
+<li><code>dfs.name.dir</code>和<code>dfs.data.dir</code>都是本地目录，它们是HDFS的基础，所以只可能是本地目录</li>
+<li><code>mapred.local.dir</code>是本地目录，当客户端向集群提交了一个任务后，该job相关的文件（jar包和配置文件）会存放在HDFS上，各个slave从HDFS把这些文件下载到本地，然后开始执行。</li>
+<li><code>mapred.system.dir</code>是一个HDFS目录，存放了一个job的控制信息，被多个slave所共享，所以只能是HDFS目录。</li>
+<li><code>mapred.temp.dir</code>是一个HDFS目录，存放着一个job的临时文件，job结束后会被自动删除。</li>
+</ul>
+<p>###2.3 设置mapreduce.jobtracker.staging.root.dir<br>客户端向集群提交任务时，需要把该job需要的文件打包，拷贝到HDFS上。在拷贝之前，得先确定这些资源文件存放在HDFS的什么地方。JobTracker设置有一个工作目录(Staging area, 也称数据中转站)，用来存储与每个job相关的数据。这个目录的前缀由<code>mapreduce.jobtracker.staging.root.dir</code> 参数来指定，默认是<code>${hadoop.tmp.dir}/mapred/staging</code>，每个client user可以提交多个job，在这个目录后就得附加user name的信息。所以这个工作目录(Staging area)默认是<code>${hadoop.tmp.dir}/mapred/staging/denny/.staging/</code>。</p>
+<p>一般把前缀设置为<code>/user</code>，这是官方推荐的，见 <a href="http://hadoop.apache.org/docs/r1.2.1/mapred-default.html" target="_blank" rel="external">mapred-default.xml</a> 里的<code>mapreduce.jobtracker.staging.root.dir</code>处：</p>
+<blockquote>
+<p>The root of the staging area for users’ job files In practice, this should be the directory where users’ home directories are located (usually /user)</p>
+</blockquote>
+<pre><code>#以hadoop用户登录jobtracker机器
+$ vim conf/mapred-site.xml
+&lt;property&gt;
+  &lt;name&gt;mapreduce.jobtracker.staging.root.dir&lt;/name&gt;
+  &lt;value&gt;/user&lt;/value&gt;
+&lt;/property&gt;
+</code></pre><p>###2.4 重启hadoop集群<br>将配置文件scp到所有机器，然后重启集群，</p>
+<pre><code>$ bin/stop-all.sh
+$ bin/start-all.sh
+</code></pre><p>##3. 测试一下<br>回到客户端机器。</p>
+<p>将输入数据拷贝到分布式文件系统中:</p>
+<pre><code>$ bin/hadoop fs -put conf input
+$ bin/hadoop fs -ls input
+</code></pre><p>运行 Hadoop 自带的例子:</p>
+<pre><code>$ bin/hadoop jar hadoop-examples-*.jar wordcount input output
+</code></pre><p>查看输出文件:</p>
+<pre><code>$ bin/hadoop fs -ls output
+$ bin/hadoop fs -cat output/part-r-00000
+</code></pre><p>如果能看到结果，说明这个例子运行成功。</p>
+<p>###4 （可选）设置别名，名称为hadoop，指向bin/hadoop<br>这样就不用每次都cd到Hadoop目录，执行命令了。</p>
+<p>在 <code>~/.bashrc</code>中添加如下4行：</p>
+<pre><code>unalias hadoop &amp;&gt; /dev/null
+alias hadoop=&quot;$HOME/local/opt/hadoop-1.2.1/bin/hadoop&quot;
+unalias hls &amp;&gt; /dev/null
+alias hls=&quot;hadoop fs -ls&quot;
+</code></pre><p>source使之立刻生效，</p>
+<pre><code>$ source ~/.bashrc
+</code></pre><p>##参考资料</p>
+<ol>
+<li><a href="http://blog.csdn.net/j3smile/article/details/7887826" target="_blank" rel="external">hadoop远程客户端安装配置、多用户权限配置</a></li>
+<li><a href="http://blog.csdn.net/a999wt/article/details/8718707" target="_blank" rel="external">hadoop如何创建多用户</a></li>
+<li><a href="http://blog.sina.com.cn/s/blog_605f5b4f0101897z.html" target="_blank" rel="external">关于多用户时hadoop的权限问题</a></li>
+<li><a href="http://langyu.iteye.com/blog/909170" target="_blank" rel="external">MapReduce: Job提交过程</a></li>
+<li><a href="http://www.hadoopor.com/archiver/tid-481.html" target="_blank" rel="external">hadoop中的dfs.name.dir,mapred.local.dir,mapred.system.dir和hadoop.tmp.dir说明</a></li>
+<li><a href="http://fenriswolf.me/2012/08/06/hadoop-%E5%8F%83%E6%95%B8%E8%A8%AD%E5%AE%9A-mapred-site-xml/" target="_blank" rel="external">Hadoop 參數設定 – mapred-site.xml</a></li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;假设我们以名为hadoop的用户，建好了集群，见&lt;a href=&quot;http://www.yanjiuyanjiu.com/blog/20140202&quot;&gt;在CentOS上安装Hadoop集群&lt;/a&gt;。通常，我们会把这个集群共享给多个用户，而不是让大家都登录为hadoop，这样做有几个好处：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;一个用户不能修改另一个用户的的文件&lt;/li&gt;
+&lt;li&gt;在hadoop web管理页面，可以很方便的看到不同的用户的job&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;现在集群中有一台机器，上面有一个用户名为 hbase 的用户，他想要使用hadoop集群，怎么配置呢？&lt;/p&gt;
+&lt;p&gt;##1. 安装hadoop客户端&lt;/p&gt;
+&lt;p&gt;###1.1 下载，解压&lt;br&gt;下载跟hadoop集群一样的hadoop软件包，并解压，&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ wget http://mirror.olnevhost.net/pub/apache/hadoop/common/stable1/hadoop-1.2.1-bin.tar.gz
+$ tar -zxf hadoop-1.2.1-bin.tar.gz -C ~/local/opt
+$ cd ~/local/opt/hadoop-1.2.1
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;###1.2 配置&lt;br&gt;在客户端只需配置集群namenode 和 jobtracker 的相关信息, 把namenode和jobtracker的信息告诉客户端即可。&lt;/p&gt;
+&lt;p&gt;把hadoop用户下的&lt;code&gt;conf/core-site.xml&lt;/code&gt;和&lt;code&gt;conf/mapred-site.xml&lt;/code&gt;拷贝到本用户的conf/目录下&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ scp hadoop@localhost:~/local/opt/hadoop-1.2.1/conf/core-site.xml ./conf/
+$ scp hadoop@localhost:~/local/opt/hadoop-1.2.1/conf/mapred-site.xml ./conf/
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;修改conf/mapred-site.xml中的&lt;code&gt;mapred.local.dir&lt;/code&gt;，改为本机上的某个目录，确保这个目录存在且有写入。因为这个目录是本地目录，每台机器都可以不同。例如我的是：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;property&amp;gt;
+  &amp;lt;name&amp;gt;mapred.local.dir&amp;lt;/name&amp;gt;
+  &amp;lt;value&amp;gt;/home/soulmachine/local/var/hadoop/mapred/local&amp;lt;/value&amp;gt;
+&amp;lt;/property&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;确保这个目录存在，&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ mkdir -p ~/local/var/hadoop/mapred/local
+&lt;/code&gt;&lt;/pre&gt;
+    
+    </summary>
+    
+      <category term="Hadoop" scheme="http://cn.soulmachine.me/categories/Hadoop/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>在CentOS上安装Hadoop集群</title>
+    <link href="http://cn.soulmachine.me/2014-02-02-hadoop-installatioin-on-centos/"/>
+    <id>http://cn.soulmachine.me/2014-02-02-hadoop-installatioin-on-centos/</id>
+    <published>2014-02-02T12:39:00.000Z</published>
+    <updated>2016-09-09T06:32:49.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>Ubuntu上安装，请参考我的另一篇博客，<a href="http://www.yanjiuyanjiu.com/blog/20120103/" target="_blank" rel="external">在Ubuntu上安装Hadoop</a>。</p>
+<p><strong>环境</strong>：CentOS 6.5, OPenJDK 1.7, Hadoop 1.2.1</p>
+<p>本文主要参考官网的文档，<a href="http://hadoop.apache.org/docs/r1.2.1/#Getting+Started" target="_blank" rel="external">Hadoop 1.2.1 Getting Started</a></p>
+<p>##1 单机模式(Standalone Mode)<br>为了能顺利安装成功，我们先练习在单台机器上安装Hadoop。在单台机器上，可以配置成单机模式(Standalone Mode)和伪分布式模式(Pseudo-Distributed Mode)，参考官方文档<a href="http://hadoop.apache.org/docs/r1.2.1/single_node_setup.html" target="_blank" rel="external">Single Node Setup</a>。</p>
+<p>###1.1 下载Hadoop 1.2.1，解压<br>用浏览器下载或wget,</p>
+<pre><code>$ wget http://mirror.olnevhost.net/pub/apache/hadoop/common/stable1/hadoop-1.2.1-bin.tar.gz
+$ tar -zxf hadoop-1.2.1-bin.tar.gz -C ~/local/opt
+$ cd ~/local/opt/hadoop-1.2.1
+</code></pre><p>###1.2 编辑 conf/hadoop-env.sh，设置 <code>JAVA_HOME</code></p>
+<pre><code>$ echo $JAVA_HOME
+/usr/lib/jvm/java
+$ vim conf/hadoop-env.sh
+</code></pre><p>取消<code>JAVA_HOME</code>那一行的注释，设置正确的JDK位置</p>
+<pre><code>export JAVA_HOME=/usr/lib/jvm/java
+</code></pre><p>###1.3 运行一个job<br>默认情况下，Hadoop就被配置为Standalone模式了，此时Hadoop的所有模块都运行在一个java进程里。</p>
+<p>我们运行一个例子测试一下。下面的几行命令，把 <code>conf</code>下的所有xml文件作为输入，在文件中查找指定的正则表达式，把匹配的结果输出到<code>output</code>目录。</p>
+<pre><code>$ mkdir input 
+$ cp conf/*.xml input 
+$ bin/hadoop jar hadoop-examples-*.jar grep input output &apos;dfs[a-z.]+&apos; 
+$ cat output/*
+</code></pre><p>可以看到正常的结果，说明单机模式运行成功了，下面开始配置伪分布式模式。</p>
+<a id="more"></a>
+<p>##2 伪分布式模式(Pseudo-Distributed Mode)<br>Hadoop能在单台机器上以伪分布式模式运行，即每个Hadoop模块运行在单独的java进程里。</p>
+<p>###2.1 编辑 conf/hadoop-env.sh，设置 <code>JAVA_HOME</code></p>
+<pre><code>$ echo $JAVA_HOME
+/usr/lib/jvm/java
+$ vim conf/hadoop-env.sh
+</code></pre><p>###2.2 设置无密码SSH登录<br>先检查一下是能够无密码登录本机，</p>
+<pre><code>ssh localhost
+</code></pre><p>如果提示输入密码，说明不能，按如下步骤设置。</p>
+<pre><code>$ ssh-keygen -t dsa -P &apos;&apos; -f ~/.ssh/id_dsa 
+$ cat ~/.ssh/id_dsa.pub &gt;&gt; ~/.ssh/authorized_keys
+</code></pre><p>###2.3 配置</p>
+<p>conf/core-site.xml:</p>
+<pre><code>&lt;configuration&gt;
+     &lt;property&gt;
+         &lt;name&gt;fs.default.name&lt;/name&gt;
+         &lt;value&gt;hdfs://localhost:9000&lt;/value&gt;
+     &lt;/property&gt;
+&lt;/configuration&gt;
+</code></pre><p>conf/hdfs-site.xml:</p>
+<pre><code>&lt;configuration&gt;
+     &lt;property&gt;
+         &lt;name&gt;dfs.replication&lt;/name&gt;
+         &lt;value&gt;1&lt;/value&gt;
+     &lt;/property&gt;
+&lt;/configuration&gt;
+</code></pre><p>conf/mapred-site.xml:</p>
+<pre><code>&lt;configuration&gt;
+     &lt;property&gt;
+         &lt;name&gt;mapred.job.tracker&lt;/name&gt;
+         &lt;value&gt;localhost:9001&lt;/value&gt;
+     &lt;/property&gt;
+&lt;/configuration&gt;
+</code></pre><p>###2.4 启动Hadoop</p>
+<p>格式化namenode</p>
+<pre><code>$ bin/hadoop namenode -format
+</code></pre><p>启动 Hadoop 后台进程</p>
+<pre><code>$ bin/start-all.sh
+</code></pre><p>Hadoop的log写入到了<code>${HADOOP_HOME}/logs</code>目录下。</p>
+<p>现在可以用浏览器打开NameNode和JobTracker的web界面了。</p>
+<ul>
+<li>NameNode - <a href="http://localhost:50070/" target="_blank" rel="external">http://localhost:50070/</a></li>
+<li>JobTracker - <a href="http://localhost:50030/" target="_blank" rel="external">http://localhost:50030/</a></li>
+</ul>
+<p>###2.5 运行一个例子<br>运行的例子跟单机模式下的例子相同。</p>
+<p>将输入数据拷贝到分布式文件系统中:</p>
+<pre><code>$ bin/hadoop fs -put conf input
+</code></pre><p>运行 Hadoop 自带的例子:</p>
+<pre><code>$ bin/hadoop jar hadoop-examples-*.jar grep input output &apos;dfs[a-z.]+&apos;
+</code></pre><p>查看输出文件:</p>
+<pre><code>$ bin/hadoop fs -cat output/*
+
+1    dfs.replication
+1    dfs.server.namenode.
+1    dfsadmin
+</code></pre><p>结束后，关闭 Hadoop:</p>
+<pre><code>$ bin/stop-all.sh
+
+stopping jobtracker
+localhost: stopping tasktracker
+stopping namenode
+localhost: stopping datanode
+localhost: stopping secondarynamenode
+</code></pre><p>##3 分布式模式(Fully-Distributed Mode)<br>主要参考官方文档<a href="http://hadoop.apache.org/docs/r1.2.1/cluster_setup.html" target="_blank" rel="external">Cluster Setup</a>.</p>
+<p>###3.1 准备3台机器<br>如果你已经有了三台机器，这一步可以省略。</p>
+<p>如果没有，则可以用VMware Workstation 或 VirtualBox创建3台虚拟机。首先用vmware workstation 新建一台CentOS 6.5，装好操作系统，选择 Basic Server，安装JDK，参考我的另一篇博客，<a href="http://www.yanjiuyanjiu.com/blog/20120423/" target="_blank" rel="external">安装和配置CentOS服务器的详细步骤</a>。安装好后然后用<strong>浅拷贝</strong><code>Create a linked clone</code> 克隆出2台，这样有了3台虚拟机。启动3台机器，假设IP分别为<code>192.168.1.131, 192.168.1.132, 192.168.1.133</code>, 131做为NameNode,JobTracker和SecondaryNameNode，身兼3个角色，这3个角色应该放到3台不同的机器上，这里为了简化，用一台机器来做3个角色；132和133为 slave。三台机器上的用户名是<code>hadoop</code>，也可以用其他用户名，但必须三台机器都相同。</p>
+<p>####3.1.1 关闭防火墙<br>临时关闭防火墙</p>
+<pre><code>$ sudo service iptables stop
+</code></pre><p>下次开机后，防火墙还是会启动。</p>
+<p>永久关闭防火墙</p>
+<pre><code>$ sudo chkconfig iptables off
+</code></pre><p>由于这几台虚拟机是开发机，不是生产环境，因此不必考虑安全性，可以永久关闭防火墙，还能给开发阶段带来很多便利。</p>
+<p>####3.1.2 修改hostname<br>如果集群中的每一台机器事先已经有了hostname，则这一步可以跳过。</p>
+<p>这一步看起来貌似不必要，其实是必须的，否则最后运行wordcount等例子时，会出现“Too many fetch-failures”。因为HDFS用hostname而不是IP，来相互之间进行通信（见后面的注意1）。</p>
+<p>在CentOS上修改hostname，包含两个步骤(假设将hostname1改为hostname2，参考<a href="http://www.ichiayi.com/wiki/tech/linux_hostname" target="_blank" rel="external">这里</a>，但不需要第一步)：</p>
+<ol>
+<li>将 <code>/etc/sysconfig/network</code> 內的 HOSTNAME 改成 yourhostname</li>
+<li>用<code>hostname</code>命令，临时修改机器名， <code>sudo hostname yourhostname</code></li>
+</ol>
+<p>用<code>exit</code>命令退出shell，再次登录，命令提示字符串就会变成<code>[username@yourhostname ~]$</code>。</p>
+<p>用上述方法，将131改名为master，132改名为slave01，133改名为slave02。</p>
+<p><strong>注意</strong>，对于有的Ubuntu/Debia 系统，会把本机的hostname解析成 127.0.1.1，例如：</p>
+<pre><code>127.0.0.1       localhost
+127.0.1.1       master
+</code></pre><p>将第二行改为(参考<a href="http://wiki.ubuntu.org.cn/%E5%88%A9%E7%94%A8Cloudera%E5%AE%9E%E7%8E%B0Hadoop" target="_blank" rel="external">利用Cloudera实现Hadoop</a>)</p>
+<pre><code>127.0.0.1       master
+</code></pre><p>####3.1.3 修改所有机器的<code>/etc/hosts</code>文件<br>在所有机器的<code>/etc/hosts</code>文件中，添加所有hostname对应的IP，一般在一台机器上设置好，然后scp到所有机器。例如</p>
+<pre><code>192.168.1.131 master
+192.168.1.132 slave01
+192.168.1.133 slave02
+</code></pre><p>##3.2 配置 master 无密码登陆到所有机器（包括master自己登陆自己）<br>参考我的另一篇博客，<a href="http://www.yanjiuyanjiu.com/blog/20120102/" target="_blank" rel="external">SSH无密码登录的配置</a></p>
+<p>##3.3 把Hadoop压缩包上传到所有机器，并解压<br>将 hadoop-1.2.1-bin.tar.gz 上传到所有机器，然后解压。<strong>注意，所有机器的hadoop路径必须一致，因为master会登陆到slave上执行命令，master认为slave的hadoop路径与自己一样。</strong></p>
+<p>下面开始配置，配置好了后，把conf 目录scp到所有其他机器。</p>
+<p>###3.4 修改6个配置文件<br>Hadoop的配置文件比较多，其设计原则可以概括为如下两点：</p>
+<ul>
+<li>尽可能模块化。例如core-xxx.xml是针对基础公共库core的，hdfs-xxx.xml是针对分布式文件系统HDFS的，mapred-xxx.xml是针对分布式计算框架MapReduce的。</li>
+<li>动静分离。例如，在Hadoop 1.0.0之前，作业队列权限管理相关的配置被放在mapred-site.xml里，而该文件爱你是不可以动态加载的，每次修改后必须重启Hadoop，但从 1.0.0后，这些配置选项被剥离出来放到独立的配置文件mapred-queue-acls.xml中，该文件可以通过Hadoop命令动态加载。在conf下，core-default.xml, hdfs-default.xml和mapred-default.xml是只读的，core-site.xml, hdfs-site.xml和mapred-site.xml才是用户可以修改的。要想覆盖默认配置，就在xxx-site.xml里修改。</li>
+</ul>
+<p>以下操作在master上进行。</p>
+<p>###3.4.1 conf/hadoop-env.sh<br>在 conf/hadoop-env.sh里，设置 <code>JAVA_HOME</code>。如果集群中，每台机器的JDK不一定统一安装在同一个路径，那就要在每个节点的hadoop-env.sh里分别设置<code>JAVA_HOME</code>。</p>
+<pre><code>export JAVA_HOME=/usr/lib/jvm/java
+</code></pre><p>还要设置<code>HADOOP_PID_DIR</code>，这里我们令其为<code>HADOOP_PID_DIR=/home/hadoop/local/var/hadoop/pids</code>，参考<a href="http://www.iteye.com/topic/299219" target="_blank" rel="external">Hadoop的pid配置</a>。</p>
+<pre><code>export HADOOP_PID_DIR=/home/hadoop/local/var/hadoop/pids
+</code></pre><p>注意，还要<strong>禁用IPv6</strong>，用命令<code>cat /proc/sys/net/ipv6/conf/all/disable_ipv6</code>检查一下系统是否启用了IPv6，如果是0,说明启用了。Hadoop在IPv6的情况下运行不正常，因此需禁用IPv6。</p>
+<p>不过我们不用真的禁用IPv6，还有另外一种方法，让java优先选择IPv4即可，在conf/hadoop-env.sh 里添加如下一行，</p>
+<pre><code>export HADOOP_OPTS=&quot;-server -Djava.net.preferIPv4Stack=true $HADOOP_OPTS&quot;
+</code></pre><p>参考<a href="http://www.michael-noll.com/tutorials/running-hadoop-on-ubuntu-linux-single-node-cluster/#disabling-ipv6" target="_blank" rel="external">Disabling IPv6</a>，以及Web Crawling and Data Mining with Apache Nutch这本书的第66页。</p>
+<p>###3.4.2 conf/masters</p>
+<pre><code>master
+</code></pre><p>###3.4.3 conf/slaves</p>
+<pre><code>slave01
+slave02
+</code></pre><p>这里解释一下，masters文件，存放的其实是SecondaryNameNode。关于masters和slaves两个配置文件，更精确的说明见这个StackOverflow答案，<a href="http://stackoverflow.com/a/19779590/381712" target="_blank" rel="external">hadoop conf/masters and conf/slaves on jobtracker?</a></p>
+<p>###3.4.4 conf/core-site.xml</p>
+<pre><code>&lt;configuration&gt;
+    &lt;property&gt;
+        &lt;name&gt;fs.default.name&lt;/name&gt;
+        &lt;value&gt;hdfs://master:9000&lt;/value&gt;
+    &lt;/property&gt;
+    &lt;property&gt;
+        &lt;name&gt;fs.checkpoint.dir&lt;/name&gt;
+        &lt;value&gt;/home/hadoop/local/var/hadoop/dfs/namesecondary&lt;/value&gt;
+    &lt;/property&gt;
+&lt;/configuration&gt;
+</code></pre><p>Hadoop会自动创建目录。</p>
+<p>###3.4.5 conf/hdfs-site.xml</p>
+<pre><code>&lt;configuration&gt;
+     &lt;property&gt;
+         &lt;name&gt;dfs.name.dir&lt;/name&gt;
+         &lt;value&gt;/home/hadoop/local/var/hadoop/dfs/name&lt;/value&gt;
+     &lt;/property&gt;
+     &lt;property&gt;
+         &lt;name&gt;dfs.data.dir&lt;/name&gt;
+         &lt;value&gt;/home/hadoop/local/var/hadoop/dfs/data&lt;/value&gt;
+     &lt;/property&gt;
+     &lt;property&gt;
+       &lt;name&gt;dfs.replication&lt;/name&gt;
+       &lt;value&gt;2&lt;/value&gt;
+     &lt;/property&gt;
+&lt;/configuration&gt;
+</code></pre><p>我们只有2台slave，因此<code>dfs.replication</code>设置为2。</p>
+<p>Hadoop会自动在master创建 /home/hadoop/local/var/hadoop/dfs/name 目录，在 slaves上创建 /home/hadoop/local/var/hadoop/dfs/data 目录。</p>
+<p>###3.4.6 conf/mapred-site.xml</p>
+<pre><code>&lt;configuration&gt;
+    &lt;property&gt;
+        &lt;name&gt;mapred.job.tracker&lt;/name&gt;
+        &lt;value&gt;master:9001&lt;/value&gt;
+    &lt;/property&gt;
+    &lt;property&gt;
+        &lt;name&gt;mapred.local.dir&lt;/name&gt;
+        &lt;value&gt;/home/hadoop/local/var/hadoop/mapred/local&lt;/value&gt;
+    &lt;/property&gt;
+    &lt;property&gt;
+        &lt;name&gt;mapreduce.jobtracker.staging.root.dir&lt;/name&gt;
+        &lt;value&gt;/user&lt;/value&gt;
+    &lt;/property&gt;
+&lt;/configuration&gt;
+</code></pre><p>###3.5 将配置文件拷贝到所有slaves</p>
+<pre><code>$ cd ~/local/opt/hadoop-1.2.1/conf/
+$ scp hadoop-env.sh core-site.xml hdfs-site.xml mapred-site.xml masters slaves hadoop@slave01:~/local/opt/hadoop-1.2.1/conf/
+$ scp hadoop-env.sh core-site.xml hdfs-site.xml mapred-site.xml masters slaves hadoop@slave02:~/local/opt/hadoop-1.2.1/conf/
+</code></pre><p>###3.6 运行 hadoop<br>在master上执行以下命令，启动hadoop</p>
+<pre><code>$ cd ~/local/opt/hadoop-1.2.1/
+#只需一次，下次启动不再需要格式化，只需 start-all.sh
+$ bin/hadoop namenode -format
+$ bin/start-all.sh
+</code></pre><p>###3.7 检查是否启动成功</p>
+<p>在master上执行：</p>
+<pre><code>$ jps
+
+2615 NameNode
+2767 JobTracker
+2874 Jps
+</code></pre><p>在一台slave上执行：</p>
+<pre><code>$ jps
+
+3415 DataNode
+3582 TaskTracker
+3499 SecondaryNameNode
+3619 Jps
+</code></pre><p>在另一台slave上执行：</p>
+<pre><code>$ jps
+
+3741 Jps
+3618 DataNode
+3702 TaskTracker
+</code></pre><p>可见进程都启动起来了，说明hadoop运行成功。</p>
+<p>###3.8 运行wordcount例子，进一步测试是否安装成功<br>将输入数据拷贝到分布式文件系统中:</p>
+<pre><code>$ cd ~/local/opt/hadoop-1.2.1/
+$ bin/hadoop fs -put conf input
+</code></pre><p>运行 Hadoop 自带的例子:</p>
+<pre><code>$ bin/hadoop jar hadoop-examples-*.jar wordcount input output
+</code></pre><p>查看输出文件:</p>
+<pre><code>$ bin/hadoop fs -ls output
+$ bin/hadoop fs -cat output/part-r-00000
+</code></pre><p>如果能看到结果，说明这个例子运行成功。</p>
+<p>###3.9 停止 hadoop集群<br>在master上执行：</p>
+<pre><code>$ bin/stop-all.sh
+</code></pre><p>###3.10 （可选）在master上设置环境变量HADOOP_PREFIX，并将HADOOP_PREFIX/bin加入PATH<br>这一步是为了将bin目录加入PATH，这样可以在任何位置执行hadoop的各种命令。这步是可选的。</p>
+<p>Hadoop不推荐使用<code>HADOOP_HOME</code>，你可以试一下，当设置了<code>HADOOP_HOME</code>后，执行<code>bin/start-all.sh</code>，第一行会打印出一行警告信息，<code>Warning: $HADOOP_HOME is deprecated.</code> 应该用<code>HADOOP_PREFIX</code>代替，见邮件列表里的这封<a href="http://mail-archives.apache.org/mod_mbox/hadoop-common-user/201202.mbox/%3CCB4ECC21.33727%25evans@yahoo-inc.com%3E" target="_blank" rel="external">邮件</a>。</p>
+<p>给所有机器设置环境变量<code>HADOOP_PREFIX</code>，并将<code>$HADOOP_PREFIX/bin</code>加入PATH。</p>
+<p>在 <code>~/.bashrc</code>中添加如下4行：</p>
+<pre><code>export HADOOP_PREFIX=$HOME/local/opt/hadoop-1.2.1
+export PATH=$PATH:$HADOOP_PREFIX/bin
+</code></pre><p>source使之立刻生效，</p>
+<pre><code>$ source ~/.bashrc
+</code></pre><p>##4. 排除错误<br>本文已经尽可能的把步骤详细列出来了，但是我相信大部分人不会一次成功。这时候，查找错误就很重要了。查找错误最重要的手段是查看hadoop的日志，一般在logs目录下。把错误消息复制粘贴到google，搜索一下，慢慢找错误。</p>
+<p>##注意</p>
+<ol>
+<li>所有配置文件只能用hostname，不能用IP。两年前我不懂，还为此<a href="http://stackoverflow.com/questions/8702637/hadoop-conf-fs-default-name-cant-be-setted-ipport-format-directly" target="_blank" rel="external">在stackoverflow上发了帖子</a>。hadoop会反向解析hostname，即使是用了IP，也会使用hostname 来启动TaskTracker。参考<a href="http://stackoverflow.com/questions/15230946/hdfs-lan-ip-address-hostname-resolution" target="_blank" rel="external">hdfs LAN ip address hostname resolution</a>，<a href="http://www.makenotes.net/?p=337004" target="_blank" rel="external">hadoop入门经验总结- 杨贵堂的博客</a>，<a href="http://51mst.iteye.com/blog/1152439" target="_blank" rel="external">hadoop集群配置</a>。</li>
+<li>在第2.5步骤，如果出现 <code>SafeModeException</code> 异常，不用担心，等待几分钟即可。因为hadoop刚刚启动时，会进入安全模式进行自检，这需要花点时间。</li>
+<li>如果在任何一步失败，可以<code>stop-all.sh</code>, 然后<code>hadoop  namenode -format</code>，重试几次，一般可以成功。如果还是不成功，多看看 logs目录下的日志文件，把错误消息复制粘贴到google，搜索答案。</li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Ubuntu上安装，请参考我的另一篇博客，&lt;a href=&quot;http://www.yanjiuyanjiu.com/blog/20120103/&quot;&gt;在Ubuntu上安装Hadoop&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;环境&lt;/strong&gt;：CentOS 6.5, OPenJDK 1.7, Hadoop 1.2.1&lt;/p&gt;
+&lt;p&gt;本文主要参考官网的文档，&lt;a href=&quot;http://hadoop.apache.org/docs/r1.2.1/#Getting+Started&quot;&gt;Hadoop 1.2.1 Getting Started&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;##1 单机模式(Standalone Mode)&lt;br&gt;为了能顺利安装成功，我们先练习在单台机器上安装Hadoop。在单台机器上，可以配置成单机模式(Standalone Mode)和伪分布式模式(Pseudo-Distributed Mode)，参考官方文档&lt;a href=&quot;http://hadoop.apache.org/docs/r1.2.1/single_node_setup.html&quot;&gt;Single Node Setup&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;###1.1 下载Hadoop 1.2.1，解压&lt;br&gt;用浏览器下载或wget,&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ wget http://mirror.olnevhost.net/pub/apache/hadoop/common/stable1/hadoop-1.2.1-bin.tar.gz
+$ tar -zxf hadoop-1.2.1-bin.tar.gz -C ~/local/opt
+$ cd ~/local/opt/hadoop-1.2.1
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;###1.2 编辑 conf/hadoop-env.sh，设置 &lt;code&gt;JAVA_HOME&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ echo $JAVA_HOME
+/usr/lib/jvm/java
+$ vim conf/hadoop-env.sh
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;取消&lt;code&gt;JAVA_HOME&lt;/code&gt;那一行的注释，设置正确的JDK位置&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;export JAVA_HOME=/usr/lib/jvm/java
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;###1.3 运行一个job&lt;br&gt;默认情况下，Hadoop就被配置为Standalone模式了，此时Hadoop的所有模块都运行在一个java进程里。&lt;/p&gt;
+&lt;p&gt;我们运行一个例子测试一下。下面的几行命令，把 &lt;code&gt;conf&lt;/code&gt;下的所有xml文件作为输入，在文件中查找指定的正则表达式，把匹配的结果输出到&lt;code&gt;output&lt;/code&gt;目录。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ mkdir input 
+$ cp conf/*.xml input 
+$ bin/hadoop jar hadoop-examples-*.jar grep input output &amp;apos;dfs[a-z.]+&amp;apos; 
+$ cat output/*
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;可以看到正常的结果，说明单机模式运行成功了，下面开始配置伪分布式模式。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Hadoop" scheme="http://cn.soulmachine.me/categories/Hadoop/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Nutch 快速入门(Nutch 2.2.1)</title>
+    <link href="http://cn.soulmachine.me/2014-02-01-nutch-tutorial/"/>
+    <id>http://cn.soulmachine.me/2014-02-01-nutch-tutorial/</id>
+    <published>2014-02-01T04:11:00.000Z</published>
+    <updated>2016-09-09T06:32:49.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>本文主要参考<a href="http://wiki.apache.org/nutch/Nutch2Tutorial" target="_blank" rel="external">Nutch 2.x Tutorial</a></p>
+<p>Nutch 2.x 与 Nutch 1.x 相比，剥离出了存储层，放到了gora中，可以使用多种数据库，例如HBase, Cassandra, MySql来存储数据了。Nutch 1.7 则是把数据直接存储在HDFS上。</p>
+<p>##1. 安装并运行HBase<br>为了简单起见，使用Standalone模式，参考 <a href="http://hbase.apache.org/book/quickstart.html" target="_blank" rel="external">HBase Quick start</a></p>
+<p>###1.1 下载，解压</p>
+<pre><code>wget http://archive.apache.org/dist/hbase/hbase-0.90.4/hbase-0.90.4.tar.gz
+tar zxf hbase-0.90.4.tar.gz
+</code></pre><p>###1.2 修改 conf/hbase-site.xml<br>内容如下</p>
+<pre><code>&lt;configuration&gt;
+  &lt;property&gt;
+    &lt;name&gt;hbase.rootdir&lt;/name&gt;
+    &lt;value&gt;file:///DIRECTORY/hbase&lt;/value&gt;
+  &lt;/property&gt;
+  &lt;property&gt;
+    &lt;name&gt;hbase.zookeeper.property.dataDir&lt;/name&gt;
+    &lt;value&gt;/DIRECTORY/zookeeper&lt;/value&gt;
+  &lt;/property&gt;
+&lt;/configuration&gt;
+</code></pre><p><code>hbase.rootdir</code>目录是用来存放HBase的相关信息的，默认值是<code>/tmp/hbase-${user.name}/hbase</code>； <code>hbase.zookeeper.property.dataDir</code>目录是用来存放zookeeper（HBase内置了zookeeper）的相关信息的，默认值是<code>/tmp/hbase-${user.name}/zookeeper</code>。</p>
+<p>###1.3 启动</p>
+<pre><code>$ ./bin/start-hbase.sh
+starting Master, logging to logs/hbase-user-master-example.org.out
+</code></pre><a id="more"></a>
+<p>###1.4 试用一下shell<br>$ ./bin/hbase shell<br>HBase Shell; enter ‘help<return>‘ for list of supported commands.<br>Type “exit<return>“ to leave the HBase Shell<br>Version 0.90.4, r1150278, Sun Jul 24 15:53:29 PDT 2011</return></return></p>
+<p>hbase(main):001:0&gt;</p>
+<p>创建一张名字为<code>test</code>的表，只有一个列，名为<code>cf</code>。为了验证创建是否成功，用<code>list</code>命令查看所有的table，并用<code>put</code>命令插入一些值。</p>
+<pre><code>hbase(main):003:0&gt; create &apos;test&apos;, &apos;cf&apos;
+0 row(s) in 1.2200 seconds
+hbase(main):003:0&gt; list &apos;test&apos;
+..
+1 row(s) in 0.0550 seconds
+hbase(main):004:0&gt; put &apos;test&apos;, &apos;row1&apos;, &apos;cf:a&apos;, &apos;value1&apos;
+0 row(s) in 0.0560 seconds
+hbase(main):005:0&gt; put &apos;test&apos;, &apos;row2&apos;, &apos;cf:b&apos;, &apos;value2&apos;
+0 row(s) in 0.0370 seconds
+hbase(main):006:0&gt; put &apos;test&apos;, &apos;row3&apos;, &apos;cf:c&apos;, &apos;value3&apos;
+0 row(s) in 0.0450 seconds
+</code></pre><p>用<code>scan</code>命令扫描table，验证一下刚才的插入是否成功。</p>
+<pre><code>hbase(main):007:0&gt; scan &apos;test&apos;
+ROW        COLUMN+CELL
+row1       column=cf:a, timestamp=1288380727188, value=value1
+row2       column=cf:b, timestamp=1288380738440, value=value2
+row3       column=cf:c, timestamp=1288380747365, value=value3
+3 row(s) in 0.0590 seconds
+</code></pre><p>现在，disable并drop掉你的表，这会把上面的所有操作清零。</p>
+<pre><code>hbase(main):012:0&gt; disable &apos;test&apos;
+0 row(s) in 1.0930 seconds
+hbase(main):013:0&gt; drop &apos;test&apos;
+0 row(s) in 0.0770 seconds 
+</code></pre><p>退出shell，</p>
+<pre><code>hbase(main):014:0&gt; exit
+</code></pre><p>###1.5 停止</p>
+<pre><code>$ ./bin/stop-hbase.sh
+stopping hbase...............
+</code></pre><p>###1.6 再次启动<br>后面运行Nutch，需要把数据存储到HBase，因此需要启动HBase。</p>
+<pre><code>$ ./bin/start-hbase.sh
+starting Master, logging to logs/hbase-user-master-example.org.out
+</code></pre><p>##2 编译Nutch 2.2.1</p>
+<p>###2.1 下载，解压<br>    wget <a href="http://www.apache.org/dyn/closer.cgi/nutch/2.2.1/apache-nutch-2.2.1-src.tar.gz" target="_blank" rel="external">http://www.apache.org/dyn/closer.cgi/nutch/2.2.1/apache-nutch-2.2.1-src.tar.gz</a><br>    tar zxf apache-nutch-2.2.1-src.tar.gz</p>
+<p>###2.2 修改配置文件<br>参考<a href="http://wiki.apache.org/nutch/Nutch2Tutorial" target="_blank" rel="external">Nutch 2.0 Tutorial</a></p>
+<p>修改 <code>conf/nutch-site.xml</code></p>
+<pre><code>&lt;property&gt;
+  &lt;name&gt;storage.data.store.class&lt;/name&gt;
+  &lt;value&gt;org.apache.gora.hbase.store.HBaseStore&lt;/value&gt;
+  &lt;description&gt;Default class for storing data&lt;/description&gt;
+&lt;/property&gt;
+</code></pre><p>修改<code>ivy/ivy.xml</code></p>
+<pre><code>&lt;!-- Uncomment this to use HBase as Gora backend. --&gt;
+&lt;dependency org=&quot;org.apache.gora&quot; name=&quot;gora-hbase&quot; rev=&quot;0.3&quot; conf=&quot;*-&gt;default&quot; /&gt;
+</code></pre><p>修改 <code>conf/gora.properties</code>，确保<code>HBaseStore</code>被设置为默认的存储，</p>
+<pre><code>gora.datastore.default=org.apache.gora.hbase.store.HBaseStore
+</code></pre><p>###2.3 编译</p>
+<pre><code>ant runtime
+</code></pre><p>刚开始会下载很多jar，需要等待一段时间。</p>
+<p>有可能你会得到如下错误：</p>
+<pre><code>Trying to override old definition of task javac
+  [taskdef] Could not load definitions from resource org/sonar/ant/antlib.xml. It could not be found.
+
+ivy-probe-antlib:
+
+ivy-download:
+  [taskdef] Could not load definitions from resource org/sonar/ant/antlib.xml. It could not be found.
+</code></pre><p>无所谓，不用管它。</p>
+<p>要等一会儿才能编译结束。编译完后，多出来了 build 和 runtime两个文件夹。</p>
+<p>第3、4、5、6步与另一篇博客<a href="">Nutch 快速入门(Nutch 1.7)</a>中的第3、4、5、6步骤一模一样。</p>
+<p>##3 添加种子URL</p>
+<pre><code>mkdir ~/urls
+vim ～/urls/seed.txt
+http://movie.douban.com/subject/5323968/
+</code></pre><p>##4 设置URL过滤规则<br>如果只想抓取某种类型的URL，可以在 <code>conf/regex-urlfilter.txt</code>设置正则表达式，于是，只有匹配这些正则表达式的URL才会被抓取。</p>
+<p>例如，我只想抓取豆瓣电影的数据，可以这样设置：</p>
+<pre><code>#注释掉这一行
+# skip URLs containing certain characters as probable queries, etc.
+#-[?*!@=]
+# accept anything else
+#注释掉这行
+#+.
++^http:\/\/movie\.douban\.com\/subject\/[0-9]+\/(\?.+)?$
+</code></pre><p>##5 设置agent名字</p>
+<p>conf/nutch-site.xml:</p>
+<pre><code>&lt;property&gt;
+  &lt;name&gt;http.agent.name&lt;/name&gt;
+  &lt;value&gt;My Nutch Spider&lt;/value&gt;
+&lt;/property&gt;
+</code></pre><p>这一步是从这本书上看到的，<a href="http://www.packtpub.com/web-crawling-and-data-mining-with-apache-nutch/book" target="_blank" rel="external">Web Crawling and Data Mining with Apache Nutch</a>，第14页。</p>
+<p>##6 安装Solr<br>由于建索引的时候需要使用Solr，因此我们需要安装并启动一个Solr服务器。</p>
+<p>参考<a href="http://wiki.apache.org/nutch/NutchTutorial" target="_blank" rel="external">Nutch Tutorial</a> 第4、5、6步，以及<a href="http://lucene.apache.org/solr/4_6_1/tutorial.html" target="_blank" rel="external">Solr Tutorial</a>。</p>
+<p>###6.1 下载，解压</p>
+<p>wget <a href="http://mirrors.cnnic.cn/apache/lucene/solr/4.6.1/solr-4.6.1.tgz" target="_blank" rel="external">http://mirrors.cnnic.cn/apache/lucene/solr/4.6.1/solr-4.6.1.tgz</a><br>tar -zxf solr-4.6.1.tgz</p>
+<p>###6.2 运行Solr</p>
+<pre><code>cd example
+java -jar start.jar
+</code></pre><p>验证是否启动成功</p>
+<p>用浏览器打开 <a href="http://localhost:8983/solr/admin/" target="_blank" rel="external">http://localhost:8983/solr/admin/</a>，如果能看到页面，说明启动成功。</p>
+<p>###6.3 将Nutch与Solr集成在一起</p>
+<p>将<code>NUTCH_DIR/conf/schema-solr4.xml</code>拷贝到<code>SOLR_DIR/solr/collection1/conf/</code>，重命名为schema.xml，并在<code>&lt;fields&gt;...&lt;/fields&gt;</code>最后添加一行(具体解释见<a href="http://stackoverflow.com/questions/15527380/solr-4-2-what-is-version-field" target="_blank" rel="external">Solr 4.2 - what is _version_field?</a>)，</p>
+<pre><code>&lt;field name=&quot;_version_&quot; type=&quot;long&quot; indexed=&quot;true&quot; stored=&quot;true&quot; multiValued=&quot;false&quot;/&gt;
+</code></pre><p>重启Solr，</p>
+<pre><code># Ctrl+C to stop Solr
+java -jar start.jar
+</code></pre><p>第7步和第8步也和Nutch 1.7那篇博客中的7、8步很类似。主要区别在于，Nutch 2.x的所有数据，不再以文件和目录的形式存放在硬盘上，而是存放到HBase里。</p>
+<p>##7 一步一步使用单个命令抓取网页<br>TODO</p>
+<p>##8 使用crawl脚本一键抓取<br>刚才我们是手工敲入多个命令，一个一个步骤，来完成抓取的，其实Nutch自带了一个脚本，<code>./bin/crawl</code>，把抓取的各个步骤合并成一个命令，看一下它的用法</p>
+<pre><code>$ ./bin/crawl 
+Missing seedDir : crawl &lt;seedDir&gt; &lt;crawlID&gt; &lt;solrURL&gt; &lt;numberOfRounds&gt;
+</code></pre><p><strong>注意</strong>，这里是<code>crawlId</code>，不再是<code>crawlDir</code>。</p>
+<p>先删除第7节产生的数据，使用HBase shell，用<code>disable</code>删除表。</p>
+<p>###8.1 抓取网页</p>
+<pre><code>$ ./bin/crawl ~/urls/ TestCrawl http://localhost:8983/solr/ 2
+</code></pre><ul>
+<li><code>～/urls</code> 是存放了种子url的目录</li>
+<li>TestCrawl 是crawlId，这会在HBase中创建一张以crawlId为前缀的表，例如TestCrawl_Webpage。</li>
+<li><a href="http://localhost:8983/solr/" target="_blank" rel="external">http://localhost:8983/solr/</a> , 这是Solr服务器</li>
+<li>2，numberOfRounds，迭代的次数</li>
+</ul>
+<p>过了一会儿，屏幕上出现了一大堆url，可以看到爬虫正在抓取！</p>
+<pre><code>fetching http://music.douban.com/subject/25811077/ (queue crawl delay=5000ms)
+fetching http://read.douban.com/ebook/1919781 (queue crawl delay=5000ms)
+fetching http://www.douban.com/online/11670861/ (queue crawl delay=5000ms)
+fetching http://book.douban.com/tag/绘本 (queue crawl delay=5000ms)
+fetching http://movie.douban.com/tag/科幻 (queue crawl delay=5000ms)
+49/50 spinwaiting/active, 56 pages, 0 errors, 0.9 1 pages/s, 332 245 kb/s, 131 URLs in 5 queues
+fetching http://music.douban.com/subject/25762454/ (queue crawl delay=5000ms)
+fetching http://read.douban.com/reader/ebook/1951242/ (queue crawl delay=5000ms)
+fetching http://www.douban.com/mobile/read-notes (queue crawl delay=5000ms)
+fetching http://book.douban.com/tag/诗歌 (queue crawl delay=5000ms)
+50/50 spinwaiting/active, 61 pages, 0 errors, 0.9 1 pages/s, 334 366 kb/s, 127 URLs in 5 queues
+</code></pre><p>###8.2 查看结果</p>
+<pre><code>./bin/nutch readdb -crawlId TestCrawl -stats
+</code></pre><p>也可以进HBase shell 查看，</p>
+<pre><code>cd ~/hbase-0.90.4
+./bin/hbase shell
+hbase(main):001:0&gt; scan &apos;TestCrawl_webpage&apos;
+</code></pre><p>屏幕开始不断输出内容，可以用Ctrl+C 结束。</p>
+<p>在运行scan查看表中内容时，对于列的含义不确定时可以查看<code>conf/gora-hbase-mapping.xml</code>文件，该文件定义了列族及列的含义。</p>
+<p>##相关文章<br><a href="http://www.yanjiuyanjiu.com/blog/20140121/" target="_blank" rel="external">Nutch 快速入门(Nutch 1.7)</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;本文主要参考&lt;a href=&quot;http://wiki.apache.org/nutch/Nutch2Tutorial&quot;&gt;Nutch 2.x Tutorial&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Nutch 2.x 与 Nutch 1.x 相比，剥离出了存储层，放到了gora中，可以使用多种数据库，例如HBase, Cassandra, MySql来存储数据了。Nutch 1.7 则是把数据直接存储在HDFS上。&lt;/p&gt;
+&lt;p&gt;##1. 安装并运行HBase&lt;br&gt;为了简单起见，使用Standalone模式，参考 &lt;a href=&quot;http://hbase.apache.org/book/quickstart.html&quot;&gt;HBase Quick start&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;###1.1 下载，解压&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;wget http://archive.apache.org/dist/hbase/hbase-0.90.4/hbase-0.90.4.tar.gz
+tar zxf hbase-0.90.4.tar.gz
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;###1.2 修改 conf/hbase-site.xml&lt;br&gt;内容如下&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;configuration&amp;gt;
+  &amp;lt;property&amp;gt;
+    &amp;lt;name&amp;gt;hbase.rootdir&amp;lt;/name&amp;gt;
+    &amp;lt;value&amp;gt;file:///DIRECTORY/hbase&amp;lt;/value&amp;gt;
+  &amp;lt;/property&amp;gt;
+  &amp;lt;property&amp;gt;
+    &amp;lt;name&amp;gt;hbase.zookeeper.property.dataDir&amp;lt;/name&amp;gt;
+    &amp;lt;value&amp;gt;/DIRECTORY/zookeeper&amp;lt;/value&amp;gt;
+  &amp;lt;/property&amp;gt;
+&amp;lt;/configuration&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;code&gt;hbase.rootdir&lt;/code&gt;目录是用来存放HBase的相关信息的，默认值是&lt;code&gt;/tmp/hbase-${user.name}/hbase&lt;/code&gt;； &lt;code&gt;hbase.zookeeper.property.dataDir&lt;/code&gt;目录是用来存放zookeeper（HBase内置了zookeeper）的相关信息的，默认值是&lt;code&gt;/tmp/hbase-${user.name}/zookeeper&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;###1.3 启动&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ ./bin/start-hbase.sh
+starting Master, logging to logs/hbase-user-master-example.org.out
+&lt;/code&gt;&lt;/pre&gt;
+    
+    </summary>
+    
+      <category term="Search-Engine" scheme="http://cn.soulmachine.me/categories/Search-Engine/"/>
+    
+    
+  </entry>
+  
+</feed>
